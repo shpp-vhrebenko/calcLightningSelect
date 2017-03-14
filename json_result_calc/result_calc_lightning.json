@@ -1,0 +1,16 @@
+{
+    "rooms": [
+        {
+            "lampsCount": 10,
+            "lampName": "ALD UNI LED 1200 EM 4000K",
+            "lampsWatt": 300,
+            "roomSpace": "56.20",
+            "heightRoom": "2.5",
+            "lampsWorkHeight": "0.8",
+            "lumix": "3000",
+            "safetyFactor": "1.4",
+            "reflectionCoef": "10,50,50",
+            "nameLamp": "ALD UNI LED 1200 EM 4000K светильник светодиодный ; Cтепень защиты: IP54; Тип установки: встраиваемый; Область приминения: офисно-административное освещение"
+        }
+    ]
+}
