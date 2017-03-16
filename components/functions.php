@@ -1,4 +1,11 @@
 <?php 
+function decart_dist($point1,$point2) //декартово расстояние
+{
+ $x=$point1['x']-$point2['x'];
+ $y=$point1['y']-$point2['y'];
+ return sqrt($x*$x+$y*$y);
+}
+
 function full_trim($str)                             
 {                                                    
     return trim(preg_replace('/\s{2,}/', ' ', $str));                                                      
@@ -53,9 +60,9 @@ function getRoomFrontWall($g_wall, $id,$multNumber=20, $opacity=0, $fill_color='
 	$res_plg->addPoint($end_point->x,$end_point->y);
 	$res_plg->addPoint($end_center['x'],$end_center['y']);
 	$res_plg->addPoint($start_center['x'],$start_center['y']);
-	$res_plg->addProperty('onmousemove','onWallmMove(this)');
+	/*$res_plg->addProperty('onmousemove','onWallmMove(this)');
 	$res_plg->addProperty('onmouseout','onWallmOut(this)');
-	$res_plg->addProperty('onclick','onPlanWallClick(this)');
+	$res_plg->addProperty('onclick','onPlanWallClick(this)');*/
 //	$res_plg->addProperty('ondblclick',"onRoomClick(this,true)");
 	$res_plg->addProperty('fill-opacity',$opacity);
 	$res_plg->addProperty('stroke-opacity',$opacity);

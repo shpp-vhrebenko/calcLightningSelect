@@ -26,9 +26,10 @@
           $resultArray["calcLighting"] = calcLightingDrawObject($answer);               
           //$resultArray["calcLighting"] = calcLighting($answer);            
           echo json_encode($resultArray);                
-        }
-        else
-        {
+        } else if(isset($_POST["calc_countLamp"])) {          
+          $resultArray["calcCountLamp"] = calcLighting($_POST["parameters"], $_POST["currentRoom"]); 
+          echo json_encode($resultArray);       
+        } else {
           throw new Exception('Введенные данные некорректны', 1);           
         }
       }

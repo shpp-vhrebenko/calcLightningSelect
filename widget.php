@@ -25,7 +25,7 @@ ini_set('display_startup_errors', 1);
     <div class="js_loading_wraper">
       <div class="loading"></div>
     </div>    
-    <div class="container">        
+    <div class="container-fluid">        
       <div class="header">
         <!-- <ul class="nav nav-pills pull-right">
           <li class="active"><a href="#">Home</a></li>
@@ -40,7 +40,7 @@ ini_set('display_startup_errors', 1);
             <button type="button" id="cancel" class="btn btn-danger btn-circle "><i class="glyphicon glyphicon-remove"></i></button>                
           </div> 
         </div>
-        <div class="col-xs-12 col-md-6">           
+        <div class="col-xs-12 col-md-5">           
           <h3>План</h3>
           <ul class="nav nav-tabs " id="tabs_plan">
             <!-- <li class="active"><a href="#1">Этаж №1</a></li>  -->                      
@@ -60,7 +60,7 @@ ini_set('display_startup_errors', 1);
                  
         </div>
 
-        <div class="col-xs-12 col-md-6">                  
+        <div class="col-xs-12 col-md-7">                  
           <form class="form-horizontal"
             id="calcLightning"
             role="form"
@@ -86,14 +86,14 @@ ini_set('display_startup_errors', 1);
               </thead>
               <tbody>
                 <tr>
-                  <td>
+                  <td class="input">
                     <select name="nameLamp" id="nameLamp" class="room input-sm" required >
                       <option selected value="">Выберите тип светильника</option>
                     </select>
                   </td> 
-                  <td><input class="room_param room input-sm" type="number" id="heightRoom" name="heightRoom" placeholder="2.5" min="0.0" step="0.1" required/></td>
-                  <td><input  type="number" class="room_param room input-sm" id="lampsWorkHeight" name="lampsWorkHeight" placeholder="0.8" min="0.0" step="0.1" required /></td>
-                  <td>
+                  <td class="input"><input class="room_param room input-sm" type="number" id="heightRoom" name="heightRoom" placeholder="2.5" min="0.0" step="0.1" required/></td>
+                  <td class="input"><input  type="number" class="room_param room input-sm" id="lampsWorkHeight" name="lampsWorkHeight" placeholder="0.8" min="0.0" step="0.1" required /></td>
+                  <td class="input">
                     <select class="room input-sm" id="reflectionCoef" name="reflectionCoef" required>
                       <option value="" selected>Выберите значение коэффициента отражения</option>
                       <option value="0,0,0">Пол-0%, стены-0%, потолок-0%</option>
@@ -106,7 +106,7 @@ ini_set('display_startup_errors', 1);
                       <option value="30,80,80">Пол-80%, стены-80%, потолок-30%</option>
                     </select>
                   </td> 
-                  <td>
+                  <td class="input">
                     <select class="room input-sm" id="safetyFactor" name="safetyFactor"  required>
                       <option selected value="">Выберите значение коэффициента запаса</option>       
                       <option value="1.1">1.1</option>
@@ -115,7 +115,7 @@ ini_set('display_startup_errors', 1);
                       <option value="1.7">1.7</option>
                     </select>
                   </td>
-                  <td>
+                  <td class="input">
                     <select class="room input-sm" id="requiredIllumination" name="requiredIllumination" required>
                       <option value="" selected>Выберите значение освещенности</option>
                       <option value="5">Чердаки</option>
@@ -142,7 +142,27 @@ ini_set('display_startup_errors', 1);
               </tbody>
             </table>                    
           </form>
-          <div id="info_type_lamp" ></div> 
+          <div class="table-responsive"> 
+            <table class="table table-bordered table-condensed table-responsive">
+                <thead>
+                    <tr>
+                        <th>Наименование светильника</th>
+                        <th>№ комнаты</th>
+                        <th>Площадь комнаты</th>
+                        <th>Количество светильников</th>
+                        <th>Требуемая освещенность</th>
+                        <th>Коэффициэнт отражения</th>
+                        <th>Коэффициэнт запаса</th>
+                        <th>Мощность 1 светильника</th>
+                        <th>Мощность всех светильников</th>
+                    </tr>
+                </thead>
+                <tbody id="data_table_body">
+                    <tr>                        
+                    </tr>
+                </tbody>
+            </table>
+          </div>          
           <div class="row">
             <div class="col-sm-12 col-md-7">              
               <button id="set_data" type="button" class="btn btn-info btn-lg btn-block">Добавить светильник</button>       
@@ -159,6 +179,7 @@ ini_set('display_startup_errors', 1);
     
     <script src="bower_components/jquery/dist/jquery.js"></script>   
     <script type="text/javascript"  src="bower_components/bootstrap-less/js/tab.js"></script>
+   <!--  <script type="text/javascript"  src="bower_components/bootstrap-table/src/bootstrap-table.js"></script> -->
     <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/jquery-validation/dist/jquery.validate.js"></script>      
 

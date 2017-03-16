@@ -36,7 +36,7 @@ class Otrezok {
     function getEnd() {return $this->end;}
     function getLength() {
         if($this->correct_length)  return $this->correct_length;
-        else return decart_dist ($this->start, $this->end);
+        else return decart_dist($this->start, $this->end);
     }
     function mov_d($dx,$dy)
     {

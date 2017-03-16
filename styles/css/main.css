@@ -6585,7 +6585,7 @@ select {
   border: 0;
   width: 100%;
 }
-td {
+td.input {
   margin: 0;
   padding: 0;
 }
@@ -6595,6 +6595,9 @@ td {
 }
 th {
   font-size: 1rem;
+}
+td {
+  text-align: center;
 }
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
