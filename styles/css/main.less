@@ -1,6 +1,5 @@
-/* @import "../../bower_components/jquery-easyui/themes/default/easyui.css"; */
 @import "../../bower_components/bootstrap-less/less/bootstrap.less"; 
-//@import "../../bower_component/bootstrap-table/src/bootstrap-table.css";   
+@import (less) "../../bower_components/bootstrap-table/src/bootstrap-table.css";   
 
 /* Reload bootstrap style */
 .btn-circle {
@@ -37,7 +36,7 @@ input, select {display: block; padding: 0; margin: 0; border: 0; width: 100%;}
 td.input {margin: 0; padding: 0;}
 .table-condensed > tbody > tr > th, .table-condensed > tbody > tr > td {
     padding: 0px;
-}
+} 
 
 th {
   font-size: 1rem;
@@ -45,7 +44,7 @@ th {
 
 td {
   text-align: center;
-}
+} 
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
@@ -153,8 +152,17 @@ body {
 }
 
 #set_data {
-  display: none;
+  color: #5CB85C;
+} 
+
+#edit_data {
+  color: #337AB7;
 }
+
+#remove_data {
+  color: #D9534F;
+}
+
 
 polygon {
   cursor: pointer;

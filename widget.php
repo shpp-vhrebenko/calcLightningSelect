@@ -14,8 +14,7 @@ ini_set('display_startup_errors', 1);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>calcLighting</title>
 
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">    
-   <!-- <link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap.min.css"> -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">   
     <link rel="stylesheet" href="styles/css/main.css?<?php echo filemtime('styles/css/main.css');?>">      
   </head>
   <body>  
@@ -48,9 +47,9 @@ ini_set('display_startup_errors', 1);
           <div class="tab-content">
           </div>
           <p id="error_message_request" class="error_message" ></p>            
-          <div class="col-sm-12 col-md-6 col-md-offset-3">
+          <!-- <div class="col-sm-12 col-md-6 col-md-offset-3">
             <button id="calcButton" class="btn btn-success btn-lg btn-block" >Расчет</button>
-          </div>
+          </div> -->
           <div class="col-sm-12 col-md-6 col-md-offset-3">
             <button id="put_data" type="button" class="btn btn-success btn-lg btn-block">Сохранить</button>   
           </div>         
@@ -68,10 +67,10 @@ ini_set('display_startup_errors', 1);
             method="post"
             action="">
             <div class="row">
-              <div class="col-xs-12 col-md-6 col-md-offset-3">
-                <img src="" class="img-responsive" id="js_photo_lamp" alt="">
-                <p id="info_lamp"></p>
-              </div>
+              <div class="col-xs-12 col-md-6 col-md-offset-4">
+                <img src="" class="img-responsive" id="js_photo_lamp" alt="">                
+              </div>             
+              <p class="col-xs-12 col-md-12" id="info_lamp"></p>
             </div> 
             <table class="table table-bordered table-condensed">
               <thead>
@@ -143,31 +142,67 @@ ini_set('display_startup_errors', 1);
             </table>                    
           </form>
           <div class="table-responsive"> 
-            <table class="table table-bordered table-condensed table-responsive">
+            <div id="toolbar" class="btn-group">
+                <button type="button" class="btn btn-default" id="set_data">
+                    <i class="glyphicon glyphicon-plus"></i>
+                </button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" id="edit_data">
+                    <i class="glyphicon glyphicon-pencil"></i>
+                </button>
+                <button type="button" class="btn btn-default" id="remove_data">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </button>
+            </div>
+            <table class="table"
+                    id="bTable"
+                    data-toggle="table"
+                    data-search="true"                                 
+                    data-toolbar="#toolbar"
+                    data-click-to-select="true"
+                    data-single-select="true"                  
+                    data-classes="table table-hover table-condensed"       
+                    data-sort-order="desc"
+                    data-sort-name="nameLamp"
+                    data-locale="ru-RU">
                 <thead>
                     <tr>
-                        <th>Наименование светильника</th>
-                        <th>№ комнаты</th>
-                        <th>Площадь комнаты</th>
-                        <th>Количество светильников</th>
-                        <th>Требуемая освещенность</th>
-                        <th>Коэффициэнт отражения</th>
-                        <th>Коэффициэнт запаса</th>
-                        <th>Мощность 1 светильника</th>
-                        <th>Мощность всех светильников</th>
+                        <th data-field="state" data-checkbox="true"></th>
+                        <th data-field="nameLamp" data-sortable="true">Наименование </br> светильника</th>
+                        <th data-field="roomNumber">№ комнаты </br> / №этажа</th>                        
+                        <th data-field="roomArea">Площадь </br> комнаты</th>
+                        <th data-field="lampsCount">Количество </br> светильников</th>
+                        <th data-field="requiredIllumination">Требуемая </br> освещенность</th>
+                        <th data-field="reflectionCoef">Коэффициэнт </br> отражения</th>
+                        <th data-field="satefyFactor">Коэффициэнт </br> запаса</th>
+                        <th data-field="powerLamp">Мощность </br> 1 светильника</th>
+                        
                     </tr>
                 </thead>
-                <tbody id="data_table_body">
-                    <tr>                        
-                    </tr>
-                </tbody>
+                <!-- <tbody id="data_table_body">
+                    
+                </tbody> -->
             </table>
           </div>          
-          <div class="row">
-            <div class="col-sm-12 col-md-7">              
-              <button id="set_data" type="button" class="btn btn-info btn-lg btn-block">Добавить светильник</button>       
-            </div>                         
-          </div>  
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
         </div>
         
 
@@ -179,7 +214,9 @@ ini_set('display_startup_errors', 1);
     
     <script src="bower_components/jquery/dist/jquery.js"></script>   
     <script type="text/javascript"  src="bower_components/bootstrap-less/js/tab.js"></script>
-   <!--  <script type="text/javascript"  src="bower_components/bootstrap-table/src/bootstrap-table.js"></script> -->
+    <script type="text/javascript"  src="bower_components/bootstrap-less/js/modal.js"></script>
+    <script type="text/javascript"  src="bower_components/bootstrap-table/src/bootstrap-table.js"></script> 
+    <script type="text/javascript"  src="bower_components/bootstrap-table/src/locale/bootstrap-table-ru-RU.js"></script>
     <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/jquery-validation/dist/jquery.validate.js"></script>      
 

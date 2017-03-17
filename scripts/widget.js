@@ -1,25 +1,75 @@
 var current_Room = (function () {
   var instance,
-      curRoom = {};  
+      curRoom = {},
+      tableData = [],
+      curLamp = {},
+      typeLamp = {}; 
 
-  var setCurrentRoom = function (numberRoom, numberFloor) {
-    console.log("setCurrentRoom");    
-    curRoom.room = numberRoom;
-    curRoom.floor = numberFloor;
-    console.log(curRoom);
+  var setTypeLamp = function (inputObject) {
+    console.log("setTypeLamp");
+    typeLamp = {};
+    $.each(inputObject, function(key, value) {
+       typeLamp[key] = value;
+    }); 
+    console.log(typeLamp);   
   };
+  
+  var getTypeLamp = function () {
+    console.log("getTypeLamp");    
+    return typeLamp;
+  };     
 
-  var getCurrentRoom = function () {
-    console.log("getCurrentRoom");
+  var getTableData = function () {    
+    return tableData;
+  };  
+
+  var addElementToTableData = function (element) {    
+    tableData.push(element);
+    $('#bTable').bootstrapTable('load', tableData);    
+  };  
+
+  var removeElementFromTableData = function (element) {    
+    var nameLamp = element.nameLamp;    
+    var roomNumber = element.roomNumber;   
+    for (var i = 0; i < tableData.length ; i++) {     
+       if(tableData[i].roomNumber === roomNumber && tableData[i].nameLamp === nameLamp) {
+          tableData.splice(i, 1);               
+       }
+    } 
+    $('#bTable').bootstrapTable('load', tableData);  
+  }; 
+
+  var setCurrentRoom = function (numberRoom, numberFloor) {      
+    curRoom.room = numberRoom;
+    curRoom.floor = numberFloor;   
+  };  
+
+  var getCurrentRoom = function () {   
     console.log(curRoom);
     return curRoom;
   };
 
-  var createInstance = function () {
-    console.log("createInstance");
+  var setCurrentLamp = function (objectLamp) {      
+    for (var key in objectLamp) {
+      curLamp[key] = objectLamp[key];
+    }   
+  };
+
+  var getCurrentLamp = function () {   
+    return curLamp;
+  };
+
+  var createInstance = function () {   
     return {
+      setCurrentLamp: setCurrentLamp,
+      getCurrentLamp: getCurrentLamp,
       setCurrentRoom: setCurrentRoom,
-      getCurrentRoom: getCurrentRoom
+      getCurrentRoom: getCurrentRoom,
+      getTableData: getTableData,
+      addElementToTableData: addElementToTableData,
+      removeElementFromTableData: removeElementFromTableData,
+      setTypeLamp: setTypeLamp,
+      getTypeLamp: getTypeLamp
     };
   };
   return {
@@ -28,6 +78,14 @@ var current_Room = (function () {
     }
   };
 })();
+
+Object.defineProperty(Object.prototype, "length", {
+    enumerable: false,
+    get: function() {
+        return Object.keys(this).length;
+    }
+});
+
 
 
 if(localStorage.typeLamp) {
@@ -42,42 +100,28 @@ var parameters = {};
 if(listDataLamp && listDataLamp.hasOwnProperty('parameters')) {
   parameters = listDataLamp.parameters; 
 }
-$(document).ready(function() {     
+$(document).ready(function() {   
     defaultInit();          // Initial default properties for lamp
-    init();                 // init properties lamp from LocalStorage 
-    initSelectorNameLamp(); // init select nameLamp   
-    setTimeout(function(){  // timeout for procesing function initSelectorNaneLamp
-      valid();      
-    }, 1500);  
+    init();                 // init properties lamp from LocalStorage    
 
-    $('#calcLightning').on('blur keyup change', 'input', function() {
-     /* console.log("changeInput");*/
-      if ($('#calcLightning').valid()) {
-          $('#calcButton').prop('disabled', false);
+    $('#edit_data').prop('disabled', 'disabled');
+    $('#remove_data').prop('disabled', 'disabled');
+
+    $('#calcLightning').on('blur keyup change', 'input', function() {    
+      if ($('#calcLightning').valid()) {         
           $('#set_data').prop('disabled', false);
-      } else {
-          $('#calcButton').prop('disabled', 'disabled');
+      } else {      
           $('#set_data').prop('disabled', 'disabled');
       }
     });
 
-    $('#calcLightning').on('blur keyup change', 'select', function() {
-      /*console.log("changeSelect");*/
-      if ($('#calcLightning').valid()) {
-          $('#calcButton').prop('disabled', false);
+    $('#calcLightning').on('blur keyup change', 'select', function() {     
+      if ($('#calcLightning').valid()) {         
           $('#set_data').prop('disabled', false);
-      } else {
-          $('#calcButton').prop('disabled', 'disabled');
+      } else {         
           $('#set_data').prop('disabled', 'disabled');
       }
-    });
-
-    $('#calcButton').click(
-      function(){        
-        sendAjaxForm( localDataLamp.jsonDrawing , 'calc_lighting.php');
-        return false;
-      }
-    ); 
+    });   
 
     typeLampFormValidation();    
 });
@@ -99,20 +143,18 @@ window.addEventListener('message', function(event) {
   var a = event.data.message;
   window.location.hash = event.origin;
   if (a.cmd == 'put_data') {
-    data = a.data;
-    //var json_object = $.parseJSON(data);
+    data = a.data;    
     var json_object = data;
-    var floor = json_object.floors[0];
-    var room = floor.rooms[0];
-    var room_space = room.room_area;    
-    $('#text_room_space').text("S = " + room_space + "м.кв"); 
-    localDataLamp.jsonDrawing = json_object;
-    localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));
-    sendResultForDrawPlan(JSON.stringify(data));
-    console.group("LOAD DATA");    
-    console.log(json_object);
+    current_Room.getInstance().setTypeLamp(json_object);
+    console.group("LOAD DATA"); 
+    console.log(current_Room.getInstance().getTypeLamp());
     console.groupEnd();
-    // Выполняем далее необходимое с полученным джсон (если это нужно на показе Виджета)
+    /*localDataLamp.jsonDrawing = json_object;
+    localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));*/
+    sendResultForDrawPlan(JSON.stringify(data));    
+    //initSelectorNameLamp();       
+  } else {
+    initSelectorNameLamp();
   }
 }, false);
 
@@ -122,8 +164,8 @@ window.addEventListener('message', function(event) {
 $('#put_data').on('click', function(event) {
   event.preventDefault();
   var parentURL = window.location.hash.slice(1); 
-  //console.log(parentURL); 
-  parent.window.postMessage({message: {cmd: 'return_data', data: localDataLamp.jsonResultDrawing }}, parentURL);
+  var local_data = current_Room.getInstance().getTypeLamp();
+  parent.window.postMessage({message: {cmd: 'return_data', data: local_data }}, parentURL);
 });
 
 /**
@@ -135,21 +177,56 @@ $('#cancel').on('click', function(event) {
   parent.window.postMessage({message: {cmd: 'cancel'}}, parentURL);
 });
 
-//==========================================================================
+//=================================================================
 
+//=====================EVENT BOOTSTRAP TABLE=======================
+$('#bTable').on('check.bs.table', function (e, row) {
+    console.log(row);
+    current_Room.getInstance().setCurrentLamp(row);
+    $('#edit_data').prop('disabled', false);
+    $('#remove_data').prop('disabled', false);
+});
+
+$('#set_data').on('click', function(event) {
+ // console.log("set_data");
+  event.preventDefault(); 
+  var currentRoomObject = getCurrentRoom();  
+  var json_data = localStorage.getItem('typeLamp');
+  var local_data = $.parseJSON(json_data);  
+  var currentParameters = local_data.parameters; 
+  var nameLamp = local_data.parameters.nameLamp;
+  var data = {
+    calc_countLamp : true,
+    parameters : currentParameters,
+    currentRoom : currentRoomObject
+  };  
+  sendAjaxForm(data,
+                "calc_lighting.php",
+                hideLoadingWraper,
+                showLoadingWraper,
+                calcCountLamp,
+                errorResponse,
+                10000,
+                'POST'); 
+});
+
+$('#remove_data').on('click', function(event) {
+  console.log("remove_data");
+  event.preventDefault();    
+  var curRowTable = current_Room.getInstance().getCurrentLamp();  
+  current_Room.getInstance().removeElementFromTableData(curRowTable);  
+  removeLampFromLocalData(curRowTable);
+  $('#edit_data').prop('disabled', 'disabled');
+  $('#remove_data').prop('disabled', 'disabled');   
+});
+
+$('#edit_data').on('click', function(event) {
+  console.log("edit_data");
+  event.preventDefault();    
+    
+});   
 
 //Processing of events=============================================
-/**
- * [get json data from parent window] 
- */
-$('#set_data').on('click', function(event) {
-  console.log("set_data");
-  event.preventDefault();    
-  var curRoomObject = getCurrentRoom();  
-  var data = getLocalTypeLamp();  
-  var nameLamp = data.parameters.nameLamp; 
-  calcCountLamp(data.parameters, curRoomObject, "calc_lighting.php"); 
-}); 
 
 $('#heightRoomlighting').change(function() {
   /*console.log("heightRoomlighting");*/
@@ -243,7 +320,8 @@ function onSelectRoom(element) {
     element.removeAttribute("class");
     element.setAttribute("fill", "rgb(255,204,153)");
     $('#info_type_lamp').empty();
-    $('#set_data').fadeOut("slow");
+   // $('#set_data').fadeOut("slow");
+    $( "#set_data" ).prop( "disabled", 'disabled');
   } else {
     var $activePolygon = $(".activePolygon");
     $('#info_type_lamp').empty();
@@ -254,69 +332,13 @@ function onSelectRoom(element) {
     var curArray = currentId.split("_");    
     var curFloor = curArray[1];
     var curRoom = curArray[2]; 
-    current_Room.getInstance().setCurrentRoom(curRoom, curFloor);   
-    var jsonDrawing = localDataLamp.jsonDrawing;
-    var floor = jsonDrawing.floors[curFloor];
-    var room = floor.rooms[curRoom];    
-    if('typeLamp' in room) {
-      //console.log(room.typeLamp);
-      var roomTypeLamp = {};
-      roomTypeLamp = room.typeLamp; 
-      var currentRoomNumber = parseInt(currentRoom.room) + 1; 
-      var $numberRoom = $('<p>').text("Комната № " + currentRoomNumber);
-      var $infoTypeLamp = $('#info_type_lamp');
-      $infoTypeLamp.empty();
-      $infoTypeLamp.append($numberRoom);
-      $.each(roomTypeLamp, function(key, val) {
-            var currentLamp = val;
-            var $infoLamp = $("<div>").attr("class","info_lamp"); 
-            var $nameLamp = $('<p>').text("Название светильника: " + currentLamp.nameLamp);
-            var $requiredIllumination = $('<p>').text("Требуемая освещенность: " + currentLamp.requiredIllumination);
-            $infoLamp.append($nameLamp)
-                  .append($requiredIllumination); 
-            if(currentLamp.hasOwnProperty('resultCalc')) {
-              var resultCalc = currentLamp.resultCalc;
-              var $roomArea = $('<p>').text("Площадь помещения: " + resultCalc.roomArea + " м.кв");
-              var $countLamp = $('<p>').text("Количество светильников: " + resultCalc.lampsCount + " шт");
-              var $lampsWatt = $('<p>').text("Общая мощность светильников: " + resultCalc.lampsWatt + " Вт");
-              $infoLamp.append($roomArea)
-                        .append($countLamp)
-                        .append($lampsWatt);
-
-            }      
-            $infoTypeLamp.append($infoLamp);             
-      });
-
-  
-  
-  
-
-
-/*
-      var $infoTypeLamp = $('#info_type_lamp');      
-      var $numberRoom = $('<p>').text("Комната № " + currentRoomNumber);
-      var $nameLamp = $('<p>').text("Название светильника: " + room.typeLamp.nameLamp);
-      var $requiredIllumination = $('<p>').text("Требуемая освещенность: " + room.typeLamp.requiredIllumination + " лк");
-      $infoTypeLamp.append($numberRoom)
-                          .append($nameLamp)
-                          .append($requiredIllumination);*/
-      if('resultCalc' in room.typeLamp) {
-        var resultCalc = room.typeLamp.resultCalc;
-        var $countLamp = $('<p>').text("Количество светильников: " + resultCalc.lampsCount + " шт");
-        var $lampsWatt = $('<p>').text("Общая мощность светильников: " + resultCalc.lampsWatt + " Вт");
-        $infoTypeLamp.append($countLamp)
-                     .append($lampsWatt);
-      }                    
-    }
-    
-    if ($('#calcLightning').valid()) { 
-      $('#set_data').fadeIn("slow");        
+    current_Room.getInstance().setCurrentRoom(curRoom, curFloor);     
+    if ($('#calcLightning').valid()) {              
       $('#set_data').prop('disabled', false);
-    } else { 
-      $('#set_data').fadeIn("slow");         
+    } else {            
       $('#set_data').prop('disabled', 'disabled');
-    }    
-  }    
+    }               
+  }     
 }
 
 
@@ -338,13 +360,11 @@ function onSelectRoom(element) {
  */
 function defaultInit() {
   console.log("defaultInit");
-  if(localDataLamp.parameters === undefined) {
-    console.log("hi");
+  if(localDataLamp.parameters === undefined) {   
     setInputValue("reflectionCoef", "20,50,70"); 
     setInputValue("safetyFactor", "1.4"); 
     setInputValue("lampsWorkHeight", 0.8); 
-  } else {
-    console.log("iii");
+  } else {    
     if(localDataLamp.parameters.reflectionCoef === undefined) {
     setInputValue("reflectionCoef", "20,50,70");   
     }
@@ -459,66 +479,49 @@ function valid() {
 function sendResultForDrawPlan(jsonObject) {
   console.log("sendResultForDrawPlan");
   $.ajax({
-      url:     "draw_plan.php", //url страницы (action_ajax_form.php)
+      url:     "draw_plan.php", 
       type:     'POST',
       timeout: 10000,
       data: {draw_plan : true, hourse: jsonObject},     
-      success: function(data) { //Данные отправлены успешно
+      success: function(data) { 
         var result = $.parseJSON(data);
         viewDraw(result);           
       },
-      error: function(response, status, error) { // Данные не отправлены  
+      error: function(response, status, error) {  
           viewErrorResponse("Не полученно чертеж. Или полученные данные не коректны!");   
-      }      
+      },
+      complete: initSelectorNameLamp      
   });
 }
 
 /**
- * [Processing the form of the calculation of lighting]
- * @param  {[object]} localData [localStorage object]
- * @param  {[string]} url       [url action script]
- * @return {[object]}           [result response]
+ * [sendAjaxForm description]
+ * @param  {[object]} sendData           [description]
+ * @param  {[string]} url                [description]
+ * @param  {[name function]} beforeSendFunction [description]
+ * @param  {[name function]} completeFunction   [description]
+ * @param  {[name function]} successFunction    [description]
+ * @param  {[name function]} errorFunction      [description]
+ * @param  {[integer]} timeout            [description]
+ * @param  {[string]} typeRequest        [description] 
  */
-function sendAjaxForm(localData, url) {    
+function sendAjaxForm(sendData,
+                      url,
+                      beforeSendFunction,
+                      completeFunction,
+                      successFunction,
+                      errorFunction,
+                      timeout,
+                      typeRequest) {    
   $.ajax({
-      url:     url, //url страницы (action_ajax_form.php)
-      type:     'POST',
-      timeout: 10000,
-      data: {calc_lighting : true, draw_object: localData},        
-      beforeSend: function(){
-         $(".js_loading_wraper").fadeIn("slow");
-      },
-      complete: function(){ 
-         $(".js_loading_wraper").fadeOut("slow");
-      },
-      success: function(data) { //Данные отправлены успешно
-        var resultResponse = $.parseJSON(data); 
-        console.group("RESULT CALC LIGHTNING");    
-        console.log(resultResponse);
-        console.groupEnd();             
-        if('error' in resultResponse) {
-          console.info("error code - " + resultResponse.error.code);
-          console.info("file error - " + resultResponse.error.file);
-          console.info("line error - " + resultResponse.error.line);
-          viewErrorResponse(resultResponse.error.message);
-        } else {
-          if ('calcLighting' in resultResponse) {
-            localDataLamp.jsonResultDrawing = resultResponse.calcLighting;
-            localDataLamp.jsonDrawing = resultResponse.calcLighting;
-            localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));
-            $('#info_type_lamp').empty(); 
-            $('#put_data').show();
-            //viewResult(resultResponse.calcLighting);
-            //viewResultPDF();             
-          } else {
-            viewErrorResponse("Введенные данные некорректны");
-          }          
-        }
-                
-      },
-      error: function(response, status, error) { // Данные не отправлены      
-        viewErrorResponse(response.reresponseText);
-      }      
+      url:     url, 
+      type:     typeRequest,
+      timeout: timeout,
+      data: sendData,        
+      beforeSend: beforeSendFunction,
+      complete: completeFunction,
+      success: successFunction,
+      error: errorFunction     
   });
 }
 
@@ -546,54 +549,6 @@ function viewDraw(resultDraw) {
 }
 
 /**
- * [view result response]
- * @param  {[object]} response [result response]
- */
-function viewResult(response) {  
-  var currentFloor = response.floors[0];
-  var currentRoom = currentFloor.rooms[0];
-  var calcLighting = currentRoom.typeLamp;
-  var $result_calcLightning = $('#result_calcLightning');
-  $result_calcLightning.empty();
-  $result_calcLightning.append($('<table>').addClass('table table-striped')
-                          .append($('<thead>')
-                            .append($('<tr>')
-                              .append($('<th>').text('Наименование'))
-                              .append($('<th>').text('Тип'))
-                              .append($('<th>').text('Количество'))
-                              .append($('<th>').text('Общая мощность'))
-                            )
-                          )
-                          .append($('<tbody>')
-                            .append($('<tr>')
-                              .append($('<td>').text('Светильник'))
-                              .append($('<td>').text(calcLighting.lampName))
-                              .append($('<td>').text(calcLighting.lampsCount))
-                              .append($('<td>').text(calcLighting.lampsWatt))
-                            )
-                          )
-                        );
-}
-
-/**
- * [view result calc lighting in PDF] 
- */
-function viewResultPDF() {
-  location.href = 'viewPDF.php';
-  /*$.ajax({
-    url: '#',
-    type: 'POST',    
-    data: {viewPDF: true},
-  })
-  .done(function() {
-    console.log("success viewPDF");
-  })
-  .fail(function() {
-    console.log("error viewPDF");
-  }); */ 
-}
-
-/**
  * [view Error Response]
  * @param  {[string]} errorMessage [text error response] 
  */
@@ -613,111 +568,128 @@ function round(a,b) {
  return Math.round(a*Math.pow(10,b))/Math.pow(10,b);
 } 
 
-function calcCountLamp(currentParameters, currentRoomObject, url) {   
-   $.ajax({
-      url:     url, //url страницы (action_ajax_form.php)
-      type:     'POST',
-      timeout: 10000,
-      data: {calc_countLamp : true, parameters: currentParameters, currentRoom: currentRoomObject},        
-      beforeSend: function(){
-         $(".js_loading_wraper").fadeIn("slow");
-      },
-      complete: function(){ 
-         $(".js_loading_wraper").fadeOut("slow");
-      },
-      success: function(data) { //Данные отправлены успешно
-        var resultResponse = $.parseJSON(data); 
-        console.group("RESULT CALC COUNT LAMP");    
-        console.log(resultResponse);
-        console.groupEnd();             
-        if('error' in resultResponse) {
-          console.info("error code - " + resultResponse.error.code);
-          console.info("file error - " + resultResponse.error.file);
-          console.info("line error - " + resultResponse.error.line);
-          viewErrorResponse(resultResponse.error.message);
-          return false;
-        } else {
-          if ('calcCountLamp' in resultResponse) {
-            $('#put_data').show();
-             console.log(resultResponse.calcCountLamp);
-             var calcCountLamp = resultResponse.calcCountLamp;
-            if(calcCountLamp) {
-              var nameLamp = currentParameters.nameLamp;
-              var objectLamp = {};
-               console.log(objectLamp); 
-              if(currentRoomObject.hasOwnProperty("typeLamp")) {                     
-                $.each(currentRoomObject.typeLamp, function(key, val) {
-                   objectLamp[key] = val;
-                });                 
-                objectLamp[nameLamp] = currentParameters; 
-                objectLamp[nameLamp].resultCalc = calcCountLamp;  
-              } else {              
-                objectLamp[nameLamp] = currentParameters;                
-                objectLamp[nameLamp].resultCalc = calcCountLamp;                  
-              }                   
-              addResultInLocalData(objectLamp, nameLamp);               
-            }                     
-          } else {            
-            viewErrorResponse("Введенные данные некорректны");            
-          }          
-        }                
-      },
-      error: function(response, status, error) { // Данные не отправлены      
-        viewErrorResponse(response.reresponseText);
-       
-      }      
-  });
-   
-}
-
-function getLocalTypeLamp() {
-  var json_data = localStorage.getItem('typeLamp');
-  var data = $.parseJSON(json_data); 
-  return data;
-}
-
-function getCurrentRoom(currentRoom) {
-   var data = getLocalTypeLamp(); 
-   var curRoom = current_Room.getInstance().getCurrentRoom();   
-   var roomObject = data.jsonDrawing.floors[curRoom.floor].rooms[curRoom.room];
+function getCurrentRoom() {   
+   var data = current_Room.getInstance().getTypeLamp();
+   var curRoom = current_Room.getInstance().getCurrentRoom();  
+   var roomObject = {}; 
+   var cur = data.floors[curRoom.floor].rooms[curRoom.room];
+   $.each(cur, function(key, val) {      
+      roomObject[key] = val;      
+   });
    return roomObject;
 }
 
-function addResultInLocalData(objectLamp, nameLamp) {
-  local_data = getLocalTypeLamp();
+function addLampInLocalData(objectLamp, nameLamp) {  
+  var data = current_Room.getInstance().getTypeLamp();  
   var curRoom = current_Room.getInstance().getCurrentRoom();
   var room = curRoom.room;
   var floor = curRoom.floor;
-  local_data.jsonDrawing.floors[floor].rooms[room].typeLamp = objectLamp;
-  console.log(local_data);
-  localStorage.setItem('typeLamp', JSON.stringify(local_data));
-  var currentRoomNumber = parseInt(room) + 1;
-  viewResultInTable(objectLamp[nameLamp], currentRoomNumber);   
+  if(data.floors[floor].rooms[room].hasOwnProperty('typeLamp')) {    
+    data.floors[floor].rooms[room].typeLamp = objectLamp;    
+  } else {     
+    data.floors[floor].rooms[room].typeLamp = {};    
+    $.each(objectLamp, function(key, val) {      
+      data.floors[floor].rooms[room].typeLamp[key] = val;      
+    });       
+  }  
+  current_Room.getInstance().setTypeLamp(data);  
+  viewResultInTable(objectLamp[nameLamp], room, floor);   
 }
 
-function viewResultInTable(currentLamp, room_number) {
-  var $tableBody = $('#data_table_body');
-  var currentRoomNumber = room_number; 
-  console.log(currentLamp);  
-  $table_tr = $('<tr>');
-  $table_tr.append(($('<td>').text(currentLamp.nameLamp)))
-            .append(($('<td>').text(currentRoomNumber)))
-            .append(($('<td>').text(currentLamp.resultCalc.roomArea))) 
-            .append(($('<td>').text(currentLamp.resultCalc.lampsCount))) 
-            .append(($('<td>').text(currentLamp.requiredIllumination))) 
-            .append(($('<td>').text(currentLamp.reflectionCoef))) 
-            .append(($('<td>').text(currentLamp.safetyFactor))) 
-            .append(($('<td>').text(currentLamp.powerLamp)))
-            .append(($('<td>').text(currentLamp.resultCalc.lampsWatt)));
-$tableBody.append($table_tr);
- 
-  
- /* $.each(roomTypeLamp, function(key, val) {
-      var currentLamp = val;
-      var $infoLamp = $("<div>").attr("class","info_lamp"); 
-      var $nameLamp = $('<p>').text("Название светильника: " + currentLamp.nameLamp);
-      var $requiredIllumination = $('<p>').text("Требуемая освещенность: " + currentLamp.requiredIllumination);
-      $infoLamp.append($nameLamp)
-            .append($requiredIllumination); 
-      $infoTypeLamp.append($infoLamp); */
+function removeLampFromLocalData(curLamp) {
+  var data = current_Room.getInstance().getTypeLamp();  
+  var nameLamp = curLamp.nameLamp;
+  var floorAndRoom =  curLamp.roomNumber.split('/');  
+  var room = floorAndRoom[0];
+  var floor = floorAndRoom[1];
+  var objectTypeLamp = data.floors[floor].rooms[room].typeLamp; 
+  if(objectTypeLamp.length === 1) {   
+    var objectRoom = data.floors[floor].rooms[room];    
+    var resultRooomObject = {};
+     $.each(objectRoom, function(key, val) {
+        if(key != "typeLamp") {
+          resultRooomObject[key] = val;
+        }
+      });
+     data.floors[floor].rooms[room] = resultRooomObject;     
+  } else {    
+    var resultObject = {};
+    $.each(objectTypeLamp, function(key, val) {
+      if(key != nameLamp) {
+        resultObject[key] = val;
+      }
+    });
+    data.floors[floor].rooms[room].typeLamp = resultObject;   
+  }   
+  current_Room.getInstance().setTypeLamp(data); 
+}
+
+function viewResultInTable(currentLamp, room_number, floor_number) {
+  console.log("viewResultInTable");
+  var objectRow = {
+    nameLamp: currentLamp.nameLamp,
+    roomNumber: room_number + "/" + floor_number,    
+    roomArea: currentLamp.resultCalc.roomArea,
+    lampsCount: currentLamp.resultCalc.lampsCount,
+    requiredIllumination: currentLamp.requiredIllumination,
+    reflectionCoef: currentLamp.reflectionCoef,
+    satefyFactor: currentLamp.safetyFactor,
+    powerLamp: currentLamp.powerLamp,
+    lampsWatt: currentLamp.resultCalc.lampsWatt 
+  };
+  current_Room.getInstance().addElementToTableData(objectRow); 
+}
+
+function calcCountLamp(result) {
+  var currentRoomObject = getCurrentRoom();  
+  var json_data = localStorage.getItem('typeLamp');
+  var local_data = $.parseJSON(json_data);  
+  var currentParameters = local_data.parameters; 
+  var nameLamp = currentParameters.nameLamp;
+  var resultResponse = $.parseJSON(result); 
+  console.group("RESULT CALC COUNT LAMP");    
+  console.log(resultResponse);
+  console.groupEnd();             
+  if('error' in resultResponse) {
+    console.info("error code - " + resultResponse.error.code);
+    console.info("file error - " + resultResponse.error.file);
+    console.info("line error - " + resultResponse.error.line);
+    viewErrorResponse(resultResponse.error.message);
+    return false;
+  } else {
+    if ('calcCountLamp' in resultResponse) {
+      $('#put_data').show();
+      // console.log(resultResponse.calcCountLamp);
+       var calcCountLamp = resultResponse.calcCountLamp;
+      if(calcCountLamp) {        
+        var objectLamp = {};        
+        if(currentRoomObject.hasOwnProperty("typeLamp")) {                                   
+          $.each(currentRoomObject.typeLamp, function(key, val) {
+             objectLamp[key] = val;
+          });                 
+          objectLamp[nameLamp] = currentParameters; 
+          objectLamp[nameLamp].resultCalc = calcCountLamp;                
+        } else {                         
+          objectLamp[nameLamp] = currentParameters;                
+          objectLamp[nameLamp].resultCalc = calcCountLamp;                                 
+        }                
+        var room_data = current_Room.getInstance().getTypeLamp();                              
+        addLampInLocalData(objectLamp, nameLamp);               
+      }                     
+    } else {            
+      viewErrorResponse("Введенные данные некорректны");            
+    }          
+  } 
+}
+
+function errorResponse(response, status, error) {
+   viewErrorResponse(response.reresponseText);
+}
+
+function hideLoadingWraper() {
+  $(".js_loading_wraper").fadeIn("slow");
+} 
+
+function showLoadingWraper() {
+  $(".js_loading_wraper").fadeOut("slow");
 }

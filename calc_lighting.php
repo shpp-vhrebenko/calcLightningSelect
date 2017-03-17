@@ -26,7 +26,7 @@
           $resultArray["calcLighting"] = calcLightingDrawObject($answer);               
           //$resultArray["calcLighting"] = calcLighting($answer);            
           echo json_encode($resultArray);                
-        } else if(isset($_POST["calc_countLamp"])) {          
+        } else if(isset($_POST["calc_countLamp"])) { 
           $resultArray["calcCountLamp"] = calcLighting($_POST["parameters"], $_POST["currentRoom"]); 
           echo json_encode($resultArray);       
         } else {

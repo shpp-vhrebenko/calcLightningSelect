@@ -22,8 +22,10 @@ window.addEventListener('message', function(event) {
         }  
         if (event.data.message.cmd == 'return_data')
         {   
-            var return_data = event.data.message.data;             
+            var return_data = event.data.message.data;   
+            console.group("RETURN DATA"); 
             console.log(return_data);
+            console.groupEnd();             
             $('#iframeid').remove();                                
         }     
         if (event.data.message.cmd == 'cancel')
