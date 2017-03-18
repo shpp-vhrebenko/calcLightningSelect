@@ -88,7 +88,7 @@
   function calcLighting($room, $roomDraw) { 
       
     $params = parseDrawing($roomDraw);
-    uploadUsagecodfficient($room["usagecoefficient"], $room["typeLamp"]);    
+    //uploadUsagecodfficient($room["usagecoefficient"], $room["typeLamp"]);    
     $utilization_rate_array = [];    
 
     if($room["lumix"] == 0) {
@@ -179,6 +179,12 @@
     echo ($vr2."</br>");
     echo ($vr3."</br>");
     exit();*/
+    $romRequiredIllumination = 0;
+    if(isset($room["customRequiredIllumination"])) {          
+      $romRequiredIllumination = $room["customRequiredIllumination"];
+    } else {
+      $romRequiredIllumination = $room["requiredIllumination"];
+    }
     $numbeLamps = round((intval($room["customRequiredIllumination"])*$params["space"]*$room["safetyFactor"])/(($useRateCoeff/100)*$room["numberLamps"]*$room["lumix"]),2);
     $numbeLamps = ceil($numbeLamps);   
     if($numbeLamps == 0) {
@@ -200,18 +206,20 @@
    * @return [type]           [description]
    */
   function uploadUsagecodfficient($link, $nameFile) {
-    //$nameFile = "test";
+    $result = false;
     if ($handle = opendir(FTP_DIR)) {      
       while (false !== ($file = readdir($handle))) { 
-          if ($file === $nameFile.".csv"){            
+          if ($file === $nameFile.".csv"){  
+            $result = true;          
             break;
           }                
       }
-      closedir($handle);    
+      closedir($handle);          
        
     } else {
       throw new Exception('Проблема с Ftp соединением', 2);
     }  
+    return $result;
     /*if ($handle = opendir(FTP_DIR)) {
       $fileUpload = false;
       while (false !== ($file = readdir($handle))) { 
@@ -397,40 +405,43 @@
     {
       $usagecoefficient = trim($document["usagecoefficient"]);
       $usagecoefficient = parseUsagecoefficient($usagecoefficient);
-      $curentName = parseNameLamp($usagecoefficient);
-      $arrayResult[$curentName]["usagecoefficient"] = $usagecoefficient;        
-      $arrayResult[$curentName]["typeLamp"] = $curentName;        
-      if(isset($document["ssylkanavebstranicu"])) {
-        $input2 = trim($document["ssylkanavebstranicu"]);
-        $arrayResult[$curentName]["link"] = $input2;
-      }
-      if(isset($document["svetovojpotoklamp"])) {
-        $input3 = trim($document["svetovojpotoklamp"]);
-        $arrayResult[$curentName]["lumix"] = $input3;
-      }
-      if(isset($document["moshhnostsuchetompoterpra"])) {
-        $input4 = trim($document["moshhnostsuchetompoterpra"]);
-        $arrayResult[$curentName]["powerLamp"] = $input4;
-      }
-      if(isset($document["kolichestvolamp"])) {
-        $input5 = trim($document["kolichestvolamp"]);
-        $arrayResult[$curentName]["numberLamps"] = $input5;
-      } 
-      if(isset($document["photo_small_family"])) { 
-        $photoLamp = trim($document["photo_small_family"]);
-        $photoLamp = parseLinkPhoto($photoLamp);
-        $arrayResult[$curentName]["photo_lamp"] = $photoLamp;
-      }  
-      if(isset($document["naimenovanie"])) {            
-        $nameLamp = trim($document["naimenovanie"]);           
-        $arrayResult[$curentName]["nameLamp"] = $nameLamp;
-      } 
-      if(isset($document["oblastprimeneniya"])) {            
-        $applArea = trim($document["oblastprimeneniya"]);           
-        $arrayResult[$curentName]["application_area"] = $applArea;
-      }          
-        /*echo "<p>" . $curentName . "</br>"; */      
-    } 
+      $curentName = parseNameLamp($usagecoefficient);      
+      if(uploadUsagecodfficient($usagecoefficient, $curentName)) {
+        $arrayResult[$curentName]["usagecoefficient"] = $usagecoefficient;        
+        $arrayResult[$curentName]["typeLamp"] = $curentName;  
+        if(isset($document["ssylkanavebstranicu"])) {
+          $input2 = trim($document["ssylkanavebstranicu"]);
+          $arrayResult[$curentName]["link"] = $input2;
+        }
+        if(isset($document["svetovojpotoklamp"])) {
+          $input3 = trim($document["svetovojpotoklamp"]);
+          $arrayResult[$curentName]["lumix"] = $input3;
+        }
+        if(isset($document["moshhnostsuchetompoterpra"])) {
+          $input4 = trim($document["moshhnostsuchetompoterpra"]);
+          $arrayResult[$curentName]["powerLamp"] = $input4;
+        }
+        if(isset($document["kolichestvolamp"])) {
+          $input5 = trim($document["kolichestvolamp"]);
+          $arrayResult[$curentName]["numberLamps"] = $input5;
+        } 
+        if(isset($document["photo_small_family"])) { 
+          $photoLamp = trim($document["photo_small_family"]);
+          $photoLamp = parseLinkPhoto($photoLamp);
+          $arrayResult[$curentName]["photo_lamp"] = $photoLamp;
+        }  
+        if(isset($document["naimenovanie"])) {            
+          $nameLamp = trim($document["naimenovanie"]);           
+          $arrayResult[$curentName]["nameLamp"] = $nameLamp;
+        } 
+        if(isset($document["oblastprimeneniya"])) {            
+          $applArea = trim($document["oblastprimeneniya"]);           
+          $arrayResult[$curentName]["application_area"] = $applArea;
+        }  
+      } else {
+        
+      }             
+    }     
     return $arrayResult;
   } 
 

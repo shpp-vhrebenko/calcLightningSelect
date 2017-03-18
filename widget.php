@@ -25,53 +25,53 @@ ini_set('display_startup_errors', 1);
       <div class="loading"></div>
     </div>    
     <div class="container-fluid">        
-      <div class="header">
-        <!-- <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul> -->
+      <div class="header">        
         <h3 class="text-muted">calcLighting</h3>
       </div>
       <div class="row content">
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-xs-1 col-xs-offset-10  col-md-offset-10 col-md-1">
             <button type="button" id="cancel" class="btn btn-danger btn-circle "><i class="glyphicon glyphicon-remove"></i></button>                
           </div> 
-        </div>
+        </div> -->
         <div class="col-xs-12 col-md-5">           
           <h3>План</h3>
-          <ul class="nav nav-tabs " id="tabs_plan">
-            <!-- <li class="active"><a href="#1">Этаж №1</a></li>  -->                      
+          <ul class="nav nav-tabs " id="tabs_plan">                                
           </ul>
           <div class="tab-content">
           </div>
-          <p id="error_message_request" class="error_message" ></p>            
+          <p id="error_message_request" class="error_message" ></p>          
           <!-- <div class="col-sm-12 col-md-6 col-md-offset-3">
-            <button id="calcButton" class="btn btn-success btn-lg btn-block" >Расчет</button>
-          </div> -->
-          <div class="col-sm-12 col-md-6 col-md-offset-3">
-            <button id="put_data" type="button" class="btn btn-success btn-lg btn-block">Сохранить</button>   
-          </div>         
-                  
-        
-         <!--  <div class="table_specification" data-example-id="striped-table" id="result_calcLightning"></div> -->
-                 
+                            <button id="put_data" type="button" class="btn btn-success btn-lg btn-block">Сохранить</button>   
+                          </div>  -->                
         </div>
 
-        <div class="col-xs-12 col-md-7">                  
+        <div class="col-xs-12 col-md-7"> 
+          <div class="row">
+            <div class="col-xs-12 col-md-5 col-md-offset-4">
+              <img src="" class="img-responsive" id="js_photo_lamp" alt=""> 
+              <p  id="info_lamp"></p>               
+            </div>             
+            <p class="col-xs-12 col-md-12" id="info_lamp"></p>
+            <div class="col-xs-12 col-md-5 col-md-offset-4">                
+              <div id="custom-search-input">
+                  <div class="input-group col-md-12">
+                      <input type="text" class="form-control input-sm" id="search_user_lamp" placeholder="Поиск светильника" />
+                      <span class="input-group-btn">
+                          <button class="btn btn-info btn-sm" id="search_lamp" type="button">
+                              <i class="glyphicon glyphicon-search"></i>
+                          </button>
+                      </span>
+                  </div>
+              </div>
+            </div>
+          </div>                  
           <form class="form-horizontal"
             id="calcLightning"
             role="form"
             name="calcLightning"
             method="post"
-            action="">
-            <div class="row">
-              <div class="col-xs-12 col-md-6 col-md-offset-4">
-                <img src="" class="img-responsive" id="js_photo_lamp" alt="">                
-              </div>             
-              <p class="col-xs-12 col-md-12" id="info_lamp"></p>
-            </div> 
+            action="">          
             <table class="table table-bordered table-condensed">
               <thead>
                 <tr>
@@ -80,7 +80,8 @@ ini_set('display_startup_errors', 1);
                   <th>Рабочая поверхность, м</th>
                   <th>Коэффициент отражения</th>
                   <th>Коэффициент запаса</th>
-                  <th>Требуемая освещенность, лк</th>                  
+                  <th>Требуемая освещенность, лк</th>
+                  <th>Требуемая освещенность, лк</th>                   
                 </tr>
               </thead>
               <tbody>
@@ -136,6 +137,9 @@ ini_set('display_startup_errors', 1);
                       <option value="500">Офисные помещения</option>
                       <option value="500">Рабочий кабинет</option>                                   
                     </select>
+                  </td> 
+                  <td class="input">
+                    <input class="room_param room input-sm" type="number" id="customRequiredIllumination" name="customRequiredIllumination" min="0" step="1"/>                    
                   </td>                                 
                 </tr>
               </tbody>
@@ -146,12 +150,18 @@ ini_set('display_startup_errors', 1);
                 <button type="button" class="btn btn-default" id="set_data">
                     <i class="glyphicon glyphicon-plus"></i>
                 </button>
+                <button type="button" class="btn btn-default" id="put_data">
+                    <i class=" glyphicon glyphicon-save"></i>
+                </button>
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" id="edit_data">
                     <i class="glyphicon glyphicon-pencil"></i>
-                </button>
+                </button>                
                 <button type="button" class="btn btn-default" id="remove_data">
                     <i class="glyphicon glyphicon-trash"></i>
                 </button>
+                <button type="button" class="btn btn-default" id="cancel">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </button>                
             </div>
             <table class="table"
                     id="bTable"
@@ -191,10 +201,112 @@ ini_set('display_startup_errors', 1);
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Modal Header</h4>
+                  <h4 class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
-                  <p>Some text in the modal.</p>
+                  <form class="form-horizontal"
+                    id="calcLightning"
+                    role="form"
+                    name="calcLightning"
+                    method="post"
+                    action="">                   
+                    <div class="form-group">
+                      <label for="heightRoom" class="col-sm-8 control-label">Высота помещения,  м</label>
+                      <div class="col-sm-4">
+                        <input type="number" class="form-control room_param room" id="heightRoom" name="heightRoom" placeholder="2.5" min="0.0" step="0.1">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="lampsWorkHeight" class="col-sm-8 control-label">Рабочая поверхность,  м</label>
+                      <div class="col-sm-4">
+                        <input type="number" class="form-control room_param room" id="lampsWorkHeight" name="lampsWorkHeight" placeholder="0.8" min="0.0" step="0.1" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="reflectionСoefficient" class="col-sm-4 control-label">Коэффициент отражения</label>
+                      <div class="col-sm-8" >
+                        <select class="form-control room" id="reflectionCoef" name="reflectionCoef" required>
+                          <option value="" selected>Выберите значение коэффициента отражения</option>
+                          <option value="0,0,0">Пол-0%, стены-0%, потолок-0%</option>
+                          <option value="10,30,30">Пол-30%, стены-30%, потолок-10%</option>
+                          <option value="10,30,50">Пол-50%, стены-30%, потолок-10%</option>
+                          <option value="10,50,50">Пол-50%, стены-50%, потолок-10%</option>
+                          <option value="20,50,70">Пол-70%, стены-50%, потолок-20%</option>
+                          <option value="10,30,80">Пол-80%, стены-30%, потолок-10%</option>
+                          <option value="30,50,80">Пол-80%, стены-50%, потолок-30%</option>
+                          <option value="30,80,80">Пол-80%, стены-80%, потолок-30%</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="safetyFactor" class="col-sm-4 control-label">Коэффициент запаса</label>
+                      <div class="col-sm-8">
+                        <select class="form-control room" id="safetyFactor" name="safetyFactor"  required>
+                          <option selected value="">Выберите значение коэффициента запаса</option>       
+                          <option value="1.1">1.1</option>
+                          <option value="1.4">1.4</option>
+                          <option value="1.6">1.6</option>
+                          <option value="1.7">1.7</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="requiredIllumination" class="col-sm-4 control-label">Требуемая освещенность, лк</label>
+                      <div class="col-sm-8">
+                        <select class="form-control room" id="requiredIllumination" name="requiredIllumination" required>
+                          <option value="" selected>Выберите значение освещенности</option>
+                          <option value="5">Чердаки</option>
+                          <option value="100">Лестницы</option>
+                          <option value="50">Коридоры</option>
+                          <option value="150">Вестибюли</option>
+                          <option value="50">Склады в зоне хранения товара</option>
+                          <option value="150">Вестибюли</option>
+                          <option value="50">Склады в зоне хранения товара</option>
+                          <option value="200">Склады в зоне приема товара</option>
+                          <option value="200">Гаражи</option>
+                          <option value="400">Парикмахерские</option>
+                          <option value="200">Объединенные залы и буфеты</option>
+                          <option value="400">Торговые залы магазинов</option>
+                          <option value="200">Конференц-залы и залы заседаний</option>
+                          <option value="500">Проектрные и конструкторские бюро</option>
+                          <option value="300">Читальные залы</option>
+                          <option value="300">Учебные аудитории и классы</option>
+                          <option value="500">Офисные помещения</option>
+                          <option value="500">Рабочий кабинет</option>                                   
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="customRequiredIllumination" class="col-sm-8 control-label"> Текущее значение требуемой освещенности</label>
+                      <div class="col-sm-4">
+                        <input type="number" class="form-control room" disabled="disabled" id="customRequiredIllumination" name="customRequiredIllumination" min="0">
+                      </div>
+                    </div> 
+                    <div class="row">
+                      <div class="col-xs-12 col-md-8 col-md-offset-2">
+                        <img src="" class="img-responsive" id="js_photo_lamp" alt="">
+                        <p id="info_lamp"></p>
+                      </div>
+                    </div>                       
+                    <div class="form-group">
+                      <label for="nameLamp" class="col-sm-5 control-label">
+                        Выберите светильник
+                      </label>
+                      <div class="col-sm-7">
+                        <select name="nameLamp"
+                                id="nameLamp"
+                                class="form-control room"
+                        required >
+                          <option selected value="">Выберите тип светильника</option>
+                        </select>
+                      </div>
+                    </div>                     
+                    <div class="form-group">
+                      <div class="col-sm-12">
+                        <button id="calcButton" class="btn btn-success btn-lg btn-block" >Расчет</button>
+                      </div>
+                    </div>            
+                  </form>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -203,7 +315,7 @@ ini_set('display_startup_errors', 1);
               
             </div>
           </div>
-        </div>
+      </div>
         
 
       <div class="footer">

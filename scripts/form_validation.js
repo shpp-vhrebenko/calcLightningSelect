@@ -46,7 +46,6 @@
             luminousFlux: {
                 required: true,
                 greaterThanZero: true
-
             }
           },
 

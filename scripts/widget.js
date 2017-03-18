@@ -1,21 +1,29 @@
 var current_Room = (function () {
   var instance,
-      curRoom = {},
-      tableData = [],
-      curLamp = {},
-      typeLamp = {}; 
+      curRoom = {}, // current active room object(number_room, number_floor)
+      tableData = [], // object data bootstrap-table
+      curLamp = {}, // current lamp in table
+      typeLamp = {}, // object json drawing
+      lampSelect = {};
 
-  var setTypeLamp = function (inputObject) {
-    console.log("setTypeLamp");
+  var setLampSelect = function (inputObject) {       
+    $.each(inputObject, function(key, value) {
+       lampSelect[key] = value;
+    });      
+  };
+
+  var getLampSelect = function () {        
+    return lampSelect;       
+  };
+
+  var setTypeLamp = function (inputObject) {   
     typeLamp = {};
     $.each(inputObject, function(key, value) {
        typeLamp[key] = value;
-    }); 
-    console.log(typeLamp);   
+    });        
   };
   
-  var getTypeLamp = function () {
-    console.log("getTypeLamp");    
+  var getTypeLamp = function () {       
     return typeLamp;
   };     
 
@@ -49,6 +57,10 @@ var current_Room = (function () {
     return curRoom;
   };
 
+  var clearCurrentRoom = function () {
+    curRoom = {};    
+  };
+
   var setCurrentLamp = function (objectLamp) {      
     for (var key in objectLamp) {
       curLamp[key] = objectLamp[key];
@@ -65,11 +77,14 @@ var current_Room = (function () {
       getCurrentLamp: getCurrentLamp,
       setCurrentRoom: setCurrentRoom,
       getCurrentRoom: getCurrentRoom,
+      clearCurrentRoom: clearCurrentRoom,
       getTableData: getTableData,
       addElementToTableData: addElementToTableData,
       removeElementFromTableData: removeElementFromTableData,
       setTypeLamp: setTypeLamp,
-      getTypeLamp: getTypeLamp
+      getTypeLamp: getTypeLamp,
+      setLampSelect: setLampSelect,
+      getLampSelect: getLampSelect
     };
   };
   return {
@@ -107,16 +122,18 @@ $(document).ready(function() {
     $('#edit_data').prop('disabled', 'disabled');
     $('#remove_data').prop('disabled', 'disabled');
 
-    $('#calcLightning').on('blur keyup change', 'input', function() {    
-      if ($('#calcLightning').valid()) {         
+    $('#calcLightning').on('blur keyup change', 'input', function() { 
+      var currentRoom = current_Room.getInstance().getCurrentRoom();    
+      if ($('#calcLightning').valid() && (currentRoom.length === 2)) {         
           $('#set_data').prop('disabled', false);
       } else {      
           $('#set_data').prop('disabled', 'disabled');
       }
     });
 
-    $('#calcLightning').on('blur keyup change', 'select', function() {     
-      if ($('#calcLightning').valid()) {         
+    $('#calcLightning').on('blur keyup change', 'select', function() { 
+      var currentRoom = current_Room.getInstance().getCurrentRoom();     
+      if ($('#calcLightning').valid()  && (currentRoom.length === 2) ) {         
           $('#set_data').prop('disabled', false);
       } else {         
           $('#set_data').prop('disabled', 'disabled');
@@ -187,6 +204,11 @@ $('#bTable').on('check.bs.table', function (e, row) {
     $('#remove_data').prop('disabled', false);
 });
 
+$('#bTable').on('uncheck.bs.table', function (e, row) {    
+    $('#edit_data').prop('disabled', 'disabled');
+    $('#remove_data').prop('disabled', 'disabled');
+});
+
 $('#set_data').on('click', function(event) {
  // console.log("set_data");
   event.preventDefault(); 
@@ -225,8 +247,39 @@ $('#edit_data').on('click', function(event) {
   event.preventDefault();    
     
 });   
+//====================== END EVENT BOOTSTRAP TABLE ================
+
+//====================== MODAL WINDOW EVENT =======================
+$('#myModal').on('shown.bs.modal', function () {
+  console.log("modalWindow");
+});
+//====================== END MODAL WINDOW EVENT ===================
 
 //Processing of events=============================================
+
+$('#search_lamp').on('click', function(event) {
+  console.log("search_lamp");
+  event.preventDefault(); 
+  var search_lamp = $('#search_user_lamp').val();
+  search_lamp = search_lamp.toUpperCase();
+  console.log(search_lamp);
+  var lampList = current_Room.getInstance().getLampSelect();
+
+  $.each(lampList, function(key, val) {
+     var curLamp = lampList[key].nameLamp;
+     curLampUpperCase = curLamp.toUpperCase();
+     /*console.log(curLamp);*/
+     if (curLampUpperCase.indexOf(search_lamp) != -1) {
+        var selectTypeLamp = curLamp;
+        console.log(selectTypeLamp);
+        $('#nameLamp').val(selectTypeLamp);        
+        $('#nameLamp').valid();
+        $('#nameLamp').trigger('change');  
+        return false;
+      }
+  });
+     
+}); 
 
 $('#heightRoomlighting').change(function() {
   /*console.log("heightRoomlighting");*/
@@ -322,6 +375,7 @@ function onSelectRoom(element) {
     $('#info_type_lamp').empty();
    // $('#set_data').fadeOut("slow");
     $( "#set_data" ).prop( "disabled", 'disabled');
+    current_Room.getInstance().clearCurrentRoom();
   } else {
     var $activePolygon = $(".activePolygon");
     $('#info_type_lamp').empty();
@@ -429,7 +483,8 @@ function initSelectorNameLamp() {
          $(".js_loading_wraper").fadeOut("slow"); 
       },
       success: function(data) {         
-          var jsonResult = $.parseJSON(data);   
+          var jsonResult = $.parseJSON(data);
+          current_Room.getInstance().setLampSelect(jsonResult);   
           $.each(jsonResult, function() {            
               $('#nameLamp').append(
                   $('<option></option>').text(this.nameLamp)
@@ -626,12 +681,16 @@ function removeLampFromLocalData(curLamp) {
 
 function viewResultInTable(currentLamp, room_number, floor_number) {
   console.log("viewResultInTable");
+  var roomRequiredIllumination = 0;
+  if(currentLamp.hasOwnProperty('customRequiredIllumination')) {
+    roomRequiredIllumination = currentLamp.customRequiredIllumination;
+  }
   var objectRow = {
     nameLamp: currentLamp.nameLamp,
     roomNumber: room_number + "/" + floor_number,    
     roomArea: currentLamp.resultCalc.roomArea,
     lampsCount: currentLamp.resultCalc.lampsCount,
-    requiredIllumination: currentLamp.requiredIllumination,
+    requiredIllumination: roomRequiredIllumination,
     reflectionCoef: currentLamp.reflectionCoef,
     satefyFactor: currentLamp.safetyFactor,
     powerLamp: currentLamp.powerLamp,

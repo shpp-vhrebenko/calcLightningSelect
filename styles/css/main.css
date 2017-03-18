@@ -6943,9 +6943,9 @@ body {
   right: -50%; */
 }
 #js_photo_lamp {
-  border-radius: 20px;
+  border-radius: 10px;
   margin-bottom: 1rem;
-  height: 150px;
+  height: 200px;
   -webkit-box-shadow: 10px 10px 38px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 38px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 10px 10px 38px 0px rgba(0, 0, 0, 0.75);
@@ -6972,10 +6972,9 @@ polygon {
   text-align: center;
   color: #919191;
   font-weight: bold;
-  margin: 2rem 0 2rem 0;
 }
-.glyphicon-remove {
-  margin-bottom: 2rem;
+#cancel {
+  color: #D9534F;
 }
 .info_lamp {
   border: 1px solid grey;
