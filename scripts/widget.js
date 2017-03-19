@@ -1,10 +1,23 @@
 var current_Room = (function () {
-  var instance,
+  var instance, // object singleton
       curRoom = {}, // current active room object(number_room, number_floor)
       tableData = [], // object data bootstrap-table
       curLamp = {}, // current lamp in table
       typeLamp = {}, // object json drawing
-      lampSelect = {};
+      lampSelect = {}, // object has value for options name lamp select
+      editLamp = {}; // object has parameter edit lamp
+
+  var setEditLamp = function (inputObject) {  
+    console.log("setEditLamp");     
+    $.each(inputObject, function(key, value) {
+       editLamp[key] = value;
+    });  
+    console.log(editLamp);    
+  };
+
+  var getEditLamp= function () {        
+    return editLamp;       
+  };    
 
   var setLampSelect = function (inputObject) {       
     $.each(inputObject, function(key, value) {
@@ -18,9 +31,11 @@ var current_Room = (function () {
 
   var setTypeLamp = function (inputObject) {   
     typeLamp = {};
+    console.log("setTypeLamp");
     $.each(inputObject, function(key, value) {
        typeLamp[key] = value;
-    });        
+    }); 
+    console.log(typeLamp);       
   };
   
   var getTypeLamp = function () {       
@@ -31,8 +46,26 @@ var current_Room = (function () {
     return tableData;
   };  
 
-  var addElementToTableData = function (element) {    
-    tableData.push(element);
+
+  var addElementToTableData = function (element) {
+    tableData.push(element);         
+    $('#bTable').bootstrapTable('load', tableData);    
+  };  
+
+  var chengeElementInTableData = function (element, chengeElementName) {
+    console.log(element);
+    /* jshint loopfunc:true */ 
+    if(tableData.length > 0) {      
+      for (var i = 0; i < tableData.length ; i++) {
+         var curTableElement = tableData[i];
+         if((curTableElement.roomNumber === element.roomNumber) && (curTableElement.nameLamp === chengeElementName)) {
+            $.each(element, function(key, val) {
+              curTableElement[key] = val;  
+            });
+         }      
+      } 
+    }
+         
     $('#bTable').bootstrapTable('load', tableData);    
   };  
 
@@ -52,8 +85,7 @@ var current_Room = (function () {
     curRoom.floor = numberFloor;   
   };  
 
-  var getCurrentRoom = function () {   
-    console.log(curRoom);
+  var getCurrentRoom = function () {      
     return curRoom;
   };
 
@@ -80,11 +112,14 @@ var current_Room = (function () {
       clearCurrentRoom: clearCurrentRoom,
       getTableData: getTableData,
       addElementToTableData: addElementToTableData,
+      chengeElementInTableData: chengeElementInTableData,
       removeElementFromTableData: removeElementFromTableData,
       setTypeLamp: setTypeLamp,
       getTypeLamp: getTypeLamp,
       setLampSelect: setLampSelect,
-      getLampSelect: getLampSelect
+      getLampSelect: getLampSelect,
+      setEditLamp: setEditLamp,
+      getEditLamp: getEditLamp
     };
   };
   return {
@@ -93,6 +128,16 @@ var current_Room = (function () {
     }
   };
 })();
+
+function queryParams() {
+    return {
+        type: 'owner',
+        sort: 'updated',
+        direction: 'desc',
+        per_page: 100,
+        page: 1
+    };
+}
 
 Object.defineProperty(Object.prototype, "length", {
     enumerable: false,
@@ -251,9 +296,192 @@ $('#edit_data').on('click', function(event) {
 
 //====================== MODAL WINDOW EVENT =======================
 $('#myModal').on('shown.bs.modal', function () {
-  console.log("modalWindow");
+  console.log("OPEN MODAL WINDOW");
+  var currentLamp = current_Room.getInstance().getCurrentLamp();
+  initSelectNameLampForFormEditLamp();
+  initFormEdit(currentLamp);
+  editLampFormValidation();
+  
+  $('#editLamp').on('blur keyup change', 'input', function() { 
+    if ($('#editLamp').valid()) {         
+        $('#saveEdit').prop('disabled', false);
+    } else {      
+        $('#saveEdit').prop('disabled', 'disabled');
+    }
+  });
+
+  $('#editLamp').on('blur keyup change', 'select', function() {      
+    if ($('#editLamp').valid()) {         
+        $('#saveEdit').prop('disabled', false);
+    } else {         
+        $('#saveEdit').prop('disabled', 'disabled');
+    }
+  }); 
+
+  $('#editLamp').on('change', '#requiredIllumination', function() { 
+    var value = $(this).val();    
+    $('#editLamp').find('#customRequiredIllumination').val(value);
+  });   
+
+  $('#myModal').on('click', '#search_lamp',  function(event) {
+    console.log("search_lamp");
+    event.preventDefault(); 
+    var search_lamp = $('#myModal').find('#search_user_lamp').val();
+    search_lamp = search_lamp.toUpperCase();  
+    var lampList = current_Room.getInstance().getLampSelect();
+    $.each(lampList, function(key, val) {
+       var curLamp = lampList[key].nameLamp;
+       curLampUpperCase = curLamp.toUpperCase();
+       /*console.log(curLamp);*/
+       if (curLampUpperCase.indexOf(search_lamp) != -1) {
+          var selectTypeLamp = curLamp;        
+          $('#editLamp').find('#nameLamp').val(selectTypeLamp);        
+          $('#editLamp').find('#nameLamp').valid();
+          $('#editLamp').find('#nameLamp').trigger('change');  
+          return false;
+        }
+    });     
+  }); 
+
+   $('#editLamp').on('change', '#nameLamp', function() {
+    console.log("nameLamp");
+    var value = $(this).val();
+    var $option = $('option[value="'+value+'"]');     
+    var editLamp = current_Room.getInstance().getEditLamp(); 
+    $.each( $option.data(), function( key, value ) {   
+      if(key == "photoLink") {
+        $('#myModal').find('#js_photo_lamp').attr('src',value);
+      } 
+      if(key == "applyLamp") {
+        $('#myModal').find('#info_lamp').text(" ");
+        $('#myModal').find('#info_lamp').text("Область использования - " + value);
+      }
+      editLamp[key]  = value;      
+    });   
+    current_Room.getInstance().setEditLamp(editLamp);        
+  }); 
+
+  $('#editLamp').on('change', '#lampsWorkHeight', function() {
+    var editLamp = current_Room.getInstance().getEditLamp(); 
+    var value = $(this).val();
+    var heightRoom = $('#editLamp').find('#heightRoom').val();
+    if(value < heightRoom) {
+      if(value > 0) {     
+        editLamp.lampsWorkHeight = value;        
+      }     
+    } else {    
+      if(heightRoom > 0){
+        $('#editLamp').find('#lampsWorkHeight').val(heightRoom - 0.1);      
+        editLamp.lampsWorkHeight = (heightRoom - 0.1);          
+      } else {
+        $('#editLamp').find('#lampsWorkHeight').val(0);      
+        editLamp.lampsWorkHeight = 0;        
+      }    
+    } 
+    current_Room.getInstance().setEditLamp(editLamp);  
+  });
+
+  $('#editLamp').on('change', '#heightRoom', function() {
+    var editLamp = current_Room.getInstance().getEditLamp();
+    var value = $(this).val();
+    var lampsWorkHeight = $('#editLamp').find('#lampsWorkHeight').val();
+    var cur = round((value - 0.1),2); 
+    if(lampsWorkHeight === value) { 
+      if(cur > 0) {
+        $('#editLamp').find('#lampsWorkHeight').val(cur);     
+        editLamp.lampsWorkHeight = cur;        
+      }         
+    }  
+    editLamp.heightRoom = value;
+    current_Room.getInstance().setEditLamp(editLamp);       
+  }); 
+
+  $('#editLamp').on('change','.edit_lamp' , function () { 
+    var editLamp = current_Room.getInstance().getEditLamp();
+    editLamp[$(this).attr('id')] = $(this).val();
+    current_Room.getInstance().setEditLamp(editLamp);   
+  });  
+  
 });
 //====================== END MODAL WINDOW EVENT ===================
+
+$('body').on('click', '#saveEdit', function () {   
+  event.preventDefault(); 
+  var editLamp = current_Room.getInstance().getEditLamp();
+  var currentRoomObject = getCurrentRoomForEdit(); 
+  console.log(currentRoomObject);
+  var currentRowLamp = current_Room.getInstance().getCurrentLamp(); 
+  var currentNameLamp = currentRowLamp.nameLamp;
+  var copyCurrentRoomObject = {};
+  $.each(currentRoomObject, function(key, val) {
+    copyCurrentRoomObject[key] = val;
+  });
+  if(copyCurrentRoomObject.hasOwnProperty('typeLamp')) {
+    var ObjectTypeLamp = currentRoomObject.typeLamp;
+    var chengeContent = {};
+    $.each(ObjectTypeLamp, function(key, val) {
+       if(key === currentNameLamp) {
+          chengeContent[editLamp.nameLamp] = editLamp;  
+       } else {
+          chengeContent[key] = val;
+       }
+    });
+    copyCurrentRoomObject.typeLamp = chengeContent;
+  }
+  console.log(copyCurrentRoomObject);
+  var data = {
+    calc_countLamp : true,
+    parameters : editLamp,
+    currentRoom : copyCurrentRoomObject
+  };    
+  sendAjaxForm(data,
+            "calc_lighting.php",
+            hideLoadingWraper,
+            showLoadingWraper,
+            editCalcCountLamp,
+            errorResponse,
+            10000,
+            'POST');   
+});
+
+function addLampInLocalDataAfterEdit(objectLamp, nameLamp) {
+  console.log("addLampInLocalDataAfterEdit");
+  console.log(objectLamp);
+  var data = current_Room.getInstance().getTypeLamp();   
+  var curRoom= current_Room.getInstance().getCurrentLamp();
+  var currentNameLamp = curRoom.nameLamp; 
+  var param = curRoom.roomNumber.split('/');
+  var floor = parseInt(param[0]) - 1;
+  var room = parseInt(param[1]) - 1; 
+  if(data.floors[floor].rooms[room].hasOwnProperty('typeLamp')) { 
+    var currentTypeLamp = data.floors[floor].rooms[room].typeLamp;
+    var chengeTypeLamp = {};
+    $.each(currentTypeLamp, function(key, val) {
+      if(key === currentNameLamp) {
+        chengeTypeLamp[nameLamp] = objectLamp;
+      } else {
+        chengeTypeLamp[key] = val;
+      }
+    });  
+    data.floors[floor].rooms[room].typeLamp = chengeTypeLamp;    
+  }   
+  current_Room.getInstance().setTypeLamp(data);
+  viewResultInTable(objectLamp, room, floor, currentNameLamp);   
+}
+
+function getCurrentRoomForEdit() {   
+   var data = current_Room.getInstance().getTypeLamp();
+   var curRoom = current_Room.getInstance().getCurrentLamp(); 
+   var param = curRoom.roomNumber.split('/');
+   var floor = parseInt(param[0]) - 1;
+   var room = parseInt(param[1]) - 1;
+   var roomObject = {}; 
+   var cur = data.floors[floor].rooms[room];
+   $.each(cur, function(key, val) {      
+      roomObject[key] = val;      
+   });
+   return roomObject;
+}
 
 //Processing of events=============================================
 
@@ -261,8 +489,7 @@ $('#search_lamp').on('click', function(event) {
   console.log("search_lamp");
   event.preventDefault(); 
   var search_lamp = $('#search_user_lamp').val();
-  search_lamp = search_lamp.toUpperCase();
-  console.log(search_lamp);
+  search_lamp = search_lamp.toUpperCase();  
   var lampList = current_Room.getInstance().getLampSelect();
 
   $.each(lampList, function(key, val) {
@@ -270,36 +497,33 @@ $('#search_lamp').on('click', function(event) {
      curLampUpperCase = curLamp.toUpperCase();
      /*console.log(curLamp);*/
      if (curLampUpperCase.indexOf(search_lamp) != -1) {
-        var selectTypeLamp = curLamp;
-        console.log(selectTypeLamp);
+        var selectTypeLamp = curLamp;        
         $('#nameLamp').val(selectTypeLamp);        
         $('#nameLamp').valid();
         $('#nameLamp').trigger('change');  
         return false;
       }
-  });
-     
+  });     
 }); 
 
-$('#heightRoomlighting').change(function() {
+$('#lampsWorkHeight').change(function() {
   /*console.log("heightRoomlighting");*/
   var value = $(this).val();
   var heightRoom = $('#heightRoom').val();
-  if(value < (heightRoom - 0.1)) {
-    $('#text_heightRoomlighting').text(value);
-    parameters.lampsWorkHeight = value;
-    localDataLamp.parameters = parameters;   
-    localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));  
-  } else {
+  if(value < heightRoom) {
+    if(value > 0) {     
+      parameters.lampsWorkHeight = value;
+      localDataLamp.parameters = parameters;   
+      localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));
+    }     
+  } else {    
     if(heightRoom > 0){
-      $('#lampsWorkHeight').val(heightRoom - 0.1);
-      $('#text_heightRoomlighting').text(heightRoom - 0.1);
+      $('#lampsWorkHeight').val(heightRoom - 0.1);      
       parameters.lampsWorkHeight = (heightRoom - 0.1);
       localDataLamp.parameters = parameters;       
       localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));  
     } else {
-      $('#lampsWorkHeight').val(0);
-      $('#text_heightRoomlighting').text(0);
+      $('#lampsWorkHeight').val(0);      
       parameters.lampsWorkHeight = 0;
       localDataLamp.parameters = parameters; 
       localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));
@@ -311,13 +535,14 @@ $('#heightRoom').change(function() {
  /* console.log("heightRomm");*/
   var value = $(this).val();
   var lampsWorkHeight = $('#lampsWorkHeight').val();
-  if(lampsWorkHeight !== 0) {
-    var cur = round((value - 0.1),2);  
-    $('#lampsWorkHeight').val(cur); 
-    $('#text_heightRoomlighting').text(cur); 
-    parameters.lampsWorkHeight = cur;
-    localDataLamp.parameters = parameters;     
-    localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));     
+  var cur = round((value - 0.1),2); 
+  if(lampsWorkHeight === value) { 
+    if(cur > 0) {
+      $('#lampsWorkHeight').val(cur);     
+      parameters.lampsWorkHeight = cur;
+      localDataLamp.parameters = parameters;     
+      localStorage.setItem('typeLamp', JSON.stringify(localDataLamp)); 
+    }         
   }  
   parameters.heightRoom = value;
   localDataLamp.parameters = parameters;   
@@ -467,6 +692,26 @@ function init() {
 }
 
 /**
+ * [init properties lamp from LocalStorage] 
+ */
+function initFormEdit(parameters) {
+  console.log('initFormEdit');
+  var editLamp = current_Room.getInstance().getEditLamp();    
+  $.each(parameters, function(key, value) { 
+    editLamp[key] = value;
+    if(key == "photoLink") {
+      var $photo_lamp = $('#myModal').find('img#js_photo_lamp');
+        $photo_lamp.attr('src',value);
+      }            
+    var $currentInput = $('form#editLamp').find('input#' + key);     
+    var $currentSelect = $('form#editLamp').find('select#' + key);                        
+    $currentInput.val(value);
+    $currentSelect.val(value);   
+  });
+  current_Room.getInstance().setEditLamp(editLamp);    
+}
+
+/**
  * [init select nameLamp]
  */
 function initSelectorNameLamp() {
@@ -515,6 +760,28 @@ function initSelectorNameLamp() {
         viewErrorResponse(response.reresponseText);     
       }
     });
+}
+
+function  initSelectNameLampForFormEditLamp() {
+  console.log("initSelectNameLampForFormEditLamp");
+  var objectSelectLamp = current_Room.getInstance().getLampSelect();  
+  var formEditLamp = $('#editLamp').find('select#nameLamp');
+  console.log(formEditLamp); 
+  $.each(objectSelectLamp, function() {
+      formEditLamp.append(
+          $('<option></option>').text(this.nameLamp)
+                                .val(this.nameLamp)                                       
+                                .attr('data-lumix', this.lumix)
+                                .attr('data-power-lamp', this.powerLamp)
+                                .attr('data-number-lamps', this.numberLamps)
+                                .attr('data-usagecoefficient', this.usagecoefficient)
+                                .attr('data-link', this.link)
+                                .attr('data-photo-link', this.photo_lamp)
+                                .attr('data-type-lamp', this.typeLamp)
+                                .attr('data-apply-lamp', this.application_area)
+          );
+
+  }); 
 }
 
 /**
@@ -634,6 +901,8 @@ function getCurrentRoom() {
    return roomObject;
 }
 
+
+
 function addLampInLocalData(objectLamp, nameLamp) {  
   var data = current_Room.getInstance().getTypeLamp();  
   var curRoom = current_Room.getInstance().getCurrentRoom();
@@ -655,8 +924,8 @@ function removeLampFromLocalData(curLamp) {
   var data = current_Room.getInstance().getTypeLamp();  
   var nameLamp = curLamp.nameLamp;
   var floorAndRoom =  curLamp.roomNumber.split('/');  
-  var room = floorAndRoom[0];
-  var floor = floorAndRoom[1];
+  var room = parseInt(floorAndRoom[1]) - 1 ;
+  var floor = parseInt(floorAndRoom[0]) - 1;
   var objectTypeLamp = data.floors[floor].rooms[room].typeLamp; 
   if(objectTypeLamp.length === 1) {   
     var objectRoom = data.floors[floor].rooms[room];    
@@ -679,24 +948,32 @@ function removeLampFromLocalData(curLamp) {
   current_Room.getInstance().setTypeLamp(data); 
 }
 
-function viewResultInTable(currentLamp, room_number, floor_number) {
+function viewResultInTable(currentLamp, room_number, floor_number, chengeName) {
   console.log("viewResultInTable");
-  var roomRequiredIllumination = 0;
-  if(currentLamp.hasOwnProperty('customRequiredIllumination')) {
-    roomRequiredIllumination = currentLamp.customRequiredIllumination;
-  }
+  console.log(currentLamp);  
+  floor_number = parseInt(floor_number) + 1;
+  room_number = parseInt(room_number) + 1;
   var objectRow = {
     nameLamp: currentLamp.nameLamp,
-    roomNumber: room_number + "/" + floor_number,    
+    roomNumber: floor_number + "/" + room_number,    
     roomArea: currentLamp.resultCalc.roomArea,
     lampsCount: currentLamp.resultCalc.lampsCount,
-    requiredIllumination: roomRequiredIllumination,
+    requiredIllumination: currentLamp.requiredIllumination,
     reflectionCoef: currentLamp.reflectionCoef,
-    satefyFactor: currentLamp.safetyFactor,
+    safetyFactor: currentLamp.safetyFactor,
     powerLamp: currentLamp.powerLamp,
-    lampsWatt: currentLamp.resultCalc.lampsWatt 
+    lampsWatt: currentLamp.resultCalc.lampsWatt,
+    heightRoom: currentLamp.heightRoom,
+    lampsWorkHeight: currentLamp.lampsWorkHeight,
+    photoLink: currentLamp.photoLink,
+    customRequiredIllumination: currentLamp.customRequiredIllumination    
   };
-  current_Room.getInstance().addElementToTableData(objectRow); 
+  if(chengeName) {
+    current_Room.getInstance().chengeElementInTableData(objectRow, chengeName); 
+  } else {
+    current_Room.getInstance().addElementToTableData(objectRow);
+  }
+   
 }
 
 function calcCountLamp(result) {
@@ -737,6 +1014,36 @@ function calcCountLamp(result) {
       }                     
     } else {            
       viewErrorResponse("Введенные данные некорректны");            
+    }          
+  } 
+}
+
+function editCalcCountLamp(result) {  
+  var editLamp = current_Room.getInstance().getEditLamp();
+  var nameLamp = editLamp.nameLamp;
+  var resultResponse = $.parseJSON(result); 
+  console.group("RESULT EDIT CALC COUNT LAMP");    
+  console.log(resultResponse);
+  console.groupEnd();             
+  if('error' in resultResponse) {
+    console.info("error code - " + resultResponse.error.code);
+    console.info("file error - " + resultResponse.error.file);
+    console.info("line error - " + resultResponse.error.line);
+    viewErrorResponse(resultResponse.error.message);
+    return false;
+  } else {
+    if ('calcCountLamp' in resultResponse) {
+      $('#put_data').show();
+      // console.log(resultResponse.calcCountLamp);
+       var calcCountLamp = resultResponse.calcCountLamp;
+      if(calcCountLamp) {        
+        var objectLamp = {}; 
+        objectLamp = editLamp; 
+        objectLamp.resultCalc = calcCountLamp;                                         
+        addLampInLocalDataAfterEdit(objectLamp, nameLamp);               
+      }                     
+    } else {            
+      viewErrorResponse("Введенные данные для редактирования некорректны");            
     }          
   } 
 }

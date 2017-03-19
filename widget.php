@@ -172,13 +172,17 @@ ini_set('display_startup_errors', 1);
                     data-single-select="true"                  
                     data-classes="table table-hover table-condensed"       
                     data-sort-order="desc"
-                    data-sort-name="nameLamp"
+                    data-sort-name="nameLamp" 
+                    data-pagination="true"
+                    data-page-size="5"
+                    data-page-list="[5,10,20]"
+                    data-height="300"                    
                     data-locale="ru-RU">
                 <thead>
                     <tr>
                         <th data-field="state" data-checkbox="true"></th>
                         <th data-field="nameLamp" data-sortable="true">Наименование </br> светильника</th>
-                        <th data-field="roomNumber">№ комнаты </br> / №этажа</th>                        
+                        <th data-field="roomNumber" data-sortable="true">№ этажа </br> / № комнаты</th>                        
                         <th data-field="roomArea">Площадь </br> комнаты</th>
                         <th data-field="lampsCount">Количество </br> светильников</th>
                         <th data-field="requiredIllumination">Требуемая </br> освещенность</th>
@@ -204,112 +208,107 @@ ini_set('display_startup_errors', 1);
                   <h4 class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
+                  <div class="row">
+                    <div class="col-xs-12 col-md-5 col-md-offset-4">
+                      <img src="" class="img-responsive" id="js_photo_lamp" alt=""> 
+                      <p  id="info_lamp"></p>               
+                    </div>                    
+                    <div class="col-xs-12 col-md-5 col-md-offset-4">                
+                      <div id="custom-search-input">
+                          <div class="input-group col-md-12">
+                              <input type="text" class="form-control input-sm" id="search_user_lamp" placeholder="Поиск светильника" />
+                              <span class="input-group-btn">
+                                  <button class="btn btn-info btn-sm" id="search_lamp" type="button">
+                                      <i class="glyphicon glyphicon-search"></i>
+                                  </button>
+                              </span>
+                          </div>
+                      </div>
+                    </div>
+                  </div> 
                   <form class="form-horizontal"
-                    id="calcLightning"
+                    id="editLamp"
                     role="form"
-                    name="calcLightning"
+                    name="editLamp"
                     method="post"
-                    action="">                   
-                    <div class="form-group">
-                      <label for="heightRoom" class="col-sm-8 control-label">Высота помещения,  м</label>
-                      <div class="col-sm-4">
-                        <input type="number" class="form-control room_param room" id="heightRoom" name="heightRoom" placeholder="2.5" min="0.0" step="0.1">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="lampsWorkHeight" class="col-sm-8 control-label">Рабочая поверхность,  м</label>
-                      <div class="col-sm-4">
-                        <input type="number" class="form-control room_param room" id="lampsWorkHeight" name="lampsWorkHeight" placeholder="0.8" min="0.0" step="0.1" required>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="reflectionСoefficient" class="col-sm-4 control-label">Коэффициент отражения</label>
-                      <div class="col-sm-8" >
-                        <select class="form-control room" id="reflectionCoef" name="reflectionCoef" required>
-                          <option value="" selected>Выберите значение коэффициента отражения</option>
-                          <option value="0,0,0">Пол-0%, стены-0%, потолок-0%</option>
-                          <option value="10,30,30">Пол-30%, стены-30%, потолок-10%</option>
-                          <option value="10,30,50">Пол-50%, стены-30%, потолок-10%</option>
-                          <option value="10,50,50">Пол-50%, стены-50%, потолок-10%</option>
-                          <option value="20,50,70">Пол-70%, стены-50%, потолок-20%</option>
-                          <option value="10,30,80">Пол-80%, стены-30%, потолок-10%</option>
-                          <option value="30,50,80">Пол-80%, стены-50%, потолок-30%</option>
-                          <option value="30,80,80">Пол-80%, стены-80%, потолок-30%</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="safetyFactor" class="col-sm-4 control-label">Коэффициент запаса</label>
-                      <div class="col-sm-8">
-                        <select class="form-control room" id="safetyFactor" name="safetyFactor"  required>
-                          <option selected value="">Выберите значение коэффициента запаса</option>       
-                          <option value="1.1">1.1</option>
-                          <option value="1.4">1.4</option>
-                          <option value="1.6">1.6</option>
-                          <option value="1.7">1.7</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="requiredIllumination" class="col-sm-4 control-label">Требуемая освещенность, лк</label>
-                      <div class="col-sm-8">
-                        <select class="form-control room" id="requiredIllumination" name="requiredIllumination" required>
-                          <option value="" selected>Выберите значение освещенности</option>
-                          <option value="5">Чердаки</option>
-                          <option value="100">Лестницы</option>
-                          <option value="50">Коридоры</option>
-                          <option value="150">Вестибюли</option>
-                          <option value="50">Склады в зоне хранения товара</option>
-                          <option value="150">Вестибюли</option>
-                          <option value="50">Склады в зоне хранения товара</option>
-                          <option value="200">Склады в зоне приема товара</option>
-                          <option value="200">Гаражи</option>
-                          <option value="400">Парикмахерские</option>
-                          <option value="200">Объединенные залы и буфеты</option>
-                          <option value="400">Торговые залы магазинов</option>
-                          <option value="200">Конференц-залы и залы заседаний</option>
-                          <option value="500">Проектрные и конструкторские бюро</option>
-                          <option value="300">Читальные залы</option>
-                          <option value="300">Учебные аудитории и классы</option>
-                          <option value="500">Офисные помещения</option>
-                          <option value="500">Рабочий кабинет</option>                                   
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="customRequiredIllumination" class="col-sm-8 control-label"> Текущее значение требуемой освещенности</label>
-                      <div class="col-sm-4">
-                        <input type="number" class="form-control room" disabled="disabled" id="customRequiredIllumination" name="customRequiredIllumination" min="0">
-                      </div>
-                    </div> 
-                    <div class="row">
-                      <div class="col-xs-12 col-md-8 col-md-offset-2">
-                        <img src="" class="img-responsive" id="js_photo_lamp" alt="">
-                        <p id="info_lamp"></p>
-                      </div>
-                    </div>                       
-                    <div class="form-group">
-                      <label for="nameLamp" class="col-sm-5 control-label">
-                        Выберите светильник
-                      </label>
-                      <div class="col-sm-7">
-                        <select name="nameLamp"
-                                id="nameLamp"
-                                class="form-control room"
-                        required >
-                          <option selected value="">Выберите тип светильника</option>
-                        </select>
-                      </div>
-                    </div>                     
-                    <div class="form-group">
-                      <div class="col-sm-12">
-                        <button id="calcButton" class="btn btn-success btn-lg btn-block" >Расчет</button>
-                      </div>
-                    </div>            
+                    action="">          
+                    <table class="table table-bordered table-condensed">
+                      <thead>
+                        <tr>
+                          <th>Выберите светильник</th>
+                          <th>Высота помещения, м</th>
+                          <th>Рабочая поверхность, м</th>
+                          <th>Коэффициент отражения</th>
+                          <th>Коэффициент запаса</th>
+                          <th>Требуемая освещенность, лк</th>
+                          <th>Требуемая освещенность, лк</th>                   
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="input">
+                            <select name="nameLamp" id="nameLamp" class="edit_lamp input-sm" required >
+                              <option selected value="">Выберите тип светильника</option>
+                            </select>
+                          </td> 
+                          <td class="input"><input class="edit_lamp input-sm" type="number" id="heightRoom" name="heightRoom" placeholder="2.5" min="0.0" step="0.1" required/></td>
+                          <td class="input"><input  type="number" class="edit_lamp input-sm" id="lampsWorkHeight" name="lampsWorkHeight" placeholder="0.8" min="0.0" step="0.1" required /></td>
+                          <td class="input">
+                            <select class="edit_lamp input-sm" id="reflectionCoef" name="reflectionCoef" required>
+                              <option value="" selected>Выберите значение коэффициента отражения</option>
+                              <option value="0,0,0">Пол-0%, стены-0%, потолок-0%</option>
+                              <option value="10,30,30">Пол-30%, стены-30%, потолок-10%</option>
+                              <option value="10,30,50">Пол-50%, стены-30%, потолок-10%</option>
+                              <option value="10,50,50">Пол-50%, стены-50%, потолок-10%</option>
+                              <option value="20,50,70">Пол-70%, стены-50%, потолок-20%</option>
+                              <option value="10,30,80">Пол-80%, стены-30%, потолок-10%</option>
+                              <option value="30,50,80">Пол-80%, стены-50%, потолок-30%</option>
+                              <option value="30,80,80">Пол-80%, стены-80%, потолок-30%</option>
+                            </select>
+                          </td> 
+                          <td class="input">
+                            <select class="edit_lamp input-sm" id="safetyFactor" name="safetyFactor"  required>
+                              <option selected value="">Выберите значение коэффициента запаса</option>    
+                              <option value="1.1">1.1</option>
+                              <option value="1.4">1.4</option>
+                              <option value="1.6">1.6</option>
+                              <option value="1.7">1.7</option>
+                            </select>
+                          </td>
+                          <td class="input">
+                            <select class="edit_lamp input-sm" id="requiredIllumination" name="requiredIllumination" required>
+                              <option value="" selected>Выберите значение освещенности</option>
+                              <option value="5">Чердаки</option>
+                              <option value="100">Лестницы</option>
+                              <option value="50">Коридоры</option>
+                              <option value="150">Вестибюли</option>
+                              <option value="50">Склады в зоне хранения товара</option>
+                              <option value="150">Вестибюли</option>
+                              <option value="50">Склады в зоне хранения товара</option>
+                              <option value="200">Склады в зоне приема товара</option>
+                              <option value="200">Гаражи</option>
+                              <option value="400">Парикмахерские</option>
+                              <option value="200">Объединенные залы и буфеты</option>
+                              <option value="400">Торговые залы магазинов</option>
+                              <option value="200">Конференц-залы и залы заседаний</option>
+                              <option value="500">Проектрные и конструкторские бюро</option>
+                              <option value="300">Читальные залы</option>
+                              <option value="300">Учебные аудитории и классы</option>
+                              <option value="500">Офисные помещения</option>
+                              <option value="500">Рабочий кабинет</option>                                   
+                            </select>
+                          </td> 
+                          <td class="input">
+                            <input class="edit_lamp input-sm" type="number" id="customRequiredIllumination" name="customRequiredIllumination" min="0" step="1"/>                    
+                          </td>                                 
+                        </tr>
+                      </tbody>
+                    </table>                    
                   </form>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button id="saveEdit" type="button" class="btn btn-success" data-dismiss="modal" >Сохранить</button>
+                  <button type="button" class="btn btn-info" data-dismiss="modal">Отмена</button>
                 </div>
               </div>
               
