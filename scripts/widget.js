@@ -1,3 +1,4 @@
+//===================== API LOCAL DATA =====================================
 var current_Room = (function () {
   var instance, // object singleton
       curRoom = {}, // current active room object(number_room, number_floor)
@@ -7,12 +8,10 @@ var current_Room = (function () {
       lampSelect = {}, // object has value for options name lamp select
       editLamp = {}; // object has parameter edit lamp
 
-  var setEditLamp = function (inputObject) {  
-    console.log("setEditLamp");     
+  var setEditLamp = function (inputObject) {           
     $.each(inputObject, function(key, value) {
        editLamp[key] = value;
-    });  
-    console.log(editLamp);    
+    });        
   };
 
   var getEditLamp= function () {        
@@ -30,12 +29,10 @@ var current_Room = (function () {
   };
 
   var setTypeLamp = function (inputObject) {   
-    typeLamp = {};
-    console.log("setTypeLamp");
+    typeLamp = {};    
     $.each(inputObject, function(key, value) {
        typeLamp[key] = value;
-    }); 
-    console.log(typeLamp);       
+    });            
   };
   
   var getTypeLamp = function () {       
@@ -52,8 +49,7 @@ var current_Room = (function () {
     $('#bTable').bootstrapTable('load', tableData);    
   };  
 
-  var chengeElementInTableData = function (element, chengeElementName) {
-    console.log(element);
+  var chengeElementInTableData = function (element, chengeElementName) {    
     /* jshint loopfunc:true */ 
     if(tableData.length > 0) {      
       for (var i = 0; i < tableData.length ; i++) {
@@ -129,25 +125,14 @@ var current_Room = (function () {
   };
 })();
 
-function queryParams() {
-    return {
-        type: 'owner',
-        sort: 'updated',
-        direction: 'desc',
-        per_page: 100,
-        page: 1
-    };
-}
-
-Object.defineProperty(Object.prototype, "length", {
-    enumerable: false,
-    get: function() {
-        return Object.keys(this).length;
-    }
-});
-
-
-
+//================ END API LOCAL DATA ==========================================
+//
+//
+//
+//
+//
+//
+//==========================DOCUMENT READY======================================
 if(localStorage.typeLamp) {
   var listDataLamp = JSON.parse(localStorage.getItem('typeLamp'));
 }
@@ -195,7 +180,14 @@ $(document).keydown(function(eventObject){
     }            
 }); 
 
-
+//=====================END DOCUMENT READY==========================
+//
+//
+//
+//
+//
+//
+//
 //==================POST MESSAGE===================================
 
 /**
@@ -239,11 +231,13 @@ $('#cancel').on('click', function(event) {
   parent.window.postMessage({message: {cmd: 'cancel'}}, parentURL);
 });
 
-//=================================================================
-
+//========================END POST MESSAGE ========================
+//
+//
+//
+//
 //=====================EVENT BOOTSTRAP TABLE=======================
-$('#bTable').on('check.bs.table', function (e, row) {
-    console.log(row);
+$('#bTable').on('check.bs.table', function (e, row) {    
     current_Room.getInstance().setCurrentLamp(row);
     $('#edit_data').prop('disabled', false);
     $('#remove_data').prop('disabled', false);
@@ -271,7 +265,7 @@ $('#set_data').on('click', function(event) {
                 "calc_lighting.php",
                 hideLoadingWraper,
                 showLoadingWraper,
-                calcCountLamp,
+                viewCalcCountLamp,
                 errorResponse,
                 10000,
                 'POST'); 
@@ -289,11 +283,15 @@ $('#remove_data').on('click', function(event) {
 
 $('#edit_data').on('click', function(event) {
   console.log("edit_data");
-  event.preventDefault();    
-    
+  event.preventDefault();     
 });   
 //====================== END EVENT BOOTSTRAP TABLE ================
-
+//
+//
+//
+//
+//
+//
 //====================== MODAL WINDOW EVENT =======================
 $('#myModal').on('shown.bs.modal', function () {
   console.log("OPEN MODAL WINDOW");
@@ -343,8 +341,7 @@ $('#myModal').on('shown.bs.modal', function () {
     });     
   }); 
 
-   $('#editLamp').on('change', '#nameLamp', function() {
-    console.log("nameLamp");
+   $('#editLamp').on('change', '#nameLamp', function() {    
     var value = $(this).val();
     var $option = $('option[value="'+value+'"]');     
     var editLamp = current_Room.getInstance().getEditLamp(); 
@@ -403,13 +400,11 @@ $('#myModal').on('shown.bs.modal', function () {
   });  
   
 });
-//====================== END MODAL WINDOW EVENT ===================
 
 $('body').on('click', '#saveEdit', function () {   
   event.preventDefault(); 
   var editLamp = current_Room.getInstance().getEditLamp();
-  var currentRoomObject = getCurrentRoomForEdit(); 
-  console.log(currentRoomObject);
+  var currentRoomObject = getCurrentRoomForEdit();   
   var currentRowLamp = current_Room.getInstance().getCurrentLamp(); 
   var currentNameLamp = currentRowLamp.nameLamp;
   var copyCurrentRoomObject = {};
@@ -427,8 +422,7 @@ $('body').on('click', '#saveEdit', function () {
        }
     });
     copyCurrentRoomObject.typeLamp = chengeContent;
-  }
-  console.log(copyCurrentRoomObject);
+  } 
   var data = {
     calc_countLamp : true,
     parameters : editLamp,
@@ -438,51 +432,18 @@ $('body').on('click', '#saveEdit', function () {
             "calc_lighting.php",
             hideLoadingWraper,
             showLoadingWraper,
-            editCalcCountLamp,
+            viewEditCalcCountLamp,
             errorResponse,
             10000,
             'POST');   
 });
-
-function addLampInLocalDataAfterEdit(objectLamp, nameLamp) {
-  console.log("addLampInLocalDataAfterEdit");
-  console.log(objectLamp);
-  var data = current_Room.getInstance().getTypeLamp();   
-  var curRoom= current_Room.getInstance().getCurrentLamp();
-  var currentNameLamp = curRoom.nameLamp; 
-  var param = curRoom.roomNumber.split('/');
-  var floor = parseInt(param[0]) - 1;
-  var room = parseInt(param[1]) - 1; 
-  if(data.floors[floor].rooms[room].hasOwnProperty('typeLamp')) { 
-    var currentTypeLamp = data.floors[floor].rooms[room].typeLamp;
-    var chengeTypeLamp = {};
-    $.each(currentTypeLamp, function(key, val) {
-      if(key === currentNameLamp) {
-        chengeTypeLamp[nameLamp] = objectLamp;
-      } else {
-        chengeTypeLamp[key] = val;
-      }
-    });  
-    data.floors[floor].rooms[room].typeLamp = chengeTypeLamp;    
-  }   
-  current_Room.getInstance().setTypeLamp(data);
-  viewResultInTable(objectLamp, room, floor, currentNameLamp);   
-}
-
-function getCurrentRoomForEdit() {   
-   var data = current_Room.getInstance().getTypeLamp();
-   var curRoom = current_Room.getInstance().getCurrentLamp(); 
-   var param = curRoom.roomNumber.split('/');
-   var floor = parseInt(param[0]) - 1;
-   var room = parseInt(param[1]) - 1;
-   var roomObject = {}; 
-   var cur = data.floors[floor].rooms[room];
-   $.each(cur, function(key, val) {      
-      roomObject[key] = val;      
-   });
-   return roomObject;
-}
-
+//====================== END MODAL WINDOW EVENT ===================
+//
+//
+//
+//
+//
+//
 //Processing of events=============================================
 
 $('#search_lamp').on('click', function(event) {
@@ -549,8 +510,7 @@ $('#heightRoom').change(function() {
   localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));       
 });
 
-$('#nameLamp').change(function() {
-  console.log("nameLamp");
+$('#nameLamp').change(function() { 
   var value = $(this).val();
   var $option = $('option[value="'+value+'"]'); 
   var param = {};  
@@ -588,7 +548,7 @@ $('.room_param').change(function () {
 }); 
 
 // FUNCTIONS HANDLER EVENTS =======================================
-// 
+
 /**
  * [hendler event onclick current room]
  * @param  {[DOM element]} element [element event oncklick]
@@ -619,20 +579,30 @@ function onSelectRoom(element) {
     }               
   }     
 }
-
-
-// FUNCTIONS ======================================================
+//======END FUNCTIONS HANDLER EVENTS ==============================
+//
+//
+//
+//
+//
+//
+//================= FUNCTIONS MAIN WINDOW=====================================
 
 // 1.defaultInit
-// 2.init
+// 2.setInputValue
+// 3.init
 // 3.initSelectorNameLamp
 // 4.valid
-// 5.setInputValue
+// 5.sendResultForDrawPlan
 // 6.viewDraw
 // 7.sendAjaxForm
-// 8.viewResult
+// 8.viewCalcCountLamp
 // 9.viewErrorResponse
-// 10.round
+// 10.viewResultInTable
+// 11.errorResponse
+// 12.hideLoadingWraper
+// 13.showLoadingWraper
+
 
 /**
  * [Initial default properties for lamp] 
@@ -650,8 +620,7 @@ function defaultInit() {
     if(localDataLamp.parameters.safetyFactor === undefined) {
       setInputValue("safetyFactor", "1.4");  
     }
-    if(localDataLamp.parameters.lampsWorkHeight === undefined) {
-      console.log("lampsWorkHeight");
+    if(localDataLamp.parameters.lampsWorkHeight === undefined) {     
       setInputValue("lampsWorkHeight", 0.8);    
     }
   }
@@ -665,8 +634,7 @@ function defaultInit() {
  */
 function setInputValue(input, value) {  
   console.log("setInputValue");
-  $input = $('#' + input); 
-  console.log($input); 
+  $input = $('#' + input);   
   $input.val(value);
   parameters[input] = value;
   localDataLamp.parameters = parameters;  
@@ -689,26 +657,6 @@ function init() {
     $currentSelect.val(value);
     $currentText.text(value);
   });  
-}
-
-/**
- * [init properties lamp from LocalStorage] 
- */
-function initFormEdit(parameters) {
-  console.log('initFormEdit');
-  var editLamp = current_Room.getInstance().getEditLamp();    
-  $.each(parameters, function(key, value) { 
-    editLamp[key] = value;
-    if(key == "photoLink") {
-      var $photo_lamp = $('#myModal').find('img#js_photo_lamp');
-        $photo_lamp.attr('src',value);
-      }            
-    var $currentInput = $('form#editLamp').find('input#' + key);     
-    var $currentSelect = $('form#editLamp').find('select#' + key);                        
-    $currentInput.val(value);
-    $currentSelect.val(value);   
-  });
-  current_Room.getInstance().setEditLamp(editLamp);    
 }
 
 /**
@@ -762,28 +710,6 @@ function initSelectorNameLamp() {
     });
 }
 
-function  initSelectNameLampForFormEditLamp() {
-  console.log("initSelectNameLampForFormEditLamp");
-  var objectSelectLamp = current_Room.getInstance().getLampSelect();  
-  var formEditLamp = $('#editLamp').find('select#nameLamp');
-  console.log(formEditLamp); 
-  $.each(objectSelectLamp, function() {
-      formEditLamp.append(
-          $('<option></option>').text(this.nameLamp)
-                                .val(this.nameLamp)                                       
-                                .attr('data-lumix', this.lumix)
-                                .attr('data-power-lamp', this.powerLamp)
-                                .attr('data-number-lamps', this.numberLamps)
-                                .attr('data-usagecoefficient', this.usagecoefficient)
-                                .attr('data-link', this.link)
-                                .attr('data-photo-link', this.photo_lamp)
-                                .attr('data-type-lamp', this.typeLamp)
-                                .attr('data-apply-lamp', this.application_area)
-          );
-
-  }); 
-}
-
 /**
  * [valid form and procesing event disable button] 
  */
@@ -814,6 +740,29 @@ function sendResultForDrawPlan(jsonObject) {
       },
       complete: initSelectorNameLamp      
   });
+}
+
+/**
+ * [view Draw]
+ * @param  {[object]} resultDraw [object draw] 
+ */
+function viewDraw(resultDraw) {
+  for (var i = 0; i < resultDraw.length; i++) {
+    $li = $('<li>');
+    if(i === 0) {
+      $li.addClass("active");
+    }
+    $li.append($("<a>").attr({"data-toggle":"tab","href": "#" + i}).text("Этаж №" + (i + 1)));
+    $('#tabs_plan').append($li);
+    $div = $('<div>').attr('id',i); 
+    if(i === 0) {
+      $div.addClass("tab-pane fade in active");
+    } else {
+      $div.addClass("tab-pane fade");
+    }
+    $div.append(resultDraw[i]);
+    $('.tab-content').append($div);
+  } 
 }
 
 /**
@@ -848,29 +797,6 @@ function sendAjaxForm(sendData,
 }
 
 /**
- * [view Draw]
- * @param  {[object]} resultDraw [object draw] 
- */
-function viewDraw(resultDraw) {
-  for (var i = 0; i < resultDraw.length; i++) {
-    $li = $('<li>');
-    if(i === 0) {
-      $li.addClass("active");
-    }
-    $li.append($("<a>").attr({"data-toggle":"tab","href": "#" + i}).text("Этаж №" + (i + 1)));
-    $('#tabs_plan').append($li);
-    $div = $('<div>').attr('id',i); 
-    if(i === 0) {
-      $div.addClass("tab-pane fade in active");
-    } else {
-      $div.addClass("tab-pane fade");
-    }
-    $div.append(resultDraw[i]);
-    $('.tab-content').append($div);
-  } 
-}
-
-/**
  * [view Error Response]
  * @param  {[string]} errorMessage [text error response] 
  */
@@ -880,103 +806,10 @@ function viewErrorResponse(errorMessage) {
 }
 
 /**
- * [round number]
- * @param  {[number]} a [description]
- * @param  {[number]} b [description]
- * @return {[number]}   [description]
+ * [view result calc count lamp]
+ * @param  {[json string]} result [result ajax responce] 
  */
-function round(a,b) {
- b=b || 0;
- return Math.round(a*Math.pow(10,b))/Math.pow(10,b);
-} 
-
-function getCurrentRoom() {   
-   var data = current_Room.getInstance().getTypeLamp();
-   var curRoom = current_Room.getInstance().getCurrentRoom();  
-   var roomObject = {}; 
-   var cur = data.floors[curRoom.floor].rooms[curRoom.room];
-   $.each(cur, function(key, val) {      
-      roomObject[key] = val;      
-   });
-   return roomObject;
-}
-
-
-
-function addLampInLocalData(objectLamp, nameLamp) {  
-  var data = current_Room.getInstance().getTypeLamp();  
-  var curRoom = current_Room.getInstance().getCurrentRoom();
-  var room = curRoom.room;
-  var floor = curRoom.floor;
-  if(data.floors[floor].rooms[room].hasOwnProperty('typeLamp')) {    
-    data.floors[floor].rooms[room].typeLamp = objectLamp;    
-  } else {     
-    data.floors[floor].rooms[room].typeLamp = {};    
-    $.each(objectLamp, function(key, val) {      
-      data.floors[floor].rooms[room].typeLamp[key] = val;      
-    });       
-  }  
-  current_Room.getInstance().setTypeLamp(data);  
-  viewResultInTable(objectLamp[nameLamp], room, floor);   
-}
-
-function removeLampFromLocalData(curLamp) {
-  var data = current_Room.getInstance().getTypeLamp();  
-  var nameLamp = curLamp.nameLamp;
-  var floorAndRoom =  curLamp.roomNumber.split('/');  
-  var room = parseInt(floorAndRoom[1]) - 1 ;
-  var floor = parseInt(floorAndRoom[0]) - 1;
-  var objectTypeLamp = data.floors[floor].rooms[room].typeLamp; 
-  if(objectTypeLamp.length === 1) {   
-    var objectRoom = data.floors[floor].rooms[room];    
-    var resultRooomObject = {};
-     $.each(objectRoom, function(key, val) {
-        if(key != "typeLamp") {
-          resultRooomObject[key] = val;
-        }
-      });
-     data.floors[floor].rooms[room] = resultRooomObject;     
-  } else {    
-    var resultObject = {};
-    $.each(objectTypeLamp, function(key, val) {
-      if(key != nameLamp) {
-        resultObject[key] = val;
-      }
-    });
-    data.floors[floor].rooms[room].typeLamp = resultObject;   
-  }   
-  current_Room.getInstance().setTypeLamp(data); 
-}
-
-function viewResultInTable(currentLamp, room_number, floor_number, chengeName) {
-  console.log("viewResultInTable");
-  console.log(currentLamp);  
-  floor_number = parseInt(floor_number) + 1;
-  room_number = parseInt(room_number) + 1;
-  var objectRow = {
-    nameLamp: currentLamp.nameLamp,
-    roomNumber: floor_number + "/" + room_number,    
-    roomArea: currentLamp.resultCalc.roomArea,
-    lampsCount: currentLamp.resultCalc.lampsCount,
-    requiredIllumination: currentLamp.requiredIllumination,
-    reflectionCoef: currentLamp.reflectionCoef,
-    safetyFactor: currentLamp.safetyFactor,
-    powerLamp: currentLamp.powerLamp,
-    lampsWatt: currentLamp.resultCalc.lampsWatt,
-    heightRoom: currentLamp.heightRoom,
-    lampsWorkHeight: currentLamp.lampsWorkHeight,
-    photoLink: currentLamp.photoLink,
-    customRequiredIllumination: currentLamp.customRequiredIllumination    
-  };
-  if(chengeName) {
-    current_Room.getInstance().chengeElementInTableData(objectRow, chengeName); 
-  } else {
-    current_Room.getInstance().addElementToTableData(objectRow);
-  }
-   
-}
-
-function calcCountLamp(result) {
+function viewCalcCountLamp(result) {
   var currentRoomObject = getCurrentRoom();  
   var json_data = localStorage.getItem('typeLamp');
   var local_data = $.parseJSON(json_data);  
@@ -1018,7 +851,128 @@ function calcCountLamp(result) {
   } 
 }
 
-function editCalcCountLamp(result) {  
+/**
+ * View result calc caunt and choice lamp
+ * @param  {[object]} currentLamp  [description]
+ * @param  {[string]} room_number  [description]
+ * @param  {[string]} floor_number [description]
+ * @param  {[string]} chengeName   [description]
+ */
+function viewResultInTable(currentLamp, room_number, floor_number, chengeName) {
+  console.log("viewResultInTable");   
+  floor_number = parseInt(floor_number) + 1;
+  room_number = parseInt(room_number) + 1;
+  var objectRow = {
+    nameLamp: currentLamp.nameLamp,
+    roomNumber: floor_number + "/" + room_number,    
+    roomArea: currentLamp.resultCalc.roomArea,
+    lampsCount: currentLamp.resultCalc.lampsCount,
+    requiredIllumination: currentLamp.requiredIllumination,
+    reflectionCoef: currentLamp.reflectionCoef,
+    safetyFactor: currentLamp.safetyFactor,
+    powerLamp: currentLamp.powerLamp,
+    lampsWatt: currentLamp.resultCalc.lampsWatt,
+    heightRoom: currentLamp.heightRoom,
+    lampsWorkHeight: currentLamp.lampsWorkHeight,
+    photoLink: currentLamp.photoLink,
+    customRequiredIllumination: currentLamp.customRequiredIllumination    
+  };
+  if(chengeName) {
+    current_Room.getInstance().chengeElementInTableData(objectRow, chengeName); 
+  } else {
+    current_Room.getInstance().addElementToTableData(objectRow);
+  }
+   
+}
+
+/**
+ * [view error response]
+ * @param  {[xhtr object]} response [description]
+ * @param  {[string]} status   [description]
+ * @param  {[string]} error    [description] 
+ */
+function errorResponse(response, status, error) {
+   viewErrorResponse(response.reresponseText);
+}
+
+/**
+ * [ hide loading wraper] 
+ */
+function hideLoadingWraper() {
+  $(".js_loading_wraper").fadeIn("slow");
+} 
+
+/**
+ * [ show loading wraper] 
+ */
+function showLoadingWraper() {
+  $(".js_loading_wraper").fadeOut("slow");
+}
+
+//==============END FUNCTIONS MAIN WINDOW =====================================
+//
+//
+//
+//
+//
+//
+//
+//================= FUNCTIONS MODAL WINDOW ===================================
+
+//1. initFormEdit
+//2. initSelectNameLampForFormEditLamp
+//3. viewEditCalcCountLamp
+
+/**
+ * [init properties lamp from LocalStorage] 
+ */
+function initFormEdit(parameters) {
+  console.log('initFormEdit');
+  var editLamp = current_Room.getInstance().getEditLamp();    
+  $.each(parameters, function(key, value) { 
+    editLamp[key] = value;
+    if(key == "photoLink") {
+      var $photo_lamp = $('#myModal').find('img#js_photo_lamp');
+        $photo_lamp.attr('src',value);
+      }            
+    var $currentInput = $('form#editLamp').find('input#' + key);     
+    var $currentSelect = $('form#editLamp').find('select#' + key);                        
+    $currentInput.val(value);
+    $currentSelect.val(value);   
+  });
+  current_Room.getInstance().setEditLamp(editLamp);    
+}
+
+
+/**
+ * [init Select Name Lamp For Form Edit Lamp] 
+ */
+function  initSelectNameLampForFormEditLamp() {
+  console.log("initSelectNameLampForFormEditLamp");
+  var objectSelectLamp = current_Room.getInstance().getLampSelect();  
+  var formEditLamp = $('#editLamp').find('select#nameLamp');  
+  $.each(objectSelectLamp, function() {
+      formEditLamp.append(
+          $('<option></option>').text(this.nameLamp)
+                                .val(this.nameLamp)                                       
+                                .attr('data-lumix', this.lumix)
+                                .attr('data-power-lamp', this.powerLamp)
+                                .attr('data-number-lamps', this.numberLamps)
+                                .attr('data-usagecoefficient', this.usagecoefficient)
+                                .attr('data-link', this.link)
+                                .attr('data-photo-link', this.photo_lamp)
+                                .attr('data-type-lamp', this.typeLamp)
+                                .attr('data-apply-lamp', this.application_area)
+          );
+
+  }); 
+}
+
+/**
+ * [view edit Calc Count Lamp]
+ * @param  {[json string]} result [description] 
+ */
+function viewEditCalcCountLamp(result) {  
   var editLamp = current_Room.getInstance().getEditLamp();
   var nameLamp = editLamp.nameLamp;
   var resultResponse = $.parseJSON(result); 
@@ -1047,15 +1001,172 @@ function editCalcCountLamp(result) {
     }          
   } 
 }
+//================= END FUNCTIONS MODAL WINDOW ========================
+//
+//
+//
+//
+//
+//
+//=============== FUNCTION FOR WORK WITH LOCAL DATA API ===============
 
-function errorResponse(response, status, error) {
-   viewErrorResponse(response.reresponseText);
+// 1. getCurrentRoom
+// 2. getCurrentRoomForEdit
+// 3. addLampInLocalData
+// 4. removeLampFromLocalData
+// 5. addLampInLocalDataAfterEdit
+
+/**
+ * [get Current Room object from local data = current room in draw]
+ * @return {[object]} [description]
+ */
+function getCurrentRoom() {   
+   var data = current_Room.getInstance().getTypeLamp();
+   var curRoom = current_Room.getInstance().getCurrentRoom();  
+   var roomObject = {}; 
+   var cur = data.floors[curRoom.floor].rooms[curRoom.room];
+   $.each(cur, function(key, val) {      
+      roomObject[key] = val;      
+   });
+   return roomObject;
 }
 
-function hideLoadingWraper() {
-  $(".js_loading_wraper").fadeIn("slow");
+/**
+ * [get Current Room For Edit from local data = current row in table]
+ * @return {[object]} [description]
+ */
+function getCurrentRoomForEdit() {   
+   var data = current_Room.getInstance().getTypeLamp();
+   var curRoom = current_Room.getInstance().getCurrentLamp(); 
+   var param = curRoom.roomNumber.split('/');
+   var floor = parseInt(param[0]) - 1;
+   var room = parseInt(param[1]) - 1;
+   var roomObject = {}; 
+   var cur = data.floors[floor].rooms[room];
+   $.each(cur, function(key, val) {      
+      roomObject[key] = val;      
+   });
+   return roomObject;
+}
+
+/**
+ * [add Lamp In LocalData after calc lamp]
+ * @param {[object]} objectLamp [object serialize form calc lamp]
+ */
+function addLampInLocalData(objectLamp, nameLamp) {  
+  var data = current_Room.getInstance().getTypeLamp();  
+  var curRoom = current_Room.getInstance().getCurrentRoom();
+  var room = curRoom.room;
+  var floor = curRoom.floor;
+  if(data.floors[floor].rooms[room].hasOwnProperty('typeLamp')) {    
+    data.floors[floor].rooms[room].typeLamp = objectLamp;    
+  } else {     
+    data.floors[floor].rooms[room].typeLamp = {};    
+    $.each(objectLamp, function(key, val) {      
+      data.floors[floor].rooms[room].typeLamp[key] = val;      
+    });       
+  }  
+  current_Room.getInstance().setTypeLamp(data);  
+  viewResultInTable(objectLamp[nameLamp], room, floor);   
+}
+
+/**
+ * [remove Lamp From Local Data]
+ * @param  {[object]} curLamp [object current row in table] 
+ */
+function removeLampFromLocalData(curLamp) {
+  var data = current_Room.getInstance().getTypeLamp();  
+  var nameLamp = curLamp.nameLamp;
+  var floorAndRoom =  curLamp.roomNumber.split('/');  
+  var room = parseInt(floorAndRoom[1]) - 1 ;
+  var floor = parseInt(floorAndRoom[0]) - 1;
+  var objectTypeLamp = data.floors[floor].rooms[room].typeLamp; 
+  if(objectTypeLamp.length === 1) {   
+    var objectRoom = data.floors[floor].rooms[room];    
+    var resultRooomObject = {};
+     $.each(objectRoom, function(key, val) {
+        if(key != "typeLamp") {
+          resultRooomObject[key] = val;
+        }
+      });
+     data.floors[floor].rooms[room] = resultRooomObject;     
+  } else {    
+    var resultObject = {};
+    $.each(objectTypeLamp, function(key, val) {
+      if(key != nameLamp) {
+        resultObject[key] = val;
+      }
+    });
+    data.floors[floor].rooms[room].typeLamp = resultObject;   
+  }   
+  current_Room.getInstance().setTypeLamp(data); 
+}
+
+/**
+ * [add Lamp In Loca Data After Edit]
+ * @param {[object]} objectLamp [object result serialize form edit and calc lamp]
+ * @param {[string]} nameLamp   [name lamp for chenge]
+ */
+function addLampInLocalDataAfterEdit(objectLamp, nameLamp) {
+  console.log("addLampInLocalDataAfterEdit");
+  var data = current_Room.getInstance().getTypeLamp();   
+  var curRoom= current_Room.getInstance().getCurrentLamp();
+  var currentNameLamp = curRoom.nameLamp; 
+  var param = curRoom.roomNumber.split('/');
+  var floor = parseInt(param[0]) - 1;
+  var room = parseInt(param[1]) - 1; 
+  if(data.floors[floor].rooms[room].hasOwnProperty('typeLamp')) { 
+    var currentTypeLamp = data.floors[floor].rooms[room].typeLamp;
+    var chengeTypeLamp = {};
+    $.each(currentTypeLamp, function(key, val) {
+      if(key === currentNameLamp) {
+        chengeTypeLamp[nameLamp] = objectLamp;
+      } else {
+        chengeTypeLamp[key] = val;
+      }
+    });  
+    data.floors[floor].rooms[room].typeLamp = chengeTypeLamp;    
+  }   
+  current_Room.getInstance().setTypeLamp(data);
+  viewResultInTable(objectLamp, room, floor, currentNameLamp);   
+}
+
+//=============== FUNCTION FOR WORK WITH LOCAL DATA API ===============
+//
+//
+//
+//
+//
+//=============== FUNCTIONS for FUNCTIONAL ===========================
+
+/**
+ * [round number]
+ * @param  {[number]} a [description]
+ * @param  {[number]} b [description]
+ * @return {[number]}   [description]
+ */
+function round(a,b) {
+ b=b || 0;
+ return Math.round(a*Math.pow(10,b))/Math.pow(10,b);
 } 
 
-function showLoadingWraper() {
-  $(".js_loading_wraper").fadeOut("slow");
-}
+/**
+ * [get description]
+ * @param  {[type]} ) {                   return Object.keys(this).length;    }} [description]
+ * @return {[type]}   [description]
+ */
+Object.defineProperty(Object.prototype, "length", {
+    enumerable: false,
+    get: function() {
+        return Object.keys(this).length;
+    }
+});
+//=============== END FUNCTIONS for FUNCTIONAL ===========================
+
+
+
+
+
+
+
+
