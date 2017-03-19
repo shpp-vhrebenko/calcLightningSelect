@@ -187,7 +187,7 @@ ini_set('display_startup_errors', 1);
                         <th data-field="lampsCount">Количество </br> светильников</th>
                         <th data-field="requiredIllumination">Требуемая </br> освещенность</th>
                         <th data-field="reflectionCoef">Коэффициэнт </br> отражения</th>
-                        <th data-field="satefyFactor">Коэффициэнт </br> запаса</th>
+                        <th data-field="safetyFactor">Коэффициэнт </br> запаса</th>
                         <th data-field="powerLamp">Мощность </br> 1 светильника</th>
                         
                     </tr>

@@ -401,7 +401,7 @@ $('#myModal').on('shown.bs.modal', function () {
   
 });
 
-$('body').on('click', '#saveEdit', function () {   
+$('body').on('click', '#saveEdit', function (event) {   
   event.preventDefault(); 
   var editLamp = current_Room.getInstance().getEditLamp();
   var currentRoomObject = getCurrentRoomForEdit();   
