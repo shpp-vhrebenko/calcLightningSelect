@@ -13,7 +13,6 @@ ini_set('display_startup_errors', 1);
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>calcLighting</title>
-
     <link rel="apple-touch-icon" href="apple-touch-icon.png">   
     <link rel="stylesheet" href="styles/css/main.css?<?php echo filemtime('styles/css/main.css');?>">      
   </head>
@@ -170,26 +169,27 @@ ini_set('display_startup_errors', 1);
                     data-toolbar="#toolbar"
                     data-click-to-select="true"
                     data-single-select="true"                  
-                    data-classes="table table-hover table-condensed"       
+                    data-classes="table table-condensed table-responsive"       
                     data-sort-order="desc"
                     data-sort-name="nameLamp" 
                     data-pagination="true"
                     data-page-size="5"
                     data-page-list="[5,10,20]"
                     data-height="300"                    
-                    data-locale="ru-RU">
+                    data-locale="ru-RU"
+                    >
                 <thead>
                     <tr>
-                        <th data-field="state" data-checkbox="true"></th>
-                        <th data-field="nameLamp" data-sortable="true">Наименование </br> светильника</th>
-                        <th data-field="roomNumber" data-sortable="true">№ этажа </br> / № комнаты</th>                        
-                        <th data-field="roomArea">Площадь </br> комнаты</th>
-                        <th data-field="lampsCount">Количество </br> светильников</th>
-                        <th data-field="requiredIllumination">Требуемая </br> освещенность</th>
-                        <th data-field="reflectionCoef">Коэффициэнт </br> отражения</th>
-                        <th data-field="safetyFactor">Коэффициэнт </br> запаса</th>
-                        <th data-field="powerLamp">Мощность </br> 1 светильника</th>
-                        
+                        <th class="col-xs-1" data-field="state" data-checkbox="true"></th>
+                        <th class="col-xs-1" data-field="nameLamp" data-sortable="true">Наименование </br> светильника</th>
+                        <th class="col-xs-1" data-field="roomNumber" data-sortable="true">№ этажа </br> / № комнаты</th>                        
+                        <th class="col-xs-1" data-field="roomArea">Площадь </br> комнаты</th>
+                        <th class="col-xs-1" data-field="lampsCount">Количество </br> светильников</th>
+                        <th class="col-xs-1" data-field="requiredIllumination">Требуемая </br> освещенность</th>
+                        <th class="col-xs-1" data-field="reflectionCoef">Коэффициэнт </br> отражения</th>
+                        <th class="col-xs-1" data-field="safetyFactor">Коэффициэнт </br> запаса</th>
+                        <th class="col-xs-1" data-field="powerLamp">Мощность </br> 1 светильника</th>
+                        <th class="col-xs-1" data-field="lampsWatt">Мощность всех </br> светильников</th>             
                     </tr>
                 </thead>
                 <!-- <tbody id="data_table_body">
@@ -322,17 +322,17 @@ ini_set('display_startup_errors', 1);
       </div>
     </div>
 
-    
+    <!-- build:js scripts/widget_vendor.js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>   
-    <script type="text/javascript"  src="bower_components/bootstrap-less/js/tab.js"></script>
-    <script type="text/javascript"  src="bower_components/bootstrap-less/js/modal.js"></script>
-    <script type="text/javascript"  src="bower_components/bootstrap-table/src/bootstrap-table.js"></script> 
-    <script type="text/javascript"  src="bower_components/bootstrap-table/src/locale/bootstrap-table-ru-RU.js"></script>
+    <script src="bower_components/bootstrap-less/js/tab.js"></script>
+    <script src="bower_components/bootstrap-less/js/modal.js"></script>
+    <script src="bower_components/bootstrap-table/src/bootstrap-table.js"></script> 
+    <script src="bower_components/bootstrap-table/src/locale/bootstrap-table-ru-RU.js"></script>
     <script src="bower_components/modernizr/modernizr.js"></script>
-    <script src="bower_components/jquery-validation/dist/jquery.validate.js"></script>      
+    <script src="bower_components/jquery-validation/dist/jquery.validate.js"></script> 
+    <!-- endbuild -->     
 
     
-    <script src="scripts/form_validation.js?<?php echo filemtime('scripts/form_validation.js');?>"></script>      
     <script src="scripts/widget.js?<?php echo filemtime('scripts/widget.js');?>"></script>  
     
    

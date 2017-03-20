@@ -1,0 +1,46 @@
+{
+  "private": true,
+  "engines": {
+    "node": ">=4"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-if": "^2.0.2",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-uglify": "^2.1.1",
+    "gulp-useref": "^3.1.2",
+    "gulp-watch": "^4.3.11",
+    "run-sequence": "^1.2.2"
+  },
+  "eslintConfig": {
+    "env": {
+      "es6": true,
+      "node": true,
+      "browser": true
+    },
+    "rules": {
+      "quotes": [
+        2,
+        "single"
+      ]
+    }
+  },
+  "name": "calc_lightning_select",
+  "description": "json_drawings - директория с архитектурным json.\r json_result_calc -директория с json результатами расчетов.",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shpp-vhrebenko/calcLightningSelect.git"
+  },
+  "author": "V.V. GREBENKO",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shpp-vhrebenko/calcLightningSelect/issues"
+  },
+  "homepage": "https://github.com/shpp-vhrebenko/calcLightningSelect#readme"
+}

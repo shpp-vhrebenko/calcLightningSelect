@@ -6985,3 +6985,13 @@ polygon {
 .info_lamp p {
   margin: 0;
 }
+.table-hover > tbody > tr:hover {
+  background-color: transparent;
+}
+.fixed-table-container tbody .selected td {
+  background-color: #C0FFC0;
+  cursor: pointer;
+}
+.fixed-table-container tbody tr {
+  cursor: pointer;
+}
