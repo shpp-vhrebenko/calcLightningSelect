@@ -1,3 +1,9 @@
+//
+//
+//
+//
+//
+//
 //==========================DOCUMENT READY======================================
 if(localStorage.typeLamp) {
   var listDataLamp = JSON.parse(localStorage.getItem('typeLamp'));
@@ -34,8 +40,23 @@ $(document).ready(function() {
       } else {         
           $('#set_data').prop('disabled', 'disabled');
       }
-    });   
-
+    }); 
+    
+    //================= AUTOCOMPLIT BOOTSTRAP-TYPEAHEAD =============
+    var selectLamp = current_Room.getInstance().getLampAutocomplit();   
+    var $input = $("#search_user_lamp");
+    $input.typeahead({
+      source: selectLamp,
+      autoSelect: true
+    });
+    $input.change(function() {    
+      var selectTypeLamp = $input.val();
+      $('#nameLamp').val(selectTypeLamp);        
+      $('#nameLamp').valid();
+      $('#nameLamp').trigger('change');      
+    });
+    //============= END AUTOCOMPLIT BOOTSTRAP-TYPEAHEAD =============
+    
     typeLampFormValidation();    
 });
 
@@ -55,7 +76,7 @@ $(document).keydown(function(eventObject){
 //
 //=================== EVENTS MAIN WIDGET WINDOW =====================
 
-$('#search_lamp').on('click', function(event) {
+/*$('#search_lamp').on('click', function(event) {
   console.log("search_lamp");
   event.preventDefault(); 
   var search_lamp = $('#search_user_lamp').val();
@@ -64,8 +85,7 @@ $('#search_lamp').on('click', function(event) {
 
   $.each(lampList, function(key, val) {
      var curLamp = lampList[key].nameLamp;
-     curLampUpperCase = curLamp.toUpperCase();
-     /*console.log(curLamp);*/
+     curLampUpperCase = curLamp.toUpperCase();     
      if (curLampUpperCase.indexOf(search_lamp) != -1) {
         var selectTypeLamp = curLamp;        
         $('#nameLamp').val(selectTypeLamp);        
@@ -74,7 +94,7 @@ $('#search_lamp').on('click', function(event) {
         return false;
       }
   });     
-}); 
+}); */
 
 $('#lampsWorkHeight').change(function() {
   /*console.log("heightRoomlighting");*/
@@ -121,18 +141,20 @@ $('#heightRoom').change(function() {
 
 $('#nameLamp').change(function() { 
   var value = $(this).val();
-  var $option = $('option[value="'+value+'"]'); 
-  var param = {};  
-  $.each( $option.data(), function( key, value ) {   
-    if(key == "photoLink") {
-      $('#js_photo_lamp').attr('src',value);
-    } 
-    if(key == "applyLamp") {
-      $('#info_lamp').text("Область использования - " + value);
-    }
-    localDataLamp.parameters[key]  = value;      
-  });   
-  localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));      
+  if(value !== null) {    
+    var $option = $('option[value="'+value+'"]'); 
+    var param = {};     
+    $.each( $option.data(), function( key, value ) {   
+      if(key == "photoLink") {
+        $('#js_photo_lamp').attr('src',value);
+      } 
+      if(key == "applyLamp") {
+        $('#info_lamp').text("Область использования - " + value);
+      }
+      localDataLamp.parameters[key]  = value;      
+    });   
+    localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));
+  }        
 });
 
 $('#requiredIllumination').change(function() {
@@ -156,8 +178,12 @@ $('.room_param').change(function () {
   $(curentTextElement).text($(this).val() + ' m');  
 }); 
 //=============== END EVENTS MAIN WIDGET WINDOW ===================
-
-//=============== FUNCTIONS HANDLER EVENTS ========================
+//
+//
+//
+//
+//
+//=============== FUNCTIONS HANDLER EVENTS MAIN WINDOW========================
 
 /**
  * [hendler event onclick current room]

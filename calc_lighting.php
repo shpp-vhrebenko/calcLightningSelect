@@ -586,13 +586,21 @@
       if($key >=4 ) {        
         $val = $value[0];        
         $arrayResult["0,0,0"][$val] = $value[8];
-        $arrayResult["10,30,30"][$val] = $value[7];
+        /*$arrayResult["10,30,30"][$val] = $value[7];
         $arrayResult["10,30,50"][$val] = $value[6];
         $arrayResult["10,50,50"][$val] = $value[5];
         $arrayResult["20,50,70"][$val] = $value[4];
         $arrayResult["10,30,80"][$val] = $value[3];
         $arrayResult["30,50,80"][$val] =$value[2];
-        $arrayResult["30,80,80"][$val] = $value[1];
+        $arrayResult["30,80,80"][$val] = $value[1];*/
+
+        $arrayResult["30,30,10"][$val] = $value[7];
+        $arrayResult["50,30,10"][$val] = $value[6];
+        $arrayResult["50,50,10"][$val] = $value[5];
+        $arrayResult["70,50,20"][$val] = $value[4];
+        $arrayResult["80,30,10"][$val] = $value[3];
+        $arrayResult["80,50,30"][$val] =$value[2];
+        $arrayResult["80,80,30"][$val] = $value[1];
       }  
     }   
     return $arrayResult;

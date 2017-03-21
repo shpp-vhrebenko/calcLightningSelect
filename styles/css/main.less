@@ -1,5 +1,7 @@
 @import "../../bower_components/bootstrap-less/less/bootstrap.less"; 
-@import (less) "../../bower_components/bootstrap-table/src/bootstrap-table.css";   
+@import (less) "../../bower_components/bootstrap-table/src/bootstrap-table.css"; 
+/* @import (less) "../../bower_components/EasyAutocomplete/dist/easy-autocomplete.css"; */   
+@import (less) "../../bower_components/jquery-ui/themes/base/jquery-ui.css";  
 
 /* Reload bootstrap style */
 .btn-circle {
@@ -45,6 +47,14 @@ th {
 td {
   text-align: center;
 } 
+
+/* jquery autocomplete */ 
+.ui-autocomplete { 
+  height: 200px; 
+  width: 200px;
+  overflow-y: scroll; 
+  overflow-x: hidden;
+}
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {

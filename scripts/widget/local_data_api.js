@@ -1,12 +1,14 @@
 //===================== API LOCAL DATA =====================================
 var current_Room = (function () {
   var instance, // object singleton
-      curRoom = {}, // current active room object(number_room, number_floor)
-      tableData = [], // object data bootstrap-table
-      curLamp = {}, // current lamp in table
-      typeLamp = {}, // object json drawing
-      lampSelect = {}, // object has value for options name lamp select
-      editLamp = {}; // object has parameter edit lamp
+      curRoom = {}, // current active room object(number_room, number_floor )
+                    // current active room in drawing
+      tableData = [], // object data bootstrap-table ( object have all data table)
+      curLamp = {}, // current lamp in table ( current active lamp in table)
+      typeLamp = {}, // object json drawing (we take it from post message)
+      lampSelect = {}, // object has value for options name lamp select in table
+      lampAutocomplit = [], // array for initial lamp autocomplit
+      editLamp = {}; // object has parameter edit lamp in modal window
 
   var setEditLamp = function (inputObject) {           
     $.each(inputObject, function(key, value) {
@@ -20,8 +22,13 @@ var current_Room = (function () {
 
   var setLampSelect = function (inputObject) {       
     $.each(inputObject, function(key, value) {
-       lampSelect[key] = value;
-    });      
+      lampSelect[key] = value;  
+      lampAutocomplit.push({id: value.nameLamp, name: value.nameLamp});           
+    });           
+  };
+
+  var getLampAutocomplit = function () {       
+    return lampAutocomplit;       
   };
 
   var getLampSelect = function () {        
@@ -114,6 +121,7 @@ var current_Room = (function () {
       getTypeLamp: getTypeLamp,
       setLampSelect: setLampSelect,
       getLampSelect: getLampSelect,
+      getLampAutocomplit: getLampAutocomplit,
       setEditLamp: setEditLamp,
       getEditLamp: getEditLamp
     };

@@ -1,9 +1,4 @@
 <?php
-
-ini_set('error_reporting', E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);  
-
 ?>
 
 <!doctype html>
@@ -14,7 +9,11 @@ ini_set('display_startup_errors', 1);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>calcLighting</title>
     <link rel="apple-touch-icon" href="apple-touch-icon.png">   
-    <link rel="stylesheet" href="styles/css/main.css?<?php echo filemtime('styles/css/main.css');?>">      
+    <link rel="stylesheet" href="styles/css/main.css?<?php echo filemtime('styles/css/main.css');?>"> 
+    <!-- build:js scripts/widget_head_vendor.js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>         
+    <!-- endbuild --> 
+      
   </head>
   <body>  
     <!--[if lt IE 10]>
@@ -27,24 +26,15 @@ ini_set('display_startup_errors', 1);
       <div class="header">        
         <h3 class="text-muted">calcLighting</h3>
       </div>
-      <div class="row content">
-        <!-- <div class="row">
-          <div class="col-xs-1 col-xs-offset-10  col-md-offset-10 col-md-1">
-            <button type="button" id="cancel" class="btn btn-danger btn-circle "><i class="glyphicon glyphicon-remove"></i></button>                
-          </div> 
-        </div> -->
+      <div class="row content">       
         <div class="col-xs-12 col-md-5">           
           <h3>План</h3>
           <ul class="nav nav-tabs " id="tabs_plan">                                
           </ul>
           <div class="tab-content">
           </div>
-          <p id="error_message_request" class="error_message" ></p>          
-          <!-- <div class="col-sm-12 col-md-6 col-md-offset-3">
-                            <button id="put_data" type="button" class="btn btn-success btn-lg btn-block">Сохранить</button>   
-                          </div>  -->                
+          <p id="error_message_request" class="error_message" ></p>                           
         </div>
-
         <div class="col-xs-12 col-md-7"> 
           <div class="row">
             <div class="col-xs-12 col-md-5 col-md-offset-4">
@@ -52,8 +42,11 @@ ini_set('display_startup_errors', 1);
               <p  id="info_lamp"></p>               
             </div>             
             <p class="col-xs-12 col-md-12" id="info_lamp"></p>
-            <div class="col-xs-12 col-md-5 col-md-offset-4">                
+            <div class="col-xs-12 col-md-5 col-md-offset-4"> 
               <div id="custom-search-input">
+                <input type="text" data-provide="typeahead"  class="form-control input-sm" id="search_user_lamp" placeholder="Поиск светильника" />                
+              </div>                           
+              <!-- <div id="custom-search-input">
                   <div class="input-group col-md-12">
                       <input type="text" class="form-control input-sm" id="search_user_lamp" placeholder="Поиск светильника" />
                       <span class="input-group-btn">
@@ -62,7 +55,7 @@ ini_set('display_startup_errors', 1);
                           </button>
                       </span>
                   </div>
-              </div>
+              </div> -->
             </div>
           </div>                  
           <form class="form-horizontal"
@@ -95,14 +88,14 @@ ini_set('display_startup_errors', 1);
                   <td class="input">
                     <select class="room input-sm" id="reflectionCoef" name="reflectionCoef" required>
                       <option value="" selected>Выберите значение коэффициента отражения</option>
-                      <option value="0,0,0">Пол-0%, стены-0%, потолок-0%</option>
-                      <option value="10,30,30">Пол-30%, стены-30%, потолок-10%</option>
-                      <option value="10,30,50">Пол-50%, стены-30%, потолок-10%</option>
-                      <option value="10,50,50">Пол-50%, стены-50%, потолок-10%</option>
-                      <option value="20,50,70">Пол-70%, стены-50%, потолок-20%</option>
-                      <option value="10,30,80">Пол-80%, стены-30%, потолок-10%</option>
-                      <option value="30,50,80">Пол-80%, стены-50%, потолок-30%</option>
-                      <option value="30,80,80">Пол-80%, стены-80%, потолок-30%</option>
+                      <option value="0,0,0">Пол-0%, стены-0%, потолок-0%</option>                   
+                      <option value="30,30,10">Пол-30%, стены-30%, потолок-10%</option>
+                      <option value="50,30,10">Пол-50%, стены-30%, потолок-10%</option>
+                      <option value="50,50,10">Пол-50%, стены-50%, потолок-10%</option>
+                      <option value="70,50,20">Пол-70%, стены-50%, потолок-20%</option>
+                      <option value="80,30,10">Пол-80%, стены-30%, потолок-10%</option>
+                      <option value="80,50,30">Пол-80%, стены-50%, потолок-30%</option>
+                      <option value="80,80,30">Пол-80%, стены-80%, потолок-30%</option>
                     </select>
                   </td> 
                   <td class="input">
@@ -213,8 +206,11 @@ ini_set('display_startup_errors', 1);
                       <img src="" class="img-responsive" id="js_photo_lamp" alt=""> 
                       <p  id="info_lamp"></p>               
                     </div>                    
-                    <div class="col-xs-12 col-md-5 col-md-offset-4">                
-                      <div id="custom-search-input">
+                    <div class="col-xs-12 col-md-5 col-md-offset-4"> 
+                      <div id="custom-search-input" class="ui-widget">
+                        <input type="text"  class="form-control input-sm" id="search_lamp" placeholder="Поиск светильника" />                
+                      </div>                
+                      <!-- <div id="custom-search-input">
                           <div class="input-group col-md-12">
                               <input type="text" class="form-control input-sm" id="search_user_lamp" placeholder="Поиск светильника" />
                               <span class="input-group-btn">
@@ -223,7 +219,7 @@ ini_set('display_startup_errors', 1);
                                   </button>
                               </span>
                           </div>
-                      </div>
+                      </div> -->
                     </div>
                   </div> 
                   <form class="form-horizontal"
@@ -257,13 +253,13 @@ ini_set('display_startup_errors', 1);
                             <select class="edit_lamp input-sm" id="reflectionCoef" name="reflectionCoef" required>
                               <option value="" selected>Выберите значение коэффициента отражения</option>
                               <option value="0,0,0">Пол-0%, стены-0%, потолок-0%</option>
-                              <option value="10,30,30">Пол-30%, стены-30%, потолок-10%</option>
-                              <option value="10,30,50">Пол-50%, стены-30%, потолок-10%</option>
-                              <option value="10,50,50">Пол-50%, стены-50%, потолок-10%</option>
-                              <option value="20,50,70">Пол-70%, стены-50%, потолок-20%</option>
-                              <option value="10,30,80">Пол-80%, стены-30%, потолок-10%</option>
-                              <option value="30,50,80">Пол-80%, стены-50%, потолок-30%</option>
-                              <option value="30,80,80">Пол-80%, стены-80%, потолок-30%</option>
+                              <option value="30,30,10">Пол-30%, стены-30%, потолок-10%</option>
+                              <option value="50,30,10">Пол-50%, стены-30%, потолок-10%</option>
+                              <option value="50,50,10">Пол-50%, стены-50%, потолок-10%</option>
+                              <option value="70,50,20">Пол-70%, стены-50%, потолок-20%</option>
+                              <option value="80,30,10">Пол-80%, стены-30%, потолок-10%</option>
+                              <option value="80,50,30">Пол-80%, стены-50%, потолок-30%</option>
+                              <option value="80,80,30">Пол-80%, стены-80%, потолок-30%</option>
                             </select>
                           </td> 
                           <td class="input">
@@ -315,15 +311,14 @@ ini_set('display_startup_errors', 1);
             </div>
           </div>
       </div>
-        
-
       <div class="footer">
         <p></p>
       </div>
     </div>
 
     <!-- build:js scripts/widget_vendor.js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>   
+    <!-- <script src="bower_components/jquery-ui/jquery-ui.js"></script> -->
+    <script type="text/javascript" src="bower_components/bootstrap3-typeahead/bootstrap3-typeahead.js"></script>
     <script src="bower_components/bootstrap-less/js/tab.js"></script>
     <script src="bower_components/bootstrap-less/js/modal.js"></script>
     <script src="bower_components/bootstrap-table/src/bootstrap-table.js"></script> 

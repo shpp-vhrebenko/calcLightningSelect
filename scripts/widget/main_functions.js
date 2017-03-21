@@ -114,7 +114,7 @@ function initSelectorNameLamp() {
           }
           if(localDataLamp.parameters.applyLamp) {
              $('#info_lamp').text(localDataLamp.parameters.applyLamp);             
-          }             
+          }       
       },
       error: function(response, status, error) { // Данные не отправлены
         viewErrorResponse(response.reresponseText);     

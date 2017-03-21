@@ -1,3 +1,8 @@
+//
+//
+//
+//
+//
 //====================== MODAL WINDOW EVENT =======================
 $('#myModal').on('shown.bs.modal', function () {
   console.log("OPEN MODAL WINDOW");
@@ -27,7 +32,7 @@ $('#myModal').on('shown.bs.modal', function () {
     $('#editLamp').find('#customRequiredIllumination').val(value);
   });   
 
-  $('#myModal').on('click', '#search_lamp',  function(event) {
+ /* $('#myModal').on('click', '#search_lamp',  function(event) {
     console.log("search_lamp");
     event.preventDefault(); 
     var search_lamp = $('#myModal').find('#search_user_lamp').val();
@@ -35,8 +40,7 @@ $('#myModal').on('shown.bs.modal', function () {
     var lampList = current_Room.getInstance().getLampSelect();
     $.each(lampList, function(key, val) {
        var curLamp = lampList[key].nameLamp;
-       curLampUpperCase = curLamp.toUpperCase();
-       /*console.log(curLamp);*/
+       curLampUpperCase = curLamp.toUpperCase();      
        if (curLampUpperCase.indexOf(search_lamp) != -1) {
           var selectTypeLamp = curLamp;        
           $('#editLamp').find('#nameLamp').val(selectTypeLamp);        
@@ -45,23 +49,25 @@ $('#myModal').on('shown.bs.modal', function () {
           return false;
         }
     });     
-  }); 
+  });*/ 
 
    $('#editLamp').on('change', '#nameLamp', function() {    
     var value = $(this).val();
-    var $option = $('option[value="'+value+'"]');     
-    var editLamp = current_Room.getInstance().getEditLamp(); 
-    $.each( $option.data(), function( key, value ) {   
-      if(key == "photoLink") {
-        $('#myModal').find('#js_photo_lamp').attr('src',value);
-      } 
-      if(key == "applyLamp") {
-        $('#myModal').find('#info_lamp').text(" ");
-        $('#myModal').find('#info_lamp').text("Область использования - " + value);
-      }
-      editLamp[key]  = value;      
-    });   
-    current_Room.getInstance().setEditLamp(editLamp);        
+    if(value !== null) {
+      var $option = $('option[value="'+value+'"]');     
+      var editLamp = current_Room.getInstance().getEditLamp(); 
+      $.each( $option.data(), function( key, value ) {   
+        if(key == "photoLink") {
+          $('#myModal').find('#js_photo_lamp').attr('src',value);
+        } 
+        if(key == "applyLamp") {
+          $('#myModal').find('#info_lamp').text(" ");
+          $('#myModal').find('#info_lamp').text("Область использования - " + value);
+        }
+        editLamp[key]  = value;      
+      });   
+      current_Room.getInstance().setEditLamp(editLamp); 
+    }           
   }); 
 
   $('#editLamp').on('change', '#lampsWorkHeight', function() {
@@ -104,6 +110,21 @@ $('#myModal').on('shown.bs.modal', function () {
     editLamp[$(this).attr('id')] = $(this).val();
     current_Room.getInstance().setEditLamp(editLamp);   
   });  
+
+  //================= AUTOCOMPLIT BOOTSTRAP-TYPEAHEAD =============
+  var selectLamp = current_Room.getInstance().getLampAutocomplit();  
+  var $input = $("#search_lamp");
+  $input.typeahead({
+    source: selectLamp,
+    autoSelect: true
+  });
+  $input.change(function() {    
+    var selectTypeLamp = $input.val();
+    $('#editLamp').find('#nameLamp').val(selectTypeLamp);        
+    $('#editLamp').find('#nameLamp').valid();
+    $('#editLamp').find('#nameLamp').trigger('change');      
+  });
+  //============= END AUTOCOMPLIT BOOTSTRAP-TYPEAHEAD ============= 
   
 });
 
@@ -149,7 +170,7 @@ $('body').on('click', '#saveEdit', function (event) {
 //
 //
 //
-////================= FUNCTIONS MODAL WINDOW ===================================
+//================== FUNCTIONS MODAL WINDOW =======================
 
 //1. initFormEdit
 //2. initSelectNameLampForFormEditLamp
