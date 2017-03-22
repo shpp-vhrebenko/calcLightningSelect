@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>calcLighting</title>
+    <title>Расчет освещения</title>
     <link rel="apple-touch-icon" href="apple-touch-icon.png">   
     <link rel="stylesheet" href="styles/css/main.css?<?php echo filemtime('styles/css/main.css');?>"> 
     <!-- build:js scripts/widget_head_vendor.js -->
@@ -24,7 +24,7 @@
     </div>    
     <div class="container-fluid">        
       <div class="header">        
-        <h3 class="text-muted">calcLighting</h3>
+        <h3 class="text-muted">Расчет освещения</h3>
       </div>
       <div class="row content" id="draw_plan">       
         <div class="col-xs-12 col-md-5">           

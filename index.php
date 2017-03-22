@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>CalcLightning</title> 
+  <title>Расчет освещения</title> 
   <!-- build:js scripts/main_vendor.js -->
 	<script src="bower_components/jquery/dist/jquery.js"></script>  	  
   <!-- endbuild -->  

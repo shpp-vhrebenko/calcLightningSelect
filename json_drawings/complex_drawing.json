@@ -235,7 +235,31 @@
               "room_wall_num": 4,
               "outer_wall_num": 104
             }
-          ]
+          ],
+          "typeLamp": {
+            "ASM/S 136 HF": {
+              "applyLamp":"Торговое освещение",
+              "customRequiredIllumination":"200",
+              "heightRoom":"2.5",
+              "lampsWorkHeight":"0.8",
+              "link":"ltcompany.com/ru/products/ASM-S/",
+              "lumix":"3250",
+              "nameLamp":"ASM/S 136 HF",
+              "numberLamps":"1",
+              "photoLink":"photo/asm_s_204.png",
+              "powerLamp":"36",
+              "reflectionCoef":"70,50,20",
+              "requiredIllumination":"50",
+              "safetyFactor":"1.4",
+              "typeLamp":"asm_r_136",
+              "usagecoefficient":"\\json\\clients\\usagecoefficient\\asm_r_136.csv",
+              "resultCalc": {
+                "lampsCount": 4,
+                "lampsWatt": 144,
+                "roomArea":"11.01"
+              } 
+            }
+          }
         },
         {
           "id": null,

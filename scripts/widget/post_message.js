@@ -13,6 +13,7 @@ window.addEventListener('message', function(event) {
     console.group("LOAD DATA"); 
     console.log(current_Room.getInstance().getTypeLamp());
     console.groupEnd();
+    viewResultInTable(json_object);
     /*localDataLamp.jsonDrawing = json_object;
     localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));*/
     sendResultForDrawPlan(JSON.stringify(data));    

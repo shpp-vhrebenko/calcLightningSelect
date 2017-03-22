@@ -57,22 +57,14 @@ var current_Room = (function () {
   }; 
 
 
-  var addElementToTableData = function (element) {
-    console.log(element);
+  var addElementToTableData = function (element) {   
     
-    if(tableData.length === 0) {
-      console.log("length = 0");
+    if(tableData.length === 0) {      
       tableData.push(element);
-    } else {
-      console.log("length = 1");
+    } else {     
       proTableData = [];
       for (var i = 0; i < tableData.length; i++) {
-        var curElTableData = tableData[i];
-        console.log(curElTableData.roomNumber);
-        console.log(element.roomNumber);
-        console.log(curElTableData.nameLamp);
-        console.log(element.nameLamp);
-        console.log(curElTableData.roomNumber === element.roomNumber);
+        var curElTableData = tableData[i];        
         if(curElTableData.roomNumber === element.roomNumber) {
           if(curElTableData.nameLamp != element.nameLamp) {
             proTableData.push(curElTableData);
@@ -81,9 +73,8 @@ var current_Room = (function () {
           proTableData.push(curElTableData);         
         }        
       }
-      proTableData.push(element);
-     
-      console.log(proTableData);
+      proTableData.push(element);     
+      
       setTableData(proTableData);
     }
     
@@ -107,8 +98,7 @@ var current_Room = (function () {
     $('#bTable').bootstrapTable('load', tableData);    
   };  
 
-  var removeElementFromTableData = function (element) {  
-    console.log("removeElementFromTableData");  
+  var removeElementFromTableData = function (element) {       
     var nameLamp = element.nameLamp;    
     var roomNumber = element.roomNumber;   
     for (var i = 0; i < tableData.length ; i++) {     
@@ -119,20 +109,17 @@ var current_Room = (function () {
     $('#bTable').bootstrapTable('load', tableData);  
   };   
 
-  var setCurrentRoom = function (inputArray) { 
-    console.log("setCurrentRoom");
+  var setCurrentRoom = function (inputArray) {     
     curRoom = inputArray;        
     /*curRoom.room = numberRoom;
     curRoom.floor = numberFloor; */  
   };  
 
-  var addElementCurrentRooms = function (numberRoom, numberFloor) {
-    console.log("addElementCurrentRooms");
+  var addElementCurrentRooms = function (numberRoom, numberFloor) {    
     curRoom.push({room: numberRoom, floor: numberFloor});    
   };
 
-  var removeElementCurrentRooms = function (numberRoom, numberFloor) {
-    console.log("removeElementCurrentRooms");
+  var removeElementCurrentRooms = function (numberRoom, numberFloor) {    
     var proCurRoom = [];
     for (var i = 0; i < curRoom.length; i++) {
       var currentRoom = curRoom[i];     
