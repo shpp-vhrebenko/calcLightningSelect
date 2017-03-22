@@ -59,15 +59,35 @@ var current_Room = (function () {
 
   var addElementToTableData = function (element) {
     console.log(element);
-    proTableData = [];
-    for (var i = 0; i < tableData.length; i++) {
-      var curElTableData = tableData[i];
-      if(curElTableData.roomNumber !== element.roomNumber && curElTableData.nameLamp !== element.nameLamp) {
-        proTableData.push(curElTableData);
+    
+    if(tableData.length === 0) {
+      console.log("length = 0");
+      tableData.push(element);
+    } else {
+      console.log("length = 1");
+      proTableData = [];
+      for (var i = 0; i < tableData.length; i++) {
+        var curElTableData = tableData[i];
+        console.log(curElTableData.roomNumber);
+        console.log(element.roomNumber);
+        console.log(curElTableData.nameLamp);
+        console.log(element.nameLamp);
+        console.log(curElTableData.roomNumber === element.roomNumber);
+        if(curElTableData.roomNumber === element.roomNumber) {
+          if(curElTableData.nameLamp != element.nameLamp) {
+            proTableData.push(curElTableData);
+          }          
+        } else {
+          proTableData.push(curElTableData);         
+        }        
       }
+      proTableData.push(element);
+     
+      console.log(proTableData);
+      setTableData(proTableData);
     }
-    proTableData.push(element);
-    setTableData(proTableData);         
+    
+             
     $('#bTable').bootstrapTable('load', tableData);    
   };  
 
