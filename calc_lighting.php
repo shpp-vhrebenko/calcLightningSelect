@@ -18,7 +18,7 @@
   try {
      if ($_SERVER['REQUEST_METHOD'] === 'POST') {        
         if(isset($_POST["calc_lighting"])) {
-          foreach($_POST["draw_object"] as $key => $value) {
+          foreach($_POST["currentRooms"] as $key => $value) {
             $answer[$key] = $value;
           } 
          /* echo json_encode($answer);
@@ -85,8 +85,8 @@
   *
   * @return {array} resultArray object with result calculation loads
   */
-  function calcLighting($room, $roomDraw) { 
-      
+  function calcLighting($room, $roomDraw) {     
+
     $params = parseDrawing($roomDraw);
     //uploadUsagecodfficient($room["usagecoefficient"], $room["typeLamp"]);    
     $utilization_rate_array = [];    

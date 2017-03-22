@@ -1,8 +1,9 @@
 //===================== API LOCAL DATA =====================================
 var current_Room = (function () {
   var instance, // object singleton
-      curRoom = {}, // current active room object(number_room, number_floor )
+     // curRoom = {}, // current active room object(number_room, number_floor )
                     // current active room in drawing
+      curRoom = [], // current active rooms array
       tableData = [], // object data bootstrap-table ( object have all data table)
       curLamp = {}, // current lamp in table ( current active lamp in table)
       typeLamp = {}, // object json drawing (we take it from post message)
@@ -35,11 +36,12 @@ var current_Room = (function () {
     return lampSelect;       
   };
 
-  var setTypeLamp = function (inputObject) {   
+  var setTypeLamp = function (inputObject) { 
+    console.log("setTypeLamp");  
     typeLamp = {};    
     $.each(inputObject, function(key, value) {
        typeLamp[key] = value;
-    });            
+    });       
   };
   
   var getTypeLamp = function () {       
@@ -48,11 +50,24 @@ var current_Room = (function () {
 
   var getTableData = function () {    
     return tableData;
-  };  
+  }; 
+
+  var setTableData = function (inputArray) {
+    tableData = inputArray;
+  }; 
 
 
   var addElementToTableData = function (element) {
-    tableData.push(element);         
+    console.log(element);
+    proTableData = [];
+    for (var i = 0; i < tableData.length; i++) {
+      var curElTableData = tableData[i];
+      if(curElTableData.roomNumber !== element.roomNumber && curElTableData.nameLamp !== element.nameLamp) {
+        proTableData.push(curElTableData);
+      }
+    }
+    proTableData.push(element);
+    setTableData(proTableData);         
     $('#bTable').bootstrapTable('load', tableData);    
   };  
 
@@ -72,7 +87,8 @@ var current_Room = (function () {
     $('#bTable').bootstrapTable('load', tableData);    
   };  
 
-  var removeElementFromTableData = function (element) {    
+  var removeElementFromTableData = function (element) {  
+    console.log("removeElementFromTableData");  
     var nameLamp = element.nameLamp;    
     var roomNumber = element.roomNumber;   
     for (var i = 0; i < tableData.length ; i++) {     
@@ -81,19 +97,45 @@ var current_Room = (function () {
        }
     } 
     $('#bTable').bootstrapTable('load', tableData);  
-  }; 
+  };   
 
-  var setCurrentRoom = function (numberRoom, numberFloor) {      
-    curRoom.room = numberRoom;
-    curRoom.floor = numberFloor;   
+  var setCurrentRoom = function (inputArray) { 
+    console.log("setCurrentRoom");
+    curRoom = inputArray;        
+    /*curRoom.room = numberRoom;
+    curRoom.floor = numberFloor; */  
   };  
+
+  var addElementCurrentRooms = function (numberRoom, numberFloor) {
+    console.log("addElementCurrentRooms");
+    curRoom.push({room: numberRoom, floor: numberFloor});    
+  };
+
+  var removeElementCurrentRooms = function (numberRoom, numberFloor) {
+    console.log("removeElementCurrentRooms");
+    var proCurRoom = [];
+    for (var i = 0; i < curRoom.length; i++) {
+      var currentRoom = curRoom[i];     
+      if(currentRoom.floor == numberFloor &&  currentRoom.room != numberRoom) {      
+        proCurRoom.push(currentRoom);        
+      } else if( currentRoom.floor != numberFloor) {        
+        proCurRoom.push(currentRoom);       
+      }
+    }
+    setCurrentRoom(proCurRoom);
+  };
 
   var getCurrentRoom = function () {      
     return curRoom;
   };
 
+  var getCurrenRoomLength = function () {
+    return curRoom.length;
+  };
+
   var clearCurrentRoom = function () {
-    curRoom = {};    
+   // curRoom = {};   
+    curRoom = []; 
   };
 
   var setCurrentLamp = function (objectLamp) {      
@@ -108,20 +150,28 @@ var current_Room = (function () {
 
   var createInstance = function () {   
     return {
+
       setCurrentLamp: setCurrentLamp,
       getCurrentLamp: getCurrentLamp,
-      setCurrentRoom: setCurrentRoom,
+      
       getCurrentRoom: getCurrentRoom,
-      clearCurrentRoom: clearCurrentRoom,
+      getCurrenRoomLength: getCurrenRoomLength,      
+      addElementCurrentRooms: addElementCurrentRooms,
+      removeElementCurrentRooms: removeElementCurrentRooms,     
+
       getTableData: getTableData,
       addElementToTableData: addElementToTableData,
       chengeElementInTableData: chengeElementInTableData,
       removeElementFromTableData: removeElementFromTableData,
+
       setTypeLamp: setTypeLamp,
       getTypeLamp: getTypeLamp,
+
       setLampSelect: setLampSelect,
       getLampSelect: getLampSelect,
+
       getLampAutocomplit: getLampAutocomplit,
+
       setEditLamp: setEditLamp,
       getEditLamp: getEditLamp
     };
@@ -142,17 +192,17 @@ var current_Room = (function () {
 //
 ////=============== FUNCTION FOR WORK WITH LOCAL DATA API ===============
 
-// 1. getCurrentRoom
+// 1. getCurrentRooms
 // 2. getCurrentRoomForEdit
-// 3. addLampInLocalData
+// 3. addLampInLocalDataAfterEdit
+// 4. addLampInLocalData
 // 4. removeLampFromLocalData
-// 5. addLampInLocalDataAfterEdit
 
 /**
  * [get Current Room object from local data = current room in draw]
  * @return {[object]} [description]
  */
-function getCurrentRoom() {   
+/*function getCurrentRoom() {   
    var data = current_Room.getInstance().getTypeLamp();
    var curRoom = current_Room.getInstance().getCurrentRoom();  
    var roomObject = {}; 
@@ -161,6 +211,28 @@ function getCurrentRoom() {
       roomObject[key] = val;      
    });
    return roomObject;
+}*/
+
+/**
+ * [get Current Rooms objects from local data]
+ * @return {[object]} [description]
+ */
+function getCurrentRooms(nameLamp, lampParameters) {   
+   var data = current_Room.getInstance().getTypeLamp();   
+   var currentRooms = current_Room.getInstance().getCurrentRoom(); 
+   for (var i = 0; i < currentRooms.length; i++) {
+      var currentRoom = currentRooms[i];      
+      var floor = parseInt(currentRoom.floor);
+      var room = parseInt(currentRoom.room);     
+      if(data.floors[floor].rooms[room].hasOwnProperty('typeLamp')) {
+        data.floors[floor].rooms[room].typeLamp[nameLamp] = lampParameters;
+      } else {
+        var proObject = {};
+        proObject[nameLamp] = lampParameters;
+        data.floors[floor].rooms[room].typeLamp = proObject;
+      }
+    }    
+   return data;
 }
 
 /**
@@ -203,6 +275,34 @@ function addLampInLocalData(objectLamp, nameLamp) {
 }
 
 /**
+ * [add Lamp In Loca Data After Edit]
+ * @param {[object]} objectLamp [object result serialize form edit and calc lamp]
+ * @param {[string]} nameLamp   [name lamp for chenge]
+ */
+function addLampInLocalDataAfterEdit(objectLamp, nameLamp) {  
+  var data = current_Room.getInstance().getTypeLamp();   
+  var curRoom= current_Room.getInstance().getCurrentLamp();
+  var chengeName = curRoom.nameLamp; 
+  var param = curRoom.roomNumber.split('/');
+  var floor = parseInt(param[0]) - 1;
+  var room = parseInt(param[1]) - 1; 
+  if(data.floors[floor].rooms[room].hasOwnProperty('typeLamp')) { 
+    var currentTypeLamp = data.floors[floor].rooms[room].typeLamp;
+    var chengeTypeLamp = {};
+    $.each(currentTypeLamp, function(key, val) {
+      if(key === chengeName) {
+        chengeTypeLamp[nameLamp] = objectLamp;
+      } else {
+        chengeTypeLamp[key] = val;
+      }
+    });  
+    data.floors[floor].rooms[room].typeLamp = chengeTypeLamp;    
+  }   
+  current_Room.getInstance().setTypeLamp(data);
+  viewResultInTableAfterEdit(objectLamp, room, floor, chengeName);   
+}
+
+/**
  * [remove Lamp From Local Data]
  * @param  {[object]} curLamp [object current row in table] 
  */
@@ -234,33 +334,17 @@ function removeLampFromLocalData(curLamp) {
   current_Room.getInstance().setTypeLamp(data); 
 }
 
-/**
- * [add Lamp In Loca Data After Edit]
- * @param {[object]} objectLamp [object result serialize form edit and calc lamp]
- * @param {[string]} nameLamp   [name lamp for chenge]
- */
-function addLampInLocalDataAfterEdit(objectLamp, nameLamp) {
-  console.log("addLampInLocalDataAfterEdit");
-  var data = current_Room.getInstance().getTypeLamp();   
-  var curRoom= current_Room.getInstance().getCurrentLamp();
-  var currentNameLamp = curRoom.nameLamp; 
-  var param = curRoom.roomNumber.split('/');
-  var floor = parseInt(param[0]) - 1;
-  var room = parseInt(param[1]) - 1; 
-  if(data.floors[floor].rooms[room].hasOwnProperty('typeLamp')) { 
-    var currentTypeLamp = data.floors[floor].rooms[room].typeLamp;
-    var chengeTypeLamp = {};
-    $.each(currentTypeLamp, function(key, val) {
-      if(key === currentNameLamp) {
-        chengeTypeLamp[nameLamp] = objectLamp;
-      } else {
-        chengeTypeLamp[key] = val;
-      }
-    });  
-    data.floors[floor].rooms[room].typeLamp = chengeTypeLamp;    
-  }   
-  current_Room.getInstance().setTypeLamp(data);
-  viewResultInTable(objectLamp, room, floor, currentNameLamp);   
+function addElementsToCurRoom (floor, lengthRooms) {  
+  for (var i = 0; i < lengthRooms; i++) {
+    current_Room.getInstance().addElementCurrentRooms(i, floor);
+  }
 }
+
+function removeElementsFromCurRoom (floor, lengthRooms) {  
+  for (var i = 0; i < lengthRooms; i++) {
+    current_Room.getInstance().removeElementCurrentRooms(i, floor);
+  }
+}
+
 
 //=============== FUNCTION FOR WORK WITH LOCAL DATA API ===============

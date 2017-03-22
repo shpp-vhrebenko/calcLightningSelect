@@ -26,7 +26,7 @@
       <div class="header">        
         <h3 class="text-muted">calcLighting</h3>
       </div>
-      <div class="row content">       
+      <div class="row content" id="draw_plan">       
         <div class="col-xs-12 col-md-5">           
           <h3>План</h3>
           <ul class="nav nav-tabs " id="tabs_plan">                                
@@ -264,7 +264,7 @@
                           </td> 
                           <td class="input">
                             <select class="edit_lamp input-sm" id="safetyFactor" name="safetyFactor"  required>
-                              <option selected value="">Выберите значение коэффициента запаса</option>    
+                              <option selected value="">Выберите значение коэффициента запаса</option>   
                               <option value="1.1">1.1</option>
                               <option value="1.4">1.4</option>
                               <option value="1.6">1.6</option>

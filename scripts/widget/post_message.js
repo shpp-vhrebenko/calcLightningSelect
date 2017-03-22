@@ -16,7 +16,7 @@ window.addEventListener('message', function(event) {
     /*localDataLamp.jsonDrawing = json_object;
     localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));*/
     sendResultForDrawPlan(JSON.stringify(data));    
-    //initSelectorNameLamp();       
+    /*initSelectorNameLamp();*/       
   } else {
     initSelectorNameLamp();
   }

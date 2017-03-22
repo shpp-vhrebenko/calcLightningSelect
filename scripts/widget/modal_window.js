@@ -30,6 +30,7 @@ $('#myModal').on('shown.bs.modal', function () {
   $('#editLamp').on('change', '#requiredIllumination', function() { 
     var value = $(this).val();    
     $('#editLamp').find('#customRequiredIllumination').val(value);
+     $('#editLamp').find('#customRequiredIllumination').trigger('change');
   });   
 
  /* $('#myModal').on('click', '#search_lamp',  function(event) {
@@ -131,8 +132,10 @@ $('#myModal').on('shown.bs.modal', function () {
 $('body').on('click', '#saveEdit', function (event) {   
   event.preventDefault(); 
   var editLamp = current_Room.getInstance().getEditLamp();
+  console.log(editLamp);
   var currentRoomObject = getCurrentRoomForEdit();   
   var currentRowLamp = current_Room.getInstance().getCurrentLamp(); 
+  console.log(currentRowLamp);
   var currentNameLamp = currentRowLamp.nameLamp;
   var copyCurrentRoomObject = {};
   $.each(currentRoomObject, function(key, val) {
@@ -149,7 +152,7 @@ $('body').on('click', '#saveEdit', function (event) {
        }
     });
     copyCurrentRoomObject.typeLamp = chengeContent;
-  } 
+  }  
   var data = {
     calc_countLamp : true,
     parameters : editLamp,
@@ -181,7 +184,8 @@ $('body').on('click', '#saveEdit', function (event) {
  */
 function initFormEdit(parameters) {
   console.log('initFormEdit');
-  var editLamp = current_Room.getInstance().getEditLamp();    
+  var editLamp = current_Room.getInstance().getEditLamp(); 
+  console.log(editLamp);   
   $.each(parameters, function(key, value) { 
     editLamp[key] = value;
     if(key == "photoLink") {

@@ -10,10 +10,9 @@
 // 7.sendAjaxForm
 // 8.viewCalcCountLamp
 // 9.viewErrorResponse
-// 10.viewResultInTable
-// 11.errorResponse
-// 12.hideLoadingWraper
-// 13.showLoadingWraper
+// 10.errorResponse
+// 11.hideLoadingWraper
+// 12.showLoadingWraper
 
 
 /**
@@ -22,17 +21,17 @@
 function defaultInit() {
   console.log("defaultInit");
   if(localDataLamp.parameters === undefined) {   
-    setInputValue("reflectionCoef", "20,50,70"); 
+    setInputValue("reflectionCoef", "70,50,20"); 
     setInputValue("safetyFactor", "1.4"); 
     setInputValue("lampsWorkHeight", 0.8); 
   } else {    
-    if(localDataLamp.parameters.reflectionCoef === undefined) {
-    setInputValue("reflectionCoef", "20,50,70");   
+    if(localDataLamp.parameters.reflectionCoef === undefined || localDataLamp.parameters.reflectionCoef === "") {
+    setInputValue("reflectionCoef", "70,50,20");   
     }
-    if(localDataLamp.parameters.safetyFactor === undefined) {
+    if(localDataLamp.parameters.safetyFactor === undefined || localDataLamp.parameters.safetyFactor === "") {
       setInputValue("safetyFactor", "1.4");  
     }
-    if(localDataLamp.parameters.lampsWorkHeight === undefined) {     
+    if(localDataLamp.parameters.lampsWorkHeight === undefined || localDataLamp.parameters.lampsWorkHeight === 0) {     
       setInputValue("lampsWorkHeight", 0.8);    
     }
   }
@@ -77,9 +76,10 @@ function init() {
 function initSelectorNameLamp() {
   console.log("initSelectorTypeLampMongodb");  
    $.ajax({
+      async: true,
       url: 'calc_lighting.php',
       type: 'GET',  
-      timeout: 10000,
+      timeout: 15000,
       data: {select_type_lamp : true },
       beforeSend: function(){
          $(".js_loading_wraper").fadeIn("slow");
@@ -139,18 +139,25 @@ function valid() {
 function sendResultForDrawPlan(jsonObject) {
   console.log("sendResultForDrawPlan");
   $.ajax({
+      async: true, 
       url:     "draw_plan.php", 
       type:     'POST',
       timeout: 10000,
-      data: {draw_plan : true, hourse: jsonObject},     
+      data: {draw_plan : true, hourse: jsonObject},
+      beforeSend: function(){
+         $(".js_loading_wraper").fadeIn("slow");
+      },
+      complete: function(){
+         $(".js_loading_wraper").fadeOut("slow"); 
+         initSelectorNameLamp(); 
+      },     
       success: function(data) { 
         var result = $.parseJSON(data);
         viewDraw(result);           
       },
       error: function(response, status, error) {  
           viewErrorResponse("Не полученно чертеж. Или полученные данные не коректны!");   
-      },
-      complete: initSelectorNameLamp      
+      }     
   });
 }
 
@@ -159,6 +166,7 @@ function sendResultForDrawPlan(jsonObject) {
  * @param  {[object]} resultDraw [object draw] 
  */
 function viewDraw(resultDraw) {
+  console.log("viewDraw");
   for (var i = 0; i < resultDraw.length; i++) {
     $li = $('<li>');
     if(i === 0) {
@@ -166,15 +174,26 @@ function viewDraw(resultDraw) {
     }
     $li.append($("<a>").attr({"data-toggle":"tab","href": "#" + i}).text("Этаж №" + (i + 1)));
     $('#tabs_plan').append($li);
-    $div = $('<div>').attr('id',i); 
+    $divTab = $('<div>').attr('id',i); 
     if(i === 0) {
-      $div.addClass("tab-pane fade in active");
+      $divTab.addClass("tab-pane fade in active");
     } else {
-      $div.addClass("tab-pane fade");
+      $divTab.addClass("tab-pane fade");
     }
-    $div.append(resultDraw[i]);
-    $('.tab-content').append($div);
+    $buttonAll = $('<button>').attr('data-id',i).addClass('btn btn-default select_all');
+    $buttonAll.append($('<i>').addClass('glyphicon glyphicon-th'));
+    $divRow = $('<div>').addClass('row');
+    $divCol_2 = $('<div>').addClass('col-md-1');
+    $divCol_2.append($buttonAll);
+    $divCol_1 = $('<div>').addClass('col-md-12');
+    $divCol_1.append(resultDraw[i]);
+    $divRow.append($divCol_1)
+            .append($divCol_2);
+    $divTab.append($divRow);
+       
+    $('.tab-content').append($divTab);    
   } 
+ 
 }
 
 /**
@@ -197,6 +216,7 @@ function sendAjaxForm(sendData,
                       timeout,
                       typeRequest) {    
   $.ajax({
+      async: true,
       url:     url, 
       type:     typeRequest,
       timeout: timeout,
@@ -221,12 +241,7 @@ function viewErrorResponse(errorMessage) {
  * [view result calc count lamp]
  * @param  {[json string]} result [result ajax responce] 
  */
-function viewCalcCountLamp(result) {
-  var currentRoomObject = getCurrentRoom();  
-  var json_data = localStorage.getItem('typeLamp');
-  var local_data = $.parseJSON(json_data);  
-  var currentParameters = local_data.parameters; 
-  var nameLamp = currentParameters.nameLamp;
+function viewCalcCountLamp(result) {  
   var resultResponse = $.parseJSON(result); 
   console.group("RESULT CALC COUNT LAMP");    
   console.log(resultResponse);
@@ -238,63 +253,15 @@ function viewCalcCountLamp(result) {
     viewErrorResponse(resultResponse.error.message);
     return false;
   } else {
-    if ('calcCountLamp' in resultResponse) {
-      $('#put_data').show();
-      // console.log(resultResponse.calcCountLamp);
-       var calcCountLamp = resultResponse.calcCountLamp;
-      if(calcCountLamp) {        
-        var objectLamp = {};        
-        if(currentRoomObject.hasOwnProperty("typeLamp")) {                                   
-          $.each(currentRoomObject.typeLamp, function(key, val) {
-             objectLamp[key] = val;
-          });                 
-          objectLamp[nameLamp] = currentParameters; 
-          objectLamp[nameLamp].resultCalc = calcCountLamp;                
-        } else {                         
-          objectLamp[nameLamp] = currentParameters;                
-          objectLamp[nameLamp].resultCalc = calcCountLamp;                                 
-        }                
-        var room_data = current_Room.getInstance().getTypeLamp();                              
-        addLampInLocalData(objectLamp, nameLamp);               
-      }                     
+    if ('calcLighting' in resultResponse) {
+      $('#put_data').show();      
+      var calcLighting = resultResponse.calcLighting;
+      current_Room.getInstance().setTypeLamp(calcLighting);                              
+      viewResultInTable(calcLighting);                           
     } else {            
       viewErrorResponse("Введенные данные некорректны");            
     }          
   } 
-}
-
-/**
- * View result calc caunt and choice lamp
- * @param  {[object]} currentLamp  [description]
- * @param  {[string]} room_number  [description]
- * @param  {[string]} floor_number [description]
- * @param  {[string]} chengeName   [description]
- */
-function viewResultInTable(currentLamp, room_number, floor_number, chengeName) {
-  console.log("viewResultInTable");   
-  floor_number = parseInt(floor_number) + 1;
-  room_number = parseInt(room_number) + 1;
-  var objectRow = {
-    nameLamp: currentLamp.nameLamp,
-    roomNumber: floor_number + "/" + room_number,    
-    roomArea: currentLamp.resultCalc.roomArea,
-    lampsCount: currentLamp.resultCalc.lampsCount,
-    requiredIllumination: currentLamp.requiredIllumination,
-    reflectionCoef: currentLamp.reflectionCoef,
-    safetyFactor: currentLamp.safetyFactor,
-    powerLamp: currentLamp.powerLamp,
-    lampsWatt: currentLamp.resultCalc.lampsWatt,
-    heightRoom: currentLamp.heightRoom,
-    lampsWorkHeight: currentLamp.lampsWorkHeight,
-    photoLink: currentLamp.photoLink,
-    customRequiredIllumination: currentLamp.customRequiredIllumination    
-  };
-  if(chengeName) {
-    current_Room.getInstance().chengeElementInTableData(objectRow, chengeName); 
-  } else {
-    current_Room.getInstance().addElementToTableData(objectRow);
-  }
-   
 }
 
 /**
