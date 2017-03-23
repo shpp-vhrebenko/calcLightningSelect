@@ -46,7 +46,8 @@
             luminousFlux: {
                 required: true,
                 greaterThanZero: true
-            }
+            },
+            keyLamp: {}
           },
 
           messages:{

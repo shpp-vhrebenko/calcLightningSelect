@@ -381,6 +381,10 @@
             $applArea = trim($document["oblastprimeneniya"]);           
             $arrayResult[$curentName]["application_area"] = $applArea;
           } 
+          if(isset($document["artikul"])) {            
+            $artikul = trim($document["artikul"]);           
+            $arrayResult[$curentName]["key"] = $artikul;
+          }
       }
     }
 
@@ -438,6 +442,10 @@
           $applArea = trim($document["oblastprimeneniya"]);           
           $arrayResult[$curentName]["application_area"] = $applArea;
         }  
+        if(isset($document["artikul"])) {            
+          $artikul = trim($document["artikul"]);           
+          $arrayResult[$curentName]["key"] = $artikul;
+        }
       } else {
         
       }             

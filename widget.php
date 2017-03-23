@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="styles/css/main.css?<?php echo filemtime('styles/css/main.css');?>"> 
     <!-- build:js scripts/widget_head_vendor.js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>         
-    <!-- endbuild --> 
-      
+    <!-- endbuild -->       
   </head>
   <body>  
     <!--[if lt IE 10]>
@@ -68,25 +67,33 @@
             <table class="table table-bordered table-condensed">
               <thead>
                 <tr>
+                  <th>Артикул</th>
                   <th>Выберите светильник</th>
-                  <th>Высота помещения, м</th>
-                  <th>Рабочая поверхность, м</th>
-                  <th>Коэффициент отражения</th>
-                  <th>Коэффициент запаса</th>
-                  <th>Требуемая освещенность, лк</th>
-                  <th>Требуемая освещенность, лк</th>                   
+                  <th>Высота поме- </br> щения, м</th>
+                  <th>Рабочая поверх- </br> ность, м</th>
+                  <th>Коэффициэнт</br> отражения</th>
+                  <th>Коэф. &nbsp;&nbsp;</br> запаса &nbsp;&nbsp;</th>
+                  <th>Требуемая освеще-</br> нность, лк</th>
+                  <th>Требуемая освеще-</br> нность, лк</th>                   
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="input">
+                  <td class="input col-md-1">
+                    <input class="input-sm" type="text" name="keyLamp" data-provide="typeahead" id="keyLamp"/>
+                  </td>
+                  <td class="input col-md-1">
                     <select name="nameLamp" id="nameLamp" class="room input-sm" required >
                       <option selected value="">Выберите тип светильника</option>
                     </select>
-                  </td> 
-                  <td class="input"><input class="room_param room input-sm" type="number" id="heightRoom" name="heightRoom" placeholder="2.5" min="0.0" step="0.1" required/></td>
-                  <td class="input"><input  type="number" class="room_param room input-sm" id="lampsWorkHeight" name="lampsWorkHeight" placeholder="0.8" min="0.0" step="0.1" required /></td>
-                  <td class="input">
+                  </td>
+                  <td class="input col-md-1">
+                    <input class="room input-sm" type="number" id="heightRoom" name="heightRoom" placeholder="2.5" min="0.0" step="0.1" required/>
+                  </td>
+                  <td class="input col-md-1">
+                    <input  type="number" class="room input-sm" id="lampsWorkHeight" name="lampsWorkHeight" placeholder="0.8" min="0.0" step="0.1" required />
+                  </td>
+                  <td class="input col-md-2">
                     <select class="room input-sm" id="reflectionCoef" name="reflectionCoef" required>
                       <option value="" selected>Выберите значение коэффициента отражения</option>
                       <option value="0,0,0">Пол-0%, стены-0%, потолок-0%</option>                   
@@ -99,7 +106,7 @@
                       <option value="80,80,30">Пол-80%, стены-80%, потолок-30%</option>
                     </select>
                   </td> 
-                  <td class="input">
+                  <td class="input col-md-1">
                     <select class="room input-sm" id="safetyFactor" name="safetyFactor"  required>
                       <option selected value="">Выберите значение коэффициента запаса</option>       
                       <option value="1.1">1.1</option>
@@ -108,7 +115,7 @@
                       <option value="1.7">1.7</option>
                     </select>
                   </td>
-                  <td class="input">
+                  <td class="input col-md-2">
                     <select class="room input-sm" id="requiredIllumination" name="requiredIllumination" required>
                       <option value="" selected>Выберите значение освещенности</option>
                       <option value="5">Чердаки</option>
@@ -131,8 +138,8 @@
                       <option value="500">Рабочий кабинет</option>                                   
                     </select>
                   </td> 
-                  <td class="input">
-                    <input class="room_param room input-sm" type="number" id="customRequiredIllumination" name="customRequiredIllumination" min="0" step="1"/>                    
+                  <td class="input col-md-1">
+                    <input class="room input-sm" type="number" id="customRequiredIllumination" name="customRequiredIllumination" min="0" step="1"/>                    
                   </td>                                 
                 </tr>
               </tbody>

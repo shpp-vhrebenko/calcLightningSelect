@@ -28,10 +28,35 @@ $('#myModal').on('shown.bs.modal', function () {
   }); 
 
   $('#editLamp').on('change', '#requiredIllumination', function() { 
-    var value = $(this).val();    
-    $('#editLamp').find('#customRequiredIllumination').val(value);
-     $('#editLamp').find('#customRequiredIllumination').trigger('change');
+    console.log("chengeRequiredIllumination_modalWindow");
+    var value = $(this).val(); 
+    var valueCustomRequiredIllumination = $('#editLamp').find('#customRequiredIllumination').val();
+    if(value != valueCustomRequiredIllumination) {
+      $('#editLamp').find('#customRequiredIllumination').val(value);
+      $('#editLamp').find('#customRequiredIllumination').trigger('change');
+    }     
   });   
+
+  $('#editLamp').on('change', '#customRequiredIllumination', function() { 
+    console.log("chengeCustomRequiredIllumination_modalWindow");
+    var value = $(this).val(); 
+    var valueRequiredIllumination = $('#editLamp').find('#requiredIllumination').val();
+    if(value != valueRequiredIllumination) {
+      // First, get the elements into a list
+      var requireOptions = $('#editLamp').find('#requiredIllumination option');
+      // Next, translate that into an array of just the values
+      var values = $.map(requireOptions, function(elt, i) {     
+        return $(elt).val();
+      });
+      for (var i = 0; i < values.length; i++) {
+        if(value == values[i]) {      
+          $('#editLamp').find('#requiredIllumination').val(value);  
+          $('#editLamp').find('#requiredIllumination').trigger('change');
+          break;     
+        }
+      }        
+    }     
+  }); 
 
  /* $('#myModal').on('click', '#search_lamp',  function(event) {
     console.log("search_lamp");
@@ -131,11 +156,9 @@ $('#myModal').on('shown.bs.modal', function () {
 
 $('body').on('click', '#saveEdit', function (event) {   
   event.preventDefault(); 
-  var editLamp = current_Room.getInstance().getEditLamp();
-  console.log(editLamp);
+  var editLamp = current_Room.getInstance().getEditLamp();  
   var currentRoomObject = getCurrentRoomForEdit();   
-  var currentRowLamp = current_Room.getInstance().getCurrentLamp(); 
-  console.log(currentRowLamp);
+  var currentRowLamp = current_Room.getInstance().getCurrentLamp();   
   var currentNameLamp = currentRowLamp.nameLamp;
   var copyCurrentRoomObject = {};
   $.each(currentRoomObject, function(key, val) {

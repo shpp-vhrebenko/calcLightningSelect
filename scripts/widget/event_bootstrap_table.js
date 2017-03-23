@@ -83,8 +83,7 @@ function viewResultInTable(calcLighting) {
  * @param  {[string]} chengeName  [description]
  */
 function viewResultInTableAfterEdit(currentLamp, room, floor, chengeName) {
-  console.log("addElementsToTableData");
-  console.log(currentLamp);
+  console.log("addElementsToTableData");  
   var floor_number = floor + 1;
   var room_number = room + 1;
   var requiredIllumination = 0;  
@@ -107,7 +106,8 @@ function viewResultInTableAfterEdit(currentLamp, room, floor, chengeName) {
     customRequiredIllumination: currentLamp.customRequiredIllumination,
     lumix: currentLamp.lumix,
     typeLamp: currentLamp.typeLamp,
-    numberLamps: currentLamp.numberLamps    
+    numberLamps: currentLamp.numberLamps, 
+    key: currentLamp.key   
   };
   current_Room.getInstance().chengeElementInTableData(objectRow, chengeName);  
 }
@@ -144,7 +144,8 @@ function addElementsToTableData(typeLamp , floor, room) {
       customRequiredIllumination: currentLamp.customRequiredIllumination,
       lumix: currentLamp.lumix,
       typeLamp: currentLamp.typeLamp,
-      numberLamps: currentLamp.numberLamps     
+      numberLamps: currentLamp.numberLamps, 
+      key: currentLamp.key    
     };
     current_Room.getInstance().addElementToTableData(objectRow);
   });

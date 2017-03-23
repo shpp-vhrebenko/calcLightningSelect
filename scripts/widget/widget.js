@@ -43,15 +43,30 @@ $(document).ready(function() {
     }); 
     
     //================= AUTOCOMPLIT BOOTSTRAP-TYPEAHEAD =============
-    var selectLamp = current_Room.getInstance().getLampAutocomplit();   
+    var selectLamp = current_Room.getInstance().getLampAutocomplit();
+    var selectLampKey = current_Room.getInstance().getLampAutocomplitKey();   
     var $input = $("#search_user_lamp");
+    var $inputKey = $("#keyLamp");
     $input.typeahead({
       source: selectLamp,
       autoSelect: true
     });
-    $input.change(function() {    
-      var selectTypeLamp = $input.val();
-      $('#nameLamp').val(selectTypeLamp);        
+    $input.change(function() {   
+      var current = $input.typeahead("getActive"); 
+      /*console.log(current);
+      var selectTypeLamp = $input.val();*/
+      $('#nameLamp').val(current.name);        
+      $('#nameLamp').valid();
+      $('#nameLamp').trigger('change');      
+    });
+
+    $inputKey.typeahead({
+      source: selectLampKey,
+      autoSelect: true
+    });
+    $inputKey.change(function() {   
+      var current = $inputKey.typeahead("getActive");       
+      $('#nameLamp').val(current.id);        
       $('#nameLamp').valid();
       $('#nameLamp').trigger('change');      
     });
@@ -191,27 +206,44 @@ $('#nameLamp').change(function() {
 });
 
 $('#requiredIllumination').change(function() {
-  var value = $(this).val();
-  parameters.customRequiredIllumination = value;
-  localDataLamp.parameters = parameters;  
-  localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));
-  $('#customRequiredIllumination').val(value);  
-  $('#customRequiredIllumination').trigger('change');
+  console.log("chengeRequiredIllumination");
+  var value = $(this).val(); 
+  var valueCustomRequiredIllumination = $('#customRequiredIllumination').val();
+  if(value != valueCustomRequiredIllumination) {
+    $('#customRequiredIllumination').val(value);  
+    $('#customRequiredIllumination').trigger('change');
+  }   
+});
+
+$('#customRequiredIllumination').change(function() {
+  console.log("chengeCustomRequiredIllumination");
+  var value = $(this).val();  
+  var valueRequiredIllumination = $('#requiredIllumination').val();
+  if(value != valueRequiredIllumination) {
+    // First, get the elements into a list
+    var requireOptions = $('#requiredIllumination option');
+    // Next, translate that into an array of just the values
+    var values = $.map(requireOptions, function(elt, i) {     
+      return $(elt).val();
+    });
+    for (var i = 0; i < values.length; i++) {
+      if(value == values[i]) {      
+        $('#requiredIllumination').val(value);  
+        $('#requiredIllumination').trigger('change');
+        break;     
+      }
+    }
+  }
+    
 });
 
 $('.room').change(function () { 
-  /*console.log("changeRoom");*/
+  console.log("changeRoom");
   parameters[$(this).attr('id')] = $(this).val();
   localDataLamp.parameters = parameters;       
   localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));
   var id = $(this).attr('id');  
 });
-
-$('.room_param').change(function () { 
-  var curentTextElement = "#text_" + $(this).attr('id');  
-  $(curentTextElement).text($(this).val() + ' m');  
-}); 
-
 
 //=============== END EVENTS MAIN WIDGET WINDOW ===================
 //

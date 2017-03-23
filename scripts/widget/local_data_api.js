@@ -9,7 +9,9 @@ var current_Room = (function () {
       typeLamp = {}, // object json drawing (we take it from post message)
       lampSelect = {}, // object has value for options name lamp select in table
       lampAutocomplit = [], // array for initial lamp autocomplit
+      lampAutocomplitKey = [], // array for initial lamp autocomplit for key
       editLamp = {}; // object has parameter edit lamp in modal window
+      
 
   var setEditLamp = function (inputObject) {           
     $.each(inputObject, function(key, value) {
@@ -24,12 +26,17 @@ var current_Room = (function () {
   var setLampSelect = function (inputObject) {       
     $.each(inputObject, function(key, value) {
       lampSelect[key] = value;  
-      lampAutocomplit.push({id: value.nameLamp, name: value.nameLamp});           
-    });           
+      lampAutocomplit.push({id: value.nameLamp, name: value.nameLamp});   
+      lampAutocomplitKey.push({id: value.nameLamp, name: value.key});        
+    });               
   };
 
   var getLampAutocomplit = function () {       
     return lampAutocomplit;       
+  };
+
+  var getLampAutocomplitKey = function () {       
+    return lampAutocomplitKey;       
   };
 
   var getLampSelect = function () {        
@@ -178,6 +185,7 @@ var current_Room = (function () {
       getLampSelect: getLampSelect,
 
       getLampAutocomplit: getLampAutocomplit,
+      getLampAutocomplitKey: getLampAutocomplitKey,
 
       setEditLamp: setEditLamp,
       getEditLamp: getEditLamp

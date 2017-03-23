@@ -102,6 +102,7 @@ function initSelectorNameLamp() {
                                         .attr('data-photo-link', this.photo_lamp)
                                         .attr('data-type-lamp', this.typeLamp)
                                         .attr('data-apply-lamp', this.application_area)
+                                        .attr('data-key', this.key)
                   );
 
           }); 
