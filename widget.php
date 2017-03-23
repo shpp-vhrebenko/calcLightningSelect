@@ -26,8 +26,8 @@
       <div class="header">        
         <h3 class="text-muted">Расчет освещения</h3>
       </div>
-      <div class="row content" id="draw_plan">       
-        <div class="col-xs-12 col-md-5">           
+      <div class="row content">       
+        <div class="col-xs-12 col-md-5" id="draw_plan">           
           <h3>План</h3>
           <ul class="nav nav-tabs " id="tabs_plan">                                
           </ul>
@@ -57,7 +57,8 @@
                   </div>
               </div> -->
             </div>
-          </div>                  
+          </div>
+          <!-- Form calcLightning  -->                 
           <form class="form-horizontal"
             id="calcLightning"
             role="form"
@@ -137,23 +138,19 @@
               </tbody>
             </table>                    
           </form>
+          <!-- End Form calcLightning  -->  
+          <!--  Bootstrap-tables -->
           <div class="table-responsive"> 
             <div id="toolbar" class="btn-group">
                 <button type="button" class="btn btn-default" id="set_data">
                     <i class="glyphicon glyphicon-plus"></i>
-                </button>
-                <button type="button" class="btn btn-default" id="put_data">
-                    <i class=" glyphicon glyphicon-save"></i>
-                </button>
+                </button>               
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" id="edit_data">
                     <i class="glyphicon glyphicon-pencil"></i>
                 </button>                
                 <button type="button" class="btn btn-default" id="remove_data">
                     <i class="glyphicon glyphicon-trash"></i>
-                </button>
-                <button type="button" class="btn btn-default" id="cancel">
-                    <i class="glyphicon glyphicon-remove"></i>
-                </button>                
+                </button>                               
             </div>
             <table class="table"
                     id="bTable"
@@ -189,7 +186,16 @@
                     
                 </tbody> -->
             </table>
-          </div>          
+          </div>   
+          <!-- End Bootstrap-tables -->  
+          <div class="row">            
+            <button type="button" class="btn btn-success col-sm-6 col-md-1 col-md-offset-8" id="put_data">
+              ОК
+            </button> 
+            <button type="button" class="btn btn-default col-sm-6 col-md-2" id="cancel">
+              Отмена
+            </button>            
+          </div>     
           <!-- Modal -->
           <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog">
@@ -310,6 +316,7 @@
               
             </div>
           </div>
+          <!-- End Modal -->
       </div>
       <div class="footer">
         <p></p>

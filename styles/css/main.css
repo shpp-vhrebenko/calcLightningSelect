@@ -8587,7 +8587,7 @@ body {
   margin-bottom: 2rem;
 }
 #put_data {
-  display: none;
+  margin-right: 1rem;
 }
 #set_data {
   color: #5CB85C;
@@ -8598,16 +8598,10 @@ body {
 #remove_data {
   color: #D9534F;
 }
-polygon {
-  cursor: pointer;
-}
 #info_lamp {
   text-align: center;
   color: #919191;
   font-weight: bold;
-}
-#cancel {
-  color: #D9534F;
 }
 .info_lamp {
   border: 1px solid grey;
@@ -8626,5 +8620,8 @@ polygon {
   cursor: pointer;
 }
 .fixed-table-container tbody tr {
+  cursor: pointer;
+}
+polygon {
   cursor: pointer;
 }
