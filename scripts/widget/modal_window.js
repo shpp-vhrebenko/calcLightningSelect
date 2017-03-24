@@ -136,6 +136,10 @@ $('#myModal').on('shown.bs.modal', function () {
     editLamp[$(this).attr('id')] = $(this).val();
     current_Room.getInstance().setEditLamp(editLamp);   
   });  
+  
+  //================= BOOTSTRAP TOOLTIP ===========================    
+  $('[data-toggle="tooltip"]').tooltip(); 
+  //================= END BOOTSTRAP TOOLTIP =======================
 
   //================= AUTOCOMPLIT BOOTSTRAP-TYPEAHEAD =============
   var selectLamp = current_Room.getInstance().getLampAutocomplit();  

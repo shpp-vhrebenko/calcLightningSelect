@@ -182,6 +182,7 @@ function viewDraw(resultDraw) {
       $divTab.addClass("tab-pane fade");
     }
     $buttonAll = $('<button>').attr('data-id',i).addClass('btn btn-default select_all');
+    $buttonAll.attr({'data-toggle':"tooltip", 'title':"Все комнаты",'data-placement':"right"});
     $buttonAll.append($('<i>').addClass('glyphicon glyphicon-th'));
     $divRow = $('<div>').addClass('row');
     $divCol_2 = $('<div>').addClass('col-md-1');
@@ -194,6 +195,9 @@ function viewDraw(resultDraw) {
        
     $('.tab-content').append($divTab);    
   } 
+ //================= BOOTSTRAP TOOLTIP ===========================    
+  $('.select_all').tooltip();  
+  //================= END BOOTSTRAP TOOLTIP =======================
  
 }
 

@@ -91,6 +91,7 @@ function viewResultInTableAfterEdit(currentLamp, room, floor, chengeName) {
     requiredIllumination = currentLamp.customRequiredIllumination;
   }   
   var objectRow = {
+    id: currentLamp.key,
     nameLamp: currentLamp.nameLamp,
     roomNumber: floor_number + "/" + room_number,    
     roomArea: currentLamp.resultCalc.roomArea,
@@ -129,6 +130,7 @@ function addElementsToTableData(typeLamp , floor, room) {
       requiredIllumination = currentLamp.customRequiredIllumination;
     }  
     var objectRow = {
+      id: currentLamp.key,
       nameLamp: currentLamp.nameLamp,
       roomNumber: floor_number + "/" + room_number,    
       roomArea: currentLamp.resultCalc.roomArea,

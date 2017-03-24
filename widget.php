@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="styles/css/main.css?<?php echo filemtime('styles/css/main.css');?>"> 
     <!-- build:js scripts/widget_head_vendor.js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>         
-    <!-- endbuild -->       
+    <!-- endbuild --> 
   </head>
   <body>  
     <!--[if lt IE 10]>
@@ -67,14 +67,14 @@
             <table class="table table-bordered table-condensed">
               <thead>
                 <tr>
-                  <th>Артикул</th>
-                  <th>Выберите светильник</th>
-                  <th>Высота поме- </br> щения, м</th>
-                  <th>Рабочая поверх- </br> ность, м</th>
-                  <th>Коэффициэнт</br> отражения</th>
-                  <th>Коэф. &nbsp;&nbsp;</br> запаса &nbsp;&nbsp;</th>
-                  <th>Требуемая освеще-</br> нность, лк</th>
-                  <th>Требуемая освеще-</br> нность, лк</th>                   
+                  <th data-toggle="tooltip" data-placement="top" data-container="body" title="Выберите артикул светильника">Артикул</th>
+                  <th data-toggle="tooltip" data-placement="top" data-container="body" title="Выберите светильник">Cветильник</th>
+                  <th data-toggle="tooltip" data-placement="top" data-container="body" title="Для изменения высоты введите в поле значение">Высота поме- </br> щения, м</th>
+                  <th data-toggle="tooltip" data-placement="top" data-container="body" title="Высота на которой необходимо обеспечить требуемое освещение">Рабочая поверх- </br> ность, м</th>
+                  <th data-toggle="tooltip" data-placement="top" data-container="body" title="Коэффициент отражения поверхностей">Коэф.</br> отражения</th>
+                  <th data-toggle="tooltip" data-placement="top" data-container="body" title="Запас освещенности">Коэф. &nbsp;&nbsp;</br> запаса &nbsp;&nbsp;</th>
+                  <th data-toggle="tooltip" data-placement="top" data-container="body" title="по ГОСТ">Треб. освещ. лк</th>
+                  <th data-toggle="tooltip" data-placement="top" data-container="body" title="Требуемая освещенность">Треб. освещ. лк</th>                   
                 </tr>
               </thead>
               <tbody>
@@ -243,14 +243,14 @@
                     action="">          
                     <table class="table table-bordered table-condensed">
                       <thead>
-                        <tr>
-                          <th>Выберите светильник</th>
-                          <th>Высота помещения, м</th>
-                          <th>Рабочая поверхность, м</th>
-                          <th>Коэффициент отражения</th>
-                          <th>Коэффициент запаса</th>
-                          <th>Требуемая освещенность, лк</th>
-                          <th>Требуемая освещенность, лк</th>                   
+                        <tr>                          
+                          <th data-toggle="tooltip" data-placement="top" data-container="body" title="Выберите светильник">Cветильник</th>
+                          <th data-toggle="tooltip" data-placement="top" data-container="body" title="Для изменения высоты введите в поле значение">Высота поме- </br> щения, м</th>
+                          <th data-toggle="tooltip" data-placement="top" data-container="body" title="Высота на которой необходимо обеспечить требуемое освещение">Рабочая поверх- </br> ность, м</th>
+                          <th data-toggle="tooltip" data-placement="top" data-container="body" title="Коэффициент отражения поверхностей">Коэф.</br> отражения</th>
+                          <th data-toggle="tooltip" data-placement="top" data-container="body" title="Запас освещенности">Коэф. &nbsp;&nbsp;</br> запаса &nbsp;&nbsp;</th>
+                          <th data-toggle="tooltip" data-placement="top" data-container="body" title="по ГОСТ">Треб. освещ. лк</th>
+                          <th data-toggle="tooltip" data-placement="top" data-container="body" title="Требуемая освещенность">Треб. освещ. лк</th>                     
                         </tr>
                       </thead>
                       <tbody>
@@ -333,6 +333,8 @@
     <!-- build:js scripts/widget_vendor.js -->
     <!-- <script src="bower_components/jquery-ui/jquery-ui.js"></script> -->
     <script type="text/javascript" src="bower_components/bootstrap3-typeahead/bootstrap3-typeahead.js"></script>
+    <script src="bower_components/bootstrap-less/js/dropdown.js"></script>
+    <script src="bower_components/bootstrap-less/js/tooltip.js"></script>
     <script src="bower_components/bootstrap-less/js/tab.js"></script>
     <script src="bower_components/bootstrap-less/js/modal.js"></script>
     <script src="bower_components/bootstrap-table/src/bootstrap-table.js"></script> 

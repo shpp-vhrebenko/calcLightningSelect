@@ -25,8 +25,8 @@ $(document).ready(function() {
     $('#remove_data').prop('disabled', 'disabled');
 
     $('#calcLightning').on('blur keyup change', 'input', function() { 
-      var currentRoom = current_Room.getInstance().getCurrentRoom();    
-      if ($('#calcLightning').valid() && (currentRoom.length === 2)) {         
+      var currentRoom = current_Room.getInstance().getCurrentRoom();         
+      if ($('#calcLightning').valid() && (currentRoom.length >= 1)) {         
           $('#set_data').prop('disabled', false);
       } else {      
           $('#set_data').prop('disabled', 'disabled');
@@ -35,12 +35,16 @@ $(document).ready(function() {
 
     $('#calcLightning').on('blur keyup change', 'select', function() { 
       var currentRoom = current_Room.getInstance().getCurrentRoom();     
-      if ($('#calcLightning').valid()  && (currentRoom.length === 2) ) {         
+      if ($('#calcLightning').valid()  && (currentRoom.length >= 1) ) {         
           $('#set_data').prop('disabled', false);
       } else {         
           $('#set_data').prop('disabled', 'disabled');
       }
-    }); 
+    });  
+
+    //================= BOOTSTRAP TOOLTIP ===========================    
+    $('[data-toggle="tooltip"]').tooltip(); 
+    //================= END BOOTSTRAP TOOLTIP ======================= 
     
     //================= AUTOCOMPLIT BOOTSTRAP-TYPEAHEAD =============
     var selectLamp = current_Room.getInstance().getLampAutocomplit();
@@ -70,7 +74,7 @@ $(document).ready(function() {
       $('#nameLamp').valid();
       $('#nameLamp').trigger('change');      
     });
-    //============= END AUTOCOMPLIT BOOTSTRAP-TYPEAHEAD =============
+    //============= END AUTOCOMPLIT BOOTSTRAP-TYPEAHEAD =============    
     
     typeLampFormValidation();    
 });

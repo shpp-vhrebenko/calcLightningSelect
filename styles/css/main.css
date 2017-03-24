@@ -8625,3 +8625,7 @@ body {
 polygon {
   cursor: pointer;
 }
+.tooltip.bottom {
+  position: relative;
+  z-index: 9999;
+}
