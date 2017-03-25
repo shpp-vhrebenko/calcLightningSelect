@@ -74,7 +74,7 @@ $(document).ready(function() {
       $('#nameLamp').valid();
       $('#nameLamp').trigger('change');      
     });
-    //============= END AUTOCOMPLIT BOOTSTRAP-TYPEAHEAD =============    
+    //============= END AUTOCOMPLIT BOOTSTRAP-TYPEAHEAD =============   
     
     typeLampFormValidation();    
 });
@@ -122,26 +122,57 @@ $('#draw_plan').on('click', '.select_all', function() {
   $currentTab = $tabContent.find($div);
   if(!$currentTab.hasClass('selectAll')) {
     $currentTab.addClass("selectAll");
-    $allRooms = $currentTab.find('polygon[id^=room]');       
-    $allRooms.attr("class","activePolygon");
-    $allRooms.attr("fill","rgb(92,184,92)");
-    addElementsToCurRoom(floor, $allRooms.length); 
-    var currentRoom = current_Room.getInstance().getCurrentRoom();       
-    if ($('#calcLightning').valid()) {              
-      $('#set_data').prop('disabled', false);
-    } else {            
-      $('#set_data').prop('disabled', 'disabled');
-    }     
+    $allRooms = $currentTab.find('polygon[id^=room]');
+    var countActiveRoom = 0;   
+    for (var i = 0; i < $allRooms.length; i++) {      
+      var currentRoom = $allRooms[i];
+      var currentId = currentRoom.getAttribute("id");      
+      var curArray = currentId.split("_");    
+      var curFloor = curArray[1];
+      var curRoom = curArray[2];
+      if(currentRoom.getAttribute("class") != "activePolygon") {
+        countActiveRoom++;
+        currentRoom.setAttribute("class","activePolygon");
+        currentRoom.setAttribute("fill","rgb(92,184,92)");
+        current_Room.getInstance().addElementCurrentRooms(curRoom, curFloor);        
+      }       
+    } 
+    if(countActiveRoom > 0) {
+      var currentRooms = current_Room.getInstance().getCurrentRoom();            
+      if ($('#calcLightning').valid()) {              
+        $('#set_data').prop('disabled', false);
+      } else {            
+        $('#set_data').prop('disabled', 'disabled');
+      } 
+    } else {
+      $currentTab.removeClass("selectAll");
+      for (var j = 0; j < $allRooms.length; j++) {      
+        var currentRoom_active = $allRooms[j];
+        var curId = currentRoom_active.getAttribute("id");       
+        var currentArray = curId.split("_");    
+        var currentFloorNumber = currentArray[1];
+        var currentRoomNumber = currentArray[2];
+        if(currentRoom_active.getAttribute("class") == "activePolygon") {          
+          currentRoom_active.removeAttribute("class","activePolygon");
+          currentRoom_active.setAttribute("fill","rgb(255,204,153)");          
+          current_Room.getInstance().removeElementCurrentRooms(currentRoomNumber, currentFloorNumber);        
+        }       
+      } 
+      var curRoomsLength = current_Room.getInstance().getCurrenRoomLength();
+      var currentRooms_1 = current_Room.getInstance().getCurrentRoom();      
+      if(curRoomsLength === 0) {
+        $( "#set_data" ).prop( "disabled", 'disabled');
+      }
+    }          
   } else {
     $currentTab.removeClass("selectAll");
     $allRooms = $currentTab.find('polygon[id^=room]');    
     $allRooms.attr("class","");
     $allRooms.attr("fill","rgb(255,204,153)"); 
     removeElementsFromCurRoom(floor, $allRooms.length); 
-    var currentRoom_2 = current_Room.getInstance().getCurrentRoom();
-    console.log(currentRoom_2);
-    var curRoomsLength = current_Room.getInstance().getCurrenRoomLength();
-    if(curRoomsLength === 0) {
+    var currentRoom_2 = current_Room.getInstance().getCurrentRoom();    
+    var curRoomsLength_2 = current_Room.getInstance().getCurrenRoomLength();
+    if(curRoomsLength_2 === 0) {
       $( "#set_data" ).prop( "disabled", 'disabled');
     }    
   }

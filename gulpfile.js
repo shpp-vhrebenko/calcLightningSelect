@@ -60,8 +60,8 @@ gulp.task('build:php', () => {
   return gulp.src('*.php')
     .pipe($.useref({searchPath: ['.']}))    
     .pipe($.if('*.js', $.uglify()))
-    .pipe($.if('*.js', $.rev()))    
-    .pipe($.revReplace())
+   /* .pipe($.rev())    
+    .pipe($.revReplace())*/
     /*.pipe($.if('*.css', $.cssnano({safe: true, autoprefixer: false})))
     .pipe($.if('*.html', $.htmlmin({collapseWhitespace: true})))*/
     .pipe(gulp.dest('dist'));

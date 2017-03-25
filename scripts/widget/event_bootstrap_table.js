@@ -108,6 +108,7 @@ function viewResultInTableAfterEdit(currentLamp, room, floor, chengeName) {
     lumix: currentLamp.lumix,
     typeLamp: currentLamp.typeLamp,
     numberLamps: currentLamp.numberLamps, 
+    allPowerLamps: (currentLamp.powerLamp * currentLamp.numberLamps),
     key: currentLamp.key   
   };
   current_Room.getInstance().chengeElementInTableData(objectRow, chengeName);  
@@ -147,6 +148,7 @@ function addElementsToTableData(typeLamp , floor, room) {
       lumix: currentLamp.lumix,
       typeLamp: currentLamp.typeLamp,
       numberLamps: currentLamp.numberLamps, 
+      allPowerLamps: (currentLamp.powerLamp * currentLamp.numberLamps),
       key: currentLamp.key    
     };
     current_Room.getInstance().addElementToTableData(objectRow);

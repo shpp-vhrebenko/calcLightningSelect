@@ -13,6 +13,7 @@
     <!-- build:js scripts/widget_head_vendor.js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>         
     <!-- endbuild --> 
+        
   </head>
   <body>  
     <!--[if lt IE 10]>
@@ -73,7 +74,7 @@
                   <th data-toggle="tooltip" data-placement="top" data-container="body" title="Высота на которой необходимо обеспечить требуемое освещение">Рабочая поверх- </br> ность, м</th>
                   <th data-toggle="tooltip" data-placement="top" data-container="body" title="Коэффициент отражения поверхностей">Коэф.</br> отражения</th>
                   <th data-toggle="tooltip" data-placement="top" data-container="body" title="Запас освещенности">Коэф. &nbsp;&nbsp;</br> запаса &nbsp;&nbsp;</th>
-                  <th data-toggle="tooltip" data-placement="top" data-container="body" title="по ГОСТ">Треб. освещ. лк</th>
+                  <th data-toggle="tooltip" data-placement="top" data-container="body" title="по ГОСТ">Треб.</br> освещ. лк</th>
                   <th data-toggle="tooltip" data-placement="top" data-container="body" title="Требуемая освещенность">Треб. освещ. лк</th>                   
                 </tr>
               </thead>
@@ -185,7 +186,7 @@
                         <th class="col-xs-1" data-field="requiredIllumination">Требуемая </br> освещенность</th>
                         <th class="col-xs-1" data-field="reflectionCoef">Коэффициэнт </br> отражения</th>
                         <th class="col-xs-1" data-field="safetyFactor">Коэффициэнт </br> запаса</th>
-                        <th class="col-xs-1" data-field="powerLamp">Мощность </br> 1 светильника</th>
+                        <th class="col-xs-1" data-field="allPowerLamps">Мощность </br> 1 светильника</th>
                         <th class="col-xs-1" data-field="lampsWatt">Мощность всех </br> светильников</th>             
                     </tr>
                 </thead>
@@ -331,7 +332,7 @@
     </div>
 
     <!-- build:js scripts/widget_vendor.js -->
-    <!-- <script src="bower_components/jquery-ui/jquery-ui.js"></script> -->
+    <script src="bower_components/lodash/lodash.js"></script>
     <script type="text/javascript" src="bower_components/bootstrap3-typeahead/bootstrap3-typeahead.js"></script>
     <script src="bower_components/bootstrap-less/js/dropdown.js"></script>
     <script src="bower_components/bootstrap-less/js/tooltip.js"></script>
