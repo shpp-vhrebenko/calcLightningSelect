@@ -96,7 +96,7 @@
                   </td>
                   <td class="input col-md-2">
                     <select class="room input-sm" id="reflectionCoef" name="reflectionCoef" required>
-                      <option value="" selected>Выберите значение коэффициента отражения</option>
+                      <option value="" selected>Выберите значение коэффициента отражения</option>                      
                       <option value="0,0,0">Пол-0%, стены-0%, потолок-0%</option>                   
                       <option value="30,30,10">Пол-30%, стены-30%, потолок-10%</option>
                       <option value="50,30,10">Пол-50%, стены-30%, потолок-10%</option>
@@ -119,6 +119,7 @@
                   <td class="input col-md-2">
                     <select class="room input-sm" id="requiredIllumination" name="requiredIllumination" required>
                       <option value="" selected>Выберите значение освещенности</option>
+                      <option value="1">Значение пользователя</option>
                       <option value="5">Чердаки</option>
                       <option value="100">Лестницы</option>
                       <option value="50">Коридоры</option>
@@ -288,6 +289,7 @@
                           <td class="input">
                             <select class="edit_lamp input-sm" id="requiredIllumination" name="requiredIllumination" required>
                               <option value="" selected>Выберите значение освещенности</option>
+                              <option value="1">Значение пользователя</option>
                               <option value="5">Чердаки</option>
                               <option value="100">Лестницы</option>
                               <option value="50">Коридоры</option>
@@ -305,7 +307,7 @@
                               <option value="300">Читальные залы</option>
                               <option value="300">Учебные аудитории и классы</option>
                               <option value="500">Офисные помещения</option>
-                              <option value="500">Рабочий кабинет</option>                                   
+                              <option value="500">Рабочий кабинет</option>                    
                             </select>
                           </td> 
                           <td class="input">

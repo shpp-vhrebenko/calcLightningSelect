@@ -242,12 +242,14 @@ $('#nameLamp').change(function() {
 
 $('#requiredIllumination').change(function() {
   console.log("chengeRequiredIllumination");
-  var value = $(this).val(); 
-  var valueCustomRequiredIllumination = $('#customRequiredIllumination').val();
-  if(value != valueCustomRequiredIllumination) {
-    $('#customRequiredIllumination').val(value);  
-    $('#customRequiredIllumination').trigger('change');
-  }   
+  var value = $(this).val();
+  if(value != 1) {
+    var valueCustomRequiredIllumination = $('#customRequiredIllumination').val();
+    if(value != valueCustomRequiredIllumination) {
+      $('#customRequiredIllumination').val(value);  
+      $('#customRequiredIllumination').trigger('change');
+    } 
+  }     
 });
 
 $('#customRequiredIllumination').change(function() {
@@ -261,12 +263,19 @@ $('#customRequiredIllumination').change(function() {
     var values = $.map(requireOptions, function(elt, i) {     
       return $(elt).val();
     });
+    var searchValue;
     for (var i = 0; i < values.length; i++) {
-      if(value == values[i]) {      
-        $('#requiredIllumination').val(value);  
-        $('#requiredIllumination').trigger('change');
+      if(value == values[i]) { 
+        searchValue = values[i];         
         break;     
       }
+    }
+    if(searchValue !== undefined) {      
+      $('#requiredIllumination').val(searchValue);  
+      $('#requiredIllumination').trigger('change');
+    } else {     
+      $('#requiredIllumination').val("1");
+      $('#requiredIllumination').trigger('change');       
     }
   }
     

@@ -29,12 +29,14 @@ $('#myModal').on('shown.bs.modal', function () {
 
   $('#editLamp').on('change', '#requiredIllumination', function() { 
     console.log("chengeRequiredIllumination_modalWindow");
-    var value = $(this).val(); 
-    var valueCustomRequiredIllumination = $('#editLamp').find('#customRequiredIllumination').val();
-    if(value != valueCustomRequiredIllumination) {
-      $('#editLamp').find('#customRequiredIllumination').val(value);
-      $('#editLamp').find('#customRequiredIllumination').trigger('change');
-    }     
+    var value = $(this).val();
+    if(value != 1) {
+      var valueCustomRequiredIllumination = $('#editLamp').find('#customRequiredIllumination').val();
+      if(value != valueCustomRequiredIllumination) {
+        $('#editLamp').find('#customRequiredIllumination').val(value);
+        $('#editLamp').find('#customRequiredIllumination').trigger('change');
+      }  
+    }       
   });   
 
   $('#editLamp').on('change', '#customRequiredIllumination', function() { 
@@ -48,13 +50,20 @@ $('#myModal').on('shown.bs.modal', function () {
       var values = $.map(requireOptions, function(elt, i) {     
         return $(elt).val();
       });
+      var searchValue;
       for (var i = 0; i < values.length; i++) {
-        if(value == values[i]) {      
-          $('#editLamp').find('#requiredIllumination').val(value);  
-          $('#editLamp').find('#requiredIllumination').trigger('change');
+        if(value == values[i]) { 
+          searchValue = values[i];         
           break;     
         }
-      }        
+      }
+      if(searchValue !== undefined) {      
+        $('#editLamp').find('#requiredIllumination').val(searchValue);  
+        $('#editLamp').find('#requiredIllumination').trigger('change');
+      } else {  
+        $('#editLamp').find('#requiredIllumination').val("1");        
+        $('#editLamp').find('#requiredIllumination').trigger('change');       
+      }              
     }     
   }); 
 
@@ -77,7 +86,7 @@ $('#myModal').on('shown.bs.modal', function () {
     });     
   });*/ 
 
-   $('#editLamp').on('change', '#nameLamp', function() {    
+  $('#editLamp').on('change', '#nameLamp', function() {    
     var value = $(this).val();
     if(value !== null) {
       var $option = $('option[value="'+value+'"]');     
@@ -217,12 +226,32 @@ function initFormEdit(parameters) {
     editLamp[key] = value;
     if(key == "photoLink") {
       var $photo_lamp = $('#myModal').find('img#js_photo_lamp');
-        $photo_lamp.attr('src',value);
-      }            
-    var $currentInput = $('form#editLamp').find('input#' + key);     
-    var $currentSelect = $('form#editLamp').find('select#' + key);                        
-    $currentInput.val(value);
-    $currentSelect.val(value);   
+      $photo_lamp.attr('src',value);
+    } else if(key == "requiredIllumination") {
+      var requireOptions = $('#editLamp').find('#requiredIllumination option');
+      // Next, translate that into an array of just the values
+      var values = $.map(requireOptions, function(elt, i) {     
+        return $(elt).val();
+      });
+      var searchValue;
+      for (var i = 0; i < values.length; i++) {
+        if(value == values[i]) { 
+          searchValue = values[i];         
+          break;     
+        }
+      }
+      if(searchValue !== undefined) {      
+        $('#editLamp').find('#requiredIllumination').val(searchValue);        
+      } else {  
+        $('#editLamp').find('#requiredIllumination').val("1");                
+      } 
+    } else {
+      var $currentInput = $('form#editLamp').find('input#' + key);     
+      var $currentSelect = $('form#editLamp').find('select#' + key);                        
+      $currentInput.val(value);
+      $currentSelect.val(value);  
+    }               
+     
   });
   current_Room.getInstance().setEditLamp(editLamp);    
 }
