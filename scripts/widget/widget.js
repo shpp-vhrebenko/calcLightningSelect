@@ -241,7 +241,7 @@ $('#nameLamp').change(function() {
 });
 
 $('#requiredIllumination').change(function() {
-  console.log("chengeRequiredIllumination");
+  //console.log("chengeRequiredIllumination");
   var value = $(this).val();
   if(value != 1) {
     var valueCustomRequiredIllumination = $('#customRequiredIllumination').val();
@@ -253,7 +253,7 @@ $('#requiredIllumination').change(function() {
 });
 
 $('#customRequiredIllumination').change(function() {
-  console.log("chengeCustomRequiredIllumination");
+  //console.log("chengeCustomRequiredIllumination");
   var value = $(this).val();  
   var valueRequiredIllumination = $('#requiredIllumination').val();
   if(value != valueRequiredIllumination) {
@@ -282,7 +282,7 @@ $('#customRequiredIllumination').change(function() {
 });
 
 $('.room').change(function () { 
-  console.log("changeRoom");
+  //console.log("changeRoom");
   parameters[$(this).attr('id')] = $(this).val();
   localDataLamp.parameters = parameters;       
   localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));

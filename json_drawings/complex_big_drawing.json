@@ -1,0 +1,3851 @@
+{
+  "floors": [
+    {
+      "rooms": [
+        {
+          "id": null,
+          "furniture": [],
+          "closedRoom": true,
+          "roomID": "f2550c83-766c-4431-bb34-e9f338e02f32",
+          "room_type": "undefined",
+          "room_name": "",
+          "room_number": "",
+          "room_zone": "",
+          "room_area": "7.2",
+          "area_coords": {
+            "x": 1485.2,
+            "y": 1473.2
+          },
+          "walls": [
+            {
+              "id": "ab5783d6-9dd0-4eed-a3c4-5fee2ad246b4",
+              "inner": {
+                "start": {
+                  "x": 1581.73,
+                  "y": 1529.73
+                },
+                "end": {
+                  "x": 1581.73,
+                  "y": 1423.27
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1588.27,
+                  "y": 1536.27
+                },
+                "end": {
+                  "x": 1588.27,
+                  "y": 1416.73
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1585,
+                  "y": 1533
+                },
+                "end": {
+                  "x": 1585,
+                  "y": 1420
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 2054,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "9df14972-58b1-4f37-aa3b-13d8ee67f69b",
+                  "inner": {
+                    "start": {
+                      "x": 1581.73,
+                      "y": 1506.83
+                    },
+                    "end": {
+                      "x": 1581.73,
+                      "y": 1435.33
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 1588.27,
+                      "y": 1506.83
+                    },
+                    "end": {
+                      "x": 1588.27,
+                      "y": 1435.33
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 1549,
+                    "y": 1467.78
+                  },
+                  "cellAngle": 90,
+                  "flipped": false,
+                  "type": "floorWindow",
+                  "systype": "floorWindow",
+                  "height": 82.5,
+                  "heightAboveFloor": 45.65
+                }
+              ],
+              "external_wall": true,
+              "room_wall_num": 1,
+              "outer_wall_num": 101
+            },
+            {
+              "id": "9707d846-b97c-4f15-9046-33fa01dbf91a",
+              "inner": {
+                "start": {
+                  "x": 1581.73,
+                  "y": 1423.27
+                },
+                "end": {
+                  "x": 1395.27,
+                  "y": 1423.27
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1588.27,
+                  "y": 1416.73
+                },
+                "end": {
+                  "x": 1388.73,
+                  "y": 1416.73
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1585,
+                  "y": 1420
+                },
+                "end": {
+                  "x": 1392,
+                  "y": 1420
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 3509,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [],
+              "external_wall": false,
+              "room_wall_num": 2
+            },
+            {
+              "id": "b4c40e61-c22b-4fd7-8fc0-f3876a0f85be",
+              "inner": {
+                "start": {
+                  "x": 1395.27,
+                  "y": 1423.27
+                },
+                "end": {
+                  "x": 1395.27,
+                  "y": 1529.73
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1388.73,
+                  "y": 1416.73
+                },
+                "end": {
+                  "x": 1388.73,
+                  "y": 1536.27
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1392,
+                  "y": 1420
+                },
+                "end": {
+                  "x": 1392,
+                  "y": 1533
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 2054,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "9dcf4d1f-6f00-479f-bbe7-e3def3a3cf5e",
+                  "inner": {
+                    "start": {
+                      "x": 1395.27,
+                      "y": 1476.02
+                    },
+                    "end": {
+                      "x": 1395.27,
+                      "y": 1520.02
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 1388.73,
+                      "y": 1476.02
+                    },
+                    "end": {
+                      "x": 1388.73,
+                      "y": 1520.02
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 1388.7,
+                    "y": 1476.02
+                  },
+                  "cellAngle": 90,
+                  "flipped": false,
+                  "type": "floorDoor",
+                  "systype": "floorDoor",
+                  "height": 115.5,
+                  "heightAboveFloor": 5.5
+                }
+              ],
+              "external_wall": false,
+              "room_wall_num": 3
+            },
+            {
+              "id": "d0ddc2e5-321f-4267-ad60-38620d9ced02",
+              "mount_type": "",
+              "inner": {
+                "start": {
+                  "x": 1395.27,
+                  "y": 1529.73
+                },
+                "end": {
+                  "x": 1581.73,
+                  "y": 1529.73
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1388.73,
+                  "y": 1536.27
+                },
+                "end": {
+                  "x": 1588.27,
+                  "y": 1536.27
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1392,
+                  "y": 1533
+                },
+                "end": {
+                  "x": 1585,
+                  "y": 1533
+                }
+              },
+              "arcPath": null,
+              "wall_length_mm": 3509,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [],
+              "external_wall": true,
+              "room_wall_num": 4,
+              "outer_wall_num": 102
+            }
+          ],
+          "elements": [
+            {
+              "position": {
+                "x": 1549,
+                "y": 1467.78
+              },
+              "size": {
+                "width": 72,
+                "height": 6.6
+              },
+              "angle": 90,
+              "id": "e457da72-3867-44ed-90f9-a30820c96812",
+              "basic_class": "plan",
+              "sysname": "floorWindow",
+              "guid": "2d21326c-2637-4019-a2ea-6e0048c1ea52",
+              "markup": "<g class=\"rotatable\"><g class=\"scalable\"><circle r=\"1\" cy=\"50\" cx=\"50\" class=\"connector\"/>  <rect id=\"svg_2\" height=\"94.16667\" width=\"96.83333\" y=\"2.66667\" x=\"2.25\" stroke-linecap=\"null\" stroke-linejoin=\"null\" stroke-dasharray=\"null\" stroke-width=\"0\" stroke=\"#000000\" fill=\"white\"/>\n  <line id=\"svg_9\" y2=\"49\" x2=\"90.5\" y1=\"49.5\" x1=\"11\" stroke-linecap=\"null\" stroke-linejoin=\"null\" stroke-dasharray=\"null\" stroke-width=\"2\" stroke=\"#000000\" fill=\"none\"/>\n  <line id=\"svg_10\" y2=\"61\" x2=\"91\" y1=\"39.5\" x1=\"90.5\" stroke-linecap=\"null\" stroke-linejoin=\"null\" stroke-dasharray=\"null\" stroke-width=\"2\" stroke=\"#000000\" fill=\"none\"/>\n  <line id=\"svg_11\" y2=\"60.5\" x2=\"10.5\" y1=\"39.5\" x1=\"10\" stroke-linecap=\"null\" stroke-linejoin=\"null\" stroke-dasharray=\"null\" stroke-width=\"2\" stroke=\"#000000\" fill=\"none\"/></g><text /></g>",
+              "elementTitle": "Окно",
+              "type": "plan.Element",
+              "resize": "false",
+              "_elevationCategory": "other",
+              "idx": 3,
+              "sortRR": "14",
+              "angle_z": 0,
+              "radius": {
+                "value": 0,
+                "need": false
+              },
+              "cell_items": [],
+              "_isTerminal": false,
+              "attrs": {
+                ".connector": {
+                  "magnet": "true",
+                  "fill": "transparent"
+                },
+                ".elem_title": {
+                  "fill": "#000000",
+                  "font-size": 12,
+                  "ref-x": 60,
+                  "ref-y": 20,
+                  "ref": "rect",
+                  "y-alignment": "middle",
+                  "x-alignment": "middle"
+                },
+                "text": {
+                  "text": "",
+                  "font-size": 12,
+                  "ref-x": 20,
+                  "ref": ".connector"
+                }
+              },
+              "z": 5,
+              "resources": [],
+              "takeOffLink": "ab5783d6-9dd0-4eed-a3c4-5fee2ad246b4",
+              "aperture": "9df14972-58b1-4f37-aa3b-13d8ee67f69b",
+              "_activeLayers": [
+                "12e5d9a1-8749-48ee-bdfb-3131b0bf466c"
+              ]
+            }
+          ]
+        },
+        {
+          "id": null,
+          "furniture": [],
+          "closedRoom": true,
+          "roomID": "1c14a881-a55f-4921-bd6b-df030d961d73",
+          "room_type": "undefined",
+          "room_name": "",
+          "room_number": "",
+          "room_zone": "",
+          "room_area": "4.8",
+          "area_coords": {
+            "x": 1532.2,
+            "y": 1238.7
+          },
+          "walls": [
+            {
+              "id": "71be8387-e94e-4ce0-9c42-75968a521fdf",
+              "inner": {
+                "start": {
+                  "x": 1581.73,
+                  "y": 1172.27
+                },
+                "end": {
+                  "x": 1489.27,
+                  "y": 1172.27
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1588.27,
+                  "y": 1165.73
+                },
+                "end": {
+                  "x": 1482.73,
+                  "y": 1165.73
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1585,
+                  "y": 1169
+                },
+                "end": {
+                  "x": 1486,
+                  "y": 1169
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 1799,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "aa85efda-c86f-4eca-83b9-f9e22acfce8b",
+                  "inner": {
+                    "start": {
+                      "x": 1577.81,
+                      "y": 1172.27
+                    },
+                    "end": {
+                      "x": 1506.31,
+                      "y": 1172.27
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 1577.81,
+                      "y": 1165.73
+                    },
+                    "end": {
+                      "x": 1506.31,
+                      "y": 1165.73
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 1506.06,
+                    "y": 1165.7
+                  },
+                  "cellAngle": 0,
+                  "flipped": false,
+                  "type": "floorWindow",
+                  "systype": "floorWindow",
+                  "height": 82.5,
+                  "heightAboveFloor": 45.65
+                }
+              ],
+              "external_wall": true,
+              "room_wall_num": 1,
+              "outer_wall_num": 110
+            },
+            {
+              "id": "b03396a1-aa19-4a45-9b2a-9847dc9a51ee",
+              "inner": {
+                "start": {
+                  "x": 1489.27,
+                  "y": 1172.27
+                },
+                "end": {
+                  "x": 1489.27,
+                  "y": 1311.73
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1482.73,
+                  "y": 1165.73
+                },
+                "end": {
+                  "x": 1482.73,
+                  "y": 1318.27
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1486,
+                  "y": 1169
+                },
+                "end": {
+                  "x": 1486,
+                  "y": 1315
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 2654,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [],
+              "external_wall": false,
+              "room_wall_num": 2
+            },
+            {
+              "id": "acd14836-7583-406e-a5c0-a8b9d3ce14eb",
+              "inner": {
+                "start": {
+                  "x": 1489.27,
+                  "y": 1311.73
+                },
+                "end": {
+                  "x": 1581.73,
+                  "y": 1311.73
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1482.73,
+                  "y": 1318.27
+                },
+                "end": {
+                  "x": 1588.27,
+                  "y": 1318.27
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1486,
+                  "y": 1315
+                },
+                "end": {
+                  "x": 1585,
+                  "y": 1315
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 1799,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "7ee615ca-143e-43f0-8a23-076c1f1577db",
+                  "inner": {
+                    "start": {
+                      "x": 1522.04,
+                      "y": 1311.73
+                    },
+                    "end": {
+                      "x": 1566.04,
+                      "y": 1311.73
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 1522.04,
+                      "y": 1318.27
+                    },
+                    "end": {
+                      "x": 1566.04,
+                      "y": 1318.27
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 1522.04,
+                    "y": 1274.3
+                  },
+                  "cellAngle": 0,
+                  "flipped": false,
+                  "type": "floorDoor",
+                  "systype": "floorDoor",
+                  "height": 115.5,
+                  "heightAboveFloor": 5.5
+                }
+              ],
+              "external_wall": false,
+              "room_wall_num": 3
+            },
+            {
+              "id": "a2870bba-2f4a-4107-b211-638afd0fdbb4",
+              "mount_type": "",
+              "inner": {
+                "start": {
+                  "x": 1581.73,
+                  "y": 1311.73
+                },
+                "end": {
+                  "x": 1581.73,
+                  "y": 1172.27
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1588.27,
+                  "y": 1318.27
+                },
+                "end": {
+                  "x": 1588.27,
+                  "y": 1165.73
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1585,
+                  "y": 1315
+                },
+                "end": {
+                  "x": 1585,
+                  "y": 1169
+                }
+              },
+              "arcPath": null,
+              "wall_length_mm": 2654,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [],
+              "external_wall": true,
+              "room_wall_num": 4,
+              "outer_wall_num": 101
+            }
+          ],
+          "elements": [
+            {
+              "position": {
+                "x": 1522.04,
+                "y": 1274.3
+              },
+              "size": {
+                "width": 44,
+                "height": 44
+              },
+              "angle": 0,
+              "id": "d2e7c6b2-b590-4b13-bdf8-90e0104e29a7",
+              "basic_class": "plan",
+              "sysname": "floorDoor",
+              "guid": "1ebe2a3e-2567-4105-826a-e014b516b83b",
+              "markup": "<g class=\"rotatable\"><g class=\"scalable\"><circle r=\"1\" cy=\"50\" cx=\"50\" class=\"connector\"/><rect x=\"0\" y=\"0\" stroke=\"white\" style=\"stroke-width: 1px;\" width=\"100\" height=\"100\" fill=\"white\"/><path class=\"door_path\" d=\"M92 89 Q 92 50 65 27\" stroke=\"black\" style=\"fill: none; stroke-width: 2px;\"></path><path class=\"door_blade\" d=\"M10 90 L 62 22 65 25 13 93 Z\" stroke=\"black\" style=\"stroke-width: 1px;\" fill=\"silver\"></path><rect class=\"door_trunk\" x=\"0\" y=\"90\" stroke=\"black\" style=\"stroke-width: 1px;\" width=\"100\" height=\"10\" fill=\"white\"></rect></g><text /></g>",
+              "elementTitle": "Дверь ",
+              "type": "plan.Element",
+              "resize": "false",
+              "_elevationCategory": "other",
+              "idx": 1,
+              "sortRR": "14",
+              "angle_z": 0,
+              "radius": {
+                "value": 0,
+                "need": false
+              },
+              "cell_items": [],
+              "_isTerminal": false,
+              "attrs": {
+                ".connector": {
+                  "magnet": "true",
+                  "fill": "transparent"
+                },
+                ".elem_title": {
+                  "fill": "#000000",
+                  "font-size": 12,
+                  "ref-x": 60,
+                  "ref-y": 20,
+                  "ref": "rect",
+                  "y-alignment": "middle",
+                  "x-alignment": "middle"
+                },
+                "text": {
+                  "text": "",
+                  "font-size": 12,
+                  "ref-x": 20,
+                  "ref": ".connector"
+                }
+              },
+              "z": 5,
+              "resources": [],
+              "takeOffLink": "acd14836-7583-406e-a5c0-a8b9d3ce14eb",
+              "aperture": "7ee615ca-143e-43f0-8a23-076c1f1577db",
+              "_activeLayers": [
+                "12e5d9a1-8749-48ee-bdfb-3131b0bf466c"
+              ]
+            }
+          ]
+        },
+        {
+          "id": null,
+          "furniture": [],
+          "closedRoom": true,
+          "roomID": "f41c9db0-183b-4d2e-a366-17e3f29895d3",
+          "room_type": "undefined",
+          "room_name": "",
+          "room_number": "",
+          "room_zone": "",
+          "room_area": "4.5",
+          "area_coords": {
+            "x": 1435.7,
+            "y": 1238.7
+          },
+          "walls": [
+            {
+              "id": "b629b936-5ac6-4c47-adc0-94f15786d9a5",
+              "inner": {
+                "start": {
+                  "x": 1395.27,
+                  "y": 1172.27
+                },
+                "end": {
+                  "x": 1395.27,
+                  "y": 1311.73
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1388.73,
+                  "y": 1165.73
+                },
+                "end": {
+                  "x": 1388.73,
+                  "y": 1318.27
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1392,
+                  "y": 1169
+                },
+                "end": {
+                  "x": 1392,
+                  "y": 1315
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 2654,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [],
+              "external_wall": false,
+              "room_wall_num": 1
+            },
+            {
+              "id": "3a5689df-f16b-4256-be00-86fde9342b24",
+              "inner": {
+                "start": {
+                  "x": 1395.27,
+                  "y": 1311.73
+                },
+                "end": {
+                  "x": 1482.73,
+                  "y": 1311.73
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1388.73,
+                  "y": 1318.27
+                },
+                "end": {
+                  "x": 1489.27,
+                  "y": 1318.27
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1392,
+                  "y": 1315
+                },
+                "end": {
+                  "x": 1486,
+                  "y": 1315
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 1709,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "28bb5ce9-2a10-4f8b-85a3-153b2b399e46",
+                  "inner": {
+                    "start": {
+                      "x": 1418.05,
+                      "y": 1311.73
+                    },
+                    "end": {
+                      "x": 1462.05,
+                      "y": 1311.73
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 1418.05,
+                      "y": 1318.27
+                    },
+                    "end": {
+                      "x": 1462.05,
+                      "y": 1318.27
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 1418.05,
+                    "y": 1274.3
+                  },
+                  "cellAngle": 0,
+                  "flipped": false,
+                  "type": "floorDoor",
+                  "systype": "floorDoor",
+                  "height": 115.5,
+                  "heightAboveFloor": 5.5
+                }
+              ],
+              "external_wall": false,
+              "room_wall_num": 2
+            },
+            {
+              "id": "b03396a1-aa19-4a45-9b2a-9847dc9a51ee",
+              "inner": {
+                "start": {
+                  "x": 1482.73,
+                  "y": 1311.73
+                },
+                "end": {
+                  "x": 1482.73,
+                  "y": 1172.27
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1489.27,
+                  "y": 1318.27
+                },
+                "end": {
+                  "x": 1489.27,
+                  "y": 1165.73
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1486,
+                  "y": 1315
+                },
+                "end": {
+                  "x": 1486,
+                  "y": 1169
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 2654,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [],
+              "external_wall": false,
+              "room_wall_num": 3
+            },
+            {
+              "id": "de3690bd-d416-4425-9426-151279bbfeff",
+              "mount_type": "",
+              "inner": {
+                "start": {
+                  "x": 1482.73,
+                  "y": 1172.27
+                },
+                "end": {
+                  "x": 1395.27,
+                  "y": 1172.27
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1489.27,
+                  "y": 1165.73
+                },
+                "end": {
+                  "x": 1388.73,
+                  "y": 1165.73
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1486,
+                  "y": 1169
+                },
+                "end": {
+                  "x": 1392,
+                  "y": 1169
+                }
+              },
+              "arcPath": null,
+              "wall_length_mm": 1709,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "d7a76235-c157-43d8-bb7b-cbb53fe28313",
+                  "inner": {
+                    "start": {
+                      "x": 1474.75,
+                      "y": 1172.27
+                    },
+                    "end": {
+                      "x": 1403.25,
+                      "y": 1172.27
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 1474.75,
+                      "y": 1165.73
+                    },
+                    "end": {
+                      "x": 1403.25,
+                      "y": 1165.73
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 1403,
+                    "y": 1166
+                  },
+                  "cellAngle": 0,
+                  "flipped": false,
+                  "type": "floorWindow",
+                  "systype": "floorWindow",
+                  "height": 82.5,
+                  "heightAboveFloor": 45.65
+                }
+              ],
+              "external_wall": true,
+              "room_wall_num": 4,
+              "outer_wall_num": 110
+            }
+          ],
+          "elements": [
+            {
+              "position": {
+                "x": 1418.05,
+                "y": 1274.3
+              },
+              "size": {
+                "width": 44,
+                "height": 44
+              },
+              "angle": 0,
+              "id": "3369d39a-edc6-435d-a067-527e2b465aa8",
+              "basic_class": "plan",
+              "sysname": "floorDoor",
+              "guid": "1ebe2a3e-2567-4105-826a-e014b516b83b",
+              "markup": "<g class=\"rotatable\"><g class=\"scalable\"><circle r=\"1\" cy=\"50\" cx=\"50\" class=\"connector\"/><rect x=\"0\" y=\"0\" stroke=\"white\" style=\"stroke-width: 1px;\" width=\"100\" height=\"100\" fill=\"white\"/><path class=\"door_path\" d=\"M92 89 Q 92 50 65 27\" stroke=\"black\" style=\"fill: none; stroke-width: 2px;\"></path><path class=\"door_blade\" d=\"M10 90 L 62 22 65 25 13 93 Z\" stroke=\"black\" style=\"stroke-width: 1px;\" fill=\"silver\"></path><rect class=\"door_trunk\" x=\"0\" y=\"90\" stroke=\"black\" style=\"stroke-width: 1px;\" width=\"100\" height=\"10\" fill=\"white\"></rect></g><text /></g>",
+              "elementTitle": "Дверь ",
+              "type": "plan.Element",
+              "resize": "false",
+              "_elevationCategory": "other",
+              "idx": 1,
+              "sortRR": "14",
+              "angle_z": 0,
+              "radius": {
+                "value": 0,
+                "need": false
+              },
+              "cell_items": [],
+              "_isTerminal": false,
+              "attrs": {
+                ".connector": {
+                  "magnet": "true",
+                  "fill": "transparent"
+                },
+                ".elem_title": {
+                  "fill": "#000000",
+                  "font-size": 12,
+                  "ref-x": 60,
+                  "ref-y": 20,
+                  "ref": "rect",
+                  "y-alignment": "middle",
+                  "x-alignment": "middle"
+                },
+                "text": {
+                  "text": "",
+                  "font-size": 12,
+                  "ref-x": 20,
+                  "ref": ".connector"
+                }
+              },
+              "z": 5,
+              "resources": [],
+              "takeOffLink": "3a5689df-f16b-4256-be00-86fde9342b24",
+              "aperture": "28bb5ce9-2a10-4f8b-85a3-153b2b399e46",
+              "_activeLayers": [
+                "12e5d9a1-8749-48ee-bdfb-3131b0bf466c"
+              ]
+            }
+          ]
+        },
+        {
+          "id": null,
+          "furniture": [],
+          "closedRoom": true,
+          "roomID": "8726f5f6-4071-4eb4-adf4-c6752b170c0d",
+          "room_type": "undefined",
+          "room_name": "",
+          "room_number": "",
+          "room_zone": "",
+          "room_area": "6.7",
+          "area_coords": {
+            "x": 1485.2,
+            "y": 1364.2
+          },
+          "walls": [
+            {
+              "id": "c0219063-d4b9-4b6f-9b31-65b8c7e64c46",
+              "inner": {
+                "start": {
+                  "x": 1395.27,
+                  "y": 1416.73
+                },
+                "end": {
+                  "x": 1395.27,
+                  "y": 1318.27
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1388.73,
+                  "y": 1423.27
+                },
+                "end": {
+                  "x": 1388.73,
+                  "y": 1311.73
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1392,
+                  "y": 1420
+                },
+                "end": {
+                  "x": 1392,
+                  "y": 1315
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 1909,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "617c849a-4e38-410d-92a7-217f853bd27b",
+                  "inner": {
+                    "start": {
+                      "x": 1395.27,
+                      "y": 1399.03
+                    },
+                    "end": {
+                      "x": 1395.27,
+                      "y": 1355.03
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 1388.73,
+                      "y": 1399.03
+                    },
+                    "end": {
+                      "x": 1388.73,
+                      "y": 1355.03
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 1388.7,
+                    "y": 1355.03
+                  },
+                  "cellAngle": 90,
+                  "flipped": false,
+                  "type": "floorDoor",
+                  "systype": "floorDoor",
+                  "height": 115.5,
+                  "heightAboveFloor": 5.5
+                }
+              ],
+              "external_wall": false,
+              "room_wall_num": 1
+            },
+            {
+              "id": "3a5689df-f16b-4256-be00-86fde9342b24",
+              "inner": {
+                "start": {
+                  "x": 1395.27,
+                  "y": 1318.27
+                },
+                "end": {
+                  "x": 1486,
+                  "y": 1318.27
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1388.73,
+                  "y": 1311.73
+                },
+                "end": {
+                  "x": 1486,
+                  "y": 1311.73
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1392,
+                  "y": 1315
+                },
+                "end": {
+                  "x": 1486,
+                  "y": 1315
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 1709,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "28bb5ce9-2a10-4f8b-85a3-153b2b399e46",
+                  "inner": {
+                    "start": {
+                      "x": 1418.05,
+                      "y": 1318.27
+                    },
+                    "end": {
+                      "x": 1462.05,
+                      "y": 1318.27
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 1418.05,
+                      "y": 1311.73
+                    },
+                    "end": {
+                      "x": 1462.05,
+                      "y": 1311.73
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 1418.05,
+                    "y": 1274.3
+                  },
+                  "cellAngle": 0,
+                  "flipped": false,
+                  "type": "floorDoor",
+                  "systype": "floorDoor",
+                  "height": 115.5,
+                  "heightAboveFloor": 5.5
+                }
+              ],
+              "external_wall": false,
+              "room_wall_num": 2
+            },
+            {
+              "id": "acd14836-7583-406e-a5c0-a8b9d3ce14eb",
+              "inner": {
+                "start": {
+                  "x": 1486,
+                  "y": 1318.27
+                },
+                "end": {
+                  "x": 1581.73,
+                  "y": 1318.27
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1486,
+                  "y": 1311.73
+                },
+                "end": {
+                  "x": 1588.27,
+                  "y": 1311.73
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1486,
+                  "y": 1315
+                },
+                "end": {
+                  "x": 1585,
+                  "y": 1315
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 1799,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "7ee615ca-143e-43f0-8a23-076c1f1577db",
+                  "inner": {
+                    "start": {
+                      "x": 1522.04,
+                      "y": 1318.27
+                    },
+                    "end": {
+                      "x": 1566.04,
+                      "y": 1318.27
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 1522.04,
+                      "y": 1311.73
+                    },
+                    "end": {
+                      "x": 1566.04,
+                      "y": 1311.73
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 1522.04,
+                    "y": 1274.3
+                  },
+                  "cellAngle": 0,
+                  "flipped": false,
+                  "type": "floorDoor",
+                  "systype": "floorDoor",
+                  "height": 115.5,
+                  "heightAboveFloor": 5.5
+                }
+              ],
+              "external_wall": false,
+              "room_wall_num": 2
+            },
+            {
+              "id": "54ddbc13-4c92-4e6b-a79d-dfd735ec3b4a",
+              "inner": {
+                "start": {
+                  "x": 1581.73,
+                  "y": 1318.27
+                },
+                "end": {
+                  "x": 1581.73,
+                  "y": 1416.73
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1588.27,
+                  "y": 1311.73
+                },
+                "end": {
+                  "x": 1588.27,
+                  "y": 1423.27
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1585,
+                  "y": 1315
+                },
+                "end": {
+                  "x": 1585,
+                  "y": 1420
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 1909,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "a2ed703a-b549-4a2e-947c-e0bbce4089cb",
+                  "inner": {
+                    "start": {
+                      "x": 1581.73,
+                      "y": 1325.55
+                    },
+                    "end": {
+                      "x": 1581.73,
+                      "y": 1397.05
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 1588.27,
+                      "y": 1325.55
+                    },
+                    "end": {
+                      "x": 1588.27,
+                      "y": 1397.05
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 1549,
+                    "y": 1358
+                  },
+                  "cellAngle": 90,
+                  "flipped": false,
+                  "type": "floorWindow",
+                  "systype": "floorWindow",
+                  "height": 82.5,
+                  "heightAboveFloor": 45.65
+                }
+              ],
+              "external_wall": true,
+              "room_wall_num": 3,
+              "outer_wall_num": 101
+            },
+            {
+              "id": "9707d846-b97c-4f15-9046-33fa01dbf91a",
+              "mount_type": "",
+              "inner": {
+                "start": {
+                  "x": 1581.73,
+                  "y": 1416.73
+                },
+                "end": {
+                  "x": 1395.27,
+                  "y": 1416.73
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1588.27,
+                  "y": 1423.27
+                },
+                "end": {
+                  "x": 1388.73,
+                  "y": 1423.27
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1585,
+                  "y": 1420
+                },
+                "end": {
+                  "x": 1392,
+                  "y": 1420
+                }
+              },
+              "arcPath": null,
+              "wall_length_mm": 3509,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [],
+              "external_wall": false,
+              "room_wall_num": 4
+            }
+          ],
+          "elements": [
+            {
+              "position": {
+                "x": 1549,
+                "y": 1358
+              },
+              "size": {
+                "width": 72,
+                "height": 6.6
+              },
+              "angle": 90,
+              "id": "4abd6e8d-998e-4c36-9c2a-9a7beb44ec8e",
+              "basic_class": "plan",
+              "sysname": "floorWindow",
+              "guid": "2d21326c-2637-4019-a2ea-6e0048c1ea52",
+              "markup": "<g class=\"rotatable\"><g class=\"scalable\"><circle r=\"1\" cy=\"50\" cx=\"50\" class=\"connector\"/>  <rect id=\"svg_2\" height=\"94.16667\" width=\"96.83333\" y=\"2.66667\" x=\"2.25\" stroke-linecap=\"null\" stroke-linejoin=\"null\" stroke-dasharray=\"null\" stroke-width=\"0\" stroke=\"#000000\" fill=\"white\"/>\n  <line id=\"svg_9\" y2=\"49\" x2=\"90.5\" y1=\"49.5\" x1=\"11\" stroke-linecap=\"null\" stroke-linejoin=\"null\" stroke-dasharray=\"null\" stroke-width=\"2\" stroke=\"#000000\" fill=\"none\"/>\n  <line id=\"svg_10\" y2=\"61\" x2=\"91\" y1=\"39.5\" x1=\"90.5\" stroke-linecap=\"null\" stroke-linejoin=\"null\" stroke-dasharray=\"null\" stroke-width=\"2\" stroke=\"#000000\" fill=\"none\"/>\n  <line id=\"svg_11\" y2=\"60.5\" x2=\"10.5\" y1=\"39.5\" x1=\"10\" stroke-linecap=\"null\" stroke-linejoin=\"null\" stroke-dasharray=\"null\" stroke-width=\"2\" stroke=\"#000000\" fill=\"none\"/></g><text /></g>",
+              "elementTitle": "Окно",
+              "type": "plan.Element",
+              "resize": "false",
+              "_elevationCategory": "other",
+              "idx": 3,
+              "sortRR": "14",
+              "angle_z": 0,
+              "radius": {
+                "value": 0,
+                "need": false
+              },
+              "cell_items": [],
+              "_isTerminal": false,
+              "attrs": {
+                ".connector": {
+                  "magnet": "true",
+                  "fill": "transparent"
+                },
+                ".elem_title": {
+                  "fill": "#000000",
+                  "font-size": 12,
+                  "ref-x": 60,
+                  "ref-y": 20,
+                  "ref": "rect",
+                  "y-alignment": "middle",
+                  "x-alignment": "middle"
+                },
+                "text": {
+                  "text": "",
+                  "font-size": 12,
+                  "ref-x": 20,
+                  "ref": ".connector"
+                }
+              },
+              "z": 5,
+              "resources": [],
+              "takeOffLink": "54ddbc13-4c92-4e6b-a79d-dfd735ec3b4a",
+              "aperture": "a2ed703a-b549-4a2e-947c-e0bbce4089cb",
+              "_activeLayers": [
+                "12e5d9a1-8749-48ee-bdfb-3131b0bf466c"
+              ]
+            }
+          ]
+        },
+        {
+          "id": null,
+          "furniture": [],
+          "closedRoom": true,
+          "roomID": "2022d5a1-410f-4c0e-9aaf-1fcb7e7d4d61",
+          "room_type": "undefined",
+          "room_name": "",
+          "room_number": "",
+          "room_zone": "",
+          "room_area": "7.7",
+          "area_coords": {
+            "x": 812.7,
+            "y": 1100.7
+          },
+          "walls": [
+            {
+              "id": "f8ea627a-7093-4609-abee-cdf86fb4868f",
+              "inner": {
+                "start": {
+                  "x": 767.27,
+                  "y": 1212.73
+                },
+                "end": {
+                  "x": 864.73,
+                  "y": 1212.73
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 760.73,
+                  "y": 1219.27
+                },
+                "end": {
+                  "x": 871.27,
+                  "y": 1219.27
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 764,
+                  "y": 1216
+                },
+                "end": {
+                  "x": 868,
+                  "y": 1216
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 1890,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [],
+              "external_wall": true,
+              "room_wall_num": 1,
+              "outer_wall_num": 106
+            },
+            {
+              "id": "d04a8dad-fb21-4a2b-85c0-4ed2ad3ef8ba",
+              "inner": {
+                "start": {
+                  "x": 864.73,
+                  "y": 1212.73
+                },
+                "end": {
+                  "x": 864.73,
+                  "y": 1153
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 871.27,
+                  "y": 1219.27
+                },
+                "end": {
+                  "x": 871.27,
+                  "y": 1153
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 868,
+                  "y": 1216
+                },
+                "end": {
+                  "x": 868,
+                  "y": 1153
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 1145,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "984a065d-95ab-45eb-a988-0935318c6de1",
+                  "inner": {
+                    "start": {
+                      "x": 864.73,
+                      "y": 1202
+                    },
+                    "end": {
+                      "x": 864.73,
+                      "y": 1158
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 871.27,
+                      "y": 1202
+                    },
+                    "end": {
+                      "x": 871.27,
+                      "y": 1158
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 864.7,
+                    "y": 1158
+                  },
+                  "cellAngle": 90,
+                  "flipped": false,
+                  "type": "floorDoor",
+                  "systype": "floorDoor",
+                  "height": 115.5,
+                  "heightAboveFloor": 5.5
+                }
+              ],
+              "external_wall": false,
+              "room_wall_num": 2
+            },
+            {
+              "id": "a8909dca-132a-4d99-920d-3e326ec7d078",
+              "inner": {
+                "start": {
+                  "x": 864.73,
+                  "y": 1153
+                },
+                "end": {
+                  "x": 864.73,
+                  "y": 995.27
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 871.27,
+                  "y": 1153
+                },
+                "end": {
+                  "x": 871.27,
+                  "y": 988.73
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 868,
+                  "y": 1153
+                },
+                "end": {
+                  "x": 868,
+                  "y": 992
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 2927,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [],
+              "external_wall": false,
+              "room_wall_num": 2
+            },
+            {
+              "id": "9c5a00f3-eed0-4a92-93d2-46cf9c1b2fbe",
+              "inner": {
+                "start": {
+                  "x": 864.73,
+                  "y": 995.27
+                },
+                "end": {
+                  "x": 767.27,
+                  "y": 995.27
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 871.27,
+                  "y": 988.73
+                },
+                "end": {
+                  "x": 760.73,
+                  "y": 988.73
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 868,
+                  "y": 992
+                },
+                "end": {
+                  "x": 764,
+                  "y": 992
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 1890,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [],
+              "external_wall": true,
+              "room_wall_num": 3,
+              "outer_wall_num": 108
+            },
+            {
+              "id": "3feb094a-c437-4ef8-bfd7-0c377bdcfaa3",
+              "mount_type": "",
+              "inner": {
+                "start": {
+                  "x": 767.27,
+                  "y": 995.27
+                },
+                "end": {
+                  "x": 767.27,
+                  "y": 1212.73
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 760.73,
+                  "y": 988.73
+                },
+                "end": {
+                  "x": 760.73,
+                  "y": 1219.27
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 764,
+                  "y": 992
+                },
+                "end": {
+                  "x": 764,
+                  "y": 1216
+                }
+              },
+              "arcPath": null,
+              "wall_length_mm": 4072,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "60c010be-b125-42ff-aa00-536b7645e7ad",
+                  "inner": {
+                    "start": {
+                      "x": 767.27,
+                      "y": 1078.26
+                    },
+                    "end": {
+                      "x": 767.27,
+                      "y": 1149.76
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 760.73,
+                      "y": 1078.26
+                    },
+                    "end": {
+                      "x": 760.73,
+                      "y": 1149.76
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 728,
+                    "y": 1110.71
+                  },
+                  "cellAngle": 90,
+                  "flipped": false,
+                  "type": "floorWindow",
+                  "systype": "floorWindow",
+                  "height": 82.5,
+                  "heightAboveFloor": 45.65
+                }
+              ],
+              "external_wall": true,
+              "room_wall_num": 4,
+              "outer_wall_num": 107
+            }
+          ],
+          "elements": [
+            {
+              "position": {
+                "x": 864.7,
+                "y": 1158
+              },
+              "size": {
+                "width": 44,
+                "height": 44
+              },
+              "angle": 90,
+              "id": "a871afa6-b891-4848-9e65-572f0c6c7225",
+              "basic_class": "plan",
+              "sysname": "floorDoor",
+              "guid": "1ebe2a3e-2567-4105-826a-e014b516b83b",
+              "markup": "<g class=\"rotatable\"><g class=\"scalable\"><circle r=\"1\" cy=\"50\" cx=\"50\" class=\"connector\"/><rect x=\"0\" y=\"0\" stroke=\"white\" style=\"stroke-width: 1px;\" width=\"100\" height=\"100\" fill=\"white\"/><path class=\"door_path\" d=\"M92 89 Q 92 50 65 27\" stroke=\"black\" style=\"fill: none; stroke-width: 2px;\"></path><path class=\"door_blade\" d=\"M10 90 L 62 22 65 25 13 93 Z\" stroke=\"black\" style=\"stroke-width: 1px;\" fill=\"silver\"></path><rect class=\"door_trunk\" x=\"0\" y=\"90\" stroke=\"black\" style=\"stroke-width: 1px;\" width=\"100\" height=\"10\" fill=\"white\"></rect></g><text /></g>",
+              "elementTitle": "Дверь ",
+              "type": "plan.Element",
+              "resize": "false",
+              "_elevationCategory": "other",
+              "idx": 1,
+              "sortRR": "14",
+              "angle_z": 0,
+              "radius": {
+                "value": 0,
+                "need": false
+              },
+              "cell_items": [],
+              "_isTerminal": false,
+              "attrs": {
+                ".connector": {
+                  "magnet": "true",
+                  "fill": "transparent"
+                },
+                ".elem_title": {
+                  "fill": "#000000",
+                  "font-size": 12,
+                  "ref-x": 60,
+                  "ref-y": 20,
+                  "ref": "rect",
+                  "y-alignment": "middle",
+                  "x-alignment": "middle"
+                },
+                "text": {
+                  "text": "",
+                  "font-size": 12,
+                  "ref-x": 20,
+                  "ref": ".connector"
+                }
+              },
+              "z": 5,
+              "resources": [],
+              "takeOffLink": "d04a8dad-fb21-4a2b-85c0-4ed2ad3ef8ba",
+              "aperture": "984a065d-95ab-45eb-a988-0935318c6de1",
+              "_activeLayers": [
+                "12e5d9a1-8749-48ee-bdfb-3131b0bf466c"
+              ]
+            }
+          ]
+        },
+        {
+          "id": null,
+          "furniture": [],
+          "closedRoom": true,
+          "roomID": "00d486b8-6591-4399-86aa-68f93d791b70",
+          "room_type": "undefined",
+          "room_name": "",
+          "room_number": "",
+          "room_zone": "",
+          "room_area": "8.2",
+          "area_coords": {
+            "x": 941.7,
+            "y": 1069.2
+          },
+          "walls": [
+            {
+              "id": "a8909dca-132a-4d99-920d-3e326ec7d078",
+              "inner": {
+                "start": {
+                  "x": 871.27,
+                  "y": 995.27
+                },
+                "end": {
+                  "x": 871.27,
+                  "y": 1149.73
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 864.73,
+                  "y": 988.73
+                },
+                "end": {
+                  "x": 864.73,
+                  "y": 1156.27
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 868,
+                  "y": 992
+                },
+                "end": {
+                  "x": 868,
+                  "y": 1153
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 2927,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [],
+              "external_wall": false,
+              "room_wall_num": 1
+            },
+            {
+              "id": "b22ba9ce-45d2-4496-87b5-a3f27c4ed617",
+              "inner": {
+                "start": {
+                  "x": 871.27,
+                  "y": 1149.73
+                },
+                "end": {
+                  "x": 1018.73,
+                  "y": 1149.73
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 864.73,
+                  "y": 1156.27
+                },
+                "end": {
+                  "x": 1025.27,
+                  "y": 1156.27
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 868,
+                  "y": 1153
+                },
+                "end": {
+                  "x": 1022,
+                  "y": 1153
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 2799,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "331e34a9-e410-4b8d-b8e7-fecbcd0628f0",
+                  "inner": {
+                    "start": {
+                      "x": 921.02,
+                      "y": 1149.73
+                    },
+                    "end": {
+                      "x": 965.02,
+                      "y": 1149.73
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 921.02,
+                      "y": 1156.27
+                    },
+                    "end": {
+                      "x": 965.02,
+                      "y": 1156.27
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 921.02,
+                    "y": 1112.3
+                  },
+                  "cellAngle": 0,
+                  "flipped": false,
+                  "type": "floorDoor",
+                  "systype": "floorDoor",
+                  "height": 115.5,
+                  "heightAboveFloor": 5.5
+                }
+              ],
+              "external_wall": false,
+              "room_wall_num": 2
+            },
+            {
+              "id": "5116951d-2eaf-4b04-8aba-8f84eceb4709",
+              "inner": {
+                "start": {
+                  "x": 1018.73,
+                  "y": 1149.73
+                },
+                "end": {
+                  "x": 1018.73,
+                  "y": 995.27
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1025.27,
+                  "y": 1156.27
+                },
+                "end": {
+                  "x": 1025.27,
+                  "y": 988.73
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1022,
+                  "y": 1153
+                },
+                "end": {
+                  "x": 1022,
+                  "y": 992
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 2927,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [],
+              "external_wall": false,
+              "room_wall_num": 3
+            },
+            {
+              "id": "cf9789ed-4078-4a41-828d-52c5a24fb117",
+              "mount_type": "",
+              "inner": {
+                "start": {
+                  "x": 1018.73,
+                  "y": 995.27
+                },
+                "end": {
+                  "x": 871.27,
+                  "y": 995.27
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1025.27,
+                  "y": 988.73
+                },
+                "end": {
+                  "x": 864.73,
+                  "y": 988.73
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1022,
+                  "y": 992
+                },
+                "end": {
+                  "x": 868,
+                  "y": 992
+                }
+              },
+              "arcPath": null,
+              "wall_length_mm": 2799,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "b159803d-03e9-4358-9df0-a12ec3cdb9a0",
+                  "inner": {
+                    "start": {
+                      "x": 959.81,
+                      "y": 995.27
+                    },
+                    "end": {
+                      "x": 888.31,
+                      "y": 995.27
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 959.81,
+                      "y": 988.73
+                    },
+                    "end": {
+                      "x": 888.31,
+                      "y": 988.73
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 888.06,
+                    "y": 988.7
+                  },
+                  "cellAngle": 0,
+                  "flipped": false,
+                  "type": "floorWindow",
+                  "systype": "floorWindow",
+                  "height": 82.5,
+                  "heightAboveFloor": 45.65
+                }
+              ],
+              "external_wall": true,
+              "room_wall_num": 4,
+              "outer_wall_num": 108
+            }
+          ],
+          "elements": [
+            {
+              "position": {
+                "x": 921.02,
+                "y": 1112.3
+              },
+              "size": {
+                "width": 44,
+                "height": 44
+              },
+              "angle": 0,
+              "id": "a9bd6573-623e-47dd-ab47-4b85d18c4f33",
+              "basic_class": "plan",
+              "sysname": "floorDoor",
+              "guid": "1ebe2a3e-2567-4105-826a-e014b516b83b",
+              "markup": "<g class=\"rotatable\"><g class=\"scalable\"><circle r=\"1\" cy=\"50\" cx=\"50\" class=\"connector\"/><rect x=\"0\" y=\"0\" stroke=\"white\" style=\"stroke-width: 1px;\" width=\"100\" height=\"100\" fill=\"white\"/><path class=\"door_path\" d=\"M92 89 Q 92 50 65 27\" stroke=\"black\" style=\"fill: none; stroke-width: 2px;\"></path><path class=\"door_blade\" d=\"M10 90 L 62 22 65 25 13 93 Z\" stroke=\"black\" style=\"stroke-width: 1px;\" fill=\"silver\"></path><rect class=\"door_trunk\" x=\"0\" y=\"90\" stroke=\"black\" style=\"stroke-width: 1px;\" width=\"100\" height=\"10\" fill=\"white\"></rect></g><text /></g>",
+              "elementTitle": "Дверь ",
+              "type": "plan.Element",
+              "resize": "false",
+              "_elevationCategory": "other",
+              "idx": 1,
+              "sortRR": "14",
+              "angle_z": 0,
+              "radius": {
+                "value": 0,
+                "need": false
+              },
+              "cell_items": [],
+              "_isTerminal": false,
+              "attrs": {
+                ".connector": {
+                  "magnet": "true",
+                  "fill": "transparent"
+                },
+                ".elem_title": {
+                  "fill": "#000000",
+                  "font-size": 12,
+                  "ref-x": 60,
+                  "ref-y": 20,
+                  "ref": "rect",
+                  "y-alignment": "middle",
+                  "x-alignment": "middle"
+                },
+                "text": {
+                  "text": "",
+                  "font-size": 12,
+                  "ref-x": 20,
+                  "ref": ".connector"
+                }
+              },
+              "z": 5,
+              "resources": [],
+              "takeOffLink": "b22ba9ce-45d2-4496-87b5-a3f27c4ed617",
+              "aperture": "331e34a9-e410-4b8d-b8e7-fecbcd0628f0",
+              "_activeLayers": [
+                "12e5d9a1-8749-48ee-bdfb-3131b0bf466c"
+              ]
+            }
+          ]
+        },
+        {
+          "id": null,
+          "furniture": [],
+          "closedRoom": true,
+          "roomID": "53c41c43-ace7-4245-99c4-ea25bfab9540",
+          "room_type": "undefined",
+          "room_name": "",
+          "room_number": "",
+          "room_zone": "",
+          "room_area": "6.8",
+          "area_coords": {
+            "x": 1275.2,
+            "y": 1069.2
+          },
+          "walls": [
+            {
+              "id": "017fc5c8-0fd0-4e9d-a66c-b312631e5c04",
+              "inner": {
+                "start": {
+                  "x": 1338.73,
+                  "y": 995.27
+                },
+                "end": {
+                  "x": 1218.27,
+                  "y": 995.27
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1345.27,
+                  "y": 988.73
+                },
+                "end": {
+                  "x": 1211.73,
+                  "y": 988.73
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1342,
+                  "y": 992
+                },
+                "end": {
+                  "x": 1215,
+                  "y": 992
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 2309,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "d31ff60f-3b37-4cd0-bcaa-61724d0574ca",
+                  "inner": {
+                    "start": {
+                      "x": 1310.8,
+                      "y": 995.27
+                    },
+                    "end": {
+                      "x": 1239.3,
+                      "y": 995.27
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 1310.8,
+                      "y": 988.73
+                    },
+                    "end": {
+                      "x": 1239.3,
+                      "y": 988.73
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 1239.05,
+                    "y": 988.7
+                  },
+                  "cellAngle": 0,
+                  "flipped": false,
+                  "type": "floorWindow",
+                  "systype": "floorWindow",
+                  "height": 82.5,
+                  "heightAboveFloor": 45.65
+                }
+              ],
+              "external_wall": true,
+              "room_wall_num": 1,
+              "outer_wall_num": 108
+            },
+            {
+              "id": "7c30fd72-5722-407b-9ee9-e3c0df78190f",
+              "inner": {
+                "start": {
+                  "x": 1218.27,
+                  "y": 995.27
+                },
+                "end": {
+                  "x": 1218.27,
+                  "y": 1149.73
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1211.73,
+                  "y": 988.73
+                },
+                "end": {
+                  "x": 1211.73,
+                  "y": 1156.27
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1215,
+                  "y": 992
+                },
+                "end": {
+                  "x": 1215,
+                  "y": 1153
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 2927,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [],
+              "external_wall": false,
+              "room_wall_num": 2
+            },
+            {
+              "id": "11b7ee98-c311-47c3-ab53-11116de68096",
+              "inner": {
+                "start": {
+                  "x": 1218.27,
+                  "y": 1149.73
+                },
+                "end": {
+                  "x": 1338.73,
+                  "y": 1149.73
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1211.73,
+                  "y": 1156.27
+                },
+                "end": {
+                  "x": 1345.27,
+                  "y": 1156.27
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1215,
+                  "y": 1153
+                },
+                "end": {
+                  "x": 1342,
+                  "y": 1153
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 2309,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "7e6bb3e4-2c8d-4810-80a2-3118ca04ff27",
+                  "inner": {
+                    "start": {
+                      "x": 1279.02,
+                      "y": 1149.73
+                    },
+                    "end": {
+                      "x": 1323.02,
+                      "y": 1149.73
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 1279.02,
+                      "y": 1156.27
+                    },
+                    "end": {
+                      "x": 1323.02,
+                      "y": 1156.27
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 1279.02,
+                    "y": 1112.3
+                  },
+                  "cellAngle": 0,
+                  "flipped": false,
+                  "type": "floorDoor",
+                  "systype": "floorDoor",
+                  "height": 115.5,
+                  "heightAboveFloor": 5.5
+                }
+              ],
+              "external_wall": false,
+              "room_wall_num": 3
+            },
+            {
+              "id": "616b3a8d-1716-4346-bbcf-6ca6de508b09",
+              "mount_type": "",
+              "inner": {
+                "start": {
+                  "x": 1338.73,
+                  "y": 1149.73
+                },
+                "end": {
+                  "x": 1338.73,
+                  "y": 995.27
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1345.27,
+                  "y": 1156.27
+                },
+                "end": {
+                  "x": 1345.27,
+                  "y": 988.73
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1342,
+                  "y": 1153
+                },
+                "end": {
+                  "x": 1342,
+                  "y": 992
+                }
+              },
+              "arcPath": null,
+              "wall_length_mm": 2927,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [],
+              "external_wall": true,
+              "room_wall_num": 4,
+              "outer_wall_num": 109
+            }
+          ],
+          "elements": [
+            {
+              "position": {
+                "x": 1279.02,
+                "y": 1112.3
+              },
+              "size": {
+                "width": 44,
+                "height": 44
+              },
+              "angle": 0,
+              "id": "c6792d5a-bd5a-43e5-baa9-c36faf446edc",
+              "basic_class": "plan",
+              "sysname": "floorDoor",
+              "guid": "1ebe2a3e-2567-4105-826a-e014b516b83b",
+              "markup": "<g class=\"rotatable\"><g class=\"scalable\"><circle r=\"1\" cy=\"50\" cx=\"50\" class=\"connector\"/><rect x=\"0\" y=\"0\" stroke=\"white\" style=\"stroke-width: 1px;\" width=\"100\" height=\"100\" fill=\"white\"/><path class=\"door_path\" d=\"M92 89 Q 92 50 65 27\" stroke=\"black\" style=\"fill: none; stroke-width: 2px;\"></path><path class=\"door_blade\" d=\"M10 90 L 62 22 65 25 13 93 Z\" stroke=\"black\" style=\"stroke-width: 1px;\" fill=\"silver\"></path><rect class=\"door_trunk\" x=\"0\" y=\"90\" stroke=\"black\" style=\"stroke-width: 1px;\" width=\"100\" height=\"10\" fill=\"white\"></rect></g><text /></g>",
+              "elementTitle": "Дверь ",
+              "type": "plan.Element",
+              "resize": "false",
+              "_elevationCategory": "other",
+              "idx": 1,
+              "sortRR": "14",
+              "angle_z": 0,
+              "radius": {
+                "value": 0,
+                "need": false
+              },
+              "cell_items": [],
+              "_isTerminal": false,
+              "attrs": {
+                ".connector": {
+                  "magnet": "true",
+                  "fill": "transparent"
+                },
+                ".elem_title": {
+                  "fill": "#000000",
+                  "font-size": 12,
+                  "ref-x": 60,
+                  "ref-y": 20,
+                  "ref": "rect",
+                  "y-alignment": "middle",
+                  "x-alignment": "middle"
+                },
+                "text": {
+                  "text": "",
+                  "font-size": 12,
+                  "ref-x": 20,
+                  "ref": ".connector"
+                }
+              },
+              "z": 5,
+              "resources": [],
+              "takeOffLink": "11b7ee98-c311-47c3-ab53-11116de68096",
+              "aperture": "7e6bb3e4-2c8d-4810-80a2-3118ca04ff27",
+              "_activeLayers": [
+                "12e5d9a1-8749-48ee-bdfb-3131b0bf466c"
+              ]
+            }
+          ]
+        },
+        {
+          "id": null,
+          "furniture": [],
+          "closedRoom": true,
+          "roomID": "5fbf84c9-0a87-4145-83b1-1d59cf593e7b",
+          "room_type": "undefined",
+          "room_name": "",
+          "room_number": "",
+          "room_zone": "",
+          "room_area": "28.0",
+          "area_coords": {
+            "x": 1101.7,
+            "y": 1157.7
+          },
+          "walls": [
+            {
+              "id": "3401fda8-8a2e-40f9-be71-778f79eba375",
+              "inner": {
+                "start": {
+                  "x": 1338.73,
+                  "y": 1172.27
+                },
+                "end": {
+                  "x": 1338.73,
+                  "y": 1156.27
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1345.27,
+                  "y": 1165.73
+                },
+                "end": {
+                  "x": 1345.27,
+                  "y": 1149.73
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1342,
+                  "y": 1169
+                },
+                "end": {
+                  "x": 1342,
+                  "y": 1153
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 290,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [],
+              "external_wall": true,
+              "room_wall_num": 1,
+              "outer_wall_num": 109
+            },
+            {
+              "id": "11b7ee98-c311-47c3-ab53-11116de68096",
+              "inner": {
+                "start": {
+                  "x": 1338.73,
+                  "y": 1156.27
+                },
+                "end": {
+                  "x": 1215,
+                  "y": 1156.27
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1345.27,
+                  "y": 1149.73
+                },
+                "end": {
+                  "x": 1215,
+                  "y": 1149.73
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1342,
+                  "y": 1153
+                },
+                "end": {
+                  "x": 1215,
+                  "y": 1153
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 2309,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "7e6bb3e4-2c8d-4810-80a2-3118ca04ff27",
+                  "inner": {
+                    "start": {
+                      "x": 1323.02,
+                      "y": 1156.27
+                    },
+                    "end": {
+                      "x": 1279.02,
+                      "y": 1156.27
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 1323.02,
+                      "y": 1149.73
+                    },
+                    "end": {
+                      "x": 1279.02,
+                      "y": 1149.73
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 1279.02,
+                    "y": 1112.3
+                  },
+                  "cellAngle": 0,
+                  "flipped": false,
+                  "type": "floorDoor",
+                  "systype": "floorDoor",
+                  "height": 115.5,
+                  "heightAboveFloor": 5.5
+                }
+              ],
+              "external_wall": false,
+              "room_wall_num": 2
+            },
+            {
+              "id": "b5751808-5bf1-4b8c-807c-b3b3aca00945",
+              "inner": {
+                "start": {
+                  "x": 1215,
+                  "y": 1156.27
+                },
+                "end": {
+                  "x": 1022,
+                  "y": 1156.27
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1215,
+                  "y": 1149.73
+                },
+                "end": {
+                  "x": 1022,
+                  "y": 1149.73
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1215,
+                  "y": 1153
+                },
+                "end": {
+                  "x": 1022,
+                  "y": 1153
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 3509,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "34de5f22-4be8-486e-9eca-8747f3a607d2",
+                  "inner": {
+                    "start": {
+                      "x": 1168.01,
+                      "y": 1156.27
+                    },
+                    "end": {
+                      "x": 1124.01,
+                      "y": 1156.27
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 1168.01,
+                      "y": 1149.73
+                    },
+                    "end": {
+                      "x": 1124.01,
+                      "y": 1149.73
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 1124.01,
+                    "y": 1112.3
+                  },
+                  "cellAngle": 0,
+                  "flipped": false,
+                  "type": "floorDoor",
+                  "systype": "floorDoor",
+                  "height": 115.5,
+                  "heightAboveFloor": 5.5
+                }
+              ],
+              "external_wall": false,
+              "room_wall_num": 2
+            },
+            {
+              "id": "b22ba9ce-45d2-4496-87b5-a3f27c4ed617",
+              "inner": {
+                "start": {
+                  "x": 1022,
+                  "y": 1156.27
+                },
+                "end": {
+                  "x": 871.27,
+                  "y": 1156.27
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1022,
+                  "y": 1149.73
+                },
+                "end": {
+                  "x": 864.73,
+                  "y": 1149.73
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1022,
+                  "y": 1153
+                },
+                "end": {
+                  "x": 868,
+                  "y": 1153
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 2799,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "331e34a9-e410-4b8d-b8e7-fecbcd0628f0",
+                  "inner": {
+                    "start": {
+                      "x": 965.02,
+                      "y": 1156.27
+                    },
+                    "end": {
+                      "x": 921.02,
+                      "y": 1156.27
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 965.02,
+                      "y": 1149.73
+                    },
+                    "end": {
+                      "x": 921.02,
+                      "y": 1149.73
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 921.02,
+                    "y": 1112.3
+                  },
+                  "cellAngle": 0,
+                  "flipped": false,
+                  "type": "floorDoor",
+                  "systype": "floorDoor",
+                  "height": 115.5,
+                  "heightAboveFloor": 5.5
+                }
+              ],
+              "external_wall": false,
+              "room_wall_num": 2
+            },
+            {
+              "id": "d04a8dad-fb21-4a2b-85c0-4ed2ad3ef8ba",
+              "inner": {
+                "start": {
+                  "x": 871.27,
+                  "y": 1156.27
+                },
+                "end": {
+                  "x": 871.27,
+                  "y": 1216
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 864.73,
+                  "y": 1149.73
+                },
+                "end": {
+                  "x": 864.73,
+                  "y": 1216
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 868,
+                  "y": 1153
+                },
+                "end": {
+                  "x": 868,
+                  "y": 1216
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 1145,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "984a065d-95ab-45eb-a988-0935318c6de1",
+                  "inner": {
+                    "start": {
+                      "x": 871.27,
+                      "y": 1158
+                    },
+                    "end": {
+                      "x": 871.27,
+                      "y": 1202
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 864.73,
+                      "y": 1158
+                    },
+                    "end": {
+                      "x": 864.73,
+                      "y": 1202
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 864.7,
+                    "y": 1158
+                  },
+                  "cellAngle": 90,
+                  "flipped": false,
+                  "type": "floorDoor",
+                  "systype": "floorDoor",
+                  "height": 115.5,
+                  "heightAboveFloor": 5.5
+                }
+              ],
+              "external_wall": false,
+              "room_wall_num": 3
+            },
+            {
+              "id": "8a01ae02-a088-45c8-8b14-2a1e34fa7e51",
+              "inner": {
+                "start": {
+                  "x": 871.27,
+                  "y": 1216
+                },
+                "end": {
+                  "x": 871.27,
+                  "y": 1286.73
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 864.73,
+                  "y": 1216
+                },
+                "end": {
+                  "x": 864.73,
+                  "y": 1293.27
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 868,
+                  "y": 1216
+                },
+                "end": {
+                  "x": 868,
+                  "y": 1290
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 1345,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [],
+              "external_wall": true,
+              "room_wall_num": 3,
+              "outer_wall_num": 105
+            },
+            {
+              "id": "57402e81-012f-441b-b3f0-dfe948211c06",
+              "inner": {
+                "start": {
+                  "x": 871.27,
+                  "y": 1286.73
+                },
+                "end": {
+                  "x": 1338.27,
+                  "y": 1286.73
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 864.73,
+                  "y": 1293.27
+                },
+                "end": {
+                  "x": 1331.73,
+                  "y": 1293.27
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 868,
+                  "y": 1290
+                },
+                "end": {
+                  "x": 1335,
+                  "y": 1290
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 8490,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "dafac759-0ba9-4462-ab42-786730708a90",
+                  "inner": {
+                    "start": {
+                      "x": 1080,
+                      "y": 1286.73
+                    },
+                    "end": {
+                      "x": 1124,
+                      "y": 1286.73
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 1080,
+                      "y": 1293.27
+                    },
+                    "end": {
+                      "x": 1124,
+                      "y": 1293.27
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 1080,
+                    "y": 1249
+                  },
+                  "cellAngle": 0,
+                  "flipped": false,
+                  "type": "entry_door",
+                  "systype": "entry_door",
+                  "height": 115.5,
+                  "heightAboveFloor": 5.5
+                }
+              ],
+              "external_wall": true,
+              "room_wall_num": 4,
+              "outer_wall_num": 104
+            },
+            {
+              "id": "ea4d6d89-9eb2-46de-9117-75fa17b48295",
+              "inner": {
+                "start": {
+                  "x": 1338.27,
+                  "y": 1286.73
+                },
+                "end": {
+                  "x": 1338.27,
+                  "y": 1529.73
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1331.73,
+                  "y": 1293.27
+                },
+                "end": {
+                  "x": 1331.73,
+                  "y": 1536.27
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1335,
+                  "y": 1290
+                },
+                "end": {
+                  "x": 1335,
+                  "y": 1533
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 4418,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [],
+              "external_wall": true,
+              "room_wall_num": 5,
+              "outer_wall_num": 103
+            },
+            {
+              "id": "626c8ea7-6dbc-4ddd-a69d-674f0211b3fa",
+              "inner": {
+                "start": {
+                  "x": 1338.27,
+                  "y": 1529.73
+                },
+                "end": {
+                  "x": 1388.73,
+                  "y": 1529.73
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1331.73,
+                  "y": 1536.27
+                },
+                "end": {
+                  "x": 1395.27,
+                  "y": 1536.27
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1335,
+                  "y": 1533
+                },
+                "end": {
+                  "x": 1392,
+                  "y": 1533
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 1036,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [],
+              "external_wall": true,
+              "room_wall_num": 6,
+              "outer_wall_num": 102
+            },
+            {
+              "id": "b4c40e61-c22b-4fd7-8fc0-f3876a0f85be",
+              "inner": {
+                "start": {
+                  "x": 1388.73,
+                  "y": 1529.73
+                },
+                "end": {
+                  "x": 1388.73,
+                  "y": 1420
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1395.27,
+                  "y": 1536.27
+                },
+                "end": {
+                  "x": 1395.27,
+                  "y": 1420
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1392,
+                  "y": 1533
+                },
+                "end": {
+                  "x": 1392,
+                  "y": 1420
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 2054,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "9dcf4d1f-6f00-479f-bbe7-e3def3a3cf5e",
+                  "inner": {
+                    "start": {
+                      "x": 1388.73,
+                      "y": 1520.02
+                    },
+                    "end": {
+                      "x": 1388.73,
+                      "y": 1476.02
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 1395.27,
+                      "y": 1520.02
+                    },
+                    "end": {
+                      "x": 1395.27,
+                      "y": 1476.02
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 1388.7,
+                    "y": 1476.02
+                  },
+                  "cellAngle": 90,
+                  "flipped": false,
+                  "type": "floorDoor",
+                  "systype": "floorDoor",
+                  "height": 115.5,
+                  "heightAboveFloor": 5.5
+                }
+              ],
+              "external_wall": false,
+              "room_wall_num": 7
+            },
+            {
+              "id": "c0219063-d4b9-4b6f-9b31-65b8c7e64c46",
+              "inner": {
+                "start": {
+                  "x": 1388.73,
+                  "y": 1420
+                },
+                "end": {
+                  "x": 1388.73,
+                  "y": 1315
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1395.27,
+                  "y": 1420
+                },
+                "end": {
+                  "x": 1395.27,
+                  "y": 1315
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1392,
+                  "y": 1420
+                },
+                "end": {
+                  "x": 1392,
+                  "y": 1315
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 1909,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "617c849a-4e38-410d-92a7-217f853bd27b",
+                  "inner": {
+                    "start": {
+                      "x": 1388.73,
+                      "y": 1399.03
+                    },
+                    "end": {
+                      "x": 1388.73,
+                      "y": 1355.03
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 1395.27,
+                      "y": 1399.03
+                    },
+                    "end": {
+                      "x": 1395.27,
+                      "y": 1355.03
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 1388.7,
+                    "y": 1355.03
+                  },
+                  "cellAngle": 90,
+                  "flipped": false,
+                  "type": "floorDoor",
+                  "systype": "floorDoor",
+                  "height": 115.5,
+                  "heightAboveFloor": 5.5
+                }
+              ],
+              "external_wall": false,
+              "room_wall_num": 7
+            },
+            {
+              "id": "b629b936-5ac6-4c47-adc0-94f15786d9a5",
+              "inner": {
+                "start": {
+                  "x": 1388.73,
+                  "y": 1315
+                },
+                "end": {
+                  "x": 1388.73,
+                  "y": 1172.27
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1395.27,
+                  "y": 1315
+                },
+                "end": {
+                  "x": 1395.27,
+                  "y": 1165.73
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1392,
+                  "y": 1315
+                },
+                "end": {
+                  "x": 1392,
+                  "y": 1169
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 2654,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [],
+              "external_wall": false,
+              "room_wall_num": 7
+            },
+            {
+              "id": "7f6c550f-588e-4377-a504-66b1728ec2de",
+              "mount_type": "",
+              "inner": {
+                "start": {
+                  "x": 1388.73,
+                  "y": 1172.27
+                },
+                "end": {
+                  "x": 1338.73,
+                  "y": 1172.27
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1395.27,
+                  "y": 1165.73
+                },
+                "end": {
+                  "x": 1345.27,
+                  "y": 1165.73
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1392,
+                  "y": 1169
+                },
+                "end": {
+                  "x": 1342,
+                  "y": 1169
+                }
+              },
+              "arcPath": null,
+              "wall_length_mm": 909,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [],
+              "external_wall": true,
+              "room_wall_num": 8,
+              "outer_wall_num": 110
+            }
+          ],
+          "elements": [
+            {
+              "position": {
+                "x": 1388.7,
+                "y": 1355.03
+              },
+              "size": {
+                "width": 44,
+                "height": 44
+              },
+              "angle": 90,
+              "id": "8e8010c5-2e5e-4570-9110-38c387416bf1",
+              "basic_class": "plan",
+              "sysname": "floorDoor",
+              "guid": "1ebe2a3e-2567-4105-826a-e014b516b83b",
+              "markup": "<g class=\"rotatable\"><g class=\"scalable\"><circle r=\"1\" cy=\"50\" cx=\"50\" class=\"connector\"/><rect x=\"0\" y=\"0\" stroke=\"white\" style=\"stroke-width: 1px;\" width=\"100\" height=\"100\" fill=\"white\"/><path class=\"door_path\" d=\"M92 89 Q 92 50 65 27\" stroke=\"black\" style=\"fill: none; stroke-width: 2px;\"></path><path class=\"door_blade\" d=\"M10 90 L 62 22 65 25 13 93 Z\" stroke=\"black\" style=\"stroke-width: 1px;\" fill=\"silver\"></path><rect class=\"door_trunk\" x=\"0\" y=\"90\" stroke=\"black\" style=\"stroke-width: 1px;\" width=\"100\" height=\"10\" fill=\"white\"></rect></g><text /></g>",
+              "elementTitle": "Дверь ",
+              "type": "plan.Element",
+              "resize": "false",
+              "_elevationCategory": "other",
+              "idx": 1,
+              "sortRR": "14",
+              "angle_z": 0,
+              "radius": {
+                "value": 0,
+                "need": false
+              },
+              "cell_items": [],
+              "_isTerminal": false,
+              "attrs": {
+                ".connector": {
+                  "magnet": "true",
+                  "fill": "transparent"
+                },
+                ".elem_title": {
+                  "fill": "#000000",
+                  "font-size": 12,
+                  "ref-x": 60,
+                  "ref-y": 20,
+                  "ref": "rect",
+                  "y-alignment": "middle",
+                  "x-alignment": "middle"
+                },
+                "text": {
+                  "text": "",
+                  "font-size": 12,
+                  "ref-x": 20,
+                  "ref": ".connector"
+                }
+              },
+              "z": 5,
+              "resources": [],
+              "takeOffLink": "c0219063-d4b9-4b6f-9b31-65b8c7e64c46",
+              "aperture": "617c849a-4e38-410d-92a7-217f853bd27b",
+              "_activeLayers": [
+                "12e5d9a1-8749-48ee-bdfb-3131b0bf466c"
+              ]
+            },
+            {
+              "position": {
+                "x": 1388.7,
+                "y": 1476.02
+              },
+              "size": {
+                "width": 44,
+                "height": 44
+              },
+              "angle": 90,
+              "id": "ad476bb7-223d-4fd2-8de1-ca32218fae52",
+              "basic_class": "plan",
+              "sysname": "floorDoor",
+              "guid": "1ebe2a3e-2567-4105-826a-e014b516b83b",
+              "markup": "<g class=\"rotatable\"><g class=\"scalable\"><circle r=\"1\" cy=\"50\" cx=\"50\" class=\"connector\"/><rect x=\"0\" y=\"0\" stroke=\"white\" style=\"stroke-width: 1px;\" width=\"100\" height=\"100\" fill=\"white\"/><path class=\"door_path\" d=\"M92 89 Q 92 50 65 27\" stroke=\"black\" style=\"fill: none; stroke-width: 2px;\"></path><path class=\"door_blade\" d=\"M10 90 L 62 22 65 25 13 93 Z\" stroke=\"black\" style=\"stroke-width: 1px;\" fill=\"silver\"></path><rect class=\"door_trunk\" x=\"0\" y=\"90\" stroke=\"black\" style=\"stroke-width: 1px;\" width=\"100\" height=\"10\" fill=\"white\"></rect></g><text /></g>",
+              "elementTitle": "Дверь ",
+              "type": "plan.Element",
+              "resize": "false",
+              "_elevationCategory": "other",
+              "idx": 1,
+              "sortRR": "14",
+              "angle_z": 0,
+              "radius": {
+                "value": 0,
+                "need": false
+              },
+              "cell_items": [],
+              "_isTerminal": false,
+              "attrs": {
+                ".connector": {
+                  "magnet": "true",
+                  "fill": "transparent"
+                },
+                ".elem_title": {
+                  "fill": "#000000",
+                  "font-size": 12,
+                  "ref-x": 60,
+                  "ref-y": 20,
+                  "ref": "rect",
+                  "y-alignment": "middle",
+                  "x-alignment": "middle"
+                },
+                "text": {
+                  "text": "",
+                  "font-size": 12,
+                  "ref-x": 20,
+                  "ref": ".connector"
+                }
+              },
+              "z": 5,
+              "resources": [],
+              "takeOffLink": "b4c40e61-c22b-4fd7-8fc0-f3876a0f85be",
+              "aperture": "9dcf4d1f-6f00-479f-bbe7-e3def3a3cf5e",
+              "_activeLayers": [
+                "12e5d9a1-8749-48ee-bdfb-3131b0bf466c"
+              ]
+            },
+            {
+              "position": {
+                "x": 1080,
+                "y": 1249
+              },
+              "size": {
+                "width": 44,
+                "height": 44
+              },
+              "angle": 0,
+              "id": "dd274227-6383-41e5-b931-547f5298e584",
+              "basic_class": "plan",
+              "sysname": "entry_door",
+              "guid": "2165e4b5-456c-42bd-bad0-5f78435cfd56",
+              "markup": "<g class=\"rotatable\"><g class=\"scalable\"><circle r=\"1\" cy=\"50\" cx=\"50\" class=\"connector\"/><rect x=\"0\" y=\"0\" stroke=\"white\" style=\"stroke-width: 1px;\" width=\"100\" height=\"100\" fill=\"white\"/><path class=\"door_path\" d=\"M92 89 Q 92 50 65 27\" stroke=\"black\" style=\"fill: none; stroke-width: 2px;\"></path><path class=\"door_blade\" d=\"M10 90 L 62 22 65 25 13 93 Z\" stroke=\"black\" style=\"stroke-width: 1px;\" fill=\"silver\"></path><rect class=\"door_trunk\" x=\"0\" y=\"90\" stroke=\"black\" style=\"stroke-width: 1px;\" width=\"100\" height=\"10\" fill=\"white\"></rect></g><text /></g>",
+              "elementTitle": "Входная дверь",
+              "type": "plan.Element",
+              "resize": "false",
+              "_elevationCategory": "other",
+              "idx": 2,
+              "sortRR": "14",
+              "angle_z": 0,
+              "radius": {
+                "value": 0,
+                "need": false
+              },
+              "cell_items": [],
+              "_isTerminal": false,
+              "attrs": {
+                ".connector": {
+                  "magnet": "true",
+                  "fill": "transparent"
+                },
+                ".elem_title": {
+                  "fill": "#000000",
+                  "font-size": 12,
+                  "ref-x": 60,
+                  "ref-y": 20,
+                  "ref": "rect",
+                  "y-alignment": "middle",
+                  "x-alignment": "middle"
+                },
+                "text": {
+                  "text": "",
+                  "font-size": 12,
+                  "ref-x": 20,
+                  "ref": ".connector"
+                }
+              },
+              "z": 5,
+              "resources": [],
+              "takeOffLink": "57402e81-012f-441b-b3f0-dfe948211c06",
+              "aperture": "dafac759-0ba9-4462-ab42-786730708a90",
+              "_activeLayers": [
+                "12e5d9a1-8749-48ee-bdfb-3131b0bf466c"
+              ]
+            }
+          ]
+        },
+        {
+          "id": null,
+          "furniture": [],
+          "closedRoom": true,
+          "roomID": "04ff6b26-4092-431c-8f74-3f0ba035bc5f",
+          "room_type": "undefined",
+          "room_name": "",
+          "room_number": "",
+          "room_zone": "",
+          "room_area": "10.3",
+          "area_coords": {
+            "x": 1115.2,
+            "y": 1069.2
+          },
+          "walls": [
+            {
+              "id": "5116951d-2eaf-4b04-8aba-8f84eceb4709",
+              "inner": {
+                "start": {
+                  "x": 1025.27,
+                  "y": 995.27
+                },
+                "end": {
+                  "x": 1025.27,
+                  "y": 1149.73
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1018.73,
+                  "y": 988.73
+                },
+                "end": {
+                  "x": 1018.73,
+                  "y": 1156.27
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1022,
+                  "y": 992
+                },
+                "end": {
+                  "x": 1022,
+                  "y": 1153
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 2927,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [],
+              "external_wall": false,
+              "room_wall_num": 1
+            },
+            {
+              "id": "b5751808-5bf1-4b8c-807c-b3b3aca00945",
+              "inner": {
+                "start": {
+                  "x": 1025.27,
+                  "y": 1149.73
+                },
+                "end": {
+                  "x": 1211.73,
+                  "y": 1149.73
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1018.73,
+                  "y": 1156.27
+                },
+                "end": {
+                  "x": 1218.27,
+                  "y": 1156.27
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1022,
+                  "y": 1153
+                },
+                "end": {
+                  "x": 1215,
+                  "y": 1153
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 3509,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "34de5f22-4be8-486e-9eca-8747f3a607d2",
+                  "inner": {
+                    "start": {
+                      "x": 1124.01,
+                      "y": 1149.73
+                    },
+                    "end": {
+                      "x": 1168.01,
+                      "y": 1149.73
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 1124.01,
+                      "y": 1156.27
+                    },
+                    "end": {
+                      "x": 1168.01,
+                      "y": 1156.27
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 1124.01,
+                    "y": 1112.3
+                  },
+                  "cellAngle": 0,
+                  "flipped": false,
+                  "type": "floorDoor",
+                  "systype": "floorDoor",
+                  "height": 115.5,
+                  "heightAboveFloor": 5.5
+                }
+              ],
+              "external_wall": false,
+              "room_wall_num": 2
+            },
+            {
+              "id": "7c30fd72-5722-407b-9ee9-e3c0df78190f",
+              "inner": {
+                "start": {
+                  "x": 1211.73,
+                  "y": 1149.73
+                },
+                "end": {
+                  "x": 1211.73,
+                  "y": 995.27
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1218.27,
+                  "y": 1156.27
+                },
+                "end": {
+                  "x": 1218.27,
+                  "y": 988.73
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1215,
+                  "y": 1153
+                },
+                "end": {
+                  "x": 1215,
+                  "y": 992
+                }
+              },
+              "arcPath": null,
+              "mount_type": "",
+              "wall_length_mm": 2927,
+              "width_px": 7,
+              "width_units": 0.11999852471814255,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [],
+              "external_wall": false,
+              "room_wall_num": 3
+            },
+            {
+              "id": "1b0d7f09-66ed-4bb2-a8e2-a932395e9afd",
+              "mount_type": "",
+              "inner": {
+                "start": {
+                  "x": 1211.73,
+                  "y": 995.27
+                },
+                "end": {
+                  "x": 1025.27,
+                  "y": 995.27
+                }
+              },
+              "outer": {
+                "start": {
+                  "x": 1218.27,
+                  "y": 988.73
+                },
+                "end": {
+                  "x": 1018.73,
+                  "y": 988.73
+                }
+              },
+              "center": {
+                "start": {
+                  "x": 1215,
+                  "y": 992
+                },
+                "end": {
+                  "x": 1022,
+                  "y": 992
+                }
+              },
+              "arcPath": null,
+              "wall_length_mm": 3509,
+              "type": "bearing_wall",
+              "height": {
+                "start": 154,
+                "end": 154
+              },
+              "openings": [
+                {
+                  "id": "7ec8cb08-9b27-49fb-a0e9-4e7b9020c736",
+                  "inner": {
+                    "start": {
+                      "x": 1168.77,
+                      "y": 995.27
+                    },
+                    "end": {
+                      "x": 1097.27,
+                      "y": 995.27
+                    }
+                  },
+                  "outer": {
+                    "start": {
+                      "x": 1168.77,
+                      "y": 988.73
+                    },
+                    "end": {
+                      "x": 1097.27,
+                      "y": 988.73
+                    }
+                  },
+                  "cellPosition": {
+                    "x": 1097.02,
+                    "y": 988.7
+                  },
+                  "cellAngle": 0,
+                  "flipped": false,
+                  "type": "floorWindow",
+                  "systype": "floorWindow",
+                  "height": 82.5,
+                  "heightAboveFloor": 45.65
+                }
+              ],
+              "external_wall": true,
+              "room_wall_num": 4,
+              "outer_wall_num": 108
+            }
+          ],
+          "elements": [
+            {
+              "position": {
+                "x": 1124.01,
+                "y": 1112.3
+              },
+              "size": {
+                "width": 44,
+                "height": 44
+              },
+              "angle": 0,
+              "id": "a8263490-7f20-40f0-aeba-3af4419ac3c1",
+              "basic_class": "plan",
+              "sysname": "floorDoor",
+              "guid": "1ebe2a3e-2567-4105-826a-e014b516b83b",
+              "markup": "<g class=\"rotatable\"><g class=\"scalable\"><circle r=\"1\" cy=\"50\" cx=\"50\" class=\"connector\"/><rect x=\"0\" y=\"0\" stroke=\"white\" style=\"stroke-width: 1px;\" width=\"100\" height=\"100\" fill=\"white\"/><path class=\"door_path\" d=\"M92 89 Q 92 50 65 27\" stroke=\"black\" style=\"fill: none; stroke-width: 2px;\"></path><path class=\"door_blade\" d=\"M10 90 L 62 22 65 25 13 93 Z\" stroke=\"black\" style=\"stroke-width: 1px;\" fill=\"silver\"></path><rect class=\"door_trunk\" x=\"0\" y=\"90\" stroke=\"black\" style=\"stroke-width: 1px;\" width=\"100\" height=\"10\" fill=\"white\"></rect></g><text /></g>",
+              "elementTitle": "Дверь ",
+              "type": "plan.Element",
+              "resize": "false",
+              "_elevationCategory": "other",
+              "idx": 1,
+              "sortRR": "14",
+              "angle_z": 0,
+              "radius": {
+                "value": 0,
+                "need": false
+              },
+              "cell_items": [],
+              "_isTerminal": false,
+              "attrs": {
+                ".connector": {
+                  "magnet": "true",
+                  "fill": "transparent"
+                },
+                ".elem_title": {
+                  "fill": "#000000",
+                  "font-size": 12,
+                  "ref-x": 60,
+                  "ref-y": 20,
+                  "ref": "rect",
+                  "y-alignment": "middle",
+                  "x-alignment": "middle"
+                },
+                "text": {
+                  "text": "",
+                  "font-size": 12,
+                  "ref-x": 20,
+                  "ref": ".connector"
+                }
+              },
+              "z": 5,
+              "resources": [],
+              "takeOffLink": "b5751808-5bf1-4b8c-807c-b3b3aca00945",
+              "aperture": "34de5f22-4be8-486e-9eca-8747f3a607d2",
+              "_activeLayers": [
+                "12e5d9a1-8749-48ee-bdfb-3131b0bf466c"
+              ]
+            }
+          ]
+        }
+      ],
+      "routes": [],
+      "floorData": {
+        "name": "Страница 1",
+        "project": "93492333-aab7-4fb4-bf75-84f7dc4cd0f0",
+        "index": 1,
+        "id": "1f9067e0-9977-400c-8adb-23adffc5a4b4",
+        "floor": 0.1,
+        "ground": 2.8,
+        "ceiling": 2.8,
+        "routes": 2.6,
+        "netOutlet": 0.7,
+        "elOutlet": 0.7,
+        "outletPer": 1.2,
+        "elSwitch": 0.7,
+        "other": 0.7,
+        "measureUnits": 1,
+        "slab_height": 0.5,
+        "outlet_reserve": 1,
+        "rack_reserve": 1,
+        "cable_reserve": 5,
+        "wallWidth": 0.12,
+        "channelOccupancy": 0.5,
+        "marking": 1,
+        "active": true
+      },
+      "addElements": [],
+      "furniture": [],
+      "Cables": [],
+      "RouteSegments": [],
+      "scaling": 55
+    }
+  ],
+  "element": null,
+  "system": "*"
+}

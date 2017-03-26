@@ -28,7 +28,7 @@ $('#myModal').on('shown.bs.modal', function () {
   }); 
 
   $('#editLamp').on('change', '#requiredIllumination', function() { 
-    console.log("chengeRequiredIllumination_modalWindow");
+    //console.log("chengeRequiredIllumination_modalWindow");
     var value = $(this).val();
     if(value != 1) {
       var valueCustomRequiredIllumination = $('#editLamp').find('#customRequiredIllumination').val();
@@ -40,7 +40,7 @@ $('#myModal').on('shown.bs.modal', function () {
   });   
 
   $('#editLamp').on('change', '#customRequiredIllumination', function() { 
-    console.log("chengeCustomRequiredIllumination_modalWindow");
+    //console.log("chengeCustomRequiredIllumination_modalWindow");
     var value = $(this).val(); 
     var valueRequiredIllumination = $('#editLamp').find('#requiredIllumination').val();
     if(value != valueRequiredIllumination) {
