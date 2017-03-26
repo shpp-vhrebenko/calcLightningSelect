@@ -7,10 +7,11 @@ var current_Room = (function () {
       tableData = [], // object data bootstrap-table ( object have all data table)
       curLamp = {}, // current lamp in table ( current active lamp in table)
       typeLamp = {}, // object json drawing (we take it from post message)
-      lampSelect = {}, // object has value for options name lamp select in table
+      lampSelect = {}, // object has value for options name lamp select in form edit modal_window
       lampAutocomplit = [], // array for initial lamp autocomplit
       lampAutocomplitKey = [], // array for initial lamp autocomplit for key
-      editLamp = {}; // object has parameter edit lamp in modal window
+      editLamp = {}, // object has parameter edit lamp in modal window
+      lampSelectEdit = [];
       
 
   var setEditLamp = function (inputObject) {           
@@ -27,7 +28,8 @@ var current_Room = (function () {
     $.each(inputObject, function(key, value) {
       lampSelect[key] = value;  
       lampAutocomplit.push({id: value.nameLamp, name: value.nameLamp});   
-      lampAutocomplitKey.push({id: value.nameLamp, name: value.key});        
+      lampAutocomplitKey.push({id: value.nameLamp, name: value.key});
+      lampSelectEdit.push({value: value.nameLamp, name: value.nameLamp});         
     });               
   };
 
@@ -41,6 +43,10 @@ var current_Room = (function () {
 
   var getLampSelect = function () {        
     return lampSelect;       
+  };
+
+   var getLampSelectEdit = function () {        
+    return lampSelectEdit;       
   };
 
   var setTypeLamp = function (inputObject) { 
@@ -186,6 +192,8 @@ var current_Room = (function () {
 
       getLampAutocomplit: getLampAutocomplit,
       getLampAutocomplitKey: getLampAutocomplitKey,
+
+      getLampSelectEdit: getLampSelectEdit,
 
       setEditLamp: setEditLamp,
       getEditLamp: getEditLamp

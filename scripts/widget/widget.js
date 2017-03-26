@@ -17,7 +17,97 @@ var parameters = {};
 if(listDataLamp && listDataLamp.hasOwnProperty('parameters')) {
   parameters = listDataLamp.parameters; 
 }
-$(document).ready(function() {   
+$(document).ready(function() {  
+  //============= INITIAL BOOTSTRAP-TABLS =========================
+  var tableData = current_Room.getInstance().getTableData();  
+  $('#bTable').bootstrapTable({
+      idField: 'name',
+      source: tableData,      
+      pagination: true,
+      search: true,
+      toolbar: "#toolbar",
+      clickToSelect: true,
+      singleSelect: true,
+      checkboxHeader: false,
+      checkbox: true,
+      height: 400,
+      pageSize: 5,
+      pageList: [5,10,20],          
+      columns: [
+      {
+          field: 'state',
+          title: '',
+          checkbox: true
+      },
+      {
+          field: 'nameLamp',
+          title: 'Наименование </br> светильника',
+          sortable: true
+      }, {
+          field: 'roomNumber',
+          title: '№ этажа </br> / № комнаты',
+          sortable: true                  
+      }, {
+          field: 'roomArea',
+          title: 'Площадь </br> комнаты'         
+      }, {
+          field: 'lampsCount',
+          title: 'Количество </br> светильников'           
+      }, {
+          field: 'requiredIllumination',
+          title: 'Требуемая </br> освещенность',
+          editable: {
+            type: 'number',
+            min: 1,
+            /*source: [
+              { value : 1 , text: "Значение пользователя"},
+              { value : 5 , text: "Чердаки"},
+              { value : 100 , text: "Лестницы"},
+              { value : 50 , text: "Коридоры"},
+              { value : 150 , text: "Вестибюли"},
+              { value : 50 , text: "Склады в зоне хранения товара"},
+              { value : 150 , text: "Вестибюли"},
+              { value : 50 , text: "Склады в зоне хранения товара"},
+              { value : 200 , text: "Склады в зоне приема товара"},
+              { value : 200 , text: "Гаражи"},
+              { value : 400 , text: "Парикмахерские"},
+              { value : 200 , text: "Объединенные залы и буфеты"},
+              { value : 400 , text: "Торговые залы магазинов"},
+              { value : 200 , text: "Конференц-залы и залы заседаний"},
+              { value : 500 , text: "Проектрные и конструкторские бюро"},
+              { value : 300 , text: "Читальные залы"},
+              { value : 300 , text: "Учебные аудитории и классы"},
+              { value : 500 , text: "Офисные помещения"},
+              { value : 500 , text: "Рабочий кабинет"}
+            ],*/
+            mode: 'inline'            
+          }           
+      }, {
+          field: 'reflectionCoef',
+          title: 'Коэффициэнт </br> отражения'                     
+      }, {
+          field: 'safetyFactor',
+          title: 'Коэффициэнт </br> запаса',
+          editable: {
+            type: 'select',
+            source: [
+              { value : 1.1 , text: "1.1"},
+              { value : 1.4 , text: "1.4"},
+              { value : 1.6 , text: "1.6"},
+              { value : 1.7 , text: "1.7"}
+            ],
+            mode: 'inline'            
+          }            
+      }, {
+          field: 'allPowerLamps',
+          title: 'Мощность </br> 1 светильника'           
+      }, {
+          field: 'lampsWatt',
+          title: 'Мощность всех </br> светильников'           
+      }]
+  });
+  //============= END INITIAL BOOTSTRAP-TABLS =====================
+
     defaultInit();          // Initial default properties for lamp
     init();                 // init properties lamp from LocalStorage      
 
@@ -75,6 +165,9 @@ $(document).ready(function() {
       $('#nameLamp').trigger('change');      
     });
     //============= END AUTOCOMPLIT BOOTSTRAP-TYPEAHEAD =============   
+    
+    
+    
     
     typeLampFormValidation();    
 });

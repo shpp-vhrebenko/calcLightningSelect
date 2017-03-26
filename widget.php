@@ -161,7 +161,8 @@
                     <i class="glyphicon glyphicon-trash"></i>
                 </button>                               
             </div>
-            <table class="table"
+            <table id="bTable" ></table>
+            <!-- <table class="table"
                     id="bTable"
                     data-toggle="table"
                     data-search="true"                                 
@@ -177,24 +178,21 @@
                     data-height="300"                    
                     data-locale="ru-RU"
                     >
-                <thead>
-                    <tr>
-                        <th class="col-xs-1" data-field="state" data-checkbox="true"></th>
-                        <th class="col-xs-1" data-field="nameLamp" data-sortable="true">Наименование </br> светильника</th>
-                        <th class="col-xs-1" data-field="roomNumber" data-sortable="true">№ этажа </br> / № комнаты</th>                        
-                        <th class="col-xs-1" data-field="roomArea">Площадь </br> комнаты</th>
-                        <th class="col-xs-1" data-field="lampsCount">Количество </br> светильников</th>
-                        <th class="col-xs-1" data-field="requiredIllumination">Требуемая </br> освещенность</th>
-                        <th class="col-xs-1" data-field="reflectionCoef">Коэффициэнт </br> отражения</th>
-                        <th class="col-xs-1" data-field="safetyFactor">Коэффициэнт </br> запаса</th>
-                        <th class="col-xs-1" data-field="allPowerLamps">Мощность </br> 1 светильника</th>
-                        <th class="col-xs-1" data-field="lampsWatt">Мощность всех </br> светильников</th>             
-                    </tr>
-                </thead>
-                <!-- <tbody id="data_table_body">
-                    
-                </tbody> -->
-            </table>
+              <thead>
+                <tr>
+                    <th class="col-xs-1" data-field="state" data-checkbox="true"></th>
+                    <th class="col-xs-1" data-field="nameLamp" data-sortable="true">Наименование </br> светильника</th>
+                    <th class="col-xs-1" data-field="roomNumber" data-sortable="true">№ этажа </br> / № комнаты</th>                        
+                    <th class="col-xs-1" data-field="roomArea">Площадь </br> комнаты</th>
+                    <th class="col-xs-1" data-field="lampsCount">Количество </br> светильников</th>
+                    <th class="col-xs-1" data-field="requiredIllumination">Требуемая </br> освещенность</th>
+                    <th class="col-xs-1" data-field="reflectionCoef">Коэффициэнт </br> отражения</th>
+                    <th class="col-xs-1" data-field="safetyFactor">Коэффициэнт </br> запаса</th>
+                    <th class="col-xs-1" data-field="allPowerLamps">Мощность </br> 1 светильника</th>
+                    <th class="col-xs-1" data-field="lampsWatt">Мощность всех </br> светильников</th>             
+                </tr>
+              </thead>               
+            </table> -->
           </div>   
           <!-- End Bootstrap-tables -->  
           <div class="row">            
@@ -333,22 +331,17 @@
       </div>
     </div>
 
-    <!-- build:js scripts/widget_vendor.js -->
-    <script src="bower_components/lodash/lodash.js"></script>
-    <script type="text/javascript" src="bower_components/bootstrap3-typeahead/bootstrap3-typeahead.js"></script>
-    <script src="bower_components/bootstrap-less/js/dropdown.js"></script>
-    <script src="bower_components/bootstrap-less/js/tooltip.js"></script>
-    <script src="bower_components/bootstrap-less/js/tab.js"></script>
-    <script src="bower_components/bootstrap-less/js/modal.js"></script>
-    <script src="bower_components/bootstrap-table/src/bootstrap-table.js"></script> 
-    <script src="bower_components/bootstrap-table/src/locale/bootstrap-table-ru-RU.js"></script>
+    <!-- build:js scripts/widget_vendor.js -->    
+    <script type="text/javascript" src="bower_components/bootstrap3-typeahead/bootstrap3-typeahead.js"></script>  
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>          
+    <script src="bower_components/bootstrap-table/dist/bootstrap-table.js"></script> 
+    <script src="bower_components/bootstrp3-editable/bootstrap3-editable/js/bootstrap-editable.js"></script> 
+    <script src="bower_components/bootstrap-table/dist/extensions/editable/bootstrap-table-editable.js"></script> 
+    <script src="bower_components/bootstrap-table/dist/locale/bootstrap-table-ru-RU.js"></script>
     <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/jquery-validation/dist/jquery.validate.js"></script> 
-    <!-- endbuild -->     
-
+    <!-- endbuild -->   
     
-    <script src="scripts/widget.js?<?php echo filemtime('scripts/widget.js');?>"></script>  
-    
-   
+    <script src="scripts/widget.js"></script>     
   </body>
 </html>

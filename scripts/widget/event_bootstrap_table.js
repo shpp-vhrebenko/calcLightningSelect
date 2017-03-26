@@ -11,7 +11,7 @@ $('#bTable').on('uncheck.bs.table', function (e, row) {
 });
 
 $('#set_data').on('click', function(event) {
- // console.log("set_data");
+  console.log("set_data");
   event.preventDefault(); 
   var json_data = localStorage.getItem('typeLamp');
   var local_data = $.parseJSON(json_data);  
@@ -21,14 +21,15 @@ $('#set_data').on('click', function(event) {
   var data = {
     calc_lighting : true,    
     currentRooms : currentRoomsObject
-  };    
+  }; 
+  console.log(data);   
   sendAjaxForm(data,
                 "calc_lighting.php",
                 hideLoadingWraper,
                 showLoadingWraper,
                 viewCalcCountLamp,
                 errorResponse,
-                10000,
+                15000,
                 'POST'); 
 });
 
