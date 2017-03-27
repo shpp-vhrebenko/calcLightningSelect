@@ -20,25 +20,25 @@ if(listDataLamp && listDataLamp.hasOwnProperty('parameters')) {
 $(document).ready(function() {  
   //============= INITIAL BOOTSTRAP-TABLS =========================
   var tableData = current_Room.getInstance().getTableData();  
-  $('#bTable').bootstrapTable({
+  var $bTable = $('#bTable').bootstrapTable({
       idField: 'name',
       source: tableData,      
       pagination: true,
       search: true,
       toolbar: "#toolbar",
-      clickToSelect: true,
+     /* clickToSelect: true,
       singleSelect: true,
       checkboxHeader: false,
-      checkbox: true,
+      checkbox: true,*/
       height: 400,
       pageSize: 5,
       pageList: [5,10,20],          
       columns: [
-      {
+      /*{
           field: 'state',
           title: '',
           checkbox: true
-      },
+      },*/
       {
           field: 'nameLamp',
           title: 'Наименование </br> светильника',
@@ -49,16 +49,30 @@ $(document).ready(function() {
           sortable: true                  
       }, {
           field: 'roomArea',
-          title: 'Площадь </br> комнаты'         
+          title: 'Площадь </br> комнаты',
+          editable: {
+            type: 'number',
+            min: 0.1,
+            mode: 'popup',
+            placement: 'right',
+            step: 0.1
+          }          
       }, {
           field: 'lampsCount',
-          title: 'Количество </br> светильников'           
+          title: 'Количество </br> светильников',
+          editable: {
+            type: 'number',
+            min: 1,
+            mode: 'popup',
+            placement: 'right'
+          } 
+
       }, {
           field: 'requiredIllumination',
           title: 'Требуемая </br> освещенность',
           editable: {
             type: 'number',
-            min: 1,
+            min: 1,            
             /*source: [
               { value : 1 , text: "Значение пользователя"},
               { value : 5 , text: "Чердаки"},
@@ -80,11 +94,27 @@ $(document).ready(function() {
               { value : 500 , text: "Офисные помещения"},
               { value : 500 , text: "Рабочий кабинет"}
             ],*/
-            mode: 'inline'            
+            mode: 'popup',
+            placement: 'right'            
           }           
       }, {
           field: 'reflectionCoef',
-          title: 'Коэффициэнт </br> отражения'                     
+          title: 'Коэффициэнт </br> отражения',
+          editable: {
+            type: 'select',
+            source: [
+              { value : "0,0,0" , text: "Пол-0%, стены-0%, потолок-0%"},            
+              { value : "30,30,10" , text: "Пол-30%, стены-30%, потолок-10%"},
+              { value : "50,30,10" , text: "Пол-50%, стены-30%, потолок-10%"},
+              { value : "50,50,10" , text: "Пол-50%, стены-50%, потолок-10%"},
+              { value : "70,50,20" , text: "Пол-70%, стены-50%, потолок-20%"},
+              { value : "80,30,10" , text: "Пол-80%, стены-30%, потолок-10%"},
+              { value : "80,50,30" , text: "Пол-80%, стены-50%, потолок-30%"},
+              { value : "80,80,30" , text: "Пол-80%, стены-80%, потолок-30%"}
+            ],
+            mode: 'popup',
+            placement: 'left'
+          }                    
       }, {
           field: 'safetyFactor',
           title: 'Коэффициэнт </br> запаса',
@@ -96,7 +126,8 @@ $(document).ready(function() {
               { value : 1.6 , text: "1.6"},
               { value : 1.7 , text: "1.7"}
             ],
-            mode: 'inline'            
+            mode: 'popup',
+            placement: 'left'            
           }            
       }, {
           field: 'allPowerLamps',
@@ -106,6 +137,35 @@ $(document).ready(function() {
           title: 'Мощность всех </br> светильников'           
       }]
   });
+
+    $bTable.on('editable-save.bs.table', function (e, field, row, old, $el) {      
+      if(field === "lampsCount") {
+        console.log("chengeLampsCount");       
+        var roomNumber = row.roomNumber;
+        var roomParam = roomNumber.split("/");    
+        var curFloor = parseInt(roomParam[0]) - 1;
+        var curRoom = parseInt(roomParam[1]) - 1;         
+        var currentNameLamp = row.nameLamp;
+        var data = current_Room.getInstance().getTypeLamp();
+        if(data.floors[curFloor].rooms[curRoom].hasOwnProperty('typeLamp')) {
+          var typeLamp = data.floors[curFloor].rooms[curRoom].typeLamp;          
+          typeLamp[currentNameLamp].resultCalc.lampsCount = row.lampsCount;
+        }
+        current_Room.getInstance().setTypeLamp(data);        
+      } else {
+        
+      }
+      //console.log(row);
+      
+      /*var $els = $table.find('.editable'),
+          next = $els.index($el) + 1;
+
+          if (next >= $els.length) {
+              return;
+          }
+
+          $els.eq(next).editable('show');*/
+    });
   //============= END INITIAL BOOTSTRAP-TABLS =====================
 
     defaultInit();          // Initial default properties for lamp

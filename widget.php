@@ -97,7 +97,7 @@
                   <td class="input col-md-2">
                     <select class="room input-sm" id="reflectionCoef" name="reflectionCoef" required>
                       <option value="" selected>Выберите значение коэффициента отражения</option>                      
-                      <option value="0,0,0">Пол-0%, стены-0%, потолок-0%</option>                   
+                      <option value="0,0,0">Пол-0%, стены-0%, потолок-0%</option>            
                       <option value="30,30,10">Пол-30%, стены-30%, потолок-10%</option>
                       <option value="50,30,10">Пол-50%, стены-30%, потолок-10%</option>
                       <option value="50,50,10">Пол-50%, стены-50%, потолок-10%</option>
