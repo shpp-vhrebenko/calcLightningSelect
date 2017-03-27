@@ -1,35 +1,19 @@
 //===================== API LOCAL DATA =====================================
 var current_Room = (function () {
-  var instance, // object singleton
-     // curRoom = {}, // current active room object(number_room, number_floor )
-                    // current active room in drawing
+  var instance, // object singleton     
       curRoom = [], // current active rooms array
       tableData = [], // object data bootstrap-table ( object have all data table)
       curLamp = {}, // current lamp in table ( current active lamp in table)
       typeLamp = {}, // object json drawing (we take it from post message)
-      lampSelect = {}, // object has value for options name lamp select in form edit modal_window
+      //lampSelect = {}, // object has value for options name lamp select in form edit modal_window
       lampAutocomplit = [], // array for initial lamp autocomplit
-      lampAutocomplitKey = [], // array for initial lamp autocomplit for key
-      editLamp = {}, // object has parameter edit lamp in modal window
-      lampSelectEdit = [];
-      
-
-  var setEditLamp = function (inputObject) {           
-    $.each(inputObject, function(key, value) {
-       editLamp[key] = value;
-    });        
-  };
-
-  var getEditLamp= function () {        
-    return editLamp;       
-  };    
-
+      lampAutocomplitKey = []; // array for initial lamp autocomplit for key  
+ 
   var setLampSelect = function (inputObject) {       
     $.each(inputObject, function(key, value) {
-      lampSelect[key] = value;  
+      //lampSelect[key] = value;  
       lampAutocomplit.push({id: value.nameLamp, name: value.nameLamp});   
-      lampAutocomplitKey.push({id: value.nameLamp, name: value.key});
-      lampSelectEdit.push({value: value.nameLamp, name: value.nameLamp});         
+      lampAutocomplitKey.push({id: value.nameLamp, name: value.key});               
     });               
   };
 
@@ -40,14 +24,7 @@ var current_Room = (function () {
   var getLampAutocomplitKey = function () {       
     return lampAutocomplitKey;       
   };
-
-  var getLampSelect = function () {        
-    return lampSelect;       
-  };
-
-   var getLampSelectEdit = function () {        
-    return lampSelectEdit;       
-  };
+  
 
   var setTypeLamp = function (inputObject) { 
     console.log("setTypeLamp");  
@@ -89,10 +66,9 @@ var current_Room = (function () {
       proTableData.push(element);     
       
       setTableData(proTableData);
-    }
-    
-             
-    $('#bTable').bootstrapTable('load', tableData);    
+    }             
+    $('#bTable').bootstrapTable('load', tableData);   
+
   };  
 
   var chengeElementInTableData = function (element) {    
@@ -106,9 +82,9 @@ var current_Room = (function () {
             });
          }      
       } 
-    }
-         
+    }         
     $('#bTable').bootstrapTable('load', tableData);    
+
   };  
 
   var removeElementFromTableData = function (element) {       
@@ -185,18 +161,10 @@ var current_Room = (function () {
       removeElementFromTableData: removeElementFromTableData,
 
       setTypeLamp: setTypeLamp,
-      getTypeLamp: getTypeLamp,
-
-      setLampSelect: setLampSelect,
-      getLampSelect: getLampSelect,
+      getTypeLamp: getTypeLamp,     
 
       getLampAutocomplit: getLampAutocomplit,
-      getLampAutocomplitKey: getLampAutocomplitKey,
-
-      getLampSelectEdit: getLampSelectEdit,
-
-      setEditLamp: setEditLamp,
-      getEditLamp: getEditLamp
+      getLampAutocomplitKey: getLampAutocomplitKey
     };
   };
   return {

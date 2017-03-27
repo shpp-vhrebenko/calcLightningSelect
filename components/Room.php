@@ -24,10 +24,10 @@ class Room extends Polygon {
        if(!$this->area_coords) return $res;
        $a_c=  $this->area_coords;
        $x1=$a_c['x']-20;
-       $y1=$a_c['y']-8;
+       $y1=$a_c['y']-20;
        $room_id=$this->id;
-       $font_size = 8 * 2;
-       $res=$res."<text id={$room_id}_t1 x='{$x1}' y='{$y1}' fill='#000000' font-size='{$font_size}'  >".$this->name."</text>";
+       $font_size = 8 * 2.5;
+       $res=$res."<text id={$room_id}_t1 x='{$x1}' y='{$y1}' fill='#000000' font-size='{$font_size}'  > № ".$this->name."</text>";
        $x2=$a_c['x']-20;
        $y2=$a_c['y'];
        $square=$this->sider_plg->getSquare()/($this->scaling*$this->scaling);
@@ -45,9 +45,9 @@ class Room extends Polygon {
        }      
        
        $room_button=new GSVGButton($x3,$y3-8,21,9);
-		$room_button->addProperty("id",$this->button_id);
-		$room_button->addProperty("onclick","check_walls_of_room(\"".$this->button_id."\")");
-		$room_button->addProperty("onmousemove","but_room_mouse_move(\"".$this->button_id."\")");    
+    $room_button->addProperty("id",$this->button_id);
+    $room_button->addProperty("onclick","check_walls_of_room(\"".$this->button_id."\")");
+    $room_button->addProperty("onmousemove","but_room_mouse_move(\"".$this->button_id."\")");    
         $room_button->addProperty("display","none");
        
        return $res.$room_button->get_html();
@@ -61,20 +61,20 @@ class Room extends Polygon {
         parent::modifPoints($dx, $dy);
         if($this->area_coords)
         {
-			$this->area_coords['x']+=$dx;
-			$this->area_coords['y']+=$dy;
-		}
+      $this->area_coords['x']+=$dx;
+      $this->area_coords['y']+=$dy;
+    }
     }
     function scale($base_x,$base_y,$koef)
     {
         parent::scale($base_x,$base_y,$koef);
          if($this->area_coords)
         {
-			$dist_x=($this->area_coords['x']-$base_x)*$koef;
-			$dist_y=($this->area_coords['y']-$base_y)*$koef;
-			$this->area_coords['x']=$base_x+$dist_x;
-			$this->area_coords['y']=$base_y+$dist_y;
-		}
+      $dist_x=($this->area_coords['x']-$base_x)*$koef;
+      $dist_y=($this->area_coords['y']-$base_y)*$koef;
+      $this->area_coords['x']=$base_x+$dist_x;
+      $this->area_coords['y']=$base_y+$dist_y;
+    }
     }
     
 }

@@ -9,10 +9,11 @@
 // 6.viewDraw
 // 7.sendAjaxForm
 // 8.viewCalcCountLamp
-// 9.viewErrorResponse
-// 10.errorResponse
-// 11.hideLoadingWraper
-// 12.showLoadingWraper
+// 9.viewEditCalcCountLamp
+// 10.viewErrorResponse
+// 11.errorResponse
+// 12.hideLoadingWraper
+// 13.showLoadingWraper
 
 
 /**
@@ -89,7 +90,7 @@ function initSelectorNameLamp() {
       },
       success: function(data) {         
           var jsonResult = $.parseJSON(data);
-          current_Room.getInstance().setLampSelect(jsonResult);   
+          /*current_Room.getInstance().setLampSelect(jsonResult);  */ 
           $.each(jsonResult, function() {            
               $('#nameLamp').append(
                   $('<option></option>').text(this.nameLamp)
@@ -267,6 +268,40 @@ function viewCalcCountLamp(result) {
       viewResultInTable(calcLighting);                           
     } else {            
       viewErrorResponse("Введенные данные некорректны");            
+    }          
+  } 
+}
+
+/**
+ * [view edit Calc Count Lamp]
+ * @param  {[json string]} result [description] 
+ */
+function viewEditCalcCountLamp(result, sendData) {    
+  var parameters = sendData.parameters;
+  var nameLamp = parameters.nameLamp; 
+  var resultResponse = $.parseJSON(result); 
+  console.group("RESULT EDIT CALC COUNT LAMP");    
+  console.log(resultResponse);
+  console.groupEnd();             
+  if('error' in resultResponse) {
+    console.info("error code - " + resultResponse.error.code);
+    console.info("file error - " + resultResponse.error.file);
+    console.info("line error - " + resultResponse.error.line);
+    viewErrorResponse(resultResponse.error.message);
+    return false;
+  } else {
+    if ('calcCountLamp' in resultResponse) {
+      $('#put_data').show();
+      // console.log(resultResponse.calcCountLamp);
+       var calcCountLamp = resultResponse.calcCountLamp;
+      if(calcCountLamp) {        
+        var objectLamp = {}; 
+        objectLamp = parameters; 
+        objectLamp.resultCalc = calcCountLamp;                                         
+        addLampInLocalDataAfterEdit(objectLamp, nameLamp);               
+      }                     
+    } else {            
+      viewErrorResponse("Введенные данные для редактирования некорректны");            
     }          
   } 
 }

@@ -80,7 +80,8 @@ function draw_floor($numberFloor, $hourse) {
       if(property_exists($room,'area_coords'))  $a_c= json_decode(json_encode($room->area_coords),true);
       else $a_c=false;
       ###???$but_room_id="but_room_{$floor_number}_{$i}";
-      $plg_room=new Room($room->room_name,$a_c,$floors[$floor_number]->scaling,"but_room_{$floor_number}_{$i}",'rgb(255,204,153)','rgb(0,0,0)');
+      $room_name = $i + 1;
+      $plg_room=new Room($room_name,$a_c,$floors[$floor_number]->scaling,"but_room_{$floor_number}_{$i}",'rgb(255,204,153)','rgb(0,0,0)');
       //$plg_room=new Polygon('rgb(255,204,153)','rgb(0,0,0)');
       $plg_room->number=$room->room_number;
       $plg_room->setId("room_{$floor_number}_".$i);

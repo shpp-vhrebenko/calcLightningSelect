@@ -18,6 +18,7 @@ if(listDataLamp && listDataLamp.hasOwnProperty('parameters')) {
   parameters = listDataLamp.parameters; 
 }
 $(document).ready(function() {  
+
   //============= INITIAL BOOTSTRAP-TABLS =========================
   var tableData = current_Room.getInstance().getTableData();  
   var $bTable = $('#bTable').bootstrapTable({
@@ -26,19 +27,17 @@ $(document).ready(function() {
       pagination: true,
       search: true,
       toolbar: "#toolbar",
-     /* clickToSelect: true,
+      clickToSelect: true,
       singleSelect: true,
-      checkboxHeader: false,
-      checkbox: true,*/
+      checkboxHeader: true,      
       height: 400,
       pageSize: 5,
       pageList: [5,10,20],          
       columns: [
-      /*{
-          field: 'state',
-          title: '',
+      {
+          field: 'state',          
           checkbox: true
-      },*/
+      },
       {
           field: 'nameLamp',
           title: 'Наименование </br> светильника',
@@ -50,6 +49,7 @@ $(document).ready(function() {
       }, {
           field: 'roomArea',
           title: 'Площадь </br> комнаты',
+          container: 'body',
           editable: {
             type: 'number',
             min: 0.1,
@@ -60,6 +60,7 @@ $(document).ready(function() {
       }, {
           field: 'lampsCount',
           title: 'Количество </br> светильников',
+          container: 'body',
           editable: {
             type: 'number',
             min: 1,
@@ -70,36 +71,17 @@ $(document).ready(function() {
       }, {
           field: 'requiredIllumination',
           title: 'Требуемая </br> освещенность',
+          container: 'body',
           editable: {
             type: 'number',
-            min: 1,            
-            /*source: [
-              { value : 1 , text: "Значение пользователя"},
-              { value : 5 , text: "Чердаки"},
-              { value : 100 , text: "Лестницы"},
-              { value : 50 , text: "Коридоры"},
-              { value : 150 , text: "Вестибюли"},
-              { value : 50 , text: "Склады в зоне хранения товара"},
-              { value : 150 , text: "Вестибюли"},
-              { value : 50 , text: "Склады в зоне хранения товара"},
-              { value : 200 , text: "Склады в зоне приема товара"},
-              { value : 200 , text: "Гаражи"},
-              { value : 400 , text: "Парикмахерские"},
-              { value : 200 , text: "Объединенные залы и буфеты"},
-              { value : 400 , text: "Торговые залы магазинов"},
-              { value : 200 , text: "Конференц-залы и залы заседаний"},
-              { value : 500 , text: "Проектрные и конструкторские бюро"},
-              { value : 300 , text: "Читальные залы"},
-              { value : 300 , text: "Учебные аудитории и классы"},
-              { value : 500 , text: "Офисные помещения"},
-              { value : 500 , text: "Рабочий кабинет"}
-            ],*/
+            min: 1,              
             mode: 'popup',
-            placement: 'right'            
+            placement: 'left'            
           }           
       }, {
           field: 'reflectionCoef',
           title: 'Коэффициэнт </br> отражения',
+          container: 'body',
           editable: {
             type: 'select',
             source: [
@@ -118,6 +100,7 @@ $(document).ready(function() {
       }, {
           field: 'safetyFactor',
           title: 'Коэффициэнт </br> запаса',
+          container: 'body',
           editable: {
             type: 'select',
             source: [
@@ -186,16 +169,7 @@ $(document).ready(function() {
                 'POST');  
       
     }
-    //console.log(row);
     
-    /*var $els = $table.find('.editable'),
-        next = $els.index($el) + 1;
-
-        if (next >= $els.length) {
-            return;
-        }
-
-        $els.eq(next).editable('show');*/
   });
   //============= END INITIAL BOOTSTRAP-TABLS =====================
 
