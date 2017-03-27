@@ -18,17 +18,18 @@
   try {
      if ($_SERVER['REQUEST_METHOD'] === 'POST') {        
         if(isset($_POST["calc_lighting"])) {
+
           foreach($_POST["currentRooms"] as $key => $value) {
             $answer[$key] = $value;
-          } 
-         /* echo json_encode($answer);
-          exit();*/          
-          $resultArray["calcLighting"] = calcLightingDrawObject($answer);               
-          //$resultArray["calcLighting"] = calcLighting($answer);            
-          echo json_encode($resultArray);                
+          }   
+          $resultArray["calcLighting"] = calcLightingDrawObject($answer);                    
+          echo json_encode($resultArray); 
+
         } else if(isset($_POST["calc_countLamp"])) { 
-          $resultArray["calcCountLamp"] = calcLighting($_POST["parameters"], $_POST["currentRoom"]); 
+
+          $resultArray["calcCountLamp"] = calcLighting($_POST["parameters"], null, true); 
           echo json_encode($resultArray);       
+
         } else {
           throw new Exception('Введенные данные некорректны', 1);           
         }
@@ -85,9 +86,14 @@
   *
   * @return {array} resultArray object with result calculation loads
   */
-  function calcLighting($room, $roomDraw) {     
-
-    $params = parseDrawing($roomDraw);
+  function calcLighting($room, $roomDraw, $calcEdit = false) {   
+    $params = [];  
+    if($calcEdit) {      
+      $params["perimetr"] = $room["perimetr"];
+      $params["space"] = $room["roomArea"];
+    } else {
+      $params = parseDrawing($roomDraw);
+    }    
     //uploadUsagecodfficient($room["usagecoefficient"], $room["typeLamp"]);    
     $utilization_rate_array = [];    
 
@@ -190,11 +196,12 @@
     if($numbeLamps == 0) {
       $numbeLamps = 1;
     }  
+    $wattLight = $numbeLamps * $room["numberLamps"] * $room["powerLamp"];    
     
-    $wattLight = $numbeLamps * $room["numberLamps"] * $room["powerLamp"];
     $result["lampsCount"] = $numbeLamps;
     $result["lampsWatt"]= $wattLight; 
     $result["roomArea"]= $params["space"]; 
+       
 
     return $result;
   }

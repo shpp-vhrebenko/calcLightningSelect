@@ -285,9 +285,9 @@ function  initSelectNameLampForFormEditLamp() {
  * [view edit Calc Count Lamp]
  * @param  {[json string]} result [description] 
  */
-function viewEditCalcCountLamp(result) {  
-  var editLamp = current_Room.getInstance().getEditLamp();
-  var nameLamp = editLamp.nameLamp;
+function viewEditCalcCountLamp(result, sendData) {    
+  var parameters = sendData.parameters;
+  var nameLamp = parameters.nameLamp; 
   var resultResponse = $.parseJSON(result); 
   console.group("RESULT EDIT CALC COUNT LAMP");    
   console.log(resultResponse);
@@ -305,7 +305,7 @@ function viewEditCalcCountLamp(result) {
        var calcCountLamp = resultResponse.calcCountLamp;
       if(calcCountLamp) {        
         var objectLamp = {}; 
-        objectLamp = editLamp; 
+        objectLamp = parameters; 
         objectLamp.resultCalc = calcCountLamp;                                         
         addLampInLocalDataAfterEdit(objectLamp, nameLamp);               
       }                     

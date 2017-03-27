@@ -95,12 +95,12 @@ var current_Room = (function () {
     $('#bTable').bootstrapTable('load', tableData);    
   };  
 
-  var chengeElementInTableData = function (element, chengeElementName) {    
-    /* jshint loopfunc:true */ 
+  var chengeElementInTableData = function (element) {    
+    /* jshint loopfunc:true */     
     if(tableData.length > 0) {      
       for (var i = 0; i < tableData.length ; i++) {
          var curTableElement = tableData[i];
-         if((curTableElement.roomNumber === element.roomNumber) && (curTableElement.nameLamp === chengeElementName)) {
+         if((curTableElement.roomNumber === element.roomNumber) && (curTableElement.nameLamp === element.nameLamp)) {
             $.each(element, function(key, val) {
               curTableElement[key] = val;  
             });
@@ -262,9 +262,9 @@ function getCurrentRooms(nameLamp, lampParameters) {
  * [get Current Room For Edit from local data = current row in table]
  * @return {[object]} [description]
  */
-function getCurrentRoomForEdit() {   
+function getCurrentRoomForEdit(curRoom) {   
    var data = current_Room.getInstance().getTypeLamp();
-   var curRoom = current_Room.getInstance().getCurrentLamp(); 
+  /* var curRoom = current_Room.getInstance().getCurrentLamp(); */
    var param = curRoom.roomNumber.split('/');
    var floor = parseInt(param[0]) - 1;
    var room = parseInt(param[1]) - 1;
@@ -302,27 +302,24 @@ function addLampInLocalData(objectLamp, nameLamp) {
  * @param {[object]} objectLamp [object result serialize form edit and calc lamp]
  * @param {[string]} nameLamp   [name lamp for chenge]
  */
-function addLampInLocalDataAfterEdit(objectLamp, nameLamp) {  
-  var data = current_Room.getInstance().getTypeLamp();   
-  var curRoom= current_Room.getInstance().getCurrentLamp();
-  var chengeName = curRoom.nameLamp; 
-  var param = curRoom.roomNumber.split('/');
+function addLampInLocalDataAfterEdit(objectLamp, nameLamp) {    
+  var data = current_Room.getInstance().getTypeLamp();  
+  var param = objectLamp.roomNumber.split('/');
   var floor = parseInt(param[0]) - 1;
   var room = parseInt(param[1]) - 1; 
   if(data.floors[floor].rooms[room].hasOwnProperty('typeLamp')) { 
     var currentTypeLamp = data.floors[floor].rooms[room].typeLamp;
     var chengeTypeLamp = {};
     $.each(currentTypeLamp, function(key, val) {
-      if(key === chengeName) {
-        chengeTypeLamp[nameLamp] = objectLamp;
-      } else {
+      if(key != nameLamp) {
         chengeTypeLamp[key] = val;
-      }
+      } 
     });  
+    chengeTypeLamp[nameLamp] = objectLamp;
     data.floors[floor].rooms[room].typeLamp = chengeTypeLamp;    
   }   
   current_Room.getInstance().setTypeLamp(data);
-  viewResultInTableAfterEdit(objectLamp, room, floor, chengeName);   
+  viewResultInTableAfterEdit(objectLamp, room, floor);   
 }
 
 /**

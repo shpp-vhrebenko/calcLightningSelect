@@ -228,7 +228,9 @@ function sendAjaxForm(sendData,
       data: sendData,        
       beforeSend: beforeSendFunction,
       complete: completeFunction,
-      success: successFunction,
+      success: function(response) {
+        successFunction(response, sendData);
+      },
       error: errorFunction     
   });
 }
@@ -291,6 +293,17 @@ function hideLoadingWraper() {
  */
 function showLoadingWraper() {
   $(".js_loading_wraper").fadeOut("slow");
+}
+
+
+function getRoomPerimetr(arrayWalls) {
+  var perimetr = 0;
+  for (var i = 0; i < arrayWalls.length; i++) { 
+    var currentWall = arrayWalls[i];  
+    var currentWallLength = round(currentWall.wall_length_mm/1000,2);       
+    perimetr = perimetr + currentWallLength;    
+  } 
+  return perimetr;
 }
 
 //==============END FUNCTIONS MAIN WINDOW =====================================

@@ -138,34 +138,65 @@ $(document).ready(function() {
       }]
   });
 
-    $bTable.on('editable-save.bs.table', function (e, field, row, old, $el) {      
-      if(field === "lampsCount") {
-        console.log("chengeLampsCount");       
-        var roomNumber = row.roomNumber;
-        var roomParam = roomNumber.split("/");    
-        var curFloor = parseInt(roomParam[0]) - 1;
-        var curRoom = parseInt(roomParam[1]) - 1;         
-        var currentNameLamp = row.nameLamp;
-        var data = current_Room.getInstance().getTypeLamp();
-        if(data.floors[curFloor].rooms[curRoom].hasOwnProperty('typeLamp')) {
-          var typeLamp = data.floors[curFloor].rooms[curRoom].typeLamp;          
-          typeLamp[currentNameLamp].resultCalc.lampsCount = row.lampsCount;
-        }
-        current_Room.getInstance().setTypeLamp(data);        
-      } else {
-        
+  $bTable.on('editable-save.bs.table', function (e, field, row, old, $el) {      
+    if(field === "lampsCount") {
+      console.log("chengeLampsCount");       
+      var roomNumber = row.roomNumber;
+      var roomParam = roomNumber.split("/");    
+      var curFloor = parseInt(roomParam[0]) - 1;
+      var curRoom = parseInt(roomParam[1]) - 1;         
+      var currentNameLamp = row.nameLamp;
+      var data = current_Room.getInstance().getTypeLamp();
+      if(data.floors[curFloor].rooms[curRoom].hasOwnProperty('typeLamp')) {
+        var typeLamp = data.floors[curFloor].rooms[curRoom].typeLamp;          
+        typeLamp[currentNameLamp].resultCalc.lampsCount = row.lampsCount;
       }
-      //console.log(row);
+      current_Room.getInstance().setTypeLamp(data);        
+    } else {
+      console.log("chengeCalcCount");
+      if(field === "requiredIllumination") {
+        row.customRequiredIllumination = row.requiredIllumination;
+      }        
+      var currentRoomObject = getCurrentRoomForEdit(row);
+      var curNameLamp = row.nameLamp;
+      row.perimetr = getRoomPerimetr(currentRoomObject.walls);        
+      if(currentRoomObject.hasOwnProperty('typeLamp')) {
+        var ObjectTypeLamp = currentRoomObject.typeLamp;
+        var chengeContent = {};
+        $.each(ObjectTypeLamp, function(key, val) {
+           if(key === curNameLamp) {
+              chengeContent[curNameLamp] = row;  
+           } else {
+              chengeContent[key] = val;
+           }
+        });
+        currentRoomObject.typeLamp = chengeContent;        
+      }  
+      var sendData = {
+        calc_countLamp : true,
+        parameters : row          
+      };    
+      sendAjaxForm(sendData,
+                "calc_lighting.php",
+                hideLoadingWraper,
+                showLoadingWraper,
+                viewEditCalcCountLamp,
+                errorResponse,
+                10000,
+                'POST');  
       
-      /*var $els = $table.find('.editable'),
-          next = $els.index($el) + 1;
+    }
+    //console.log(row);
+    
+    /*var $els = $table.find('.editable'),
+        next = $els.index($el) + 1;
 
-          if (next >= $els.length) {
-              return;
-          }
+        if (next >= $els.length) {
+            return;
+        }
 
-          $els.eq(next).editable('show');*/
-    });
+        $els.eq(next).editable('show');*/
+  });
   //============= END INITIAL BOOTSTRAP-TABLS =====================
 
     defaultInit();          // Initial default properties for lamp

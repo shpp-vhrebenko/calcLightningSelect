@@ -153,10 +153,7 @@
             <div id="toolbar" class="btn-group">
                 <button type="button" class="btn btn-default" id="set_data">
                     <i class="glyphicon glyphicon-plus"></i>
-                </button>               
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" id="edit_data">
-                    <i class="glyphicon glyphicon-pencil"></i>
-                </button>                
+                </button>                              
                 <button type="button" class="btn btn-default" id="remove_data">
                     <i class="glyphicon glyphicon-trash"></i>
                 </button>                               
