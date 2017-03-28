@@ -17,8 +17,12 @@ var parameters = {};
 if(listDataLamp && listDataLamp.hasOwnProperty('parameters')) {
   parameters = listDataLamp.parameters; 
 }
-$(document).ready(function() {  
-
+$(document).ready(function() {   
+  //===============================================================
+  //
+  //
+  //
+  //
   //============= INITIAL BOOTSTRAP-TABLS =========================
   var tableData = current_Room.getInstance().getTableData();  
   var $bTable = $('#bTable').bootstrapTable({
@@ -32,7 +36,8 @@ $(document).ready(function() {
       checkboxHeader: true,      
       height: 400,
       pageSize: 5,
-      pageList: [5,10,20],          
+      pageList: [5,10,20],
+      classes: "table table-condensed table-responsive",          
       columns: [
       {
           field: 'state',          
@@ -41,15 +46,20 @@ $(document).ready(function() {
       {
           field: 'nameLamp',
           title: 'Наименование </br> светильника',
-          sortable: true
+          sortable: true,
+          class: "col-md-5"
       }, {
           field: 'roomNumber',
-          title: '№ этажа </br> / № комнаты',
-          sortable: true                  
+          title: 'эт./км.',
+          sortable: true,
+          class: "col-md-1 forTooltip",
+          tooltip: true,
+          titleTooltip: "№ этажа / № комнаты"          
       }, {
           field: 'roomArea',
-          title: 'Площадь </br> комнаты',
+          title: 'Площадь</br>комнаты',
           container: 'body',
+          class: "col-md-1",
           editable: {
             type: 'number',
             min: 0.1,
@@ -59,8 +69,9 @@ $(document).ready(function() {
           }          
       }, {
           field: 'lampsCount',
-          title: 'Количество </br> светильников',
+          title: 'Кол-во.</br>свет-ков',
           container: 'body',
+          class: "col-md-1",
           editable: {
             type: 'number',
             min: 1,
@@ -70,8 +81,9 @@ $(document).ready(function() {
 
       }, {
           field: 'requiredIllumination',
-          title: 'Требуемая </br> освещенность',
+          title: 'Треб. </br>освещ. лк',
           container: 'body',
+          class: "col-md-1",
           editable: {
             type: 'number',
             min: 1,              
@@ -80,27 +92,29 @@ $(document).ready(function() {
           }           
       }, {
           field: 'reflectionCoef',
-          title: 'Коэффициэнт </br> отражения',
+          title: 'Коэф.</br>отражения',
           container: 'body',
+          class: "col-md-1",
           editable: {
             type: 'select',
             source: [
-              { value : "0,0,0" , text: "Пол-0%, стены-0%, потолок-0%"},            
-              { value : "30,30,10" , text: "Пол-30%, стены-30%, потолок-10%"},
-              { value : "50,30,10" , text: "Пол-50%, стены-30%, потолок-10%"},
-              { value : "50,50,10" , text: "Пол-50%, стены-50%, потолок-10%"},
-              { value : "70,50,20" , text: "Пол-70%, стены-50%, потолок-20%"},
-              { value : "80,30,10" , text: "Пол-80%, стены-30%, потолок-10%"},
-              { value : "80,50,30" , text: "Пол-80%, стены-50%, потолок-30%"},
-              { value : "80,80,30" , text: "Пол-80%, стены-80%, потолок-30%"}
+              { value : "0,0,0" , text: "0,0,0"},            
+              { value : "30,30,10" , text: "30,30,10"},
+              { value : "50,30,10" , text: "50,30,10"},
+              { value : "50,50,10" , text: "50,50,10"},
+              { value : "70,50,20" , text: "70,50,20"},
+              { value : "80,30,10" , text: "80,30,10"},
+              { value : "80,50,30" , text: "80,50,30"},
+              { value : "80,80,30" , text: "80,80,30"}
             ],
             mode: 'popup',
             placement: 'left'
           }                    
       }, {
           field: 'safetyFactor',
-          title: 'Коэффициэнт </br> запаса',
+          title: 'Коэф.</br>запаса',
           container: 'body',
+          class: "col-md-1",
           editable: {
             type: 'select',
             source: [
@@ -114,11 +128,22 @@ $(document).ready(function() {
           }            
       }, {
           field: 'allPowerLamps',
-          title: 'Мощность </br> 1 светильника'           
+          title: 'Мощ-ть</br>1шт. Вт',
+          titleTooltip: "Мощность 1 светильника",
+          class: "col-md-1 forTooltip"           
       }, {
           field: 'lampsWatt',
-          title: 'Мощность всех </br> светильников'           
+          class: "col-md-1 forTooltip",
+          title: 'Мощ-ть</br>всех Вт',
+          titleTooltip: "Мощность всех светильников",           
       }]
+  });
+
+  $('#bTable').on('post-body.bs.table', function () {
+      $('.forTooltip').attr("data-tooltip","true");
+      $('[data-tooltip="true"]').tooltip({
+          container: 'body'
+      });
   });
 
   $bTable.on('editable-save.bs.table', function (e, field, row, old, $el) {      
@@ -172,6 +197,12 @@ $(document).ready(function() {
     
   });
   //============= END INITIAL BOOTSTRAP-TABLS =====================
+  //
+  //
+  //
+  //
+  //
+  //================================================================
 
     defaultInit();          // Initial default properties for lamp
     init();                 // init properties lamp from LocalStorage      
@@ -195,12 +226,20 @@ $(document).ready(function() {
       } else {         
           $('#set_data').prop('disabled', 'disabled');
       }
-    });  
-
+    }); 
+    //==============================================================
+    // 
+    //  
+    //   
+    //    
     //================= BOOTSTRAP TOOLTIP ===========================    
     $('[data-toggle="tooltip"]').tooltip(); 
     //================= END BOOTSTRAP TOOLTIP ======================= 
-    
+    //
+    //
+    //
+    //
+    //    
     //================= AUTOCOMPLIT BOOTSTRAP-TYPEAHEAD =============
     var selectLamp = current_Room.getInstance().getLampAutocomplit();
     var selectLampKey = current_Room.getInstance().getLampAutocomplitKey();   
@@ -230,10 +269,13 @@ $(document).ready(function() {
       $('#nameLamp').trigger('change');      
     });
     //============= END AUTOCOMPLIT BOOTSTRAP-TYPEAHEAD =============   
-    
-    
-    
-    
+    //
+    //
+    //
+    //
+    //
+    //
+    //===============================================================    
     typeLampFormValidation();    
 });
 
