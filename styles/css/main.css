@@ -7447,7 +7447,6 @@ a.editable-click.editable-disabled:hover {
 }
 /* @import (less) "../../bower_components/EasyAutocomplete/dist/easy-autocomplete.css"; */
 /* @import (less) "../../bower_components/jquery-ui/themes/base/jquery-ui.css"; */
-/* Reload bootstrap style */
 .btn-circle {
   width: 30px;
   height: 30px;
@@ -7498,12 +7497,12 @@ th {
 td {
   text-align: center;
 }
-/* jquery autocomplete */
-.ui-autocomplete {
-  height: 200px;
-  width: 200px;
-  overflow-y: scroll;
-  overflow-x: hidden;
+.half-col-md {
+  width: 4.155555%;
+}
+.fixed-table-container thead th .th-inner,
+.fixed-table-container tbody td .th-inner {
+  padding: 8px 2px;
 }
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
@@ -7586,9 +7585,6 @@ body {
   top: 50%;
   left: 50%;
   margin: -20px 0 0 -20px;
-  /* position: relative;
-  z-index: 1;
-  right: -50%; */
 }
 #js_photo_lamp {
   border-radius: 10px;
@@ -7643,4 +7639,7 @@ polygon {
 .tooltip.bottom {
   position: relative;
   z-index: 9999;
+}
+.half {
+  display: none;
 }

@@ -33,32 +33,41 @@ $(document).ready(function() {
       toolbar: "#toolbar",
       clickToSelect: true,
       singleSelect: true,
-      checkboxHeader: true,      
+      checkboxHeader: false,      
       height: 400,
       pageSize: 5,
       pageList: [5,10,20],
-      classes: "table table-condensed table-responsive",          
+      classes: "table table-condensed",          
       columns: [
       {
           field: 'state',          
-          checkbox: true
+          checkbox: true,
+          class: "half",
+          formatter: runningFormatter
+      },
+      {
+          field: 'index',
+          title: '№',
+          titleTooltip: "№ по порядку",  
+          class: "col-md-1 half-col-md forTooltip",         
+          formatter: runningFormatter
       },
       {
           field: 'nameLamp',
           title: 'Наименование </br> светильника',
-          sortable: true,
-          class: "col-md-5"
+          sortable: true,        
+          class: "col-md-3"
       }, {
           field: 'roomNumber',
-          title: 'эт./км.',
-          sortable: true,
-          class: "col-md-1 forTooltip",
+          title: '№',
+          sortable: true,          
+          class: "col-md-1 forTooltip half-col-md",          
           tooltip: true,
           titleTooltip: "№ этажа / № комнаты"          
       }, {
           field: 'roomArea',
           title: 'Площадь</br>комнаты',
-          container: 'body',
+          container: 'body',          
           class: "col-md-1",
           editable: {
             type: 'number',
@@ -70,7 +79,7 @@ $(document).ready(function() {
       }, {
           field: 'lampsCount',
           title: 'Кол-во.</br>свет-ков',
-          container: 'body',
+          container: 'body',         
           class: "col-md-1",
           editable: {
             type: 'number',
@@ -81,8 +90,7 @@ $(document).ready(function() {
 
       }, {
           field: 'requiredIllumination',
-          title: 'Треб. </br>освещ. лк',
-          container: 'body',
+          title: 'Треб. </br>освещ. лк',                    
           class: "col-md-1",
           editable: {
             type: 'number',
@@ -92,8 +100,7 @@ $(document).ready(function() {
           }           
       }, {
           field: 'reflectionCoef',
-          title: 'Коэф.</br>отражения',
-          container: 'body',
+          title: 'Коэф.</br>отражения',                   
           class: "col-md-1",
           editable: {
             type: 'select',
@@ -112,8 +119,7 @@ $(document).ready(function() {
           }                    
       }, {
           field: 'safetyFactor',
-          title: 'Коэф.</br>запаса',
-          container: 'body',
+          title: 'Коэф.</br>запаса',         
           class: "col-md-1",
           editable: {
             type: 'select',
@@ -129,10 +135,10 @@ $(document).ready(function() {
       }, {
           field: 'allPowerLamps',
           title: 'Мощ-ть</br>1шт. Вт',
-          titleTooltip: "Мощность 1 светильника",
-          class: "col-md-1 forTooltip"           
+          titleTooltip: "Мощность 1 светильника",         
+         class: "col-md-1 forTooltip"           
       }, {
-          field: 'lampsWatt',
+          field: 'lampsWatt', 
           class: "col-md-1 forTooltip",
           title: 'Мощ-ть</br>всех Вт',
           titleTooltip: "Мощность всех светильников",           
@@ -145,6 +151,10 @@ $(document).ready(function() {
           container: 'body'
       });
   });
+
+  function runningFormatter(value, row, index) {
+      return 1+index;
+  }
 
   $bTable.on('editable-save.bs.table', function (e, field, row, old, $el) {      
     if(field === "lampsCount") {
