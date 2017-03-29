@@ -35,8 +35,8 @@ $(document).ready(function() {
       singleSelect: true,
       checkboxHeader: false,      
       height: 400,
-      pageSize: 5,
-      pageList: [5,10,20],
+      pageSize: 10,
+      pageList: [10,15,20],
       classes: "table table-condensed",          
       columns: [
       {
@@ -163,7 +163,8 @@ $(document).ready(function() {
       var roomParam = roomNumber.split("/");    
       var curFloor = parseInt(roomParam[0]) - 1;
       var curRoom = parseInt(roomParam[1]) - 1;         
-      var currentNameLamp = row.nameLamp;
+      //var currentNameLamp = row.nameLamp;
+      var currentNameLamp = row.typeLamp;
       var data = current_Room.getInstance().getTypeLamp();
       if(data.floors[curFloor].rooms[curRoom].hasOwnProperty('typeLamp')) {
         var typeLamp = data.floors[curFloor].rooms[curRoom].typeLamp;          
@@ -176,7 +177,8 @@ $(document).ready(function() {
         row.customRequiredIllumination = row.requiredIllumination;
       }        
       var currentRoomObject = getCurrentRoomForEdit(row);
-      var curNameLamp = row.nameLamp;
+      //var curNameLamp = row.nameLamp;
+      var curNameLamp = row.typeLamp;
       row.perimetr = getRoomPerimetr(currentRoomObject.walls);        
       if(currentRoomObject.hasOwnProperty('typeLamp')) {
         var ObjectTypeLamp = currentRoomObject.typeLamp;

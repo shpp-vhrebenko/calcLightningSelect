@@ -16,8 +16,9 @@ $('#set_data').on('click', function(event) {
   var json_data = localStorage.getItem('typeLamp');
   var local_data = $.parseJSON(json_data);  
   var currentParameters = local_data.parameters; 
-  var nameLamp = local_data.parameters.nameLamp;
-  var currentRoomsArray = getCurrentRooms(nameLamp, currentParameters);     
+  //var nameLamp = local_data.parameters.nameLamp;
+  //var nameLamp = local_data.parameters.typeLamp;
+  var currentRoomsArray = getCurrentRooms(currentParameters);     
   var data = {
     calc_lighting : true,    
     currentRooms : currentRoomsArray

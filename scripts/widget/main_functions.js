@@ -278,7 +278,8 @@ function viewCalcCountLamp(result) {
  */
 function viewEditCalcCountLamp(result, sendData) {    
   var parameters = sendData.parameters;
-  var nameLamp = parameters.nameLamp; 
+  //var nameLamp = parameters.nameLamp;
+  var nameLamp = parameters.typeLamp; 
   var resultResponse = $.parseJSON(result); 
   console.group("RESULT EDIT CALC COUNT LAMP");    
   console.log(resultResponse);
