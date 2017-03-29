@@ -260,8 +260,17 @@ function addLampsInLocalData(arrayLamps) {
     var room = currentLamp.room;    
     var floor = currentLamp.floor;    
     //var nameLamp = currentLamp.nameLamp; 
-    var nameLamp = currentLamp.typeLamp;        
-    if(currentData.floors[floor].rooms[room].hasOwnProperty('typeLamp')) { 
+    var nameLamp = currentLamp.typeLamp; 
+    var currentRoom = currentData.floors[floor].rooms[room];          
+    if(currentRoom.hasOwnProperty('typeLamp')) { 
+      if(currentRoom.typeLamp !== undefined) {
+        console.log("has TypeLamp");
+        var proTypeLamp = {};
+        proTypeLamp = _.cloneDeep(currentData.floors[floor].rooms[room].typeLamp);             
+        proTypeLamp[nameLamp] = {};
+        proTypeLamp[nameLamp] = currentLamp;
+        currentData.floors[floor].rooms[room].typeLamp = proTypeLamp; 
+      }
       /*var proTypeLamp = {};
       var typeLamp = _.cloneDeep(currentData.floors[floor].rooms[room].typeLamp);
       //jshint loopfunc:true 
@@ -270,19 +279,9 @@ function addLampsInLocalData(arrayLamps) {
       });
       proTypeLamp[nameLamp] = {};
       proTypeLamp[nameLamp] = currentLamp;
-      currentData.floors[floor].rooms[room].typeLamp = proTypeLamp;*/
-      /*var proTypeLamp = {};      
-      proTypeLamp = _.cloneDeep(currentData.floors[floor].rooms[room].typeLamp);*/
-     /* currentData.floors[floor].rooms[room].typeLamp[nameLamp] = {};
-      currentData.floors[floor].rooms[room].typeLamp[nameLamp] = currentLamp;*/
-      
-      var proTypeLamp = {};
-      proTypeLamp = _.cloneDeep(currentData.floors[floor].rooms[room].typeLamp);      
-      proTypeLamp[nameLamp] = {};
-      proTypeLamp[nameLamp] = currentLamp;
-      currentData.floors[floor].rooms[room].typeLamp = proTypeLamp;           
-              
+      currentData.floors[floor].rooms[room].typeLamp = proTypeLamp;*/                   
     } else { 
+      console.log("not has TypeLamp");
       proObject = {};
       proObject[nameLamp] = {};
       proObject[nameLamp] = currentLamp;
