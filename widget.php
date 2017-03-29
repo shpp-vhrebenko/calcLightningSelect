@@ -206,9 +206,10 @@
       </div>
     </div>
 
-    <!-- build:js scripts/widget_vendor.js -->    
-    <script type="text/javascript" src="bower_components/bootstrap3-typeahead/bootstrap3-typeahead.js"></script>  
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>          
+    <!-- build:js scripts/widget_vendor.js --> 
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>    
+    <script type="text/javascript" src="bower_components/bootstrap3-typeahead/bootstrap3-typeahead.js"></script>              
     <script src="bower_components/bootstrap-table/dist/bootstrap-table.js"></script> 
     <script src="bower_components/bootstrp3-editable/bootstrap3-editable/js/bootstrap-editable.js"></script> 
     <script src="bower_components/bootstrap-table/dist/extensions/editable/bootstrap-table-editable.js"></script> 

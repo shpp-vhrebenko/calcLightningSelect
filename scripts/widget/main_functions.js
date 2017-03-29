@@ -90,7 +90,7 @@ function initSelectorNameLamp() {
       },
       success: function(data) {         
           var jsonResult = $.parseJSON(data);
-          /*current_Room.getInstance().setLampSelect(jsonResult);  */ 
+          current_Room.getInstance().setLampSelect(jsonResult);   
           $.each(jsonResult, function() {            
               $('#nameLamp').append(
                   $('<option></option>').text(this.nameLamp)
@@ -264,8 +264,8 @@ function viewCalcCountLamp(result) {
     if ('calcLighting' in resultResponse) {
       $('#put_data').show();      
       var calcLighting = resultResponse.calcLighting;
-      current_Room.getInstance().setTypeLamp(calcLighting);                              
-      viewResultInTable(calcLighting);                           
+      addLampsInLocalData(calcLighting);                                   
+      //viewResultInTable(calcLighting);                         
     } else {            
       viewErrorResponse("Введенные данные некорректны");            
     }          

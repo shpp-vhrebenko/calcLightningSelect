@@ -17,17 +17,16 @@
  
   try {
      if ($_SERVER['REQUEST_METHOD'] === 'POST') {        
-        if(isset($_POST["calc_lighting"])) {
-
-          foreach($_POST["currentRooms"] as $key => $value) {
+        if(isset($_POST["calc_lighting"])) {         
+          /*foreach($_POST["currentRooms"] as $key => $value) {
             $answer[$key] = $value;
-          }   
-          $resultArray["calcLighting"] = calcLightingDrawObject($answer);                    
+          }*/   
+          $resultArray["calcLighting"] = calcLightingArray($_POST["currentRooms"]);                    
           echo json_encode($resultArray); 
 
         } else if(isset($_POST["calc_countLamp"])) { 
 
-          $resultArray["calcCountLamp"] = calcLighting($_POST["parameters"], null, true); 
+          $resultArray["calcCountLamp"] = calcLighting($_POST["parameters"]); 
           echo json_encode($resultArray);       
 
         } else {
@@ -60,9 +59,14 @@
    * @param  [array] $drawArray [drawing array]
    * @return [array]            [drawing array witch result calc]
    */
-  function calcLightingDrawObject($drawArray) {
-    $resultArray = $drawArray;    
-    $countFloors = count($resultArray["floors"]);
+  function calcLightingArray($array) {
+    $resultArray = [];
+    for ($i = 0; $i < count($array); $i ++) { 
+      $currentElement = $array[$i];
+      $resultArray[$i] = $array[$i];
+      $resultArray[$i]["resultCalc"] = calcLighting($currentElement);
+    }   
+   /* $countFloors = count($resultArray["floors"]);
     for ($i = 0; $i < $countFloors; $i++) { 
       $currentFloor = & $resultArray["floors"][$i];     
       for ($r = 0; $r < count($currentFloor["rooms"]); $r++) { 
@@ -74,7 +78,7 @@
           }                   
         }
       }
-    }   
+    }  */ 
     
     return $resultArray;
   } 
@@ -86,14 +90,12 @@
   *
   * @return {array} resultArray object with result calculation loads
   */
-  function calcLighting($room, $roomDraw, $calcEdit = false) {   
+  function calcLighting($room) {   
     $params = [];  
-    if($calcEdit) {      
-      $params["perimetr"] = $room["perimetr"];
-      $params["space"] = $room["roomArea"];
-    } else {
-      $params = parseDrawing($roomDraw);
-    }    
+        
+    $params["perimetr"] = $room["perimetr"];
+    $params["space"] = $room["roomArea"];
+     
     //uploadUsagecodfficient($room["usagecoefficient"], $room["typeLamp"]);    
     $utilization_rate_array = [];    
 

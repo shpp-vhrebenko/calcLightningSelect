@@ -251,8 +251,8 @@ $(document).ready(function() {
     //
     //    
     //================= AUTOCOMPLIT BOOTSTRAP-TYPEAHEAD =============
-    var selectLamp = current_Room.getInstance().getLampAutocomplit();
-    var selectLampKey = current_Room.getInstance().getLampAutocomplitKey();   
+    var selectLamp = current_Room.getInstance().getLampAutocomplit();    
+    var selectLampKey = current_Room.getInstance().getLampAutocomplitKey();  
     var $input = $("#search_user_lamp");
     var $inputKey = $("#keyLamp");
     $input.typeahead({
@@ -260,9 +260,8 @@ $(document).ready(function() {
       autoSelect: true
     });
     $input.change(function() {   
-      var current = $input.typeahead("getActive"); 
-      /*console.log(current);
-      var selectTypeLamp = $input.val();*/
+      var current = $input.typeahead("getActive");      
+      var selectTypeLamp = $input.val();
       $('#nameLamp').val(current.name);        
       $('#nameLamp').valid();
       $('#nameLamp').trigger('change');      
