@@ -153,44 +153,15 @@
             <div id="toolbar" class="btn-group">
                 <button type="button" class="btn btn-default" id="set_data">
                     <i class="glyphicon glyphicon-plus"></i>
-                </button>                              
-                <button type="button" class="btn btn-default" id="remove_data">
-                    <i class="glyphicon glyphicon-trash"></i>
-                </button>                               
+                </button>                                            
             </div>
-            <table id="bTable" ></table>
-            <!-- <table class="table"
-                    id="bTable"
-                    data-toggle="table"
-                    data-search="true"                                 
-                    data-toolbar="#toolbar"
-                    data-click-to-select="true"
-                    data-single-select="true"                  
-                    data-classes="table table-condensed table-responsive"       
-                    data-sort-order="desc"
-                    data-sort-name="nameLamp" 
-                    data-pagination="true"
-                    data-page-size="5"
-                    data-page-list="[5,10,20]"
-                    data-height="300"                    
-                    data-locale="ru-RU"
-                    >
-              <thead>
-                <tr>
-                    <th class="col-xs-1" data-field="state" data-checkbox="true"></th>
-                    <th class="col-xs-1" data-field="nameLamp" data-sortable="true">Наименование </br> светильника</th>
-                    <th class="col-xs-1" data-field="roomNumber" data-sortable="true">№ этажа </br> / № комнаты</th>                        
-                    <th class="col-xs-1" data-field="roomArea">Площадь </br> комнаты</th>
-                    <th class="col-xs-1" data-field="lampsCount">Количество </br> светильников</th>
-                    <th class="col-xs-1" data-field="requiredIllumination">Требуемая </br> освещенность</th>
-                    <th class="col-xs-1" data-field="reflectionCoef">Коэффициэнт </br> отражения</th>
-                    <th class="col-xs-1" data-field="safetyFactor">Коэффициэнт </br> запаса</th>
-                    <th class="col-xs-1" data-field="allPowerLamps">Мощность </br> 1 светильника</th>
-                    <th class="col-xs-1" data-field="lampsWatt">Мощность всех </br> светильников</th>             
-                </tr>
-              </thead>               
-            </table> -->
-          </div>   
+            <table id="bTable" ></table>            
+          </div> 
+          <!-- Bootstrap table context menu -->  
+          <ul id="example1-context-menu" class="dropdown-menu">              
+              <li data-item="delete"><a>Удалить</a></li>              
+          </ul>
+          <!-- End Bootstrap table context menu --> 
           <!-- End Bootstrap-tables -->  
           <div class="row">            
             <button type="button" class="btn btn-success col-sm-6 col-md-1 col-md-offset-8" id="put_data">
@@ -210,7 +181,8 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/lodash/lodash.js"></script>    
     <script type="text/javascript" src="bower_components/bootstrap3-typeahead/bootstrap3-typeahead.js"></script>              
-    <script src="bower_components/bootstrap-table/dist/bootstrap-table.js"></script> 
+    <script src="bower_components/bootstrap-table/dist/bootstrap-table.js"></script>
+    <script src="bower_components/bootstrap-table-contextmenu/dist/bootstrap-table-contextmenu.min.js"></script> 
     <script src="bower_components/bootstrp3-editable/bootstrap3-editable/js/bootstrap-editable.js"></script> 
     <script src="bower_components/bootstrap-table/dist/extensions/editable/bootstrap-table-editable.js"></script> 
     <script src="bower_components/bootstrap-table/dist/locale/bootstrap-table-ru-RU.js"></script>

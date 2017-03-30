@@ -7,17 +7,16 @@ window.addEventListener('message', function(event) {
   var a = event.data.message;
   window.location.hash = event.origin;
   if (a.cmd == 'put_data') {
-    data = a.data;    
-    var json_object = data;
-    current_Room.getInstance().setTypeLamp(json_object);
+    var data = a.data; 
     console.group("LOAD DATA"); 
-    console.log(current_Room.getInstance().getTypeLamp());
-    console.groupEnd();
-    viewResultInTable(json_object);
+    console.log(typeof(data));
+    console.log(data);   
+    console.groupEnd();   
+    current_Room.getInstance().setTypeLamp(data);    
+    viewResultInTable(data);
     /*localDataLamp.jsonDrawing = json_object;
     localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));*/
-    sendResultForDrawPlan(JSON.stringify(data));    
-    /*initSelectorNameLamp();*/       
+    sendResultForDrawPlan(JSON.stringify(data));           
   } else {
     initSelectorNameLamp();
   }

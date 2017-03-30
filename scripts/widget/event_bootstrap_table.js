@@ -1,5 +1,6 @@
 //=====================EVENT BOOTSTRAP TABLE=======================
-$('#bTable').on('check.bs.table', function (e, row) {    
+$('#bTable').on('check.bs.table', function (e, row) {  
+    console.log(row);  
     current_Room.getInstance().setCurrentLamp(row);
     $('#edit_data').prop('disabled', false);
     $('#remove_data').prop('disabled', false);
@@ -32,21 +33,7 @@ $('#set_data').on('click', function(event) {
                 15000,
                 'POST'); 
 });
-
-$('#remove_data').on('click', function(event) {
-  console.log("remove_data");
-  event.preventDefault();    
-  var curRowTable = current_Room.getInstance().getCurrentLamp();  
-  current_Room.getInstance().removeElementFromTableData(curRowTable);  
-  removeLampFromLocalData(curRowTable);
-  $('#edit_data').prop('disabled', 'disabled');
-  $('#remove_data').prop('disabled', 'disabled');   
-});
-
-$('#edit_data').on('click', function(event) {
-  console.log("edit_data");
-  event.preventDefault();     
-});   
+  
 //====================== END EVENT BOOTSTRAP TABLE ================
 //
 //

@@ -26,6 +26,17 @@ $(document).ready(function() {
   //============= INITIAL BOOTSTRAP-TABLS =========================
   var tableData = current_Room.getInstance().getTableData();  
   var $bTable = $('#bTable').bootstrapTable({
+      contextMenu: '#example1-context-menu',
+      onContextMenuItem: function(row, $el){
+          if($el.data("item") == "delete"){
+            var curRowTable = row;
+            console.log("remove_data");             
+            current_Room.getInstance().removeElementFromTableData(curRowTable);  
+            removeLampFromLocalData(curRowTable);
+            $('#edit_data').prop('disabled', 'disabled');
+            $('#remove_data').prop('disabled', 'disabled');
+          }
+      },      
       idField: 'name',
       source: tableData,      
       pagination: true,
@@ -150,11 +161,7 @@ $(document).ready(function() {
       $('[data-tooltip="true"]').tooltip({
           container: 'body'
       });
-  });
-
-  function runningFormatter(value, row, index) {
-      return 1+index;
-  }
+  });   
 
   $bTable.on('editable-save.bs.table', function (e, field, row, old, $el) {      
     if(field === "lampsCount") {
@@ -208,6 +215,10 @@ $(document).ready(function() {
     }
     
   });
+
+  function runningFormatter(value, row, index) {
+      return 1+index;
+  } 
   //============= END INITIAL BOOTSTRAP-TABLS =====================
   //
   //

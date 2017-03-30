@@ -13,5 +13,7 @@
     "es5-shim": "^4.5.9"
   },
   "overrides": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "bootstrap-table-contextmenu": "^1.1.5"
+  }
 }
