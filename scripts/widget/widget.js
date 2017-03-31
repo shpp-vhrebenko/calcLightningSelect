@@ -275,7 +275,7 @@ $(document).ready(function() {
     $input.change(function() {   
       var current = $input.typeahead("getActive");      
       var selectTypeLamp = $input.val();
-      $('#nameLamp').val(current.name);        
+      $('#nameLamp').val(current.id);        
       $('#nameLamp').valid();
       $('#nameLamp').trigger('change');      
     });
@@ -284,7 +284,8 @@ $(document).ready(function() {
       source: selectLampKey,
       autoSelect: true
     });
-    $inputKey.change(function() {   
+    $inputKey.change(function() {  
+      console.log("changeTypeHead"); 
       var current = $inputKey.typeahead("getActive");       
       $('#nameLamp').val(current.id);        
       $('#nameLamp').valid();
@@ -455,6 +456,19 @@ $('#nameLamp').change(function() {
       } 
       if(key == "applyLamp") {
         $('#info_lamp').text("Область использования - " + value);
+      }
+      if(key == "key") {
+        var $inputKey = $("#keyLamp");
+        var current = $inputKey.typeahead("getActive");
+        if(current !== undefined) {
+          if(parseInt(current.name) !== value) {                      
+            $inputKey.val(value);
+            $inputKey.typeahead("lookup");
+          }
+        } else {          
+          $inputKey.val(value);
+          $inputKey.typeahead("lookup");
+        }                
       }
       localDataLamp.parameters[key]  = value;      
     });   
