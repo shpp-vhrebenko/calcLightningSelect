@@ -266,35 +266,22 @@ function addLampsInLocalData(arrayLamps) {
         var nameLamp = currentLamp.typeLamp;
         var currentRoom = currentData.floors[floor].rooms[room];
         if (currentRoom.typeLamp !== undefined) {
-            console.log("has TypeLamp");
+            /*console.log("has TypeLamp");*/
             var proTypeLamp = {};
             proTypeLamp = _.cloneDeep(currentData.floors[floor].rooms[room].typeLamp);
             proTypeLamp[nameLamp] = {};
             proTypeLamp[nameLamp] = currentLamp;
-            currentData.floors[floor].rooms[room].typeLamp = proTypeLamp;
-            console.log(currentData);
-
-            /*var proTypeLamp = {};
-            var typeLamp = _.cloneDeep(currentData.floors[floor].rooms[room].typeLamp);
-            //jshint loopfunc:true 
-            $.each(typeLamp, function(key, val) {
-               proTypeLamp[key] = val;
-            });
-            proTypeLamp[nameLamp] = {};
-            proTypeLamp[nameLamp] = currentLamp;
-            currentData.floors[floor].rooms[room].typeLamp = proTypeLamp;*/
+            currentData.floors[floor].rooms[room].typeLamp = proTypeLamp;             
         } else {
-            console.log("not has TypeLamp");
+            /*console.log("not has TypeLamp");*/
             proObject = {};
             proObject[nameLamp] = {};
             proObject[nameLamp] = currentLamp;
             currentData.floors[floor].rooms[room].typeLamp = {};
-            currentData.floors[floor].rooms[room].typeLamp = proObject;
-            console.log(currentData);
+            currentData.floors[floor].rooms[room].typeLamp = proObject;            
         }
         addElementToTableData(currentLamp, room, floor, false);
-    }
-    console.log(currentData);
+    }   
     current_Room.getInstance().setTypeLamp(currentData);
 
 }

@@ -338,70 +338,6 @@ $(document).keydown(function(eventObject){
   });     
 }); */
 
-$('#draw_plan').on('click', '.select_all', function() { 
-  var floor = $(this).data('id');
-  $div = $('div#' + floor);
-  $tabContent = $('#draw_plan').find('.tab-content');
-  $currentTab = $tabContent.find($div);
-  if(!$currentTab.hasClass('selectAll')) {
-    $currentTab.addClass("selectAll");
-    $allRooms = $currentTab.find('polygon[id^=room]');
-    var countActiveRoom = 0;   
-    for (var i = 0; i < $allRooms.length; i++) {      
-      var currentRoom = $allRooms[i];
-      var currentId = currentRoom.getAttribute("id");      
-      var curArray = currentId.split("_");    
-      var curFloor = curArray[1];
-      var curRoom = curArray[2];
-      if(currentRoom.getAttribute("class") != "activePolygon") {
-        countActiveRoom++;
-        currentRoom.setAttribute("class","activePolygon");
-        currentRoom.setAttribute("fill","rgb(92,184,92)");
-        current_Room.getInstance().addElementCurrentRooms(curRoom, curFloor);        
-      }       
-    } 
-    if(countActiveRoom > 0) {
-      var currentRooms = current_Room.getInstance().getCurrentRoom();            
-      if ($('#calcLightning').valid()) {              
-        $('#set_data').prop('disabled', false);
-      } else {            
-        $('#set_data').prop('disabled', 'disabled');
-      } 
-    } else {
-      $currentTab.removeClass("selectAll");
-      for (var j = 0; j < $allRooms.length; j++) {      
-        var currentRoom_active = $allRooms[j];
-        var curId = currentRoom_active.getAttribute("id");       
-        var currentArray = curId.split("_");    
-        var currentFloorNumber = currentArray[1];
-        var currentRoomNumber = currentArray[2];
-        if(currentRoom_active.getAttribute("class") == "activePolygon") {          
-          currentRoom_active.removeAttribute("class","activePolygon");
-          currentRoom_active.setAttribute("fill","rgb(255,204,153)");          
-          current_Room.getInstance().removeElementCurrentRooms(currentRoomNumber, currentFloorNumber);        
-        }       
-      } 
-      var curRoomsLength = current_Room.getInstance().getCurrenRoomLength();
-      var currentRooms_1 = current_Room.getInstance().getCurrentRoom();      
-      if(curRoomsLength === 0) {
-        $( "#set_data" ).prop( "disabled", 'disabled');
-      }
-    }          
-  } else {
-    $currentTab.removeClass("selectAll");
-    $allRooms = $currentTab.find('polygon[id^=room]');    
-    $allRooms.attr("class","");
-    $allRooms.attr("fill","rgb(255,204,153)"); 
-    removeElementsFromCurRoom(floor, $allRooms.length); 
-    var currentRoom_2 = current_Room.getInstance().getCurrentRoom();    
-    var curRoomsLength_2 = current_Room.getInstance().getCurrenRoomLength();
-    if(curRoomsLength_2 === 0) {
-      $( "#set_data" ).prop( "disabled", 'disabled');
-    }    
-  }
-  
-});
-
 $('#lampsWorkHeight').change(function() {
   /*console.log("heightRoomlighting");*/
   var value = $(this).val();
@@ -428,7 +364,7 @@ $('#lampsWorkHeight').change(function() {
 });
 
 $('#heightRoom').change(function() {
- /* console.log("heightRomm");*/
+  console.log("heightRomm");
   var value = $(this).val();
   var lampsWorkHeight = $('#lampsWorkHeight').val();
   var cur = round((value - 0.1),2); 
@@ -525,6 +461,81 @@ $('.room').change(function () {
   var id = $(this).attr('id');  
 });
 
+$('#draw_plan').on('click', '.select_all', function() { 
+  console.log("select_all");
+  var floor = $(this).data('id');
+  $div = $('div#' + floor);
+  $tabContent = $('#draw_plan').find('.tab-content');
+  $currentTab = $tabContent.find($div);
+
+  // initial floor height for current room 
+  $currentDraw = $currentTab.find('svg');
+  var ceiling = $currentDraw.attr('data-ceiling');
+  if(ceiling !== undefined && $('#heightRoom').val() !== ceiling) {    
+    $('#heightRoom').val(ceiling);
+    $('#heightRoom').trigger('change');
+  } 
+  // end initial floor height for current room
+  
+  if(!$currentTab.hasClass('selectAll')) {
+    $currentTab.addClass("selectAll");
+    $allRooms = $currentTab.find('polygon[id^=room]');
+    var countActiveRoom = 0;   
+    for (var i = 0; i < $allRooms.length; i++) {      
+      var currentRoom = $allRooms[i];
+      var currentId = currentRoom.getAttribute("id");      
+      var curArray = currentId.split("_");    
+      var curFloor = curArray[1];
+      var curRoom = curArray[2];
+      if(currentRoom.getAttribute("class") != "activePolygon") {
+        countActiveRoom++;
+        currentRoom.setAttribute("class","activePolygon");
+        currentRoom.setAttribute("fill","rgb(92,184,92)");
+        current_Room.getInstance().addElementCurrentRooms(curRoom, curFloor);        
+      }       
+    } 
+    if(countActiveRoom > 0) {
+      var currentRooms = current_Room.getInstance().getCurrentRoom();            
+      if ($('#calcLightning').valid()) {              
+        $('#set_data').prop('disabled', false);
+      } else {            
+        $('#set_data').prop('disabled', 'disabled');
+      } 
+    } else {
+      $currentTab.removeClass("selectAll");
+      for (var j = 0; j < $allRooms.length; j++) {      
+        var currentRoom_active = $allRooms[j];
+        var curId = currentRoom_active.getAttribute("id");       
+        var currentArray = curId.split("_");    
+        var currentFloorNumber = currentArray[1];
+        var currentRoomNumber = currentArray[2];
+        if(currentRoom_active.getAttribute("class") == "activePolygon") {          
+          currentRoom_active.removeAttribute("class","activePolygon");
+          currentRoom_active.setAttribute("fill","rgb(255,204,153)");          
+          current_Room.getInstance().removeElementCurrentRooms(currentRoomNumber, currentFloorNumber);        
+        }       
+      } 
+      var curRoomsLength = current_Room.getInstance().getCurrenRoomLength();
+      var currentRooms_1 = current_Room.getInstance().getCurrentRoom();      
+      if(curRoomsLength === 0) {
+        $( "#set_data" ).prop( "disabled", 'disabled');
+      }
+    }          
+  } else {
+    $currentTab.removeClass("selectAll");
+    $allRooms = $currentTab.find('polygon[id^=room]');    
+    $allRooms.attr("class","");
+    $allRooms.attr("fill","rgb(255,204,153)"); 
+    removeElementsFromCurRoom(floor, $allRooms.length); 
+    var currentRoom_2 = current_Room.getInstance().getCurrentRoom();    
+    var curRoomsLength_2 = current_Room.getInstance().getCurrenRoomLength();
+    if(curRoomsLength_2 === 0) {
+      $( "#set_data" ).prop( "disabled", 'disabled');
+    }    
+  }
+  
+});
+
 //=============== END EVENTS MAIN WIDGET WINDOW ===================
 //
 //
@@ -538,6 +549,16 @@ $('.room').change(function () {
  * @param  {[DOM element]} element [element event oncklick]
  */
 function onSelectRoom(element) { 
+  console.log("onSelectRoom");
+  // initial floor height for current room  
+  var parentSVG = element.parentNode;
+  var ceiling = parentSVG.getAttribute("data-ceiling");
+  if(ceiling !== undefined && $('#heightRoom').val() !== ceiling) {    
+    $('#heightRoom').val(ceiling);
+    $('#heightRoom').trigger('change');
+  }  
+  // end initial floor height for current room
+  
   var currentId = element.getAttribute("id");
   var curArray = currentId.split("_");    
   var curFloor = curArray[1];

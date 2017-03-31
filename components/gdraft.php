@@ -25,6 +25,7 @@ class GDraft
 		$this->wall_polygons=array();
 		$this->opening_polygons=array();
 		$this->id=false;
+		$this->ceiling=2.5;
 		$this->properties=array();
 		$this->symboltemplates=new SymbolTemplates();
 	}
@@ -61,14 +62,14 @@ class GDraft
 	}
 	function get_width() {return $this->width;}
 	function get_height() {return $this->height;}
-	function get_html($caption='',$css_style='',$css_class='')
+	function get_html($caption='',$css_style='',$css_class='',$ceiling='')
 	{	
 		$properties="";
 		foreach($this->properties as $npr=>$vpr)
 		$properties=$properties." $npr='$vpr'";
 		
 		$res="<svg oncontextmenu='DraftContextMenu(event)'  ".($this->id ? "id=".$this->id : "")." $properties ".(!empty($css_style) ? "style='$css_style'" : ' ').
-		(!empty($css_class) ? "class='$css_class'" : ' ')." width='100%' height='400px' "." viewBox='0 0 {$this->width} {$this->height}' >";
+		(!empty($css_class) ? "class='$css_class'" : ' ')." width='100%' height='400px' "." viewBox='0 0 {$this->width} {$this->height}' data-ceiling='{$this->ceiling}' > ";
 		if($this->isBackground)
 			$res=$res."<rect width={$this->width} height={$this->height} fill='{$this->fill}' stroke-width=1 stroke='#ffffff' />";
 		$res=$res.$this->symboltemplates->get_html();		

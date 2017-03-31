@@ -54,8 +54,16 @@ function draw_floor($numberFloor, $hourse) {
     {
       $floors=$hourse->floors;
       $rooms=$floors[$floor_number]->rooms;
-    }
-    else $rooms=$hourse->rooms;
+      if(property_exists($floors[$floor_number],'floorData')) {
+        $floorData = $floors[$floor_number]->floorData;
+        if(property_exists($floorData,'ceiling')) {
+          $ceiling = $floorData->ceiling;
+          $plan->ceiling=$ceiling;
+        }
+      }      
+    } else {
+      $rooms=$hourse->rooms;
+    } 
     $min_x=false;
     $min_y=false;
     $max_x=false;
