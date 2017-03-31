@@ -196,6 +196,14 @@ function viewDraw(resultDraw) {
        
     $('.tab-content').append($divTab);    
   } 
+  $('[data-toggle="tooltip"]').tooltip(); 
+  /*var svgs = $('#draw_plan').find('svg');   
+  var currentSVG = svgs[0];
+  var curSVG = $(currentSVG);
+  curSVG.trigger('load');*/    
+  
+ /* console.log(polygonTooltip);*/
+  /*.tooltip(); */
  //================= BOOTSTRAP TOOLTIP ===========================    
   $('.select_all').tooltip();  
   //================= END BOOTSTRAP TOOLTIP =======================

@@ -104,7 +104,7 @@ class Polygon
 		foreach($this->properties as $npr=>$vpr)
 		$properties=$properties." $npr='$vpr'";
 		$res="<polygon ".($this->id ? "id=".$this->id : "")." $properties points='".implode(' ',$this->points)."' fill='{$this->fill}' stroke-width={$this->border_width} 
-		stroke='{$this->border_color}' />";
+		stroke='{$this->border_color}' data-toogle='tooltip' title='no lamps' />";
 		return $res;
 	}
 	function getArrPoints()

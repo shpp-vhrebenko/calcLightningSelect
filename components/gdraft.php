@@ -68,7 +68,7 @@ class GDraft
 		foreach($this->properties as $npr=>$vpr)
 		$properties=$properties." $npr='$vpr'";
 		
-		$res="<svg oncontextmenu='DraftContextMenu(event)'  ".($this->id ? "id=".$this->id : "")." $properties ".(!empty($css_style) ? "style='$css_style'" : ' ').
+		$res="<svg '  ".($this->id ? "id=".$this->id : "")." $properties ".(!empty($css_style) ? "style='$css_style'" : ' ').
 		(!empty($css_class) ? "class='$css_class'" : ' ')." width='100%' height='400px' "." viewBox='0 0 {$this->width} {$this->height}' data-ceiling='{$this->ceiling}' > ";
 		if($this->isBackground)
 			$res=$res."<rect width={$this->width} height={$this->height} fill='{$this->fill}' stroke-width=1 stroke='#ffffff' />";

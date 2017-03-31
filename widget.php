@@ -33,7 +33,7 @@
           </ul>
           <div class="tab-content">
           </div>
-          <p id="error_message_request" class="error_message" ></p>                           
+          <p id="error_message_request" class="error_message" ></p>                        
         </div>
         <div class="col-xs-12 col-md-7"> 
           <div class="row">

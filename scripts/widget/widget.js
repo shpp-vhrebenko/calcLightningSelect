@@ -536,6 +536,16 @@ $('#draw_plan').on('click', '.select_all', function() {
   
 });
 
+$('#draw_plan').on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {  
+  var id = e.target.getAttribute("href"); 
+  var $curDiv = $(id);  
+  if($curDiv.hasClass('active in')) {
+    var svgs = $curDiv.find('svg');
+    var curSVG = $(svgs[0]);
+    curSVG.trigger('load');
+  }  
+});
+
 //=============== END EVENTS MAIN WIDGET WINDOW ===================
 //
 //
@@ -571,9 +581,7 @@ function onSelectRoom(element) {
     if(curRoomsLength === 0) {
       $( "#set_data" ).prop( "disabled", 'disabled');
     }     
-  } else {
-    //var $activePolygon = $(".activePolygon");   
-    //$('.tab-content').find($activePolygon).removeClass("activePolygon").attr("fill","rgb(255,204,153)");
+  } else {    
     element.setAttribute("class", "activePolygon");
     element.setAttribute("fill", "rgb(92,184,92)");    
     current_Room.getInstance().addElementCurrentRooms(curRoom, curFloor);     
@@ -586,3 +594,38 @@ function onSelectRoom(element) {
 }
 //======END FUNCTIONS HANDLER EVENTS ==============================
 
+function HideTooltips(element) {   
+  var $curElement = $(element);  
+  $curElement.tooltip('hide');
+}
+
+function ShowTooltips(element) {   
+  var $curElement = $(element);   
+  $curElement.tooltip({
+      container: 'body',
+      html: true,
+      trigger: 'manual',
+      title:  function() {
+          var currentId = $(this).attr('id');
+          var curArray = currentId.split("_");    
+          var curFloor = parseInt(curArray[1]) + 1;
+          var curRoom = parseInt(curArray[2]) + 1;
+          var tableData = current_Room.getInstance().getTableData();
+          var roomNumber = curFloor + '/' + curRoom;                        
+          var resultArray = [];
+          for (var i = 0; i < tableData.length; i++) {
+            var curLamp = tableData[i];
+            if(roomNumber === curLamp.roomNumber) {                                        
+              resultArray.push(curLamp.nameLamp);
+            }
+          }                   
+          var resultStr = "<нет светильников>";
+          if(resultArray.length !== 0) {
+            resultStr = resultArray.join('<br/>');                                                    
+          }           
+          return resultStr;
+      },
+      placement: 'top'
+  });
+  $curElement.tooltip('show');  
+}
