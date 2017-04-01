@@ -256,7 +256,7 @@ function draw_floor($numberFloor, $hourse) {
     foreach($front_plgs as $plgs) {$plan->add_wall($plgs);}
     foreach($wall_opening_arr as $plgs) {$plan->add_wall($plgs);}
     //Cables
-    if(property_exists($floors[$floor_number],'Cables'))
+   /* if(property_exists($floors[$floor_number],'Cables'))
     {
       for($i=0;$i<count($floors[$floor_number]->Cables);$i++)
       {
@@ -271,8 +271,8 @@ function draw_floor($numberFloor, $hourse) {
           $plan->add_wall($sl_cbl);
         }
       }           
-    }
-    if(property_exists($floors[$floor_number],'addElements'))
+    }*/
+   /* if(property_exists($floors[$floor_number],'addElements'))
     {
       $symb_json=json_decode(file_get_contents('files/svg236.json'),true); //svg236.json
       //echo file_get_contents('../files/svg236.json');
@@ -284,7 +284,7 @@ function draw_floor($numberFloor, $hourse) {
         $plan->symboltemplates->addTemplate($o_symbol->deviceType,$symb_json[$o_symbol->deviceType]['markup'],$symb_json[$o_symbol->deviceType]['sizes'],$o_symbol->deviceType);
         $plan->add_wall(new Symbol($o_symbol->x,$o_symbol->y,$o_symbol->deviceType));
       }
-    }
+    }*/
     
     //foreach($buttons_arr as $plgs) {$plan->add_wall($plgs);}
     $plan->scale($min_x,$min_y,$scale);

@@ -1,6 +1,8 @@
 @import "../../bower_components/bootstrap-less/less/bootstrap.less"; 
 @import "../../bower_components/bootstrap-table/src/bootstrap-table.less"; 
-@import (less) "../../bower_components/bootstrp3-editable/bootstrap3-editable/css/bootstrap-editable.css"; 
+@import (less) "../../bower_components/bootstrp3-editable/bootstrap3-editable/css/bootstrap-editable.css";
+@import (less) "../../bower_components/animate.css/animate.css"; 
+@import url('https://fonts.googleapis.com/css?family=Russo+One&subset=cyrillic');
 /* @import (less) "../../bower_components/EasyAutocomplete/dist/easy-autocomplete.css"; */   
 /* @import (less) "../../bower_components/jquery-ui/themes/base/jquery-ui.css"; */  
 
@@ -90,6 +92,26 @@ label {
   font-size: 1.5em;
   text-align: center;
 }
+
+.tooltip.top {
+    margin-top: 30px;    
+}
+.tooltip-inner {
+  padding: 3px 4px;
+  ol {
+    padding-left: 10px;
+  }
+}
+
+.tooltip.bottom {
+  position: relative;
+  z-index: 9999;
+}
+
+.half {
+  display: none;
+}
+
 //=============End Reload bootstrap style =========//
 //
 //=================================================//
@@ -221,15 +243,21 @@ body {
     cursor: pointer;
 }
 
+.header_widget-header {
+  font-family: 'Russo One', sans-serif;
+  text-transform: uppercase;
+  opacity: 0;
+}
+
 polygon {
   cursor: pointer;
 }
 
-.tooltip.bottom {
-  position: relative;
-  z-index: 9999;
+.image-animate {
+  opacity: 0;
 }
 
-.half {
-  display: none;
+.user-result-panel {
+  margin-top: 1rem;
 }
+

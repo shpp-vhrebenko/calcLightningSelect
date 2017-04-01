@@ -177,7 +177,14 @@ function viewDraw(resultDraw) {
     $li.append($("<a>").attr({"data-toggle":"tab","href": "#" + i}).text("Этаж №" + (i + 1)));
     $('#tabs_plan').append($li);
     $divTab = $('<div>').attr('id',i); 
-    if(i === 0) {
+    if(i === 0) {      
+      // initial floor height for current room
+      var ceiling = $(resultDraw[i]).attr('data-ceiling'); 
+      if(ceiling !== undefined && $('#heightRoom').val() !== ceiling) {    
+        $('#heightRoom').val(ceiling);
+        $('#heightRoom').trigger('change');
+      }  
+      // end initial floor height for current room
       $divTab.addClass("tab-pane fade in active");
     } else {
       $divTab.addClass("tab-pane fade");
@@ -194,9 +201,8 @@ function viewDraw(resultDraw) {
             .append($divCol_2);
     $divTab.append($divRow);
        
-    $('.tab-content').append($divTab);    
-  } 
-  $('[data-toggle="tooltip"]').tooltip(); 
+    $('.tab-content').append($divTab);      
+  }   
   /*var svgs = $('#draw_plan').find('svg');   
   var currentSVG = svgs[0];
   var curSVG = $(currentSVG);

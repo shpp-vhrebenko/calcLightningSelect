@@ -24,7 +24,7 @@
     </div>    
     <div class="container-fluid">        
       <div class="header">        
-        <h3 class="text-muted">Расчет освещения</h3>
+        <h3 class="animated fadeInLeft header_widget-header">Расчет освещения</h3>
       </div>
       <div class="row content">       
         <div class="col-xs-12 col-md-5" id="draw_plan">           
@@ -38,7 +38,7 @@
         <div class="col-xs-12 col-md-7"> 
           <div class="row">
             <div class="col-xs-12 col-md-5 col-md-offset-4">
-              <img src="" class="img-responsive" id="js_photo_lamp" alt=""> 
+              <img src="" class="img-responsive animated fadeInDownBig image-animate" id="js_photo_lamp" alt=""> 
               <p  id="info_lamp"></p>               
             </div>             
             <p class="col-xs-12 col-md-12" id="info_lamp"></p>
@@ -163,7 +163,7 @@
           </ul>
           <!-- End Bootstrap table context menu --> 
           <!-- End Bootstrap-tables -->  
-          <div class="row">            
+          <div class="row user-result-panel">            
             <button type="button" class="btn btn-success col-sm-6 col-md-1 col-md-offset-8" id="put_data">
               ОК
             </button> 

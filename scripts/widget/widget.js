@@ -542,7 +542,13 @@ $('#draw_plan').on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
   if($curDiv.hasClass('active in')) {
     var svgs = $curDiv.find('svg');
     var curSVG = $(svgs[0]);
-    curSVG.trigger('load');
+    var ceiling = curSVG.attr('data-ceiling');
+    // initial floor height for current room  
+    if(ceiling !== undefined && $('#heightRoom').val() !== ceiling) {    
+      $('#heightRoom').val(ceiling);
+      $('#heightRoom').trigger('change');
+    }  
+    // end initial floor height for current room
   }  
 });
 
@@ -561,12 +567,12 @@ $('#draw_plan').on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
 function onSelectRoom(element) { 
   console.log("onSelectRoom");
   // initial floor height for current room  
-  var parentSVG = element.parentNode;
+  /*var parentSVG = element.parentNode;
   var ceiling = parentSVG.getAttribute("data-ceiling");
   if(ceiling !== undefined && $('#heightRoom').val() !== ceiling) {    
     $('#heightRoom').val(ceiling);
     $('#heightRoom').trigger('change');
-  }  
+  }  */
   // end initial floor height for current room
   
   var currentId = element.getAttribute("id");
@@ -599,12 +605,16 @@ function HideTooltips(element) {
   $curElement.tooltip('hide');
 }
 
-function ShowTooltips(element) {   
+function ShowTooltips(element) {  
+
   var $curElement = $(element);   
   $curElement.tooltip({
-      container: 'body',
-      html: true,
+      container: 'body',      
       trigger: 'manual',
+      html: true,
+      animation: false,
+      offset: '0 75%',
+      delay: { "show": 1000, "hide": 2000 },
       title:  function() {
           var currentId = $(this).attr('id');
           var curArray = currentId.split("_");    
@@ -616,12 +626,17 @@ function ShowTooltips(element) {
           for (var i = 0; i < tableData.length; i++) {
             var curLamp = tableData[i];
             if(roomNumber === curLamp.roomNumber) {                                        
-              resultArray.push(curLamp.nameLamp);
+              resultArray.push({name : curLamp.nameLamp, countLamp: curLamp.lampsCount});
             }
           }                   
           var resultStr = "<нет светильников>";
           if(resultArray.length !== 0) {
-            resultStr = resultArray.join('<br/>');                                                    
+            resultStr = "<ol>";
+            for (var j = 0; j < resultArray.length; j++) {
+              resultStr = resultStr + "<li>" + resultArray[j].name + "-" + resultArray[j].countLamp + "шт</li>";
+            }
+            resultStr = resultStr + "</ol>";
+            /*resultStr = resultArray.join('<br/>');  */                                                  
           }           
           return resultStr;
       },
