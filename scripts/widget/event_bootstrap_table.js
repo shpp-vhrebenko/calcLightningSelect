@@ -55,7 +55,10 @@ function viewResultInTable(calcLighting) {
     var rooms = currentFloor.rooms;    
     for (var r = 0; r < rooms.length; r++) {
       var currentRoom = rooms[r];     
-      if(currentRoom.hasOwnProperty('typeLamp')) {
+      if(currentRoom.typeLamp !== undefined) {
+        console.group("=======TYPE LAMP=======");       
+        console.log(currentRoom.typeLamp);
+        console.groupEnd(); 
         var typeLamp = currentRoom.typeLamp;
         addElementsToTableData(typeLamp, f, r, false);
       }

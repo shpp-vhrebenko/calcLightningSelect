@@ -144,7 +144,7 @@ function sendResultForDrawPlan(jsonObject) {
       async: true, 
       url:     "draw_plan.php", 
       type:     'POST',
-      timeout: 10000,
+      timeout: 15000,
       data: {draw_plan : true, hourse: jsonObject},
       beforeSend: function(){
          $(".js_loading_wraper").fadeIn("slow");

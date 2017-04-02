@@ -46,8 +46,11 @@ var current_Room = (function() {
         return tableData;
     };
 
-    var setTableData = function(inputArray) {
+    var setTableData = function(inputArray) {        
         tableData = inputArray;
+        console.group("SET TABLE DATA");         
+        console.log(tableData);   
+        console.groupEnd(); 
     };
 
 
@@ -55,6 +58,7 @@ var current_Room = (function() {
 
         if (tableData.length === 0) {
             tableData.push(element);
+            $('#bTable').bootstrapTable('load', tableData);
         } else {
             proTableData = [];
             for (var i = 0; i < tableData.length; i++) {
@@ -68,10 +72,10 @@ var current_Room = (function() {
                 }
             }
             proTableData.push(element);
-
             setTableData(proTableData);
+            $('#bTable').bootstrapTable('load', proTableData);
         }
-        $('#bTable').bootstrapTable('load', tableData);
+        
 
     };
 
