@@ -152,7 +152,7 @@
           <div class="table-responsive"> 
             <div id="toolbar" class="btn-group">
                 <button type="button" class="btn btn-default" id="set_data">
-                    <i class="glyphicon glyphicon-plus"></i>
+                    Добавить светильник
                 </button>                                            
             </div>
             <table id="bTable" ></table>            
