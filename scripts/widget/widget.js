@@ -603,7 +603,7 @@ function ShowTooltips(element) {
           var curFloor = parseInt(curArray[1]) + 1;
           var curRoom = parseInt(curArray[2]) + 1;
           var tableData = current_Room.getInstance().getTableData();
-          var roomNumber = curFloor + '/' + curRoom;                        
+          var roomNumber = curFloor + '_' + curRoom;                        
           var resultArray = [];
           for (var i = 0; i < tableData.length; i++) {
             var curLamp = tableData[i];
