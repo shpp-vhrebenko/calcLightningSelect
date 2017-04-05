@@ -16,9 +16,7 @@ $('#set_data').on('click', function(event) {
   event.preventDefault(); 
   var json_data = localStorage.getItem('typeLamp');
   var local_data = $.parseJSON(json_data);  
-  var currentParameters = local_data.parameters;  
-  //var nameLamp = local_data.parameters.nameLamp;
-  //var nameLamp = local_data.parameters.typeLamp;
+  var currentParameters = local_data.parameters;   
   var currentRoomsArray = getCurrentRooms(currentParameters);     
   var data = {
     calc_lighting : true,    
@@ -42,6 +40,12 @@ $('#set_data').on('click', function(event) {
 //
 //
 //==================== FUNCTIONS TABLE DATA =======================
+//
+//1.viewResultInTable
+//2.initialAddLampsInTableData
+//3.addLampInTableDataAfterEdit
+//4.addLampsToTableData
+//5.addLampToTableData
 
 /**
  * View result in table after calc lamps
@@ -55,15 +59,54 @@ function viewResultInTable(calcLighting) {
     var rooms = currentFloor.rooms;    
     for (var r = 0; r < rooms.length; r++) {
       var currentRoom = rooms[r];     
-      if(currentRoom.typeLamp !== undefined) {
-        console.group("=======TYPE LAMP=======");       
-        console.log(currentRoom.typeLamp);
-        console.groupEnd(); 
+      if(currentRoom.typeLamp !== undefined) {        
         var typeLamp = currentRoom.typeLamp;
-        addElementsToTableData(typeLamp, f, r, false);
+        addLampsToTableData(typeLamp, f, r, false);
       }
     }   
   }      
+}
+
+/**
+ * []
+ * @param {[object]} objectLamp [object serialize form calc lamp]
+ */
+function AddLampsInTableDataAfterCalc(arrayLamps) {
+    console.log("AddLampsInTableDataAfterCalc");   
+    for (var i = 0; i < arrayLamps.length; i++) {
+        var currentLamp = arrayLamps[i];
+        var room = currentLamp.room;
+        var floor = currentLamp.floor;       
+        addLampToTableData(currentLamp, room, floor, false);
+    }  
+
+}
+
+/**
+ * [add Lamp In Loca Data After Edit]
+ * @param {[object]} objectLamp [object result serialize form edit and calc lamp]
+ * @param {[string]} nameLamp   [name lamp for chenge]
+ */
+function addLampInTableDataAfterEdit(objectLamp, nameLamp) {
+    console.log("addLampInTableDataAfterEdit");
+    var data = current_Room.getInstance().getTypeLamp();
+    var param = objectLamp.roomNumber.split('_');
+    var floor = parseInt(param[0]) - 1;
+    var room = parseInt(param[1]) - 1;    
+    addLampToTableData(objectLamp, room, floor, true);
+}
+
+/**
+ * [add Elements To Table Data]
+ * @param {[object]} typeLamp [description]
+ * @param {[string]} floor    [description]
+ * @param {[string]} room     [description]
+ */
+function addLampsToTableData(typeLamp , floor, room) {
+  console.log("addLampsToTableData");   
+  $.each(typeLamp, function(key, val) { 
+    addLampToTableData(val, room, floor, false);       
+  });
 }
 
 /**
@@ -73,7 +116,8 @@ function viewResultInTable(calcLighting) {
  * @param  {[integer]} floor       [description]
  * @param  {[string]} chengeName  [description]
  */
-function addElementToTableData(currentLamp, room, floor, edit) { 
+function addLampToTableData(currentLamp, room, floor, edit) { 
+  console.log("addLampToTableData");
   var floor_number = parseInt(floor) + 1;
   var room_number = parseInt(room) + 1;
   var requiredIllumination = 0;  
@@ -82,24 +126,24 @@ function addElementToTableData(currentLamp, room, floor, edit) {
   }   
   var objectRow = {    
     nameLamp: currentLamp.nameLamp,
-    roomNumber: floor_number + "/" + room_number,    
-    roomArea: currentLamp.resultCalc.roomArea,
-    lampsCount: currentLamp.resultCalc.lampsCount,
+    roomNumber: floor_number + "_" + room_number,    
     requiredIllumination: requiredIllumination,
     reflectionCoef: currentLamp.reflectionCoef,
     safetyFactor: currentLamp.safetyFactor,
-    powerLamp: currentLamp.powerLamp,
-    lampsWatt: currentLamp.resultCalc.lampsWatt,
+    powerLamp: currentLamp.powerLamp,    
     heightRoom: currentLamp.heightRoom,
-    lampsWorkHeight: currentLamp.lampsWorkHeight,
-    photoLink: currentLamp.photoLink,
+    lampsWorkHeight: currentLamp.lampsWorkHeight,  
     customRequiredIllumination: currentLamp.customRequiredIllumination,
     lumix: currentLamp.lumix,
     typeLamp: currentLamp.typeLamp,
     numberLamps: currentLamp.numberLamps, 
     allPowerLamps: (currentLamp.powerLamp * currentLamp.numberLamps),
     key: currentLamp.key,
-    producer: currentLamp.producer   
+    producer: currentLamp.producer,
+    usagecoefficient: currentLamp.usagecoefficient,
+    roomArea: currentLamp.resultCalc.roomArea,
+    lampsCount: currentLamp.resultCalc.lampsCount,    
+    resultCalc: currentLamp.resultCalc   
   };
   if(edit) {
     current_Room.getInstance().chengeElementInTableData(objectRow);  
@@ -107,21 +151,5 @@ function addElementToTableData(currentLamp, room, floor, edit) {
     current_Room.getInstance().addElementToTableData(objectRow);
   }  
 }
-
-/**
- * [add Elements To Table Data]
- * @param {[object]} typeLamp [description]
- * @param {[string]} floor    [description]
- * @param {[string]} room     [description]
- */
-function addElementsToTableData(typeLamp , floor, room) {
-  console.log("addElementsToTableData");  
-  var floor_number = parseInt(floor) + 1;
-  var room_number = parseInt(room) + 1;  
-  $.each(typeLamp, function(key, val) { 
-    addElementToTableData(val, room, floor, false);       
-  });
-}
-
 
 //==================== END FUNCTIONS TABLE DATA =====================

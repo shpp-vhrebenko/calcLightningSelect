@@ -65,21 +65,7 @@
       $currentElement = $array[$i];
       $resultArray[$i] = $array[$i];
       $resultArray[$i]["resultCalc"] = calcLighting($currentElement);
-    }   
-   /* $countFloors = count($resultArray["floors"]);
-    for ($i = 0; $i < $countFloors; $i++) { 
-      $currentFloor = & $resultArray["floors"][$i];     
-      for ($r = 0; $r < count($currentFloor["rooms"]); $r++) { 
-        $currentRoom = & $currentFloor["rooms"][$r];
-        if(isset($currentRoom["typeLamp"])) { 
-          foreach ($currentRoom["typeLamp"] as $key => $value) {
-            $currentLamp = & $currentRoom["typeLamp"][$key];
-            $currentLamp["resultCalc"] = calcLighting($value, $currentRoom);
-          }                   
-        }
-      }
-    }  */ 
-    
+    }     
     return $resultArray;
   } 
 

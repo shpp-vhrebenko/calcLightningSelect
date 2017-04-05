@@ -278,8 +278,7 @@ function viewCalcCountLamp(result) {
     if ('calcLighting' in resultResponse) {
       $('#put_data').show();      
       var calcLighting = resultResponse.calcLighting;
-      addLampsInLocalData(calcLighting);                                   
-      //viewResultInTable(calcLighting);                         
+      AddLampsInTableDataAfterCalc(calcLighting);                              
     } else {            
       viewErrorResponse("Введенные данные некорректны");            
     }          
@@ -313,7 +312,7 @@ function viewEditCalcCountLamp(result, sendData) {
         var objectLamp = {}; 
         objectLamp = parameters; 
         objectLamp.resultCalc = calcCountLamp;                                         
-        addLampInLocalDataAfterEdit(objectLamp, nameLamp);               
+        addLampInTableDataAfterEdit(objectLamp, nameLamp);               
       }                     
     } else {            
       viewErrorResponse("Введенные данные для редактирования некорректны");            

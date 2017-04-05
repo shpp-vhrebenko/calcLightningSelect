@@ -22,4 +22,5 @@ Object.defineProperty(Object.prototype, "length", {
         return Object.keys(this).length;
     }
 });
+
 //=============== END FUNCTIONS for FUNCTIONAL ===========================

@@ -29,10 +29,9 @@ $(document).ready(function() {
       contextMenu: '#example1-context-menu',
       onContextMenuItem: function(row, $el){
           if($el.data("item") == "delete"){
-            var curRowTable = row;
-            console.log("remove_data");             
+            var curRowTable = row;                        
             current_Room.getInstance().removeElementFromTableData(curRowTable);  
-            removeLampFromLocalData(curRowTable);
+           /* removeLampFromLocalData(curRowTable);*/
             $('#edit_data').prop('disabled', 'disabled');
             $('#remove_data').prop('disabled', 'disabled');
           }
@@ -74,7 +73,14 @@ $(document).ready(function() {
           sortable: true,          
           class: "col-md-1 forTooltip half-col-md",          
           tooltip: true,
-          titleTooltip: "№ этажа / № комнаты"          
+          titleTooltip: "№ этажа / № комнаты",
+          formatter: function(value) {
+            var param = value.split('_');
+            var floor = param[0];
+            var room = param[1];
+            var str =  floor + "/" +  room;
+            return str;
+          }          
       }, {
           field: 'roomArea',
           title: 'Площадь</br>комнаты',
@@ -149,7 +155,7 @@ $(document).ready(function() {
           titleTooltip: "Мощность 1 светильника",         
          class: "col-md-1 forTooltip"           
       }, {
-          field: 'lampsWatt', 
+          field: 'resultCalc.lampsWatt', 
           class: "col-md-1 forTooltip",
           title: 'Мощ-ть</br>всех Вт',
           titleTooltip: "Мощность всех светильников",           
@@ -163,42 +169,14 @@ $(document).ready(function() {
       });
   });   
 
-  $bTable.on('editable-save.bs.table', function (e, field, row, old, $el) {      
-    if(field === "lampsCount") {
-      console.log("chengeLampsCount");       
-      var roomNumber = row.roomNumber;
-      var roomParam = roomNumber.split("/");    
-      var curFloor = parseInt(roomParam[0]) - 1;
-      var curRoom = parseInt(roomParam[1]) - 1;         
-      //var currentNameLamp = row.nameLamp;
-      var currentNameLamp = row.typeLamp;
-      var data = current_Room.getInstance().getTypeLamp();
-      if(data.floors[curFloor].rooms[curRoom].hasOwnProperty('typeLamp')) {
-        var typeLamp = data.floors[curFloor].rooms[curRoom].typeLamp;          
-        typeLamp[currentNameLamp].resultCalc.lampsCount = row.lampsCount;
-      }
-      current_Room.getInstance().setTypeLamp(data);        
-    } else {
-      console.log("chengeCalcCount");
+  $bTable.on('editable-save.bs.table', function (e, field, row, old, $el) {             
+    if(field != "lampsCount") {
+      console.log("chengeResultCalc");
       if(field === "requiredIllumination") {
         row.customRequiredIllumination = row.requiredIllumination;
-      }        
-      var currentRoomObject = getCurrentRoomForEdit(row);
-      //var curNameLamp = row.nameLamp;
-      var curNameLamp = row.typeLamp;
-      row.perimetr = getRoomPerimetr(currentRoomObject.walls);        
-      if(currentRoomObject.hasOwnProperty('typeLamp')) {
-        var ObjectTypeLamp = currentRoomObject.typeLamp;
-        var chengeContent = {};
-        $.each(ObjectTypeLamp, function(key, val) {
-           if(key === curNameLamp) {
-              chengeContent[curNameLamp] = row;  
-           } else {
-              chengeContent[key] = val;
-           }
-        });
-        currentRoomObject.typeLamp = chengeContent;        
       }  
+      var currentRoomObject = getCurrentRoomForEdit(row);     
+      row.perimetr = getRoomPerimetr(currentRoomObject.walls);     
       var sendData = {
         calc_countLamp : true,
         parameters : row          
@@ -212,6 +190,10 @@ $(document).ready(function() {
                 10000,
                 'POST');  
       
+    } else {
+      console.log("chengeLampsCount");      
+      row.resultCalc.lampsCount = row.lampsCount;
+      current_Room.getInstance().chengeElementInTableData(row); 
     }
     
   });

@@ -28,8 +28,9 @@ window.addEventListener('message', function(event) {
 $('#put_data').on('click', function(event) {
   event.preventDefault();
   var parentURL = window.location.hash.slice(1); 
-  var local_data = current_Room.getInstance().getTypeLamp();
-  parent.window.postMessage({message: {cmd: 'return_data', data: local_data }}, parentURL);
+  var local_data = current_Room.getInstance().getResultTypeLamp();  
+  console.log(local_data);
+  /*parent.window.postMessage({message: {cmd: 'return_data', data: local_data }}, parentURL);*/
 });
 
 /**
