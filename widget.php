@@ -133,7 +133,7 @@
                       <option value="200">Объединенные залы и буфеты</option>
                       <option value="400">Торговые залы магазинов</option>
                       <option value="200">Конференц-залы и залы заседаний</option>
-                      <option value="500">Проектрные и конструкторские бюро</option>
+                      <option value="500">Проектные и конструкторские бюро</option>
                       <option value="300">Читальные залы</option>
                       <option value="300">Учебные аудитории и классы</option>
                       <option value="500">Офисные помещения</option>

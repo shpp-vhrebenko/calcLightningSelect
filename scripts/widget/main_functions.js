@@ -99,7 +99,7 @@ function initSelectorNameLamp() {
                                         .attr('data-power-lamp', this.powerLamp)
                                         .attr('data-number-lamps', this.numberLamps)
                                         .attr('data-usagecoefficient', this.usagecoefficient)
-                                        .attr('data-link', this.link)
+                                        .attr('data-producer', this.producer)
                                         .attr('data-photo-link', this.photo_lamp)
                                         .attr('data-type-lamp', this.typeLamp)
                                         .attr('data-apply-lamp', this.application_area)

@@ -357,14 +357,15 @@
       $current = $arrayJsonData[$i];
       if(isset($current["usagecoefficient"])) {
           $usagecoefficient = trim($current["usagecoefficient"]);
-          $usagecoefficient = parseUsagecoefficient($usagecoefficient);
+          $usagecoefficient = parseUsagecoefficient($usagecoefficient);          
           $curentName = parseNameLamp($usagecoefficient);
-          $arrayResult[$curentName]["usagecoefficient"] = $usagecoefficient;        
-          $arrayResult[$curentName]["typeLamp"] = $curentName;        
-          if(isset($current["ssylkanavebstranicu"])) {
+          $arrayResult[$curentName]["usagecoefficient"] = addslashes($usagecoefficient);        
+          $arrayResult[$curentName]["typeLamp"] = $curentName;
+          $arrayResult[$curentName]["producer"] = "Световые Технологии";        
+         /* if(isset($current["ssylkanavebstranicu"])) {
             $linkToLamp = trim($current["ssylkanavebstranicu"]);
             $arrayResult[$curentName]["link"] = $linkToLamp;
-          }
+          }*/
           if(isset($current["svetovojpotoklamp"])) {
             $lumixLamp = trim($current["svetovojpotoklamp"]);
             $arrayResult[$curentName]["lumix"] = $lumixLamp;
@@ -394,6 +395,7 @@
             $artikul = trim($document["artikul"]);           
             $arrayResult[$curentName]["key"] = $artikul;
           }
+         
       }
     }
 
@@ -420,12 +422,13 @@
       $usagecoefficient = parseUsagecoefficient($usagecoefficient);
       $curentName = parseNameLamp($usagecoefficient);      
       if(uploadUsagecodfficient($usagecoefficient, $curentName)) {
-        $arrayResult[$curentName]["usagecoefficient"] = $usagecoefficient;        
-        $arrayResult[$curentName]["typeLamp"] = $curentName;  
-        if(isset($document["ssylkanavebstranicu"])) {
+        $arrayResult[$curentName]["usagecoefficient"] = addslashes($usagecoefficient);        
+        $arrayResult[$curentName]["typeLamp"] = $curentName; 
+        $arrayResult[$curentName]["producer"] = "Световые Технологии"; 
+    /*    if(isset($document["ssylkanavebstranicu"])) {
           $input2 = trim($document["ssylkanavebstranicu"]);
           $arrayResult[$curentName]["link"] = $input2;
-        }
+        }*/
         if(isset($document["svetovojpotoklamp"])) {
           $input3 = trim($document["svetovojpotoklamp"]);
           $arrayResult[$curentName]["lumix"] = $input3;
@@ -455,6 +458,7 @@
           $artikul = trim($document["artikul"]);           
           $arrayResult[$curentName]["key"] = $artikul;
         }
+        $arrayResult[$curentName]["producer"] = "Световые Технологии";
       } else {
         
       }             

@@ -633,7 +633,7 @@ function ShowTooltips(element) {
           if(resultArray.length !== 0) {
             resultStr = "<ol>";
             for (var j = 0; j < resultArray.length; j++) {
-              resultStr = resultStr + "<li>" + resultArray[j].name + "-" + resultArray[j].countLamp + "шт</li>";
+              resultStr = resultStr + "<li>" + resultArray[j].name + "-" + resultArray[j].countLamp + " шт.</li>";
             }
             resultStr = resultStr + "</ol>";
             /*resultStr = resultArray.join('<br/>');  */                                                  

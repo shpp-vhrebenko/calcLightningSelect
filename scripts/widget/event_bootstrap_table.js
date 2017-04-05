@@ -16,7 +16,7 @@ $('#set_data').on('click', function(event) {
   event.preventDefault(); 
   var json_data = localStorage.getItem('typeLamp');
   var local_data = $.parseJSON(json_data);  
-  var currentParameters = local_data.parameters; 
+  var currentParameters = local_data.parameters;  
   //var nameLamp = local_data.parameters.nameLamp;
   //var nameLamp = local_data.parameters.typeLamp;
   var currentRoomsArray = getCurrentRooms(currentParameters);     
@@ -98,7 +98,8 @@ function addElementToTableData(currentLamp, room, floor, edit) {
     typeLamp: currentLamp.typeLamp,
     numberLamps: currentLamp.numberLamps, 
     allPowerLamps: (currentLamp.powerLamp * currentLamp.numberLamps),
-    key: currentLamp.key   
+    key: currentLamp.key,
+    producer: currentLamp.producer   
   };
   if(edit) {
     current_Room.getInstance().chengeElementInTableData(objectRow);  
