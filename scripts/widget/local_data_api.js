@@ -204,7 +204,6 @@ var current_Room = (function() {
     };
 
     var removeCurrentLamp = function(objectLamp) {
-        console.log(objectLamp);
         var newCurLamp = _.remove(curLamp, function(item) {          
           if((item.roomNumber != objectLamp.roomNumber)){
               return item;        
@@ -214,8 +213,7 @@ var current_Room = (function() {
             } 
           }         
         });
-        curLamp = newCurLamp;
-        console.log(curLamp);
+        curLamp = newCurLamp;        
     };
 
     var getCurrentLamps = function(objectLamp) {

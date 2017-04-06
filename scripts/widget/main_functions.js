@@ -279,7 +279,7 @@ function viewCalcCountLamp(result) {
     if ('calcLighting' in resultResponse) {
       $('#put_data').show();      
       var calcLighting = resultResponse.calcLighting;
-      AddLampsInTableDataAfterCalc(calcLighting);                              
+      addLampsInTableDataAfterCalc(calcLighting);                              
     } else {            
       viewErrorResponse("Введенные данные некорректны");            
     }          

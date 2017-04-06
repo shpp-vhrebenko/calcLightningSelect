@@ -1,10 +1,17 @@
 //
-//
-//
-//
+// DOCUMENT READY 
+//=============DOCUMENT READY============
+//1.INITIAL BOOTSTRAP-TABLЕS
+//2.EVENTS BOOTSTRAP-TABLES
+//3.FUNCTIONS BOOTSTRAP-TABLES
+//4.DEFAULT INIT FUNCTION
+//5.BOOTSTRAP TOOLTIP
+//6.AUTOCOMPLIT BOOTSTRAP-TYPEAHEAD
+//===========END DOCUMENT READY =========
 //
 //
 //==========================DOCUMENT READY======================================
+//==============================================================================
 if(localStorage.typeLamp) {
   var listDataLamp = JSON.parse(localStorage.getItem('typeLamp'));
 }
@@ -17,13 +24,14 @@ var parameters = {};
 if(listDataLamp && listDataLamp.hasOwnProperty('parameters')) {
   parameters = listDataLamp.parameters; 
 }
+
 $(document).ready(function() {   
-  //===============================================================
+  //==========================================================
   //
   //
   //
   //
-  //============= INITIAL BOOTSTRAP-TABLS =========================
+  //============= INITIAL BOOTSTRAP-TABLЕS ===================
   var tableData = current_Room.getInstance().getTableData();  
   var $bTable = $('#bTable').bootstrapTable({
       contextMenu: '#example1-context-menu',
@@ -180,7 +188,7 @@ $(document).ready(function() {
           footerFormatter: totalFormatter           
       }]
   });
-
+          //========== EVENTS BOOTSTRAP-TABLES ===========//
   $('#bTable').on('click', '.js_remove_button', function (e){
       var table = $('#bTable').data('bootstrap.table'),
           $current = $(this),
@@ -233,7 +241,9 @@ $(document).ready(function() {
     }
     
   }); 
-
+          //========== END EVENT BOOTSTRAP-TABLES ===========//
+          //
+          //========== FUNCTIONS BOOTSTRAP-TABLES ===========//
   function starsFormatter(value) {
       /*jshint multistr: true */
       return "<div class='relativeBox' onmouseover='showRemoveButton(this)' onmouseout='hideRemoveButton(this)'>\
@@ -263,42 +273,31 @@ $(document).ready(function() {
   function totalTextFormatter(data) {
     return 'ИТОГИ:';
   }
-  //============= END INITIAL BOOTSTRAP-TABLS =====================
-  //
-  //
-  //
-  //
-  //
-  //================================================================
+
+        //======== END FUNCTIONS BOOTSTRAP-TABLES =========//
+        
+    //============= END INITIAL BOOTSTRAP-TABLS ===================
+    //
+    //
+    //
+    //
+    //
+    //=============================================================
+    //
+    //
+    //
+    //
+    //
+    //============== DEFAULT INIT FUNCTION =========================
 
     defaultInit();          // Initial default properties for lamp
-    init();                 // init properties lamp from LocalStorage      
-
-    $('#edit_data').prop('disabled', 'disabled');
-    $('#remove_data').prop('disabled', 'disabled');
-
-    $('#calcLightning').on('blur keyup change', 'input', function() { 
-      var currentRoom = current_Room.getInstance().getCurrentRoom();         
-      if ($('#calcLightning').valid() && (currentRoom.length >= 1)) {         
-          $('#set_data').prop('disabled', false);
-      } else {      
-          $('#set_data').prop('disabled', 'disabled');
-      }
-    });
-
-    $('#calcLightning').on('blur keyup change', 'select', function() { 
-      var currentRoom = current_Room.getInstance().getCurrentRoom();     
-      if ($('#calcLightning').valid()  && (currentRoom.length >= 1) ) {         
-          $('#set_data').prop('disabled', false);
-      } else {         
-          $('#set_data').prop('disabled', 'disabled');
-      }
-    }); 
-    //==============================================================
-    // 
-    //  
-    //   
+    init();                 // init properties lamp from LocalStorage
+    
+    //============== END DEFAULT INIT FUNCTION ======================
+    //
     //    
+    //        
+    //       
     //================= BOOTSTRAP TOOLTIP ===========================    
     $('[data-toggle="tooltip"]').tooltip(); 
     //================= END BOOTSTRAP TOOLTIP ======================= 
@@ -345,360 +344,6 @@ $(document).ready(function() {
     //===============================================================    
     typeLampFormValidation();    
 });
+//======================== END DOCUMENT READY =============================
+//=========================================================================
 
-$(document).keydown(function(eventObject){
-    if (eventObject.which == 27) {
-      var parentURL = window.location.hash.slice(1);
-      parent.window.postMessage({message: {cmd: 'cancel'}}, parentURL);
-    }            
-}); 
-
-//=====================END DOCUMENT READY==========================
-//
-//
-//
-//
-//
-//
-//=================== EVENTS MAIN WIDGET WINDOW =====================
-
-/*$('#search_lamp').on('click', function(event) {
-  console.log("search_lamp");
-  event.preventDefault(); 
-  var search_lamp = $('#search_user_lamp').val();
-  search_lamp = search_lamp.toUpperCase();  
-  var lampList = current_Room.getInstance().getLampSelect();
-
-  $.each(lampList, function(key, val) {
-     var curLamp = lampList[key].nameLamp;
-     curLampUpperCase = curLamp.toUpperCase();     
-     if (curLampUpperCase.indexOf(search_lamp) != -1) {
-        var selectTypeLamp = curLamp;        
-        $('#nameLamp').val(selectTypeLamp);        
-        $('#nameLamp').valid();
-        $('#nameLamp').trigger('change');  
-        return false;
-      }
-  });     
-}); */
-
-$('#lampsWorkHeight').change(function() {
-  /*console.log("heightRoomlighting");*/
-  var value = $(this).val();
-  var heightRoom = $('#heightRoom').val();
-  if(value < heightRoom) {
-    if(value > 0) {     
-      parameters.lampsWorkHeight = value;
-      localDataLamp.parameters = parameters;   
-      localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));
-    }     
-  } else {    
-    if(heightRoom > 0){
-      $('#lampsWorkHeight').val(heightRoom - 0.1);      
-      parameters.lampsWorkHeight = (heightRoom - 0.1);
-      localDataLamp.parameters = parameters;       
-      localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));  
-    } else {
-      $('#lampsWorkHeight').val(0);      
-      parameters.lampsWorkHeight = 0;
-      localDataLamp.parameters = parameters; 
-      localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));
-    }    
-  }   
-});
-
-$('#heightRoom').change(function() {
-  console.log("heightRomm");
-  var value = $(this).val();
-  var lampsWorkHeight = $('#lampsWorkHeight').val();
-  var cur = round((value - 0.1),2); 
-  if(lampsWorkHeight === value) { 
-    if(cur > 0) {
-      $('#lampsWorkHeight').val(cur);     
-      parameters.lampsWorkHeight = cur;
-      localDataLamp.parameters = parameters;     
-      localStorage.setItem('typeLamp', JSON.stringify(localDataLamp)); 
-    }         
-  }  
-  parameters.heightRoom = value;
-  localDataLamp.parameters = parameters;   
-  localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));       
-});
-
-$('#nameLamp').change(function() { 
-  var value = $(this).val();
-  if(value !== null) {    
-    var $option = $('option[value="'+value+'"]'); 
-    var param = {};     
-    $.each( $option.data(), function( key, value ) {   
-      if(key == "photoLink") {
-        $('#js_photo_lamp').attr('src',value);
-      } 
-      if(key == "applyLamp") {
-        $('#info_lamp').text("Область использования - " + value);
-      }
-      if(key == "key") {
-        var $inputKey = $("#key");
-        var current = $inputKey.typeahead("getActive");
-        if(current !== undefined) {
-          if(parseInt(current.name) !== value) {                      
-            $inputKey.val(value);
-            $inputKey.typeahead("lookup");                       
-          }
-        } else {          
-          $inputKey.val(value);
-          $inputKey.typeahead("lookup");                   
-        }                
-      }
-      localDataLamp.parameters[key]  = value;      
-    });   
-    localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));
-  }        
-});
-
-$('#requiredIllumination').change(function() {
-  //console.log("chengeRequiredIllumination");
-  var value = $(this).val();
-  if(value != 1) {
-    var valueCustomRequiredIllumination = $('#customRequiredIllumination').val();
-    if(value != valueCustomRequiredIllumination) {
-      $('#customRequiredIllumination').val(value);  
-      $('#customRequiredIllumination').trigger('change');
-    } 
-  }     
-});
-
-$('#customRequiredIllumination').change(function() {
-  //console.log("chengeCustomRequiredIllumination");
-  var value = $(this).val();  
-  var valueRequiredIllumination = $('#requiredIllumination').val();
-  if(value != valueRequiredIllumination) {
-    // First, get the elements into a list
-    var requireOptions = $('#requiredIllumination option');
-    // Next, translate that into an array of just the values
-    var values = $.map(requireOptions, function(elt, i) {     
-      return $(elt).val();
-    });
-    var searchValue;
-    for (var i = 0; i < values.length; i++) {
-      if(value == values[i]) { 
-        searchValue = values[i];         
-        break;     
-      }
-    }
-    if(searchValue !== undefined) {      
-      $('#requiredIllumination').val(searchValue);  
-      $('#requiredIllumination').trigger('change');
-    } else {     
-      $('#requiredIllumination').val("1");
-      $('#requiredIllumination').trigger('change');       
-    }
-  }
-    
-});
-
-$('.room').change(function () { 
-  //console.log("changeRoom");
-  parameters[$(this).attr('id')] = $(this).val();
-  localDataLamp.parameters = parameters;       
-  localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));
-  var id = $(this).attr('id');  
-});
-
-$('#draw_plan').on('click', '.select_all', function() { 
-  console.log("select_all");
-  var floor = $(this).data('id');
-  $div = $('div#' + floor);
-  $tabContent = $('#draw_plan').find('.tab-content');
-  $currentTab = $tabContent.find($div);
-
-  // initial floor height for current room 
-  $currentDraw = $currentTab.find('svg');
-  var ceiling = $currentDraw.attr('data-ceiling');
-  if(ceiling !== undefined && $('#heightRoom').val() !== ceiling) {    
-    $('#heightRoom').val(ceiling);
-    $('#heightRoom').trigger('change');
-  } 
-  // end initial floor height for current room
-  
-  if(!$currentTab.hasClass('selectAll')) {
-    $currentTab.addClass("selectAll");
-    $allRooms = $currentTab.find('polygon[id^=room]');
-    var countActiveRoom = 0;   
-    for (var i = 0; i < $allRooms.length; i++) {      
-      var currentRoom = $allRooms[i];
-      var currentId = currentRoom.getAttribute("id");      
-      var curArray = currentId.split("_");    
-      var curFloor = curArray[1];
-      var curRoom = curArray[2];
-      if(currentRoom.getAttribute("class") != "activePolygon") {
-        countActiveRoom++;
-        currentRoom.setAttribute("class","activePolygon");
-        currentRoom.setAttribute("fill","rgb(92,184,92)");
-        current_Room.getInstance().addElementCurrentRooms(curRoom, curFloor);        
-      }       
-    } 
-    if(countActiveRoom > 0) {
-      var currentRooms = current_Room.getInstance().getCurrentRoom();            
-      if ($('#calcLightning').valid()) {              
-        $('#set_data').prop('disabled', false);
-      } else {            
-        $('#set_data').prop('disabled', 'disabled');
-      } 
-    } else {
-      $currentTab.removeClass("selectAll");
-      for (var j = 0; j < $allRooms.length; j++) {      
-        var currentRoom_active = $allRooms[j];
-        var curId = currentRoom_active.getAttribute("id");       
-        var currentArray = curId.split("_");    
-        var currentFloorNumber = currentArray[1];
-        var currentRoomNumber = currentArray[2];
-        if(currentRoom_active.getAttribute("class") == "activePolygon") {          
-          currentRoom_active.removeAttribute("class","activePolygon");
-          currentRoom_active.setAttribute("fill","rgb(255,204,153)");          
-          current_Room.getInstance().removeElementCurrentRooms(currentRoomNumber, currentFloorNumber);        
-        }       
-      } 
-      var curRoomsLength = current_Room.getInstance().getCurrenRoomLength();
-      var currentRooms_1 = current_Room.getInstance().getCurrentRoom();      
-      if(curRoomsLength === 0) {
-        $( "#set_data" ).prop( "disabled", 'disabled');
-      }
-    }          
-  } else {
-    $currentTab.removeClass("selectAll");
-    $allRooms = $currentTab.find('polygon[id^=room]');    
-    $allRooms.attr("class","");
-    $allRooms.attr("fill","rgb(255,204,153)"); 
-    removeElementsFromCurRoom(floor, $allRooms.length); 
-    var currentRoom_2 = current_Room.getInstance().getCurrentRoom();    
-    var curRoomsLength_2 = current_Room.getInstance().getCurrenRoomLength();
-    if(curRoomsLength_2 === 0) {
-      $( "#set_data" ).prop( "disabled", 'disabled');
-    }    
-  }
-  
-});
-
-$('#draw_plan').on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {  
-  var id = e.target.getAttribute("href"); 
-  var $curDiv = $(id);  
-  if($curDiv.hasClass('active in')) {
-    var svgs = $curDiv.find('svg');
-    var curSVG = $(svgs[0]);
-    var ceiling = curSVG.attr('data-ceiling');
-    // initial floor height for current room  
-    if(ceiling !== undefined && $('#heightRoom').val() !== ceiling) {    
-      $('#heightRoom').val(ceiling);
-      $('#heightRoom').trigger('change');
-    }  
-    // end initial floor height for current room
-  }  
-});
-
-//=============== END EVENTS MAIN WIDGET WINDOW ===================
-//
-//
-//
-//
-//
-//=============== FUNCTIONS HANDLER EVENTS MAIN WINDOW========================
-
-/**
- * [hendler event onclick current room]
- * @param  {[DOM element]} element [element event oncklick]
- */
-function onSelectRoom(element) { 
-  console.log("onSelectRoom");
-  // initial floor height for current room  
-  /*var parentSVG = element.parentNode;
-  var ceiling = parentSVG.getAttribute("data-ceiling");
-  if(ceiling !== undefined && $('#heightRoom').val() !== ceiling) {    
-    $('#heightRoom').val(ceiling);
-    $('#heightRoom').trigger('change');
-  }  */
-  // end initial floor height for current room
-  
-  var currentId = element.getAttribute("id");
-  var curArray = currentId.split("_");    
-  var curFloor = curArray[1];
-  var curRoom = curArray[2]; 
-  if(element.getAttribute("class") == "activePolygon" ) {
-    element.removeAttribute("class");
-    element.setAttribute("fill", "rgb(255,204,153)"); 
-    current_Room.getInstance().removeElementCurrentRooms(curRoom, curFloor);
-    var curRoomsLength = current_Room.getInstance().getCurrenRoomLength();
-    if(curRoomsLength === 0) {
-      $( "#set_data" ).prop( "disabled", 'disabled');
-    }     
-  } else {    
-    element.setAttribute("class", "activePolygon");
-    element.setAttribute("fill", "rgb(92,184,92)");    
-    current_Room.getInstance().addElementCurrentRooms(curRoom, curFloor);     
-    if ($('#calcLightning').valid()) {              
-      $('#set_data').prop('disabled', false);
-    } else {            
-      $('#set_data').prop('disabled', 'disabled');
-    }               
-  }     
-}
-//======END FUNCTIONS HANDLER EVENTS ==============================
-
-function HideTooltips(element) {   
-  var $curElement = $(element);  
-  $curElement.tooltip('hide');
-}
-
-function ShowTooltips(element) {  
-
-  var $curElement = $(element);   
-  $curElement.tooltip({
-      container: 'body',      
-      trigger: 'manual',
-      html: true,
-      animation: false,
-      offset: '0 75%',
-      delay: { "show": 1000, "hide": 2000 },
-      title:  function() {
-          var currentId = $(this).attr('id');
-          var curArray = currentId.split("_");    
-          var curFloor = parseInt(curArray[1]) + 1;
-          var curRoom = parseInt(curArray[2]) + 1;
-          var tableData = current_Room.getInstance().getTableData();
-          var roomNumber = curFloor + '_' + curRoom;                        
-          var resultArray = [];
-          for (var i = 0; i < tableData.length; i++) {
-            var curLamp = tableData[i];
-            if(roomNumber === curLamp.roomNumber) {                                        
-              resultArray.push({name : curLamp.nameLamp, countLamp: curLamp.lampsCount});
-            }
-          }                   
-          var resultStr = "<нет светильников>";
-          if(resultArray.length !== 0) {
-            resultStr = "<ol>";
-            for (var j = 0; j < resultArray.length; j++) {
-              resultStr = resultStr + "<li>" + resultArray[j].name + "-" + resultArray[j].countLamp + " шт.</li>";
-            }
-            resultStr = resultStr + "</ol>";
-            /*resultStr = resultArray.join('<br/>');  */                                                  
-          }           
-          return resultStr;
-      },
-      placement: 'top'
-  });
-  $curElement.tooltip('show');  
-}
-
-function showRemoveButton(element) {  
-  var $curElement = $(element); 
-  var $parent = $curElement.parent();
-  var $button = $parent.find('.js_remove_button');  
-  $button.css('visibility','visible'); 
-}
-
-function hideRemoveButton(element) {  
-  var $curElement = $(element); 
-  var $parent = $curElement.parent();
-  var $button = $parent.find('.js_remove_button');  
-  $button.css('visibility','hidden');
-}

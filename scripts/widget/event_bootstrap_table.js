@@ -1,11 +1,21 @@
+//================== EVENT BOOTSTRAP TABLE========================
+//  FUNCTIONS TABLE DATA
+      //1.viewResultInTable
+      //2.addLampsInTableDataAfterCalc
+      //3.addLampsInTableDataAfterCalc
+      //4.addLampsToTableData
+      //5.addLampToTableData
+      //6.removeLampsFromTableData  
+//  FUNCTIONS HANDLER EVENTS BOOTSTRAP-TABLES
+      //1.showRemoveButton
+      //2.hideRemoveButton
+
 //=====================EVENT BOOTSTRAP TABLE=======================
-$('#bTable').on('check.bs.table', function (e, row) {  
-    console.log(row);  
+$('#bTable').on('check.bs.table', function (e, row) {    
     current_Room.getInstance().addCurrentLamp(row);    
 });
 
-$('#bTable').on('uncheck.bs.table', function (e, row) {    
-    console.log(row);
+$('#bTable').on('uncheck.bs.table', function (e, row) {     
     current_Room.getInstance().removeCurrentLamp(row);
 });
 
@@ -38,12 +48,6 @@ $('#set_data').on('click', function(event) {
 //
 //
 //==================== FUNCTIONS TABLE DATA =======================
-//
-//1.viewResultInTable
-//2.initialAddLampsInTableData
-//3.addLampInTableDataAfterEdit
-//4.addLampsToTableData
-//5.addLampToTableData
 
 /**
  * View result in table after calc lamps
@@ -69,8 +73,8 @@ function viewResultInTable(calcLighting) {
  * []
  * @param {[object]} objectLamp [object serialize form calc lamp]
  */
-function AddLampsInTableDataAfterCalc(arrayLamps) {
-    console.log("AddLampsInTableDataAfterCalc");   
+function addLampsInTableDataAfterCalc(arrayLamps) {
+    console.log("addLampsInTableDataAfterCalc");   
     for (var i = 0; i < arrayLamps.length; i++) {
         var currentLamp = arrayLamps[i];
         var room = currentLamp.room;
@@ -163,3 +167,29 @@ function removeLampsFromTableData(arrayLamps) {
 }
 
 //==================== END FUNCTIONS TABLE DATA =====================
+//
+//
+//
+//
+//=============== FUNCTIONS HANDLER EVENTS BOOTSTRAP-TABLES =========
+
+function showRemoveButton(element) {  
+  var $curElement = $(element); 
+  var $parent = $curElement.parent();
+  var $button = $parent.find('.js_remove_button');  
+  $button.css('visibility','visible'); 
+}
+
+function hideRemoveButton(element) {  
+  var $curElement = $(element); 
+  var $parent = $curElement.parent();
+  var $button = $parent.find('.js_remove_button');  
+  $button.css('visibility','hidden');
+}
+
+//=============== END FUNCTIONS HANDLER EVENTS BOOTSTRAP-TABLES =====
+//
+//
+//
+//
+//===================================================================
