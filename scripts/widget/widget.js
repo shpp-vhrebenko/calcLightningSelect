@@ -63,6 +63,11 @@ $(document).ready(function() {
           formatter: runningFormatter
       },
       {
+          field: 'key',
+          title: 'Артикул',           
+          class: "col-md-1 half-col-md forTooltip"         
+      },
+      {
           field: 'nameLamp',
           title: 'Наименование </br> светильника',
           sortable: true,        
