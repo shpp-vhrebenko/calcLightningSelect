@@ -3,7 +3,7 @@ var current_Room = (function() {
     var instance, // object singleton     
         curRoom = [], // current active rooms array
         tableData = [], // object data bootstrap-table ( object have all data table)
-        curLamp = {}, // current lamp in table ( current active lamp in table)
+        curLamp = [], // array current lamps in table ( current active lamp in table)
         typeLamp = {}, // object json drawing (we take it from post message)
         instanceTypeLamp = {},
         //lampSelect = {}, // object has value for options name lamp select in form edit modal_window
@@ -198,21 +198,40 @@ var current_Room = (function() {
         curRoom = [];
     };
 
-    var setCurrentLamp = function(objectLamp) {
-        for (var key in objectLamp) {
-            curLamp[key] = objectLamp[key];
-        }
+    var addCurrentLamp = function(objectLamp) {
+        curLamp.push(objectLamp);
+        console.log(curLamp);
     };
 
-    var getCurrentLamp = function() {
+    var removeCurrentLamp = function(objectLamp) {
+        var newCurLamp = _.remove(curLamp, function(item) {          
+          if((item.roomNumber != objectLamp.roomNumber)){
+              return item;        
+          } else {
+            if(item.nameLamp != objectLamp.nameLamp) {               
+               return item; 
+            } 
+          }         
+        });
+        curLamp = newCurLamp;
+        console.log(curLamp);
+    };
+
+    var getCurrentLamps = function(objectLamp) {
         return curLamp;
+    };
+
+    var clearCurrentLamps = function() {
+        curLamp = {};
     };
 
     var createInstance = function() {
         return {
 
-            setCurrentLamp: setCurrentLamp,
-            getCurrentLamp: getCurrentLamp,
+            addCurrentLamp: addCurrentLamp,
+            removeCurrentLamp: removeCurrentLamp,            
+            getCurrentLamps: getCurrentLamps,
+            clearCurrentLamps: clearCurrentLamps,
 
             getCurrentRoom: getCurrentRoom,
             getCurrenRoomLength: getCurrenRoomLength,

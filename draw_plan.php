@@ -89,7 +89,8 @@ function draw_floor($numberFloor, $hourse) {
       else $a_c=false;
       ###???$but_room_id="but_room_{$floor_number}_{$i}";
       $room_name = $i + 1;
-      $plg_room=new Room($room_name,$a_c,$floors[$floor_number]->scaling,"but_room_{$floor_number}_{$i}",'rgb(255,204,153)','rgb(0,0,0)');
+      $room_type = $room->room_type;
+      $plg_room=new Room($room_type,$room_name,$a_c,$floors[$floor_number]->scaling,"but_room_{$floor_number}_{$i}",'rgb(255,204,153)','rgb(0,0,0)');
       //$plg_room=new Polygon('rgb(255,204,153)','rgb(0,0,0)');
       $plg_room->number=$room->room_number;
       $plg_room->setId("room_{$floor_number}_".$i);

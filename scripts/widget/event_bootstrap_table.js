@@ -1,14 +1,12 @@
 //=====================EVENT BOOTSTRAP TABLE=======================
 $('#bTable').on('check.bs.table', function (e, row) {  
     console.log(row);  
-    current_Room.getInstance().setCurrentLamp(row);
-    $('#edit_data').prop('disabled', false);
-    $('#remove_data').prop('disabled', false);
+    current_Room.getInstance().addCurrentLamp(row);    
 });
 
 $('#bTable').on('uncheck.bs.table', function (e, row) {    
-    $('#edit_data').prop('disabled', 'disabled');
-    $('#remove_data').prop('disabled', 'disabled');
+    console.log(row);
+    current_Room.getInstance().removeCurrentLamp(row);
 });
 
 $('#set_data').on('click', function(event) {
@@ -151,6 +149,17 @@ function addLampToTableData(currentLamp, room, floor, edit) {
   } else {
     current_Room.getInstance().addElementToTableData(objectRow);
   }  
+}
+
+/**
+ * [remove Lamps From Table Data]
+ * @param  {[array]} arrayLamps [description] 
+ */
+function removeLampsFromTableData(arrayLamps) {
+  _.times(arrayLamps.length, function(index) {
+    current_Room.getInstance().removeElementFromTableData(arrayLamps[index]);
+  });
+  current_Room.getInstance().clearCurrentLamps();
 }
 
 //==================== END FUNCTIONS TABLE DATA =====================

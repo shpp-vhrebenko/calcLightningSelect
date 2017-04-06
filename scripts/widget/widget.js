@@ -29,11 +29,13 @@ $(document).ready(function() {
       contextMenu: '#example1-context-menu',
       onContextMenuItem: function(row, $el){
           if($el.data("item") == "delete"){
-            var curRowTable = row;                        
-            current_Room.getInstance().removeElementFromTableData(curRowTable);  
-           /* removeLampFromLocalData(curRowTable);*/
-            $('#edit_data').prop('disabled', 'disabled');
-            $('#remove_data').prop('disabled', 'disabled');
+            var curRowTable = row;             
+            var curLamps = current_Room.getInstance().getCurrentLamps();
+            if(curLamps.length !== 0) {
+              removeLampsFromTableData(curLamps);
+            } else {              
+              current_Room.getInstance().removeElementFromTableData(curRowTable);
+            }                      
           }
       },      
       idField: 'name',
@@ -42,13 +44,13 @@ $(document).ready(function() {
       search: true,
       toolbar: "#toolbar",
       clickToSelect: true,
-      singleSelect: true,
-      checkboxHeader: false,      
+      singleSelect: false,
+      checkboxHeader: true,      
       height: 400,
       pageSize: 10,
       pageList: [10,15,20],
       classes: "table table-condensed", 
-      showFooter: true,      
+      showFooter: true,            
       footerStyle:  function footerStyle(row, index) {                      
                       return {
                         css: { "font-weight": "bold" }
