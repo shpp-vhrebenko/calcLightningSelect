@@ -249,7 +249,7 @@ $(document).ready(function() {
     var selectLamp = current_Room.getInstance().getLampAutocomplit();    
     var selectLampKey = current_Room.getInstance().getLampAutocomplitKey();  
     var $input = $("#search_user_lamp");
-    var $inputKey = $("#keyLamp");
+    var $inputKey = $("#key");
     $input.typeahead({
       source: selectLamp,
       autoSelect: true
@@ -268,7 +268,7 @@ $(document).ready(function() {
     });
     $inputKey.change(function() {  
       console.log("changeTypeHead"); 
-      var current = $inputKey.typeahead("getActive");       
+      var current = $inputKey.typeahead("getActive");              
       $('#nameLamp').val(current.id);        
       $('#nameLamp').valid();
       $('#nameLamp').trigger('change');      
@@ -376,16 +376,16 @@ $('#nameLamp').change(function() {
         $('#info_lamp').text("Область использования - " + value);
       }
       if(key == "key") {
-        var $inputKey = $("#keyLamp");
+        var $inputKey = $("#key");
         var current = $inputKey.typeahead("getActive");
         if(current !== undefined) {
           if(parseInt(current.name) !== value) {                      
             $inputKey.val(value);
-            $inputKey.typeahead("lookup");
+            $inputKey.typeahead("lookup");                       
           }
         } else {          
           $inputKey.val(value);
-          $inputKey.typeahead("lookup");
+          $inputKey.typeahead("lookup");                   
         }                
       }
       localDataLamp.parameters[key]  = value;      

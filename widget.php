@@ -81,7 +81,7 @@
               <tbody>
                 <tr>
                   <td class="input col-md-1">
-                    <input class="input-sm" type="text" name="keyLamp" data-provide="typeahead" id="keyLamp"/>
+                    <input class="input-sm" type="text" class="input-sm" name="key" data-provide="typeahead" id="key"/>
                   </td>
                   <td class="input col-md-1">
                     <select name="nameLamp" id="nameLamp" class="room input-sm" required >

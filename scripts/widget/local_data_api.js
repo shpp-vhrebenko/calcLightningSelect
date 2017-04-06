@@ -53,7 +53,7 @@ var current_Room = (function() {
     };
 
     var getResultTypeLamp = function() {
-        var currentData = _.cloneDeep(instanceTypeLamp);
+        var currentData = clearTypeLamp(_.cloneDeep(instanceTypeLamp));        
         _.times(tableData.length, function(i) {
             var currentLamp = tableData[i];
             var roomNumber = currentLamp.roomNumber;
@@ -77,11 +77,21 @@ var current_Room = (function() {
                 currentData.floors[floor].rooms[room].typeLamp = {};
                 currentData.floors[floor].rooms[room].typeLamp = proObject;            
             }
-        });
-        console.log(instanceTypeLamp);
-        console.log(currentData);
+        });        
         return currentData;
     };
+
+    function clearTypeLamp(inputObject) {
+         _.times(inputObject.floors.length, function(f) {
+            var currentFloor = inputObject.floors[f];
+            _.times(currentFloor.rooms.length, function(r) {
+                var currentRoom = inputObject.floors[f].rooms[r];
+                inputObject.floors[f].rooms[r] = _.omit(currentRoom, 'typeLamp');                           
+            });           
+        }); 
+          
+        return inputObject;
+    }
 
     var setTableData = function(inputArray) {        
         tableData = inputArray;
@@ -224,6 +234,8 @@ var current_Room = (function() {
             setLampSelect: setLampSelect
         };
     };
+
+
     return {
         getInstance: function() {
             return instance || (instance = createInstance());
