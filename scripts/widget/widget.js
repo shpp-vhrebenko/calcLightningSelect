@@ -50,7 +50,7 @@ $(document).ready(function() {
       pageSize: 10,
       pageList: [10,15,20],
       classes: "table table-condensed", 
-      showFooter: true,            
+      showFooter: true,           
       footerStyle:  function footerStyle(row, index) {                      
                       return {
                         css: { "font-weight": "bold" }
@@ -79,7 +79,11 @@ $(document).ready(function() {
           field: 'nameLamp',
           title: 'Наименование </br> светильника',
           sortable: true,        
-          class: "col-md-3"
+          class: "col-md-3 ",
+          formatter: starsFormatter,
+          rowAttributes: function (row, index) {
+            console.log(row);
+          }  
       }, {
           field: 'roomNumber',
           title: '№',
@@ -177,6 +181,23 @@ $(document).ready(function() {
       }]
   });
 
+  $('#bTable').on('click', '.js_remove_button', function (e){
+      var table = $('#bTable').data('bootstrap.table'),
+          $current = $(this),
+          $div = $current.parent(),
+          $element = $div.parent(),
+          $tr = $element.parent(),
+          row = table.data[$tr.data('index')],
+          cellIndex = $element[0].cellIndex,
+          $headerCell = table.$header.find('th:eq(' + cellIndex + ')'),
+          field = $headerCell.data('field'),
+          value = row[field];              
+          console.log(row);
+          current_Room.getInstance().removeElementFromTableData(row);
+         /* current_Room.getInstance().removeCurrentLamp(row);*/
+          table.$el.trigger($.Event('uncheck.bs.table'), row);
+  });
+
   $('#bTable').on('post-body.bs.table', function () {
       $('.forTooltip').attr("data-tooltip","true");
       $('[data-tooltip="true"]').tooltip({
@@ -211,7 +232,16 @@ $(document).ready(function() {
       current_Room.getInstance().chengeElementInTableData(row); 
     }
     
-  });
+  }); 
+
+  function starsFormatter(value) {
+      /*jshint multistr: true */
+      return "<div class='relativeBox' onmouseover='showRemoveButton(this)' onmouseout='hideRemoveButton(this)'>\
+                <span>" + value + 
+                "</span>\
+                <button class='btn btn-circle btn-default js_remove_button'><i class='glyphicon glyphicon-remove'></i></button>\
+              </div>";
+  }
 
   function runningFormatter(value, row, index) {
       return 1+index;
@@ -657,4 +687,18 @@ function ShowTooltips(element) {
       placement: 'top'
   });
   $curElement.tooltip('show');  
+}
+
+function showRemoveButton(element) {  
+  var $curElement = $(element); 
+  var $parent = $curElement.parent();
+  var $button = $parent.find('.js_remove_button');  
+  $button.css('visibility','visible'); 
+}
+
+function hideRemoveButton(element) {  
+  var $curElement = $(element); 
+  var $parent = $curElement.parent();
+  var $button = $parent.find('.js_remove_button');  
+  $button.css('visibility','hidden');
 }

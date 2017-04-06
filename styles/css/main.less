@@ -10,10 +10,10 @@
 //
 //=================================================//
 .btn-circle {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   text-align: center;
-  padding: 6px 0;
+  padding: 4px 0;
   font-size: 12px;
   line-height: 1.428571429;
   border-radius: 15px;
@@ -237,8 +237,8 @@ body {
     cursor: pointer;
 }
 
-.fixed-table-container tbody tr {    
-    cursor: pointer;
+.fixed-table-container tbody tr { 
+    cursor: default;    
     &:hover {
       background-color: #E2E4E6; 
     }
@@ -260,5 +260,17 @@ polygon {
 
 .user-result-panel {
   margin-top: .2rem;
+}
+
+.relativeBox {
+  position: relative;
+}
+
+.js_remove_button {
+  cursor: pointer;
+  position: absolute;
+  left: 130px; 
+  z-index: 9999;
+  visibility: hidden;
 }
 
