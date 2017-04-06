@@ -142,7 +142,8 @@ function addLampToTableData(currentLamp, room, floor, edit) {
     producer: currentLamp.producer,
     usagecoefficient: currentLamp.usagecoefficient,
     roomArea: currentLamp.resultCalc.roomArea,
-    lampsCount: currentLamp.resultCalc.lampsCount,    
+    lampsCount: currentLamp.resultCalc.lampsCount, 
+    lampsWatt: currentLamp.resultCalc.lampsWatt,   
     resultCalc: currentLamp.resultCalc   
   };
   if(edit) {

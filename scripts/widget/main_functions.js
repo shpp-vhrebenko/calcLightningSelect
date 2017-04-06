@@ -59,7 +59,7 @@ function setInputValue(input, value) {
 function init() {
   console.log('init');  
   $.each(localDataLamp.parameters, function(key, value) {
-    console.log(key);  
+     
     if(key == "photoLink") {
       $('#js_photo_lamp').attr('src',value);
     }        

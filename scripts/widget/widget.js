@@ -47,13 +47,18 @@ $(document).ready(function() {
       height: 400,
       pageSize: 10,
       pageList: [10,15,20],
-      classes: "table table-condensed",          
+      classes: "table table-condensed", 
+      showFooter: true,      
+      footerStyle:  function footerStyle(row, index) {                      
+                      return {
+                        css: { "font-weight": "bold" }
+                      };
+                    },         
       columns: [
       {
           field: 'state',          
           checkbox: true,
-          class: "half",
-          formatter: runningFormatter
+          class: "half"          
       },
       {
           field: 'index',
@@ -65,7 +70,8 @@ $(document).ready(function() {
       {
           field: 'key',
           title: 'Артикул',           
-          class: "col-md-1 half-col-md forTooltip"         
+          class: "col-md-1 half-col-md forTooltip",
+          footerFormatter: totalTextFormatter         
       },
       {
           field: 'nameLamp',
@@ -108,7 +114,8 @@ $(document).ready(function() {
             min: 1,
             mode: 'popup',
             placement: 'right'
-          } 
+          },
+          footerFormatter: totalFormatter 
 
       }, {
           field: 'requiredIllumination',
@@ -158,12 +165,13 @@ $(document).ready(function() {
           field: 'allPowerLamps',
           title: 'Мощ-ть</br>1шт. Вт',
           titleTooltip: "Мощность 1 светильника",         
-         class: "col-md-1 forTooltip"           
+          class: "col-md-1 forTooltip"           
       }, {
-          field: 'resultCalc.lampsWatt', 
+          field: 'lampsWatt', 
           class: "col-md-1 forTooltip",
           title: 'Мощ-ть</br>всех Вт',
-          titleTooltip: "Мощность всех светильников",           
+          titleTooltip: "Мощность всех светильников",
+          footerFormatter: totalFormatter           
       }]
   });
 
@@ -206,6 +214,23 @@ $(document).ready(function() {
   function runningFormatter(value, row, index) {
       return 1+index;
   } 
+
+  function totalFormatter(data) {    
+    var total = 0;
+    if (data.length > 0) {
+      var field = this.field;         
+      total = data.reduce(function(sum, row) {
+        return sum + (+row[field]);
+      }, 0);
+
+      return total;
+    }
+    return '';
+  }
+
+  function totalTextFormatter(data) {
+    return 'ИТОГИ:';
+  }
   //============= END INITIAL BOOTSTRAP-TABLS =====================
   //
   //
