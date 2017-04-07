@@ -66,7 +66,7 @@ class Polygon
 	{
 		$this->fill=$fill;
 	}
-	function __construct($fill='rgb(234,234,234)', $border_color="rgb(255,0,0)", $bord_width=1)
+	function __construct($fill='rgb(234,234,234)', $border_color="rgb(255,0,0)", $bord_width=1, $tooltip = '')
 	{
 		$this->fill=$fill;
 		$this->properties=array();
@@ -75,6 +75,7 @@ class Polygon
 		$this->border_width=$bord_width;
 		$this->id=false;
 		$this->plg_type=false;
+		$this->tooltip=$tooltip;
 	}
 	function setId($id)
 	{
@@ -104,7 +105,7 @@ class Polygon
 		foreach($this->properties as $npr=>$vpr)
 		$properties=$properties." $npr='$vpr'";
 		$res="<polygon ".($this->id ? "id=".$this->id : "")." $properties points='".implode(' ',$this->points)."' fill='{$this->fill}' stroke-width={$this->border_width} 
-		stroke='{$this->border_color}' data-toogle='tooltip' title='no lamps' />";
+		stroke='{$this->border_color}'".($this->tooltip ? $this->tooltip : ' ')." />";
 		return $res;
 	}
 	function getArrPoints()

@@ -22,7 +22,13 @@
 	// Simple table
 	function BasicTable($header, $data)
 	{
-	    // Header
+	    // Column widths
+      $w = array(40, 80, 40);
+      // Header
+      for($i=0;$i<count($header);$i++)
+          $this->Cell($w[$i],7,$header[$i],1,0,'C');
+      $this->Ln();
+      /*// Header
       for ($i=0; $i < count($header); $i++) { 
          if($i != 0) {
             $this->Cell(80,7,$header[$i],1);
@@ -30,32 +36,52 @@
             $this->Cell(40,7,$header[$i],1);
          }
       } 
-      $this->Ln();
+      $this->Ln();*/
+
+      $floors = $data["floors"];
+      for ($f=0; $f < count($floors); $f++) { 
+        $rooms = $floors[$f]["rooms"];
+        for ($r=0; $r < count($rooms) ; $r++) { 
+          $currentRoom = $rooms[$r];
+          if(isset($currentRoom["typeLamp"]) && $currentRoom["typeLamp"] !== 'undefined') {
+            $typeLamp = $currentRoom["typeLamp"];
+            foreach ($typeLamp as $key => $value) {
+                $this->Cell($w[0],6,$value["roomNumber"],'LR');
+                $this->Cell($w[1],6,$value["nameLamp"],'LR');
+                $this->Cell($w[2],6,number_format(intval($value["lampsCount"])),'LR');                
+                $this->Ln();
+            }
+          }
+        }
+      }
+
+      // Closing line
+      $this->Cell(array_sum($w),0,'','T');
 	   /* foreach($header as $col)
 	        $this->Cell(40,7,$col,1);
 	    $this->Ln();*/
 	    // Data     
-      foreach ($data as $key => $value) {
+     /* foreach ($data as $key => $value) {
         if($key != "nameLamp") {
           $this->Cell(40,6,$key,1);          
           $this->Cell(80,6,$value,1);
         }        
         $this->Ln();
-      }       
+      }  */     
 	   /* foreach($data as $row)
 	    {
 	        foreach($row as $col)
 	            $this->Cell(40,6,$col,1);
 	        $this->Ln();
 	    }*/
-      $currentX = $this->GetX();
+     /* $currentX = $this->GetX();
       $currentY = $this->GetY();
       $this->SetXY(($currentX), ($currentY));
       $array = explode(";", $data["nameLamp"]);
       foreach ($array as $value) {
         $this->Cell(140,7,$value,1);
         $this->Ln();
-      }
+      }*/
       //$this->Cell(80,7,$data["nameLamp"]);
 	}
 
