@@ -175,16 +175,36 @@ function removeLampsFromTableData(arrayLamps) {
 
 function showRemoveButton(element) {  
   var $curElement = $(element); 
-  var $parent = $curElement.parent();
-  var $button = $parent.find('.js_remove_button');  
-  $button.css('visibility','visible'); 
+  var $parent = $curElement.parent();  
+  var $button = $parent.find('.js_remove_button'); 
+  var height = $parent.height();
+  var parentWidth = $parent.width(); 
+  var width = $button.width();
+  var top = 0;
+  if(height > width) {
+    top = (height-width)/2;
+  } else {
+    top = -2;
+  } 
+  var left = parentWidth - width;
+  $button.css({'visibility':'visible','top': top ,'left': left}); 
 }
 
-function hideRemoveButton(element) {  
+function hideRemoveButton(element) {    
   var $curElement = $(element); 
-  var $parent = $curElement.parent();
-  var $button = $parent.find('.js_remove_button');  
+  var $parent = $curElement.parent();  
+  var $button = $parent.find('.js_remove_button');
   $button.css('visibility','hidden');
+}
+
+function showFieldSearch() {
+   var $toolbar = $('.fixed-table-toolbar');
+   var $searchBox = $toolbar.find('div.search');
+   if($searchBox.css('visibility') == 'hidden') {
+     $searchBox.css('visibility', 'visible');
+   } else {
+     $searchBox.css('visibility', 'hidden'); 
+   }
 }
 
 //=============== END FUNCTIONS HANDLER EVENTS BOOTSTRAP-TABLES =====

@@ -79,19 +79,19 @@ $(document).ready(function() {
       },
       {
           field: 'key',
-          title: 'Артикул',           
+          title: 'Артикул', 
+          align: 'center',          
           class: "col-md-1 half-col-md forTooltip",
           footerFormatter: totalTextFormatter         
       },
       {
           field: 'nameLamp',
-          title: 'Наименование </br> светильника',
+           /*jshint multistr: true */
+          title: "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Наименование" + 
+                  "&nbsp;&nbsp;&nbsp;&nbsp;<span onclick='showFieldSearch()' id='show-search'><i class='glyphicon glyphicon-search'></i></span>",
           sortable: true,        
           class: "col-md-3 ",
-          formatter: starsFormatter,
-          rowAttributes: function (row, index) {
-            console.log(row);
-          }  
+          formatter: starsFormatter          
       }, {
           field: 'roomNumber',
           title: '№',
@@ -204,7 +204,7 @@ $(document).ready(function() {
           current_Room.getInstance().removeElementFromTableData(row);
          /* current_Room.getInstance().removeCurrentLamp(row);*/
           table.$el.trigger($.Event('uncheck.bs.table'), row);
-  });
+  }); 
 
   $('#bTable').on('post-body.bs.table', function () {
       $('.forTooltip').attr("data-tooltip","true");

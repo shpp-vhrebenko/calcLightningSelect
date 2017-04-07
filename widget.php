@@ -153,7 +153,7 @@
             <div id="toolbar" class="btn-group">
                 <button type="button" class="btn btn-default" id="set_data">
                     Добавить светильник
-                </button>                                            
+                </button>                                                          
             </div>
             <table id="bTable" ></table>            
           </div> 

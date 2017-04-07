@@ -213,7 +213,8 @@ var current_Room = (function() {
             } 
           }         
         });
-        curLamp = newCurLamp;        
+        curLamp = newCurLamp;
+        console.log(curLamp);        
     };
 
     var getCurrentLamps = function(objectLamp) {
@@ -221,7 +222,7 @@ var current_Room = (function() {
     };
 
     var clearCurrentLamps = function() {
-        curLamp = {};
+        curLamp = [];
     };
 
     var createInstance = function() {
