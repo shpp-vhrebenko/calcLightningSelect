@@ -9,9 +9,9 @@ ini_set('display_startup_errors', 1);
 
 $data = 0;
 // Data loading
-if(isset($_SESSION["post_data"])) {
-	$data = $_SESSION["post_data"];
-	unset($_SESSION["post_data"]);
+if(isset($_SESSION["calcLightningModuleCad5d"])) {
+	$data = $_SESSION["calcLightningModuleCad5d"];
+	unset($_SESSION["calcLightningModuleCad5d"]);
 }
 
 

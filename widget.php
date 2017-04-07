@@ -8,7 +8,7 @@
   
 
   function post_redirect( $data) {
-      $_SESSION['post_data'] = $data;      
+      $_SESSION['calcLightningModuleCad5d'] = $data;      
   }
 ?>
 
