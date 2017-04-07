@@ -33,6 +33,11 @@ window.addEventListener('message', function(event) {
             console.log("cancel");
             $('#iframeid').remove();
         }
+         if (event.data.message.cmd == 'viewPDF')
+        {
+            console.log("viewPDF");
+            $('#iframeid').attr('src','viewPDF.php');
+        }
     }
 }, false);
 

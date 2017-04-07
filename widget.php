@@ -1,4 +1,15 @@
 <?php
+  session_start();
+       
+      if(isset($_POST["viewPDF"])) { 
+        $data = $_POST["local_data"];        
+        post_redirect($data);        
+     } 
+  
+
+  function post_redirect( $data) {
+      $_SESSION['post_data'] = $data;      
+  }
 ?>
 
 <!doctype html>
@@ -163,11 +174,14 @@
           </ul>
           <!-- End Bootstrap table context menu --> 
           <!-- End Bootstrap-tables -->  
-          <div class="row user-result-panel">            
-            <button type="button" class="btn btn-success col-sm-6 col-md-1 col-md-offset-8" id="put_data">
+          <div class="row user-result-panel">
+            <button type="button" class="btn btn-default col-sm-4 col-md-1 col-md-offset-6" id="view_pdf">
+              PDF
+            </button>             
+            <button type="button" class="btn btn-success col-sm-4 col-md-1" id="put_data">
               ОК
             </button> 
-            <button type="button" class="btn btn-default col-sm-6 col-md-2" id="cancel">
+            <button type="button" class="btn btn-default col-sm-4 col-md-2" id="cancel">
               Отмена
             </button>            
           </div>           
