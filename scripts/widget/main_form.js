@@ -42,8 +42,8 @@ $('#lampsWorkHeight').change(function() {
       localDataLamp.parameters = parameters;       
       localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));  
     } else {
-      $('#lampsWorkHeight').val(0);      
-      parameters.lampsWorkHeight = 0;
+      $('#lampsWorkHeight').val(0.8);      
+      parameters.lampsWorkHeight = 0.8;
       localDataLamp.parameters = parameters; 
       localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));
     }    

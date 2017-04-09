@@ -80,7 +80,7 @@
     $params = [];  
         
     $params["perimetr"] = $room["perimetr"];
-    $params["space"] = $room["roomArea"];
+    $params["space"] = round($room["roomArea"],1);
      
     //uploadUsagecodfficient($room["usagecoefficient"], $room["typeLamp"]);    
     $utilization_rate_array = [];    

@@ -220,7 +220,8 @@ $(document).ready(function() {
         row.customRequiredIllumination = row.requiredIllumination;
       }  
       var currentRoomObject = getCurrentRoomForEdit(row);     
-      row.perimetr = getRoomPerimetr(currentRoomObject.walls);     
+      row.perimetr = getRoomPerimetr
+(currentRoomObject.walls);     
       var sendData = {
         calc_countLamp : true,
         parameters : row          
