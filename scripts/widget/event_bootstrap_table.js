@@ -24,7 +24,7 @@ $('#set_data').on('click', function(event) {
   event.preventDefault(); 
   var json_data = localStorage.getItem('typeLamp');
   var local_data = $.parseJSON(json_data);  
-  var currentParameters = local_data.parameters;   
+  var currentParameters = local_data;   
   var currentRoomsArray = getCurrentRooms(currentParameters);     
   var data = {
     calc_lighting : true,    
@@ -91,6 +91,7 @@ function addLampsInTableDataAfterCalc(arrayLamps) {
  */
 function addLampInTableDataAfterEdit(objectLamp, nameLamp) {
     console.log("addLampInTableDataAfterEdit");
+    console.log(objectLamp);
     var data = current_Room.getInstance().getTypeLamp();
     var param = objectLamp.roomNumber.split('_');
     var floor = parseInt(param[0]) - 1;

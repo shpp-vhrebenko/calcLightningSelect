@@ -31,20 +31,17 @@ $('#lampsWorkHeight').change(function() {
   var heightRoom = $('#heightRoom').val();
   if(value < heightRoom) {
     if(value > 0) {     
-      parameters.lampsWorkHeight = value;
-      localDataLamp.parameters = parameters;   
+      localDataLamp.lampsWorkHeight = value;         
       localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));
     }     
   } else {    
     if(heightRoom > 0){
       $('#lampsWorkHeight').val(heightRoom - 0.1);      
-      parameters.lampsWorkHeight = (heightRoom - 0.1);
-      localDataLamp.parameters = parameters;       
+      localDataLamp.lampsWorkHeight = (heightRoom - 0.1);           
       localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));  
     } else {
       $('#lampsWorkHeight').val(0.8);      
-      parameters.lampsWorkHeight = 0.8;
-      localDataLamp.parameters = parameters; 
+      localDataLamp.lampsWorkHeight = 0.8;      
       localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));
     }    
   }   
@@ -58,13 +55,11 @@ $('#heightRoom').change(function() {
   if(lampsWorkHeight === value) { 
     if(cur > 0) {
       $('#lampsWorkHeight').val(cur);     
-      parameters.lampsWorkHeight = cur;
-      localDataLamp.parameters = parameters;     
+      localDataLamp.lampsWorkHeight = cur;        
       localStorage.setItem('typeLamp', JSON.stringify(localDataLamp)); 
     }         
   }  
-  parameters.heightRoom = value;
-  localDataLamp.parameters = parameters;   
+  localDataLamp.heightRoom = value;  
   localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));       
 });
 
@@ -93,7 +88,7 @@ $('#nameLamp').change(function() {
           $inputKey.typeahead("lookup");                   
         }                
       }
-      localDataLamp.parameters[key]  = value;      
+      localDataLamp[key]  = value;      
     });   
     localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));
   }        
@@ -142,8 +137,7 @@ $('#customRequiredIllumination').change(function() {
 
 $('.room').change(function () { 
   //console.log("changeRoom");
-  parameters[$(this).attr('id')] = $(this).val();
-  localDataLamp.parameters = parameters;       
+  localDataLamp[$(this).attr('id')] = $(this).val();       
   localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));
   var id = $(this).attr('id');  
 });

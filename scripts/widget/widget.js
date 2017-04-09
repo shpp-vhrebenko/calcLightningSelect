@@ -20,10 +20,6 @@ var localDataLamp = listDataLamp || {};
 console.group("LocalStorage");
 console.log(localDataLamp);
 console.groupEnd();
-var parameters = {};
-if(listDataLamp && listDataLamp.hasOwnProperty('parameters')) {
-  parameters = listDataLamp.parameters; 
-}
 
 $(document).ready(function() {   
   //==========================================================
@@ -220,8 +216,7 @@ $(document).ready(function() {
         row.customRequiredIllumination = row.requiredIllumination;
       }  
       var currentRoomObject = getCurrentRoomForEdit(row);     
-      row.perimetr = getRoomPerimetr
-(currentRoomObject.walls);     
+      row.perimetr = getRoomPerimetr(currentRoomObject.walls);     
       var sendData = {
         calc_countLamp : true,
         parameters : row          

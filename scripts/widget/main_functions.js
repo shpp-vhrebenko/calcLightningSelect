@@ -21,23 +21,23 @@
  */
 function defaultInit() {
     console.log("defaultInit");
-    if (localDataLamp.parameters === undefined) {
-        console.log("no parameters");
+    if (localDataLamp === undefined) {
+        console.log("no localDataLamp");
         setInputValue("reflectionCoef", "70,50,20");
         setInputValue("safetyFactor", "1.4");
         setInputValue("lampsWorkHeight", 0.8);
         setInputValue("requiredIllumination", "300");
     } else {
-        if (localDataLamp.parameters.reflectionCoef === undefined || localDataLamp.parameters.reflectionCoef === "") {
+        if (localDataLamp.reflectionCoef === undefined || localDataLamp.reflectionCoef === "") {
             setInputValue("reflectionCoef", "70,50,20");
         }
-        if (localDataLamp.parameters.safetyFactor === undefined || localDataLamp.parameters.safetyFactor === "") {
+        if (localDataLamp.safetyFactor === undefined || localDataLamp.safetyFactor === "") {
             setInputValue("safetyFactor", "1.4");
         }
-        if (localDataLamp.parameters.lampsWorkHeight === undefined || localDataLamp.parameters.lampsWorkHeight === 0) {
+        if (localDataLamp.lampsWorkHeight === undefined || localDataLamp.lampsWorkHeight === 0) {
             setInputValue("lampsWorkHeight", 0.8);
         }
-        if (localDataLamp.parameters.requiredIllumination === undefined || localDataLamp.parameters.requiredIllumination === "") {
+        if (localDataLamp.requiredIllumination === undefined || localDataLamp.requiredIllumination === "") {
             setInputValue("requiredIllumination", "300");
         }
     }
@@ -53,8 +53,7 @@ function setInputValue(input, value) {
     console.log("setInputValue");
     $input = $('#' + input);
     $input.val(value);
-    parameters[input] = value;
-    localDataLamp.parameters = parameters;
+    localDataLamp[input] = value;    
     localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));
     $input.trigger("change");
 }
@@ -64,7 +63,7 @@ function setInputValue(input, value) {
  */
 function init() {
     console.log('init');
-    $.each(localDataLamp.parameters, function(key, value) {
+    $.each(localDataLamp, function(key, value) {
 
         if (key == "photoLink") {
             $('#js_photo_lamp').attr('src', value);
@@ -114,15 +113,15 @@ function initSelectorNameLamp() {
                 );
 
             });
-            if (localDataLamp.parameters.nameLamp) {
-                $('#nameLamp').val(localDataLamp.parameters.nameLamp);
+            if (localDataLamp.nameLamp) {
+                $('#nameLamp').val(localDataLamp.nameLamp);
                 $('#nameLamp').valid();
             }
-            if (localDataLamp.parameters.photoLink) {
-                $('#js_photo_lamp').attr('src', localDataLamp.parameters.photoLink);
+            if (localDataLamp.photoLink) {
+                $('#js_photo_lamp').attr('src', localDataLamp.photoLink);
             }
-            if (localDataLamp.parameters.applyLamp) {
-                $('#info_lamp').text(localDataLamp.parameters.applyLamp);
+            if (localDataLamp.applyLamp) {
+                $('#info_lamp').text(localDataLamp.applyLamp);
             }
         },
         error: function(response, status, error) { // Данные не отправлены
