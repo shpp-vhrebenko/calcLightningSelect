@@ -11,8 +11,10 @@ $('#calcLightning').on('blur keyup change', 'input', function() {
   var currentRoom = current_Room.getInstance().getCurrentRoom();         
   if ($('#calcLightning').valid() && (currentRoom.length >= 1)) {         
       $('#set_data').prop('disabled', false);
+      $('#set_data').addClass('active');      
   } else {      
       $('#set_data').prop('disabled', 'disabled');
+      $('#set_data').removeClass('active');
   }
 });
 
@@ -20,8 +22,10 @@ $('#calcLightning').on('blur keyup change', 'select', function() {
   var currentRoom = current_Room.getInstance().getCurrentRoom();     
   if ($('#calcLightning').valid()  && (currentRoom.length >= 1) ) {         
       $('#set_data').prop('disabled', false);
+      $('#set_data').addClass('active');
   } else {         
       $('#set_data').prop('disabled', 'disabled');
+      $('#set_data').removeClass('active');
   }
 });  
 

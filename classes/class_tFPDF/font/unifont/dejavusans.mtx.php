@@ -13,7 +13,7 @@ $desc=array (
 );
 $up=-63;
 $ut=44;
-$ttffile='C:\xampp\htdocs\expert-soft\CalcLightningJQuery\classes\class_tFPDF/font/unifont/DejaVuSans.ttf';
+$ttffile='C:\xampp\htdocs\expert-soft\CalcLightningSelect\dist\classes\class_tFPDF/font/unifont/DejaVuSans.ttf';
 $originalsize=720012;
 $fontkey='dejavusans';
 ?>

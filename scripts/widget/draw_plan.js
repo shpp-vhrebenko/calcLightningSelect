@@ -41,8 +41,10 @@ $('#draw_plan').on('click', '.select_all', function() {
       var currentRooms = current_Room.getInstance().getCurrentRoom();            
       if ($('#calcLightning').valid()) {              
         $('#set_data').prop('disabled', false);
+        $('#set_data').addClass('active');
       } else {            
         $('#set_data').prop('disabled', 'disabled');
+        $('#set_data').removeClass('active');
       } 
     } else {
       $currentTab.removeClass("selectAll");
@@ -62,6 +64,7 @@ $('#draw_plan').on('click', '.select_all', function() {
       var currentRooms_1 = current_Room.getInstance().getCurrentRoom();      
       if(curRoomsLength === 0) {
         $( "#set_data" ).prop( "disabled", 'disabled');
+        $('#set_data').removeClass('active');
       }
     }          
   } else {
@@ -74,6 +77,7 @@ $('#draw_plan').on('click', '.select_all', function() {
     var curRoomsLength_2 = current_Room.getInstance().getCurrenRoomLength();
     if(curRoomsLength_2 === 0) {
       $( "#set_data" ).prop( "disabled", 'disabled');
+      $('#set_data').removeClass('active');
     }    
   }
   
@@ -128,6 +132,7 @@ function onSelectRoom(element) {
     var curRoomsLength = current_Room.getInstance().getCurrenRoomLength();
     if(curRoomsLength === 0) {
       $( "#set_data" ).prop( "disabled", 'disabled');
+      $('#set_data').removeClass('active');
     }     
   } else {    
     element.setAttribute("class", "activePolygon");
@@ -135,8 +140,10 @@ function onSelectRoom(element) {
     current_Room.getInstance().addElementCurrentRooms(curRoom, curFloor);     
     if ($('#calcLightning').valid()) {              
       $('#set_data').prop('disabled', false);
+      $('#set_data').addClass('active');
     } else {            
       $('#set_data').prop('disabled', 'disabled');
+      $('#set_data').removeClass('active');
     }               
   }     
 }

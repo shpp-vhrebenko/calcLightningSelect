@@ -93,9 +93,11 @@
         if ($('#calcLightning').valid()) {
             $('#calcButton').prop('disabled', false);
             $('#set_data').prop('disabled', false);
+            $('#set_data').addClass('active');
         } else {
             $('#calcButton').prop('disabled', 'disabled');
             $('#set_data').prop('disabled', 'disabled');
+            $('#set_data').addClass('active');
         }
     }    
 

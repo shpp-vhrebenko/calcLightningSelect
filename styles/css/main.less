@@ -1,6 +1,7 @@
 @import "../../bower_components/bootstrap-less/less/bootstrap.less";
 @import "../../bower_components/bootstrap-table/src/bootstrap-table.less";
 @import (less) "../../bower_components/bootstrp3-editable/bootstrap3-editable/css/bootstrap-editable.css";
+@import (less) "../../bower_components/bootstrap-table/dist/extensions/group-by-v2/bootstrap-table-group-by.css";
 @import (less) "../../bower_components/animate.css/animate.css";
 @import url('https://fonts.googleapis.com/css?family=Russo+One&subset=cyrillic');
 
@@ -59,6 +60,7 @@ select {
     border: 0;
     width: 100%;
 }
+
 
 td.input {
     margin: 0;
@@ -274,6 +276,10 @@ body {
 #set_data {
     /*  color: #5CB85C; */
     color: #015c99;
+    &.active {
+        background-color: #5CB85C;
+        color: white;
+    }
 }
 
 #edit_data {

@@ -17,6 +17,10 @@ var path = {
     },
     watch: { //Тут мы укажем, за изменением каких файлов мы хотим наблюдать
         php: '*.php',
+        php_functions: 'functions/*.php',
+        php_configs: 'configs/*.php',
+        php_components: 'components/*.php',
+        php_classes: 'classes/*.php',
         js: 'scripts/**/*.js',
         main_js: 'scripts/main/*.js',
         widget_js: 'scripts/widget/*.js',
@@ -77,9 +81,41 @@ gulp.task('copy:fonts', () => {
     .pipe(gulp.dest('dist/styles/fonts/'));
 });
 
+gulp.task('copy:functions_php', () => {
+  return gulp.src('functions/*.php')
+    .pipe(gulp.dest('dist/functions/'));
+});
+
+gulp.task('copy:configs_php', () => {
+  return gulp.src('configs/*.php')
+    .pipe(gulp.dest('dist/configs/'));
+});
+
+gulp.task('copy:components_php', () => {
+  return gulp.src('components/*.php')
+    .pipe(gulp.dest('dist/components/'));
+});
+
+gulp.task('copy:classes_php', () => {
+  return gulp.src('classes/*.php')
+    .pipe(gulp.dest('dist/classes/'));
+});
+
 gulp.task('watch', function(){
     $.watch([path.watch.php], function(event, cb) {
-        gulp.start('build:php');
+        gulp.start('build:php');        
+    });
+    $.watch([path.watch.php_functions], function(event, cb) {
+        gulp.start('copy:functions_php');        
+    });
+    $.watch([path.watch.php_configs], function(event, cb) {
+        gulp.start('copy:configs_php');        
+    });
+    $.watch([path.watch.php_components], function(event, cb) {
+        gulp.start('copy:components_php');        
+    });
+    $.watch([path.watch.php_classes], function(event, cb) {
+        gulp.start('copy:classes_php');        
     });
     $.watch([path.watch.main_js], function(event, cb) {
         gulp.start('build:main_js');
@@ -95,7 +131,18 @@ gulp.task('watch', function(){
 gulp.task('default', () => {
   return new Promise(resolve => {
     dev = false;
-    runSequence(['build:php','build:main_js','build:widget_js','copy:style','copy:fonts'], resolve);
+    runSequence(
+        [
+            'build:php',
+            'build:main_js',
+            'build:widget_js',
+            'copy:style',
+            'copy:fonts',
+            'copy:functions_php',
+            'copy:configs_php',
+            'copy:components_php',
+            'copy:classes_php'
+        ], resolve);
   });
 });
 

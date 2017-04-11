@@ -86,7 +86,7 @@ function initSelectorNameLamp() {
         async: true,
         url: 'calc_lighting.php',
         type: 'GET',
-        timeout: 15000,
+        timeout: 300000,
         data: { select_type_lamp: true },
         beforeSend: function() {
             $(".js_loading_wraper").fadeIn("slow");

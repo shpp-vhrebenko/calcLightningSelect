@@ -46,6 +46,27 @@ Class FTPClient
 	    }  
 	}
 
+	public function downloadDir($dirTO) {		
+		$contents = ftp_nlist($this->connectionId, '.');
+		 // *** Set the transfer mode   
+	    $asciiArray = array('txt', 'csv');	    		
+		foreach ($contents as $fileFrom) {
+			if ($fileFrom == '.' || $fileFrom == '..') {
+				continue;
+			}	
+			$array = explode('.', $fileFrom);
+		    $extension = end($array); 		        
+		    if (in_array($extension, $asciiArray)) {   
+		        $mode = FTP_ASCII;   
+		    } else {   
+		        $mode = FTP_BINARY;   
+		    } 	
+		    $fileTo = $dirTO.$fileFrom;	
+			ftp_get($this->connectionId, $fileTo, $fileFrom, $mode);			
+		}
+		ftp_chdir($this->connectionId, '..');		
+	}
+
 	
 
 	// метод для создания папки на сервере
@@ -117,6 +138,7 @@ Class FTPClient
 	// режим - $mode.
 	public function downloadFile ($fileFrom, $fileTo)   
 	{   
+		
 	    // *** Set the transfer mode   
 	    $asciiArray = array('txt', 'csv'); 
 	    $array = explode('.', $fileFrom);

@@ -42,7 +42,7 @@ $(document).ready(function() {
             }                      
           }
       },      
-      idField: 'name',
+  /*    idField: 'name',*/
       source: tableData,      
       pagination: true,
       search: true,
@@ -54,7 +54,9 @@ $(document).ready(function() {
       pageSize: 10,
       pageList: [10,15,20],
       classes: "table table-condensed", 
-      showFooter: true,           
+      showFooter: true, 
+      groupBy: true,
+      groupFields: ['nameLamp'],          
       footerStyle:  function footerStyle(row, index) {                      
                       return {
                         css: { "font-weight": "bold" }

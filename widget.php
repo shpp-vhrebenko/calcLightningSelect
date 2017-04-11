@@ -44,9 +44,22 @@
           </ul>
           <div class="tab-content">
           </div>
-          <p id="error_message_request" class="error_message" ></p>                        
+          <p id="error_message_request" class="error_message" ></p>                       
         </div>
         <div class="col-xs-12 col-md-7"> 
+         <!--  <div class="row">
+           <div class="col-xs-12 col-md-6 col-md-offset-6">
+             <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a> 
+             <div class="dropdown-menu dropdown-menu-left">
+               <form method="post" action="" name="admin_form">                
+                 <input type="password" placeholder="Введите пароль" id="password" name="password">
+                 <span class="input-group-btn">
+                   <button class="btn btn-info btn-sm" id="upload_widget_data" type="button">Обновление</button>
+                 </span>       
+               </form>
+             </div>             
+           </div>            
+         </div> -->
           <div class="row">
             <div class="col-xs-12 col-md-5 col-md-offset-4">
               <img src="" class="img-responsive animated fadeInDownBig image-animate" id="js_photo_lamp" alt=""> 
@@ -163,7 +176,7 @@
           <div class="table-responsive"> 
             <div id="toolbar" class="btn-group">
                 <button type="button" class="btn btn-default" id="set_data">
-                    Добавить светильник
+                    Рассчитать количество светильников
                 </button>                                                          
             </div>
             <table id="bTable" ></table>            
@@ -198,7 +211,8 @@
     <script src="bower_components/bootstrap-table/dist/bootstrap-table.js"></script>
     <script src="bower_components/bootstrap-table-contextmenu/dist/bootstrap-table-contextmenu.min.js"></script> 
     <script src="bower_components/bootstrp3-editable/bootstrap3-editable/js/bootstrap-editable.js"></script> 
-    <script src="bower_components/bootstrap-table/dist/extensions/editable/bootstrap-table-editable.js"></script> 
+    <script src="bower_components/bootstrap-table/dist/extensions/editable/bootstrap-table-editable.js"></script>
+    <script src="bower_components/bootstrap-table/dist/extensions/group-by-v2/bootstrap-table-group-by.js"></script>  
     <script src="bower_components/bootstrap-table/dist/locale/bootstrap-table-ru-RU.js"></script>
     <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/jquery-validation/dist/jquery.validate.js"></script> 
