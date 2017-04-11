@@ -10489,6 +10489,18 @@ label.error {
 .fixed-table-pagination .pagination-info {
   visibility: hidden;
 }
+.bs-checkbox input {
+  visibility: hidden;
+}
+.bootstrap-table .fixed-table-footer .table {
+  border-bottom: 1px solid #DDDDDD;
+}
+.bootstrap-table .table > tbody > tr.groupBy {
+  font-weight: bold;
+}
+.bootstrap-table .table > tbody > tr.groupBy td {
+  text-align: left;
+}
 /* Animation */
 @-webkit-keyframes loading {
   to {

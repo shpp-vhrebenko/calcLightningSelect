@@ -49,17 +49,15 @@ $(document).ready(function() {
       toolbar: "#toolbar",
       clickToSelect: true,
       singleSelect: false,
-      checkboxHeader: true,      
-      height: 400,
-      pageSize: 10,
-      pageList: [10,15,20],
+     /* checkboxHeader: true,*/      
+    /*  height: 400,*/
+      pageSize: 5,
+      pageList: [5,10,15],
       classes: "table table-condensed", 
-      showFooter: true, 
-      groupBy: true,
-      groupFields: ['nameLamp'],          
+      showFooter: true,                
       footerStyle:  function footerStyle(row, index) {                      
                       return {
-                        css: { "font-weight": "bold" }
+                        css: { "font-weight": "bold"}
                       };
                     },         
       columns: [
@@ -90,11 +88,11 @@ $(document).ready(function() {
           sortable: true,        
           class: "col-md-3 ",
           formatter: starsFormatter          
-      }, {
+      }, /*{
           field: 'roomNumber',
           title: '№',
           sortable: true,          
-          class: "col-md-1 forTooltip half-col-md",          
+          class: "col-md-1",          
           tooltip: true,
           titleTooltip: "№ этажа / № комнаты",
           formatter: function(value) {
@@ -104,7 +102,7 @@ $(document).ready(function() {
             var str =  floor + "/" +  room;
             return str;
           }          
-      }, {
+      },*//* {
           field: 'roomArea',
           title: 'Площадь</br>комнаты',
           container: 'body',          
@@ -116,7 +114,7 @@ $(document).ready(function() {
             placement: 'right',
             step: 0.1
           }          
-      }, {
+      }*/ {
           field: 'lampsCount',
           title: 'Кол-во.</br>свет-ков',
           container: 'body',         
@@ -202,7 +200,7 @@ $(document).ready(function() {
           current_Room.getInstance().removeElementFromTableData(row);
          /* current_Room.getInstance().removeCurrentLamp(row);*/
           table.$el.trigger($.Event('uncheck.bs.table'), row);
-  }); 
+  });   
 
   $('#bTable').on('post-body.bs.table', function () {
       $('.forTooltip').attr("data-tooltip","true");

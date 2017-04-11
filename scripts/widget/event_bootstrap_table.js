@@ -126,10 +126,22 @@ function addLampToTableData(currentLamp, room, floor, edit) {
   var requiredIllumination = 0;  
   if(customRequiredIllumination !== undefined) {
     requiredIllumination = currentLamp.customRequiredIllumination;
-  }   
+  } 
+  var title = "";
+  if(floor_number != 1) {
+    title = title + "Этаж №" + floor_number + ". ";
+    title = title + "Помещение №" + room_number + ". ";
+    /*roomTitle = roomTitle + "Наименование" + room_number + ". ";*/
+    title = title + "Площадь: " + currentLamp.resultCalc.roomArea + " м2";
+  } else {
+    title = title + "Помещение №" + room_number + ". ";
+    /*roomTitle = roomTitle + "Наименование" + room_number + ". ";*/
+    title = title + "Площадь: " + currentLamp.resultCalc.roomArea + " м2";
+  }  
   var objectRow = {    
     nameLamp: currentLamp.nameLamp,
-    roomNumber: floor_number + "_" + room_number,    
+    roomNumber: floor_number + "_" + room_number, 
+    roomTitle: title,      
     requiredIllumination: requiredIllumination,
     reflectionCoef: currentLamp.reflectionCoef,
     safetyFactor: currentLamp.safetyFactor,

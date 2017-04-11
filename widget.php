@@ -159,7 +159,7 @@
                       <option value="200">Конференц-залы и залы заседаний</option>
                       <option value="500">Проектные и конструкторские бюро</option>
                       <option value="300">Читальные залы</option>
-                      <option value="300">Учебные аудитории и классы</option>
+                      <option value="300">Учебные аудитории и классы</option>                      
                       <option value="500">Офисные помещения</option>
                       <option value="500">Рабочий кабинет</option>                                   
                     </select>
@@ -179,7 +179,7 @@
                     Рассчитать количество светильников
                 </button>                                                          
             </div>
-            <table id="bTable" ></table>            
+            <table id="bTable"  data-group-by="true" data-group-by-field="roomTitle"></table>            
           </div> 
           <!-- Bootstrap table context menu -->  
           <ul id="example1-context-menu" class="dropdown-menu">              
@@ -209,10 +209,11 @@
     <script src="bower_components/lodash/lodash.js"></script>    
     <script type="text/javascript" src="bower_components/bootstrap3-typeahead/bootstrap3-typeahead.js"></script>              
     <script src="bower_components/bootstrap-table/dist/bootstrap-table.js"></script>
-    <script src="bower_components/bootstrap-table-contextmenu/dist/bootstrap-table-contextmenu.min.js"></script> 
+    <script src="bower_components/bootstrap-table-contextmenu/dist/bootstrap-table-contextmenu.min.js"></script>     
     <script src="bower_components/bootstrp3-editable/bootstrap3-editable/js/bootstrap-editable.js"></script> 
     <script src="bower_components/bootstrap-table/dist/extensions/editable/bootstrap-table-editable.js"></script>
-    <script src="bower_components/bootstrap-table/dist/extensions/group-by-v2/bootstrap-table-group-by.js"></script>  
+    <script src="bower_components/bootstrap-table/dist/extensions/group-by-v2/bootstrap-table-group-by.js"></script>
+    <!-- <script src="vendor/bootstrap-table-sortBy-v3.js"></script> -->
     <script src="bower_components/bootstrap-table/dist/locale/bootstrap-table-ru-RU.js"></script>
     <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/jquery-validation/dist/jquery.validate.js"></script> 
