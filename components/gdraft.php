@@ -69,7 +69,7 @@ class GDraft
 		$properties=$properties." $npr='$vpr'";
 		
 		$res="<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' ".($this->id ? "id=".$this->id : "")." $properties ".(!empty($css_style) ? "style='$css_style'" : ' ').
-		(!empty($css_class) ? "class='$css_class'" : ' ')." width='100%' height='400px' "." viewBox='0 0 {$this->width} {$this->height}' data-ceiling='{$this->ceiling}' >";
+		(!empty($css_class) ? "class='$css_class'" : ' ')." width='100%' height='300px' "." viewBox='0 0 {$this->width} {$this->height}' data-ceiling='{$this->ceiling}' >";
 		if($this->isBackground)
 			$res=$res."<rect width={$this->width} height={$this->height} fill='{$this->fill}' stroke-width=1 stroke='#ffffff' />";
 		$res=$res.$this->symboltemplates->get_html();		

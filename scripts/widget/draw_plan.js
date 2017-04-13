@@ -4,11 +4,11 @@
 
 //=============== HANDLER EVENTS DRAW PLAN =====================
 
-$('#draw_plan').on('click', '.select_all', function() { 
+$('#draw-plan').on('change', '.select_all', function() { 
   console.log("select_all");
-  var floor = $(this).data('id');
+  var floor = $(this).data('id'); 
   $div = $('div#' + floor);
-  $tabContent = $('#draw_plan').find('.tab-content');
+  $tabContent = $('#draw-plan').find('.tab-content');
   $currentTab = $tabContent.find($div);
 
   // initial floor height for current room 
@@ -33,7 +33,7 @@ $('#draw_plan').on('click', '.select_all', function() {
       if(currentRoom.getAttribute("class") != "activePolygon") {
         countActiveRoom++;
         currentRoom.setAttribute("class","activePolygon");
-        currentRoom.setAttribute("fill","rgb(92,184,92)");
+        currentRoom.setAttribute("fill","rgb(11,191,242)");
         current_Room.getInstance().addElementCurrentRooms(curRoom, curFloor);        
       }       
     } 
@@ -83,7 +83,7 @@ $('#draw_plan').on('click', '.select_all', function() {
   
 });
 
-$('#draw_plan').on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {  
+$('#draw-plan').on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {  
   var id = e.target.getAttribute("href"); 
   var $curDiv = $(id);  
   if($curDiv.hasClass('active in')) {
@@ -136,7 +136,7 @@ function onSelectRoom(element) {
     }     
   } else {    
     element.setAttribute("class", "activePolygon");
-    element.setAttribute("fill", "rgb(92,184,92)");    
+    element.setAttribute("fill", "rgb(11,191,242)");    
     current_Room.getInstance().addElementCurrentRooms(curRoom, curFloor);     
     if ($('#calcLightning').valid()) {              
       $('#set_data').prop('disabled', false);

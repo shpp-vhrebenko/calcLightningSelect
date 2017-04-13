@@ -77,7 +77,7 @@ $('#nameLamp').change(function() {
         $('#js_photo_lamp').attr('src',value);
       } 
       if(key == "applyLamp") {
-        $('#info_lamp').text("Область использования - " + value);
+        $('#info_lamp').text(value);
       }
       if(key == "key") {
         var $inputKey = $("#key");

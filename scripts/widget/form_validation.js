@@ -47,7 +47,8 @@
                 required: true,
                 greaterThanZero: true
             },
-            keyLamp: {}
+            keyLamp: {},
+            search_user_lamp: {}
           },
 
           messages:{
