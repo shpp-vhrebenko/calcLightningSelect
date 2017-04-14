@@ -33,7 +33,7 @@
     <div class="js_loading_wraper">
       <div class="loading"></div>
     </div>    
-    <div class="container-fluid">      
+    <div class="container">      
       <div class="row">       
         <div class="col-xs-12 col-md-5 headerBlock" id="draw-plan">           
           <h3 class="draw-plan__header">Чертеж</h3>
@@ -42,10 +42,10 @@
           <div class="tab-content">
           </div>                                
         </div>
-        <div class="col-xs-12 col-md-7 headerBlock" id="select-box"> 
+        <div class="col-xs-12 col-md-7 headerBlock" id="select-box">          
           <h3 class="select-box__header">Подбор светильников</h3>
           <div class="row">
-            <div class="col-xs-12 col-md-7 box-content">
+            <div class="col-xs-8 col-md-7 box-content">
               <!-- Form calcLightning  -->                 
               <form class="form-horizontal"
                 id="calcLightning"
@@ -54,17 +54,17 @@
                 method="post"
                 action=""> 
                 <div class="form-group">
-                  <label for="search_user_lamp" class="col-sm-4 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="Выбирете наименование светильника">Наименование</label>
-                  <div class="col-sm-8">                    
-                    <input type="text" data-provide="typeahead" name="search_user_lamp"  class="form-control input-sm" id="search_user_lamp" placeholder="наименование светильника" /> 
-                  </div>
-                </div>
-                <div class="form-group">
                   <label for="key" class="col-sm-4 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="Выбирете артикул светильника" placeholder="артикул светильника">Артикул</label>
                   <div class="col-sm-8">                    
                     <input type="text" class="input-sm" name="key" data-provide="typeahead" id="key"/>
                   </div>
                 </div>
+                <div class="form-group">
+                  <label for="search_user_lamp" class="col-sm-4 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="Выбирете наименование светильника">Наименование</label>
+                  <div class="col-sm-8">                    
+                    <input type="text" data-provide="typeahead" name="search_user_lamp"  class="form-control input-sm" id="search_user_lamp" placeholder="наименование светильника" /> 
+                  </div>
+                </div>                
                 <div class="form-group">
                   <label for="nameLamp" class="col-sm-4 control-label">Cветильник</label>
                   <div class="col-sm-8">                    
@@ -149,15 +149,21 @@
               </form>
               <!-- End Form calcLightning  -->              
             </div>
-            <div class="col-xs-12 col-md-5" id="image-box">
-              <img src="" class="img-responsive animated fadeInDownBig image-animate" id="js_photo_lamp" alt=""> 
-              <fieldset>
+            <div class="col-xs-4 col-md-5" id="image-box">
+              <div class="row">
+                <img src="" class="img-responsive animated fadeInDownBig image-animate col-md-12" id="js_photo_lamp" alt=""> 
+              </div>
+              <div class="row">
+                <fieldset class="col-md-12">
                 <legend>Область использования:</legend>
                 <p id="info_lamp"></p>
               </fieldset> 
-              <button type="button" class="btn btn-default" id="set_data">              
+              </div>
+              <div class="row">
+                <button type="button" class="btn btn-default col-md-10 col-md-offset-1" id="set_data">              
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Добавить светильник
-              </button>               
+              </button> 
+              </div>                           
             </div>           
           </div>        
         </div>                     
@@ -180,15 +186,15 @@
 
           <!-- End Bootstrap-tables -->  
           <!-- User Panel  --> 
-          <div class="col-md-4" id="user-result-panel">
+          <div class="col-md-3" id="user-result-panel">
             <div class="row">
-              <button type="button" class="btn btn-md btn-hover btn-default" id="view_pdf">
+              <button type="button" class="btn btn-default col-sm-4 col-md-3" id="view_pdf">
               PDF
               </button>             
-              <button type="button" class="btn btn-md btn-hover btn-default" id="put_data">
+              <button type="button" class="btn btn-primary col-sm-4 col-md-3" id="put_data">
                 ОК
               </button> 
-              <button type="button" class="btn btn-md btn-hover btn-default" id="cancel">
+              <button type="button" class="btn btn-default col-sm-4 col-md-4" id="cancel">
                 Отмена
               </button> 
             </div>                       

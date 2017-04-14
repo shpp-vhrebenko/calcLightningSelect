@@ -86,7 +86,7 @@ function initSelectorNameLamp() {
         async: true,
         url: 'calc_lighting.php',
         type: 'GET',
-        timeout: 300000,
+        timeout: 15000,
         data: { select_type_lamp: true },
         beforeSend: function() {
             $(".js_loading_wraper").fadeIn("slow");
@@ -104,7 +104,7 @@ function initSelectorNameLamp() {
                     .attr('data-lumix', this.lumix)
                     .attr('data-power-lamp', this.powerLamp)
                     .attr('data-number-lamps', this.numberLamps)
-                    .attr('data-usagecoefficient', this.usagecoefficient)
+                    /*.attr('data-usagecoefficient', this.usagecoefficient)*/
                     .attr('data-producer', this.producer)
                     .attr('data-photo-link', this.photo_lamp)
                     .attr('data-type-lamp', this.typeLamp)

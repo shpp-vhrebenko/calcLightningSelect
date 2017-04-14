@@ -10360,16 +10360,6 @@ a.editable-click.editable-disabled:hover {
   -webkit-animation-name: slideOutUp;
   animation-name: slideOutUp;
 }
-.box-header {
-  background-color: #015C99;
-  text-align: center;
-  margin: 0 0 10px 0;
-  color: white;
-  font-size: 2rem;
-  height: 30px;
-  vertical-align: middle;
-  line-height: 30px;
-}
 /* @import (less) "../../bower_components/EasyAutocomplete/dist/easy-autocomplete.css"; */
 /* @import (less) "../../bower_components/jquery-ui/themes/base/jquery-ui.css"; */
 .btn-circle {
@@ -10447,6 +10437,11 @@ td {
   padding: 8px 2px;
 }
 /* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 1050px;
+  }
+}
 input.error,
 select.error {
   border: 1px solid red;
@@ -10585,10 +10580,10 @@ body {
   background-color: #EDEDED;
 }
 .headerBlock {
-  height: 430px;
+  /*  padding-bottom: .5rem; */
 }
 .box-content {
-  padding: 2rem;
+  padding: 0 2rem 0 2rem;
 }
 .error_message {
   color: red;
@@ -10596,13 +10591,14 @@ body {
   text-align: center;
 }
 #draw-plan {
+  position: relative;
   background-color: white;
-  padding: 0px;
+  padding: 0 0 .5rem 0;
   background-clip: padding-box;
   border: 10px solid transparent;
 }
 #draw-plan .draw-plan__header {
-  background-color: #015C99;
+  background-color: #337AB7;
   text-align: center;
   margin: 0 0 10px 0;
   color: white;
@@ -10617,14 +10613,20 @@ body {
 #draw-plan polygon {
   cursor: pointer;
 }
+#draw-plan .draw-footer {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  width: 100%;
+}
 #select-box {
   background-color: white;
-  padding: 0px;
+  padding: 0 0 .5rem 0;
   background-clip: padding-box;
   border: 10px solid transparent;
 }
 #select-box .select-box__header {
-  background-color: #015C99;
+  background-color: #E6CB61;
   text-align: center;
   margin: 0 0 10px 0;
   color: white;
@@ -10634,11 +10636,11 @@ body {
   line-height: 30px;
 }
 #select-box .form-group {
-  margin-bottom: 5px;
+  margin-bottom: 0px;
 }
 #select-box label {
   margin: 0px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-align: center;
 }
 #select-box label.error {
@@ -10646,7 +10648,7 @@ body {
 }
 #image-box {
   background-color: transparent;
-  padding: 0px;
+  padding: 0 0 .5rem 0;
   background-clip: padding-box;
   border: 10px solid transparent;
   padding: 0 2rem 0 1rem;
@@ -10665,8 +10667,8 @@ body {
 }
 #image-box #js_photo_lamp {
   /* border-radius: 10px; */
-  margin-bottom: 1rem;
-  height: 200px;
+  /*  margin: 1rem; */
+  /* height: 150px; */
   /*  -webkit-box-shadow: 10px 10px 38px 0px rgba(0, 0, 0, 0.75);
        -moz-box-shadow: 10px 10px 38px 0px rgba(0, 0, 0, 0.75);
        box-shadow: 10px 10px 38px 0px rgba(0, 0, 0, 0.75); */
@@ -10675,25 +10677,23 @@ body {
   opacity: 0;
 }
 #image-box #set_data {
-  border: none;
   color: #4C9EDB;
   cursor: pointer;
-  margin-top: 4rem;
-  font-size: 2rem;
+  margin-top: .5rem;
+  font-size: 1.5rem;
 }
 #image-box #set_data.active {
-  color: ​#0BBFF2;
-  background-color: white;
-  box-shadow: none;
+  color: white;
+  background-color: #0BBFF2;
 }
 #table-box {
   background-color: white;
-  padding: 0px;
+  padding: 0 0 .5rem 0;
   background-clip: padding-box;
   border: 10px solid transparent;
 }
 #table-box .table-box__header {
-  background-color: #015C99;
+  background-color: #EC7D63;
   text-align: center;
   margin: 0 0 10px 0;
   color: white;
@@ -10701,6 +10701,9 @@ body {
   height: 30px;
   vertical-align: middle;
   line-height: 30px;
+}
+#table-box .table-responsive {
+  padding: 0 1rem 0 1rem;
 }
 #table-box .js_remove_button {
   cursor: pointer;
@@ -10711,19 +10714,23 @@ body {
   z-index: 9999;
   visibility: hidden;
 }
+#table-box .pagination-detail {
+  visibility: hidden;
+}
 #user-result-panel {
   position: absolute;
   z-index: 9999;
   bottom: 12px;
-  left: 620px;
+  left: 470px;
 }
 #user-result-panel #put_data {
   font-weight: bold;
-  color: #0BBFF2;
+  margin-right: .5rem;
 }
 #user-result-panel #view_pdf {
   font-weight: bold;
   color: #919191;
+  margin-right: .5rem;
 }
 #user-result-panel #cancel {
   font-weight: bold;

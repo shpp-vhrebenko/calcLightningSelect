@@ -1,6 +1,6 @@
 
-.box-header  {
-    background-color: #015C99;
+.box-header(@color)  {
+    background-color: @color;
     text-align: center;
     margin: 0 0 10px 0;    
     color: white;
@@ -12,7 +12,7 @@
 
 .box-style (@color) {
     background-color: @color;
-    padding: 0px;   
+    padding: 0 0 .5rem 0;   
     background-clip: padding-box;
     border: 10px solid transparent;
 }

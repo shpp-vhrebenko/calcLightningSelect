@@ -7,6 +7,7 @@
    */
   function parseLinkPhoto($strLink) {    
     $result = "";
+    $strLink = str_replace("\\","/", $strLink); 
     $result = basename($strLink);    
    //$result = str_replace("\\","/", $result);
     $result = DIR_PHOTO.$result;

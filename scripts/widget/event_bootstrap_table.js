@@ -155,7 +155,7 @@ function addLampToTableData(currentLamp, room, floor, edit) {
     allPowerLamps: (currentLamp.powerLamp * currentLamp.numberLamps),
     key: currentLamp.key,
     producer: currentLamp.producer,
-    usagecoefficient: currentLamp.usagecoefficient,
+   /* usagecoefficient: currentLamp.usagecoefficient,*/
     roomArea: currentLamp.resultCalc.roomArea,
     lampsCount: currentLamp.resultCalc.lampsCount, 
     lampsWatt: currentLamp.resultCalc.lampsWatt,   

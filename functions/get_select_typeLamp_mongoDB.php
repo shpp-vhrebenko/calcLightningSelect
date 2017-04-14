@@ -37,11 +37,12 @@
          
         while($document = $list->getNext())
         {           
-          $usagecoefficient = trim($document["usagecoefficient"]);          
-          $curentName = basename($usagecoefficient);      
+          $usagecoefficient = trim($document["usagecoefficient"]);           
+          $usagecoefficient = str_replace("\\","/", $usagecoefficient); 
+          $curentName = basename($usagecoefficient);   
           if(uploadUsagecodfficient($usagecoefficient, $curentName)) {            
             $arrayResult[$curentName]["typeLamp"] = basename($usagecoefficient, ".csv");
-            $usagecoefficient = parseUsagecoefficient($usagecoefficient); 
+            /*$usagecoefficient = parseUsagecoefficient($usagecoefficient); */
             $arrayResult[$curentName]["usagecoefficient"] = addslashes($usagecoefficient);           
             $arrayResult[$curentName]["producer"] = "Световые Технологии"; 
             /*if(isset($document["ssylkanavebstranicu"])) {
