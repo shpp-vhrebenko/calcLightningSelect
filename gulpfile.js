@@ -5,7 +5,8 @@ var path = {
         js: 'dist/scripts/',
         css: 'build/css/',
         img: 'build/img/',
-        fonts: 'build/fonts/'
+        fonts: 'build/fonts/',
+        less: 'dist/styles/'
     },
     src: { //Пути откуда брать исходники
         html: 'src/*.html', //Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html
@@ -13,7 +14,8 @@ var path = {
         widget_js: 'scripts/widget/*.js',
         style: 'src/style/main.css',
         img: 'src/img/**/*.*', //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
-        fonts: 'src/fonts/**/*.*'
+        fonts: 'src/fonts/**/*.*',
+        less: 'styles/**/main.less'
     },
     watch: { //Тут мы укажем, за изменением каких файлов мы хотим наблюдать
         php: '*.php',
@@ -25,6 +27,7 @@ var path = {
         main_js: 'scripts/main/*.js',
         widget_js: 'scripts/widget/*.js',
         style: 'styles/**/*.css',
+        style_less: 'styles/**/*.less',
         img: 'src/img/**/*.*',
         fonts: 'src/fonts/**/*.*'
     },
@@ -61,6 +64,17 @@ gulp.task('build:main_js', function() {
 });
 
 gulp.task('build:php', () => {
+  return gulp.src('*.php')
+    .pipe($.useref({searchPath: ['.']}))    
+    .pipe($.if('*.js', $.uglify()))
+   /* .pipe($.rev())    
+    .pipe($.revReplace())*/
+    /*.pipe($.if('*.css', $.cssnano({safe: true, autoprefixer: false})))
+    .pipe($.if('*.html', $.htmlmin({collapseWhitespace: true})))*/
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('build:css', () => {
   return gulp.src('*.php')
     .pipe($.useref({searchPath: ['.']}))    
     .pipe($.if('*.js', $.uglify()))

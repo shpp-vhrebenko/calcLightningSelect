@@ -182,13 +182,13 @@
           <!-- User Panel  --> 
           <div class="col-md-4" id="user-result-panel">
             <div class="row">
-              <button type="button" class="btn btn-default col-sm-4 col-md-3" id="view_pdf">
+              <button type="button" class="btn btn-md btn-hover btn-default" id="view_pdf">
               PDF
               </button>             
-              <button type="button" class="btn btn-primary col-sm-4 col-md-3" id="put_data">
+              <button type="button" class="btn btn-md btn-hover btn-default" id="put_data">
                 ОК
               </button> 
-              <button type="button" class="btn btn-default col-sm-4 col-md-4" id="cancel">
+              <button type="button" class="btn btn-md btn-hover btn-default" id="cancel">
                 Отмена
               </button> 
             </div>                       
