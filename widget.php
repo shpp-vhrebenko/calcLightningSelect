@@ -33,7 +33,7 @@
     <div class="js_loading_wraper">
       <div class="loading"></div>
     </div>    
-    <div class="container">      
+    <div class="container-fluid">      
       <div class="row">       
         <div class="col-xs-12 col-md-5 headerBlock" id="draw-plan">           
           <h3 class="draw-plan__header">Чертеж</h3>
@@ -60,7 +60,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="search_user_lamp" class="col-sm-4 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="Выбирете наименование светильника">Наименование</label>
+                  <label for="search_user_lamp" class="col-sm-4 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="Выбирете наименование светильника">Поиск</label>
                   <div class="col-sm-8">                    
                     <input type="text" data-provide="typeahead" name="search_user_lamp"  class="form-control input-sm" id="search_user_lamp" placeholder="наименование светильника" /> 
                   </div>
@@ -141,7 +141,7 @@
                   </div>
                 </div> 
                 <div class="form-group">
-                  <label for="customRequiredIllumination" class="col-sm-4 control-label">Требуемая освещенность</label>
+                  <label for="customRequiredIllumination" class="col-sm-4 control-label">Треб. освещ. лк</label>
                   <div class="col-sm-8">                    
                     <input class="room input-sm" type="number" id="customRequiredIllumination" name="customRequiredIllumination" min="0" step="1"/>
                   </div>
@@ -160,7 +160,7 @@
               </fieldset> 
               </div>
               <div class="row">
-                <button type="button" class="btn btn-default col-md-10 col-md-offset-1" id="set_data">              
+                <button type="button" class="btn btn-xs btn-default col-xs-12 col-md-12" id="set_data">              
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Добавить светильник
               </button> 
               </div>                           
@@ -188,13 +188,13 @@
           <!-- User Panel  --> 
           <div class="col-md-3" id="user-result-panel">
             <div class="row">
-              <button type="button" class="btn btn-default col-sm-4 col-md-3" id="view_pdf">
+              <button type="button" class="btn btn-sm btn-default col-sm-4 col-md-3" id="view_pdf">
               PDF
               </button>             
-              <button type="button" class="btn btn-primary col-sm-4 col-md-3" id="put_data">
+              <button type="button" class="btn btn-sm btn-primary col-sm-4 col-md-3" id="put_data">
                 ОК
               </button> 
-              <button type="button" class="btn btn-default col-sm-4 col-md-4" id="cancel">
+              <button type="button" class="btn btn-sm btn-default col-sm-4 col-md-4" id="cancel">
                 Отмена
               </button> 
             </div>                       

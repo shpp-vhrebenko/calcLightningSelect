@@ -195,29 +195,20 @@ function viewDraw(resultDraw) {
         } else {
             $divTab.addClass("tab-pane fade");
         }
-        /*$buttonAll = $('<button>').attr('data-id', i).addClass('btn btn-default select_all');        
-        $buttonAll.append($('<span>').addClass('glyphicon glyphicon-th'));
-        $buttonAll.append('&nbsp;Все комнаты');*/
-       /* <div class="form-group">
-                  <label for="search_user_lamp" class="col-sm-4 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="Выбирете наименование светильника">Наименование</label>
-                  <div class="col-sm-8">                    
-                    <input type="text" data-provide="typeahead" name="search_user_lamp"  class="form-control input-sm" id="search_user_lamp" placeholder="наименование светильника" /> 
-                  </div>
-                </div>*/
-        $footerDraw = $('<div>').addClass('draw-footer row');
+         /*$footerDraw = $('<div>').addClass('draw-footer row');
         $checkboxLabel = $('<label>').addClass("col-md-12 checkbox-inline");
-
         $checkbox = $('<input>').attr({"type":"checkbox", "value":i, "class":"select_all col-md-2", "data-id": i,"name": "select_all_" + i});
         $checkboxLabel.append($checkbox).append($('<span>').addClass('checkboxTitle col-md-10').text("Все комнаты"));   
-        $footerDraw.append($checkboxLabel);
-        /*$checkboxSelectAll.append($label); */       
-        $divRow = $('<div>').addClass('row');
-       /* $divCol_2 = $('<div>').addClass('col-md-4 checkbox-selectAll');*/
-     /*   $divCol_2.append($checkboxSelectAll);*/
+        $footerDraw.append($checkboxLabel);  */ 
+
+        $buttonAll = $('<button>').attr('data-id', i).addClass('btn btn-sm btn-default select_all col-md-3');        
+        $buttonAll.append($('<span>').addClass('glyphicon glyphicon-th'));
+        $buttonAll.append('&nbsp;Все комнаты');               
+        $divRow = $('<div>').addClass('row');        
         $divCol_1 = $('<div>').addClass('col-md-12');
         $divCol_1.append(resultDraw[i]);
         $divRow.append($divCol_1)
-            .append($footerDraw);
+            .append($buttonAll);
         $divTab.append($divRow);
 
         $('.tab-content').append($divTab);

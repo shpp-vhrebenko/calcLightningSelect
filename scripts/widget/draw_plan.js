@@ -4,7 +4,7 @@
 
 //=============== HANDLER EVENTS DRAW PLAN =====================
 
-$('#draw-plan').on('change', '.select_all', function() { 
+$('#draw-plan').on('click', '.select_all', function() { 
   console.log("select_all");
   var floor = $(this).data('id'); 
   $div = $('div#' + floor);
