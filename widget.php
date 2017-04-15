@@ -186,15 +186,15 @@
 
           <!-- End Bootstrap-tables -->  
           <!-- User Panel  --> 
-          <div class="col-md-3" id="user-result-panel">
+          <div class="col-md-3 col-sm-6 col-xs-6" id="user-result-panel">
             <div class="row">
-              <button type="button" class="btn btn-sm btn-default col-sm-4 col-md-3" id="view_pdf">
+              <button type="button" class="btn btn-sm btn-default col-sm-2 col-md-3 col-xs-3" id="view_pdf">
               PDF
               </button>             
-              <button type="button" class="btn btn-sm btn-primary col-sm-4 col-md-3" id="put_data">
+              <button type="button" class="btn btn-sm btn-primary col-sm-2 col-md-3 col-xs-3" id="put_data">
                 ОК
               </button> 
-              <button type="button" class="btn btn-sm btn-default col-sm-4 col-md-4" id="cancel">
+              <button type="button" class="btn btn-sm btn-default col-sm-3 col-md-4 col-xs-3" id="cancel">
                 Отмена
               </button> 
             </div>                       

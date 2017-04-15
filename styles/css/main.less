@@ -258,7 +258,7 @@ td {
 #draw-plan {
     position: relative;
     .box-style (@box-bg); 
-    height: 40vh;  
+    height: 305px; 
     .draw-plan__header {
         .box-header(#337AB7);
     }         
@@ -278,7 +278,7 @@ td {
 
 #select-box {
    .box-style (@box-bg);
-   height: 40vh;
+   height: 305px; 
    .select-box__header {
         .box-header(#E6CB61); 
         margin-bottom: .5rem;                 
@@ -336,9 +336,9 @@ td {
     }
 }
 
-#table-box {   
-    height: 58vh;  
-    .box-style (@box-bg);    
+#table-box {       
+    .box-style (@box-bg);  
+    height: 360px;  
     .table-box__header {
         .box-header(#EC7D63); 
     }    
@@ -435,6 +435,28 @@ td {
     }
 }
 
-@media screen and (min-width: 768px) {   
- 
+@media only screen and (max-width: 480px){
+    
+}
+
+@media screen and (max-width: 768px) {   
+    #select-box { 
+        height: 460px;        
+    }
+    #image-box {  
+        #set_data {           
+            font-size: 1.2rem; 
+          
+        }
+    }
+}
+
+@media only screen and (max-width: 1023px){
+    #user-result-panel {        
+        left: 0px; 
+    }
+}
+
+@media only screen and (max-width: 1200px){
+    
 }

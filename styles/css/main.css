@@ -10610,7 +10610,7 @@ td {
   padding: 0 0 .1rem 0;
   background-clip: padding-box;
   border: 5px solid transparent;
-  height: 40vh;
+  height: 305px;
 }
 #draw-plan .draw-plan__header {
   background-color: #337AB7;
@@ -10640,7 +10640,7 @@ td {
   padding: 0 0 .1rem 0;
   background-clip: padding-box;
   border: 5px solid transparent;
-  height: 40vh;
+  height: 305px;
 }
 #select-box .select-box__header {
   background-color: #E6CB61;
@@ -10700,11 +10700,11 @@ td {
   background-color: #0BBFF2;
 }
 #table-box {
-  height: 58vh;
   background-color: white;
   padding: 0 0 .1rem 0;
   background-clip: padding-box;
   border: 5px solid transparent;
+  height: 360px;
 }
 #table-box .table-box__header {
   background-color: #EC7D63;
@@ -10796,5 +10796,18 @@ td {
     height: 25px;
     line-height: 25px;
     margin-bottom: 1rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  #select-box {
+    height: 460px;
+  }
+  #image-box #set_data {
+    font-size: 1.2rem;
+  }
+}
+@media only screen and (max-width: 1023px) {
+  #user-result-panel {
+    left: 0px;
   }
 }
