@@ -91,15 +91,13 @@
         });
 
         console.info($('#calcLightning').valid());
-        if ($('#calcLightning').valid()) {
-            $('#calcButton').prop('disabled', false);
+       /* if ($('#calcLightning').valid()) {            
             $('#set_data').prop('disabled', false);
             $('#set_data').addClass('active');
-        } else {
-            $('#calcButton').prop('disabled', 'disabled');
+        } else {           
             $('#set_data').prop('disabled', 'disabled');
             $('#set_data').addClass('active');
-        }
+        }*/
     }    
 
    

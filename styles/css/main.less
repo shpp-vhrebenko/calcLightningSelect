@@ -255,10 +255,10 @@ td {
     text-align: center;
 }
 
-#draw-plan {
-    position: relative;
+#draw-plan { 
+    position: relative;   
     .box-style (@box-bg); 
-    height: 305px; 
+    height: 310px; 
     .draw-plan__header {
         .box-header(#337AB7);
     }         
@@ -274,11 +274,28 @@ td {
         bottom: 2px;
         padding: 2px;       
     }
+    #alert-tooltip {
+        position: absolute;
+        cursor: pointer;
+        display: none;
+        z-index: 9999;
+        width: 280px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);        
+        background-color: white;        
+        text-align: center;
+        color: @alert-color;
+        font-weight: bold;
+        font-size: 2rem;
+        border: 1px solid @alert-color;
+        border-radius: 10px;
+    }
 }
 
 #select-box {
    .box-style (@box-bg);
-   height: 305px; 
+   height: 310px; 
    .select-box__header {
         .box-header(#E6CB61); 
         margin-bottom: .5rem;                 
@@ -338,7 +355,7 @@ td {
 
 #table-box {       
     .box-style (@box-bg);  
-    height: 360px;  
+    height: 370px;  
     .table-box__header {
         .box-header(#EC7D63); 
     }    
@@ -390,7 +407,7 @@ td {
         height: 275px;        
     }
     #table-box {
-        height: 360px;
+        height: 370px;
     }
 }
 
@@ -407,7 +424,7 @@ td {
             .box-header-bold;              
        } 
         .form-group {
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }  
         label {                       
             font-size: 1.15rem;            
@@ -441,7 +458,7 @@ td {
 
 @media screen and (max-width: 768px) {   
     #select-box { 
-        height: 460px;        
+        height: 495px;        
     }
     #image-box {  
         #set_data {           

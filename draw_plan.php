@@ -88,13 +88,18 @@ function draw_floor($numberFloor, $hourse) {
       if(property_exists($room,'area_coords'))  $a_c= json_decode(json_encode($room->area_coords),true);
       else $a_c=false;
       ###???$but_room_id="but_room_{$floor_number}_{$i}";
-      $room_name = $i + 1;
-      $room_type = $room->room_type;
+      $room_name = $i + 1;      
+      if(isset($room->room_type) && $room->room_type !== 'undefined') {
+        $room_type = $room->room_type;
+      } else {
+        $room_type = "тип";
+      }
       $plg_room=new Room($room_type,$room_name,$a_c,$floors[$floor_number]->scaling,"but_room_{$floor_number}_{$i}",'rgb(255,204,153)','rgb(0,0,0)');
       //$plg_room=new Polygon('rgb(255,204,153)','rgb(0,0,0)');
       $plg_room->number=$room->room_number;
       $plg_room->setId("room_{$floor_number}_".$i);
       $plg_room->addProperty('onclick',"onSelectRoom(this)");
+      $plg_room->addProperty('data-type-room',$room_type);
       //$plg_room->addProperty('onmousemove',"onRoomMove(this)");
       //$plg_room->addProperty('onmouseout',"onRoomOut(this)");
       for($j=0;$j<count($room->walls);$j++)

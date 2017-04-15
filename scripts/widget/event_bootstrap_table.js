@@ -21,23 +21,28 @@ $('#bTable').on('uncheck.bs.table', function (e, row) {
 
 $('#set_data').on('click', function(event) {
   console.log("set_data");
-  event.preventDefault(); 
-  var json_data = localStorage.getItem('typeLamp');
-  var local_data = $.parseJSON(json_data);  
-  var currentParameters = local_data;   
-  var currentRoomsArray = getCurrentRooms(currentParameters);     
-  var data = {
-    calc_lighting : true,    
-    currentRooms : currentRoomsArray
-  };   
-  sendAjaxForm(data,
-                "calc_lighting.php",
-                hideLoadingWraper,
-                showLoadingWraper,
-                viewCalcCountLamp,
-                errorResponse,
-                15000,
-                'POST'); 
+  event.preventDefault();
+  var currentRooms = current_Room.getInstance().getCurrentRoom();
+  if(currentRooms.length >= 1) {
+    var json_data = localStorage.getItem('typeLamp');
+    var local_data = $.parseJSON(json_data);  
+    var currentParameters = local_data;   
+    var currentRoomsArray = getCurrentRooms(currentParameters);     
+    var data = {
+      calc_lighting : true,    
+      currentRooms : currentRoomsArray
+    };   
+    sendAjaxForm(data,
+                  "calc_lighting.php",
+                  hideLoadingWraper,
+                  showLoadingWraper,
+                  viewCalcCountLamp,
+                  errorResponse,
+                  15000,
+                  'POST'); 
+  } else {    
+    $('#alert-tooltip').fadeIn();
+  }  
 });
   
 //====================== END EVENT BOOTSTRAP TABLE ================
@@ -90,9 +95,7 @@ function addLampsInTableDataAfterCalc(arrayLamps) {
  * @param {[string]} nameLamp   [name lamp for chenge]
  */
 function addLampInTableDataAfterEdit(objectLamp, nameLamp) {
-    console.log("addLampInTableDataAfterEdit");
-    console.log(objectLamp);
-    var data = current_Room.getInstance().getTypeLamp();
+    console.log("addLampInTableDataAfterEdit");        
     var param = objectLamp.roomNumber.split('_');
     var floor = parseInt(param[0]) - 1;
     var room = parseInt(param[1]) - 1;    
@@ -120,7 +123,7 @@ function addLampsToTableData(typeLamp , floor, room) {
  * @param  {[string]} chengeName  [description]
  */
 function addLampToTableData(currentLamp, room, floor, edit) { 
-  console.log("addLampToTableData");
+  console.log("addLampToTableData");  
   var floor_number = parseInt(floor) + 1;
   var room_number = parseInt(room) + 1;
   var requiredIllumination = 0;  
@@ -128,20 +131,27 @@ function addLampToTableData(currentLamp, room, floor, edit) {
     requiredIllumination = currentLamp.customRequiredIllumination;
   } 
   var title = "";
-  if(floor_number != 1) {
-    title = title + "Этаж №" + floor_number + ". ";
-    title = title + "Помещение №" + room_number + ". ";
-    /*roomTitle = roomTitle + "Наименование" + room_number + ". ";*/
-    title = title + "Площадь: " + currentLamp.resultCalc.roomArea + " м2";
+  if(currentLamp.roomTitle === undefined) {
+    if(floor_number != 1) {
+      title = title + "Этаж №" + floor_number + ". ";
+      title = title + "Помещение №" + room_number + ". ";
+      /*roomTitle = roomTitle + "Наименование" + room_number + ". ";*/
+      title = title + "Площадь: " + currentLamp.resultCalc.roomArea + " м2. ";
+      title = title + " Тип помещения: " + currentLamp.typeRoom;
+    } else {
+      title = title + "Помещение №" + room_number + ". ";
+      /*roomTitle = roomTitle + "Наименование" + room_number + ". ";*/
+      title = title + "Площадь: " + currentLamp.resultCalc.roomArea + " м2. ";
+      title = title + " Тип помещения: " + currentLamp.typeRoom;
+    } 
   } else {
-    title = title + "Помещение №" + room_number + ". ";
-    /*roomTitle = roomTitle + "Наименование" + room_number + ". ";*/
-    title = title + "Площадь: " + currentLamp.resultCalc.roomArea + " м2";
-  }  
+    title = currentLamp.roomTitle;
+  }
   var objectRow = {    
     nameLamp: currentLamp.nameLamp,
     roomNumber: floor_number + "_" + room_number, 
-    roomTitle: title,      
+    roomTitle: title,  
+    typeRoom: currentLamp.typeRoom,    
     requiredIllumination: requiredIllumination,
     reflectionCoef: currentLamp.reflectionCoef,
     safetyFactor: currentLamp.safetyFactor,

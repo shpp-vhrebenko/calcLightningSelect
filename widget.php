@@ -35,7 +35,10 @@
     </div>    
     <div class="container-fluid">      
       <div class="row">       
-        <div class="col-xs-12 col-md-5 headerBlock" id="draw-plan">           
+        <div class="col-xs-12 col-md-5 headerBlock" id="draw-plan"> 
+          <div id="alert-tooltip">
+            <p>Выберите комнату на чертеже, в которой нужно рассчитать освещение</p>
+          </div>           
           <h3 class="draw-plan__header">Чертеж</h3>
           <ul class="nav nav-tabs " id="tabs_plan">                                
           </ul>
@@ -160,7 +163,7 @@
               </fieldset> 
               </div>
               <div class="row">
-                <button type="button" class="btn btn-xs btn-default col-xs-12 col-md-12" id="set_data">              
+                <button type="button" class="btn btn-xs btn-default col-xs-12 col-md-12 active" id="set_data">              
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Добавить светильник
               </button> 
               </div>                           

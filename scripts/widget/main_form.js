@@ -7,9 +7,8 @@ $(document).keydown(function(eventObject){
     }            
 });
 
-$('#calcLightning').on('blur keyup change', 'input', function() { 
-  var currentRoom = current_Room.getInstance().getCurrentRoom();         
-  if ($('#calcLightning').valid() && (currentRoom.length >= 1)) {         
+$('#calcLightning').on('blur keyup change', 'input', function() {          
+  if ($('#calcLightning').valid()) {         
       $('#set_data').prop('disabled', false);
       $('#set_data').addClass('active');      
   } else {      
@@ -18,9 +17,8 @@ $('#calcLightning').on('blur keyup change', 'input', function() {
   }
 });
 
-$('#calcLightning').on('blur keyup change', 'select', function() { 
-  var currentRoom = current_Room.getInstance().getCurrentRoom();     
-  if ($('#calcLightning').valid()  && (currentRoom.length >= 1) ) {         
+$('#calcLightning').on('blur keyup change', 'select', function() {       
+  if ($('#calcLightning').valid()) {         
       $('#set_data').prop('disabled', false);
       $('#set_data').addClass('active');
   } else {         

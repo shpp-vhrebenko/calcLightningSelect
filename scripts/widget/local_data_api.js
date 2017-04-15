@@ -168,8 +168,8 @@ var current_Room = (function() {
         curRoom.floor = numberFloor; */
     };
 
-    var addElementCurrentRooms = function(numberRoom, numberFloor) {
-        curRoom.push({ room: numberRoom, floor: numberFloor });
+    var addElementCurrentRooms = function(numberRoom, numberFloor, typeRoom) {        
+        curRoom.push({ room: numberRoom, floor: numberFloor , typeRoom: typeRoom});        
     };
 
     var removeElementCurrentRooms = function(numberRoom, numberFloor) {
@@ -302,9 +302,11 @@ function getCurrentRooms(parameters) {
         var currentRoom = currentRooms[i];
         var floor = parseInt(currentRoom.floor);
         var room = parseInt(currentRoom.room);
+        var typeRoom = currentRoom.typeRoom;
         var currentDataRoom = data.floors[floor].rooms[room];
         proObject.floor = floor;
         proObject.room = room;
+        proObject.typeRoom = typeRoom;
         proObject.roomArea = currentDataRoom.room_area;
         proObject.perimetr = getRoomPerimetr(currentDataRoom.walls);
         resultArray.push(proObject);
@@ -334,7 +336,7 @@ function getCurrentRoomForEdit(curRoom) {
  * @param {[type]} floor       [number]
  * @param {[type]} lengthRooms [number]
  */
-function addElementsToCurRoom(floor, lengthRooms) {
+function addElementsToCurRoom(floor, lengthRooms) {   
     for (var i = 0; i < lengthRooms; i++) {
         current_Room.getInstance().addElementCurrentRooms(i, floor);
     }

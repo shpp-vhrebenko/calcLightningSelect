@@ -10610,7 +10610,7 @@ td {
   padding: 0 0 .1rem 0;
   background-clip: padding-box;
   border: 5px solid transparent;
-  height: 305px;
+  height: 310px;
 }
 #draw-plan .draw-plan__header {
   background-color: #337AB7;
@@ -10635,12 +10635,29 @@ td {
   bottom: 2px;
   padding: 2px;
 }
+#draw-plan #alert-tooltip {
+  position: absolute;
+  cursor: pointer;
+  display: none;
+  z-index: 9999;
+  width: 280px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  text-align: center;
+  color: #E14E44;
+  font-weight: bold;
+  font-size: 2rem;
+  border: 1px solid #E14E44;
+  border-radius: 10px;
+}
 #select-box {
   background-color: white;
   padding: 0 0 .1rem 0;
   background-clip: padding-box;
   border: 5px solid transparent;
-  height: 305px;
+  height: 310px;
 }
 #select-box .select-box__header {
   background-color: #E6CB61;
@@ -10704,7 +10721,7 @@ td {
   padding: 0 0 .1rem 0;
   background-clip: padding-box;
   border: 5px solid transparent;
-  height: 360px;
+  height: 370px;
 }
 #table-box .table-box__header {
   background-color: #EC7D63;
@@ -10759,7 +10776,7 @@ td {
     height: 275px;
   }
   #table-box {
-    height: 360px;
+    height: 370px;
   }
 }
 @media screen and (min-height: 768px) {
@@ -10776,7 +10793,7 @@ td {
     margin-bottom: 1rem;
   }
   #select-box .form-group {
-    margin-bottom: 4px;
+    margin-bottom: 2px;
   }
   #select-box label {
     font-size: 1.15rem;
@@ -10800,7 +10817,7 @@ td {
 }
 @media screen and (max-width: 768px) {
   #select-box {
-    height: 460px;
+    height: 495px;
   }
   #image-box #set_data {
     font-size: 1.2rem;

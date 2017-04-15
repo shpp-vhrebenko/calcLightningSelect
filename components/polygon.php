@@ -75,7 +75,7 @@ class Polygon
 		$this->border_width=$bord_width;
 		$this->id=false;
 		$this->plg_type=false;
-		$this->tooltip=$tooltip;
+		$this->tooltip=$tooltip;		
 	}
 	function setId($id)
 	{
