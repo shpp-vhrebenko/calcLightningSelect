@@ -8,14 +8,15 @@ var current_Room = (function() {
         instanceTypeLamp = {},
         //lampSelect = {}, // object has value for options name lamp select in form edit modal_window
         lampAutocomplit = [], // array for initial lamp autocomplit
-        instanceCount = 0,
-        lampAutocomplitKey = []; // array for initial lamp autocomplit for key  
+        instanceCount = 0;
+        //lampAutocomplitKey = []; // array for initial lamp autocomplit for key  
 
     var setLampSelect = function(inputObject) {
         $.each(inputObject, function(key, value) {
             //lampSelect[key] = value;  
             lampAutocomplit.push({ id: value.nameLamp, name: value.nameLamp });
-            lampAutocomplitKey.push({ id: value.nameLamp, name: value.key });
+            lampAutocomplit.push({ id: value.nameLamp, name: value.key });
+            /*lampAutocomplitKey.push({ id: value.nameLamp, name: value.key });*/
         });
     };
 

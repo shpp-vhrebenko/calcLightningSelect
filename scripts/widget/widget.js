@@ -44,13 +44,13 @@ $(document).ready(function() {
       },      
   /*    idField: 'name',*/
       source: tableData,      
-      pagination: true,
+      pagination: true,     
       search: true,
       toolbar: "#toolbar",
       clickToSelect: true,
       singleSelect: false,
      /* checkboxHeader: true,*/      
-    /*  height: 400,*/
+    /*  height: 400,*/    
       pageSize: 5,
       pageList: [5,10,15],
       classes: "table table-condensed", 
@@ -116,7 +116,7 @@ $(document).ready(function() {
           }          
       }*/ {
           field: 'lampsCount',
-          title: 'Кол-во.</br>свет-ков',
+          title: 'Количество </br>светильников',
           container: 'body',         
           class: "col-md-1",
           editable: {
@@ -129,7 +129,7 @@ $(document).ready(function() {
 
       }, {
           field: 'requiredIllumination',
-          title: 'Треб. </br>освещ. лк',                    
+          title: 'Требуемое </br>освещение лк',                    
           class: "col-md-1",
           editable: {
             type: 'number',
@@ -173,13 +173,13 @@ $(document).ready(function() {
           }            
       }, {
           field: 'allPowerLamps',
-          title: 'Мощ-ть</br>1шт. Вт',
+          title: 'Мощность</br>1 шт., Вт',
           titleTooltip: "Мощность 1 светильника",         
           class: "col-md-1 forTooltip"           
       }, {
           field: 'lampsWatt', 
           class: "col-md-1 forTooltip",
-          title: 'Мощ-ть</br>всех Вт',
+          title: 'Общая</br>мощность, Вт',
           titleTooltip: "Мощность всех светильников",
           footerFormatter: totalFormatter           
       }]
@@ -242,7 +242,7 @@ $(document).ready(function() {
           //========== FUNCTIONS BOOTSTRAP-TABLES ===========//
   function starsFormatter(value) {
       /*jshint multistr: true */
-      return "<div class='relativeBox' onmouseover='showRemoveButton(this)' onmouseout='hideRemoveButton(this)'>\
+      return "<div class='relativeBox alignLeft' onmouseover='showRemoveButton(this)' onmouseout='hideRemoveButton(this)'>\
                 <span>" + value + 
                 "</span>\
                 <button class='btn btn-circle btn-default js_remove_button'><i class='glyphicon glyphicon-remove'></i></button>\
@@ -304,9 +304,7 @@ $(document).ready(function() {
     //    
     //================= AUTOCOMPLIT BOOTSTRAP-TYPEAHEAD =============
     var selectLamp = current_Room.getInstance().getLampAutocomplit();    
-    var selectLampKey = current_Room.getInstance().getLampAutocomplitKey();  
-    var $input = $("#search_user_lamp");
-    var $inputKey = $("#key");
+    var $input = $("#search_user_lamp");    
     $input.typeahead({
       source: selectLamp,
       autoSelect: true
@@ -319,6 +317,8 @@ $(document).ready(function() {
       $('#nameLamp').trigger('change');      
     });
 
+    /*var $inputKey = $("#key");
+    var selectLampKey = current_Room.getInstance().getLampAutocomplitKey();  
     $inputKey.typeahead({
       source: selectLampKey,
       autoSelect: true
@@ -329,7 +329,7 @@ $(document).ready(function() {
       $('#nameLamp').val(current.id);        
       $('#nameLamp').valid();
       $('#nameLamp').trigger('change');      
-    });
+    });*/
     //============= END AUTOCOMPLIT BOOTSTRAP-TYPEAHEAD =============   
     //
     //

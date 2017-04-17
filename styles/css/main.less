@@ -109,7 +109,8 @@ select.input-sm {
 }
 
 th {
-    font-size: 1rem;
+    font-size: 1.1rem;
+    text-align: center;
 }
 
 td {
@@ -156,7 +157,7 @@ td {
     z-index: 9999;
     position: absolute;
     top: 60px;
-    left: -760px;
+    left: -580px;
     visibility: hidden;
 }
 
@@ -170,12 +171,6 @@ td {
             -webkit-transition: transform .2s, color .2s;
             transition: transform .2s, color .2s;
         }
-    }
-}
-
-.fixed-table-pagination {
-    .pagination-info {
-        visibility: hidden;
     }
 }
 
@@ -193,9 +188,8 @@ td {
     visibility: collapse;
     margin-top: -54px;
 }
-
-.fixed-table-container {
-    margin-top: -10px;
+.bootstrap-table .table thead > tr > th {
+    vertical-align: middle;
 }
 
 .bootstrap-table .table > tbody > tr.groupBy {
@@ -205,6 +199,17 @@ td {
     }
     
 }
+
+.fixed-table-container {
+    margin-top: -10px;
+}
+
+.fixed-table-pagination {
+    .pagination-info {
+        visibility: hidden;
+    }
+}
+
 .fixed-table-container tbody .selected td {
     background-color: #C0FFC0;
     cursor: pointer;
@@ -236,8 +241,8 @@ td {
 //
 //========================================
 
-.headerBlock{
-   
+.alignLeft {
+    text-align: left;
 }
 
 .box-content {
@@ -257,8 +262,8 @@ td {
 
 #draw-plan { 
     position: relative;   
-    .box-style (@box-bg); 
     height: 310px; 
+    .box-style (@box-bg);    
     .draw-plan__header {
         .box-header(#337AB7);
     }         
@@ -270,7 +275,8 @@ td {
     }
     .select_all {
         position: absolute;
-        left: 2px;
+        left: 50%;
+        transform: translateX(-50%); 
         bottom: 2px;
         padding: 2px;       
     }
@@ -316,7 +322,7 @@ td {
 
 #image-box {    
     .box-style (transparent);
-    padding: 0 5rem 0 3rem;
+    padding: 0 4rem 0 3rem;
     fieldset {        
         legend {
             margin-bottom: .2rem;                      
@@ -342,20 +348,25 @@ td {
     }
 
     #set_data {                
-        color: @base-dark-color;
-        cursor: pointer;
-        margin-top: .5rem;
-        font-size: 1.5rem;        
-        &.active {            
-            color:white;
-            background-color: #0BBFF2;                    
+       /*  color: @base-dark-color; */
+        cursor: pointer;       
+        font-size: 1.4rem;        
+        &.success {            
+         color:white;
+         background-color: #98D337;  
+         border-color: #98D337; 
+            &:hover {
+                color:white;
+                background-color: #437E03;  
+                border-color: #437E03;
+            }                 
         }
     }
 }
 
 #table-box {       
     .box-style (@box-bg);  
-    height: 370px;  
+    height: 375px;  
     .table-box__header {
         .box-header(#EC7D63); 
     }    
@@ -392,7 +403,8 @@ td {
     }
     #cancel {
         font-weight: bold;
-        color: #919191; 
+        color: #919191;
+        padding: 5px 5px; 
     }
 
 }
@@ -406,9 +418,9 @@ td {
     #select-box { 
         height: 275px;        
     }
-    #table-box {
-        height: 370px;
-    }
+     #table-box {
+      height: 370px;
+    } 
 }
 
 
@@ -439,9 +451,9 @@ td {
                 font-size: 1.2rem;                           
             }           
         } 
-        #set_data {          
-            margin-top: 2rem;           
-        }      
+        #set_data {              
+            font-size: 1.6rem;           
+        }              
     }
 
     #table-box {          
@@ -475,5 +487,9 @@ td {
 }
 
 @media only screen and (max-width: 1200px){
-    
+    #image-box {
+        #set_data {            
+            font-size: 1.2rem;          
+        }
+    }
 }

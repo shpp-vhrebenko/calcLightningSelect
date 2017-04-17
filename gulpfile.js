@@ -74,19 +74,10 @@ gulp.task('build:php', () => {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('build:css', () => {
-  return gulp.src('*.php')
-    .pipe($.useref({searchPath: ['.']}))    
-    .pipe($.if('*.js', $.uglify()))
-   /* .pipe($.rev())    
-    .pipe($.revReplace())*/
-    /*.pipe($.if('*.css', $.cssnano({safe: true, autoprefixer: false})))
-    .pipe($.if('*.html', $.htmlmin({collapseWhitespace: true})))*/
-    .pipe(gulp.dest('dist'));
-});
-
 gulp.task('copy:style', () => {
   return gulp.src('styles/css/*.css')
+    .pipe($.plumber())
+    .pipe($.autoprefixer({browsers: ['> 1%', 'last 2 versions', 'Firefox ESR']}))
     .pipe(gulp.dest('dist/styles/css/'));
 });
 

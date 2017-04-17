@@ -39,14 +39,14 @@ $('#draw-plan').on('click', '.select_all', function() {
       }       
     } 
     if(countActiveRoom > 0) {
-      /*var currentRooms = current_Room.getInstance().getCurrentRoom();            
+      var currentRooms = current_Room.getInstance().getCurrentRoom();            
       if ($('#calcLightning').valid()) {              
-        $('#set_data').prop('disabled', false);
-        $('#set_data').addClass('active');
+        /*$('#set_data').prop('disabled', false);*/
+        $('#set_data').addClass('success');
       } else {            
-        $('#set_data').prop('disabled', 'disabled');
-        $('#set_data').removeClass('active');
-      } */
+       /* $('#set_data').prop('disabled', 'disabled');*/
+        $('#set_data').removeClass('success');
+      } 
     } else {
       $currentTab.removeClass("selectAll");
       for (var j = 0; j < $allRooms.length; j++) {      
@@ -63,10 +63,10 @@ $('#draw-plan').on('click', '.select_all', function() {
       } 
       var curRoomsLength = current_Room.getInstance().getCurrenRoomLength();
       var currentRooms_1 = current_Room.getInstance().getCurrentRoom();      
-     /* if(curRoomsLength === 0) {
-        $( "#set_data" ).prop( "disabled", 'disabled');
-        $('#set_data').removeClass('active');
-      }*/
+      if(curRoomsLength === 0) {
+        /*$( "#set_data" ).prop( "disabled", 'disabled');*/
+        $('#set_data').removeClass('success');
+      }
     }          
   } else {
     $currentTab.removeClass("selectAll");
@@ -76,10 +76,10 @@ $('#draw-plan').on('click', '.select_all', function() {
     removeElementsFromCurRoom(floor, $allRooms.length); 
     var currentRoom_2 = current_Room.getInstance().getCurrentRoom();    
     var curRoomsLength_2 = current_Room.getInstance().getCurrenRoomLength();
-   /* if(curRoomsLength_2 === 0) {
-      $( "#set_data" ).prop( "disabled", 'disabled');
-      $('#set_data').removeClass('active');
-    } */   
+    if(curRoomsLength_2 === 0) {
+      /*$( "#set_data" ).prop( "disabled", 'disabled');*/
+      $('#set_data').removeClass('success');
+    }    
   }
   
 });
@@ -127,21 +127,21 @@ function onSelectRoom(element) {
     element.setAttribute("fill", "rgb(255,204,153)");   
     current_Room.getInstance().removeElementCurrentRooms(curRoom, curFloor);
     var curRoomsLength = current_Room.getInstance().getCurrenRoomLength();
-    /*if(curRoomsLength === 0) {
-      $( "#set_data" ).prop( "disabled", 'disabled');
-      $('#set_data').removeClass('active');
-    }  */   
+    if(curRoomsLength === 0) {
+     /* $( "#set_data" ).prop( "disabled", 'disabled');*/
+      $('#set_data').removeClass('success');
+    }     
   } else {    
     element.setAttribute("class", "activePolygon");
     element.setAttribute("fill", "rgb(11,191,242)");    
     current_Room.getInstance().addElementCurrentRooms(curRoom, curFloor, currentTypeRoom);     
-   /* if ($('#calcLightning').valid()) {              
-      $('#set_data').prop('disabled', false);
-      $('#set_data').addClass('active');
+    if ($('#calcLightning').valid()) {              
+     /* $('#set_data').prop('disabled', false);*/
+      $('#set_data').addClass('success');
     } else {            
-      $('#set_data').prop('disabled', 'disabled');
-      $('#set_data').removeClass('active');
-    } */              
+     /* $('#set_data').prop('disabled', 'disabled');*/
+      $('#set_data').removeClass('success');
+    }               
   }     
 }
 

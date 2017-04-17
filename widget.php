@@ -39,14 +39,14 @@
           <div id="alert-tooltip">
             <p>Выберите комнату на чертеже, в которой нужно рассчитать освещение</p>
           </div>           
-          <h3 class="draw-plan__header">Чертеж</h3>
+          <h3 class="draw-plan__header">Шаг 1. Выберите комнату на чертеже</h3>
           <ul class="nav nav-tabs " id="tabs_plan">                                
           </ul>
           <div class="tab-content">
           </div>                                
         </div>
         <div class="col-xs-12 col-md-7 headerBlock" id="select-box">          
-          <h3 class="select-box__header">Подбор светильников</h3>
+          <h3 class="select-box__header">Шаг 2. Выберите светильник(и)</h3>
           <div class="row">
             <div class="col-xs-8 col-md-7 box-content">
               <!-- Form calcLightning  -->                 
@@ -56,12 +56,12 @@
                 name="calcLightning"
                 method="post"
                 action=""> 
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="key" class="col-sm-4 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="Выбирете артикул светильника" placeholder="артикул светильника">Артикул</label>
                   <div class="col-sm-8">                    
                     <input type="text" class="input-sm" name="key" data-provide="typeahead" id="key"/>
                   </div>
-                </div>
+                </div> -->
                 <div class="form-group">
                   <label for="search_user_lamp" class="col-sm-4 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="Выбирете наименование светильника">Поиск</label>
                   <div class="col-sm-8">                    
@@ -163,17 +163,17 @@
               </fieldset> 
               </div>
               <div class="row">
-                <button type="button" class="btn btn-xs btn-default col-xs-12 col-md-12 active" id="set_data">              
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Добавить светильник
-              </button> 
+                <button type="button" class="btn btn-sm btn-warning col-xs-12 col-md-12" id="set_data">              
+               Шаг 3. Добавить светильник
+              </button>               
               </div>                           
             </div>           
           </div>        
         </div>                     
-      </div>
+      </div>      
       <div class="row relativeBox">
         <div class="col-xs-12 col-md-12" id="table-box">          
-          <h3 class="table-box__header">Расчет освещения</h3>
+          <h3 class="table-box__header">Результаты расчета освещения</h3>
           <p id="error_message_request" class="error_message"></p> 
             <!--  Bootstrap-tables -->
 
@@ -194,8 +194,8 @@
               <button type="button" class="btn btn-sm btn-default col-sm-2 col-md-3 col-xs-3" id="view_pdf">
               PDF
               </button>             
-              <button type="button" class="btn btn-sm btn-primary col-sm-2 col-md-3 col-xs-3" id="put_data">
-                ОК
+              <button type="button" class="btn btn-sm btn-primary col-sm-3 col-md-4 col-xs-3" id="put_data">
+                Сохранить
               </button> 
               <button type="button" class="btn btn-sm btn-default col-sm-3 col-md-4 col-xs-3" id="cancel">
                 Отмена
@@ -221,8 +221,8 @@
     <!-- <script src="vendor/bootstrap-table-sortBy-v3.js"></script> -->
     <script src="bower_components/bootstrap-table/dist/locale/bootstrap-table-ru-RU.js"></script>
     <script src="bower_components/modernizr/modernizr.js"></script>
-    <script src="bower_components/jquery-validation/dist/jquery.validate.js"></script> 
-    <!-- endbuild -->   
+    <script src="bower_components/jquery-validation/dist/jquery.validate.js"></script>     
+    <!-- endbuild -->       
     
     <script src="scripts/widget.js"></script>     
   </body>
