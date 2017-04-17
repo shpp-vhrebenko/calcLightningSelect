@@ -18,7 +18,7 @@ if(isset($_SESSION["calcLightningModuleCad5d"])) {
 
 	$pdf = new PDF();
 		// Column headings
-  	$header = array('этаж/комната','Наименование', 'Количество');  
+  	$header = array('Наименование','Артикул', 'Количество','Мощность');  
   	$pdf->AddFont('DejaVuSans','','DejaVuSans.ttf',true);
   	$pdf->SetFont('DejaVuSans','',12);
   	

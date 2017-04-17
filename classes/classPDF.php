@@ -22,36 +22,61 @@
 	// Simple table
 	function BasicTable($header, $data)
 	{
-	    // Column widths
-      $w = array(40, 80, 40);
-      // Header
-      for($i=0;$i<count($header);$i++)
-          $this->Cell($w[$i],7,$header[$i],1,0,'C');
-      $this->Ln();
-      /*// Header
-      for ($i=0; $i < count($header); $i++) { 
-         if($i != 0) {
-            $this->Cell(80,7,$header[$i],1);
-         } else {
-            $this->Cell(40,7,$header[$i],1);
-         }
-      } 
-      $this->Ln();*/
+		 /*// Header
+	    for ($i=0; $i < count($header); $i++) { 
+	        if($i != 0) {
+	            $this->Cell(80,7,$header[$i],1);
+	        } else {
+	            $this->Cell(40,7,$header[$i],1);
+	        }
+	    } 
+	      $this->Ln();*/
+      	// Color and font restoration
+		// Colors, line width and bold font
+	    $this->SetFillColor(236,125,99);
+	    $this->SetTextColor(255);
+	    $this->SetDrawColor(236,125,99);
+	    $this->SetLineWidth(.3);	    
+	    // Header
+		// Column widths
+	    $w = array(80, 40, 30, 40);
+	    // Header
+	    for($i=0;$i<count($header);$i++) {      	
+	        $this->Cell($w[$i],7,$header[$i],1,0,'C',1);
+	    }
+	    $this->Ln();
 
-      $floors = $data["floors"];
-      for ($f=0; $f < count($floors); $f++) { 
-        $rooms = $floors[$f]["rooms"];
-        for ($r=0; $r < count($rooms) ; $r++) { 
-          $currentRoom = $rooms[$r];
-          if(isset($currentRoom["typeLamp"]) && $currentRoom["typeLamp"] !== 'undefined') {
-            $typeLamp = $currentRoom["typeLamp"];
-            foreach ($typeLamp as $key => $value) {
-                $this->Cell($w[0],6,$value["roomNumber"],'LR');
-                $this->Cell($w[1],6,$value["nameLamp"],'LR');
-                $this->Cell($w[2],6,number_format(intval($value["lampsCount"])),'LR');                
-                $this->Ln();
-            }
-          }
+	        
+      	$floors = $data["floors"];
+      	for ($f=0; $f < count($floors); $f++) { 
+	        $rooms = $floors[$f]["rooms"];
+	        for ($r=0; $r < count($rooms) ; $r++) { 
+	         	$currentRoom = $rooms[$r];
+	          	if(isset($currentRoom["typeLamp"]) && $currentRoom["typeLamp"] !== 'undefined') {
+	            $typeLamp = $currentRoom["typeLamp"];
+	            $curFloor = $f + 1;
+	            $curRoom = $r + 1;	
+	            $this->SetFillColor(217,237,247);
+	            $this->SetDrawColor(236,125,99);
+	    		$this->SetLineWidth(.3);
+	   			$this->SetTextColor(0);	                                 
+	            $this->Cell(array_sum($w),6,'Этаж №'.$curFloor.' Комната № '.$curRoom ,1,0,'L', 1); 
+	            $this->Ln(); 
+	            $this->SetFillColor(255,255,255); 
+	            $this->SetDrawColor(236,125,99);
+	    		$this->SetLineWidth(.3);         
+	            foreach ($typeLamp as $key => $value) {
+	                $this->Cell($w[0],6,$value["nameLamp"],1,0,'C');
+	                if(isset($value["key"]) && $value["key"] !== 'undefined') {
+	                	$this->Cell($w[1],6,$value["key"],1,0,'C');
+	                } else {
+	                	$this->Cell($w[1],6,"---",1,0,'C');
+	                }                
+	                $this->Cell($w[2],6,number_format(intval($value["lampsCount"])),1,0,'C');
+	                $this->Cell($w[3],6,number_format(intval($value["lampsWatt"])),1,0,'C');                 
+	                $this->Ln();
+	            }
+	        }
         }
       }
 
