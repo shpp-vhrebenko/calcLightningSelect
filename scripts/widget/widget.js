@@ -44,15 +44,15 @@ $(document).ready(function() {
       },      
   /*    idField: 'name',*/
       source: tableData,      
-      pagination: true,     
+      /*pagination: true,  */   
       search: true,
       toolbar: "#toolbar",
       clickToSelect: true,
       singleSelect: false,
      /* checkboxHeader: true,*/      
-    /*  height: 400,*/    
-      pageSize: 5,
-      pageList: [5,10,15],
+      height: 330,    
+     /* pageSize: 5,
+      pageList: [5,10,15],*/
       classes: "table table-condensed", 
       showFooter: true,                
       footerStyle:  function footerStyle(row, index) {                      

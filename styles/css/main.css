@@ -10734,7 +10734,7 @@ td {
   padding: 0 0 .1rem 0;
   background-clip: padding-box;
   border: 5px solid transparent;
-  height: 375px;
+  height: 380px;
 }
 #table-box .table-box__header {
   background-color: #EC7D63;
@@ -10766,7 +10766,7 @@ td {
   position: absolute;
   z-index: 9999;
   bottom: 2px;
-  left: 470px;
+  left: 710px;
 }
 #user-result-panel #put_data {
   font-weight: bold;
@@ -10845,5 +10845,11 @@ td {
 @media only screen and (max-width: 1200px) {
   #image-box #set_data {
     font-size: 1.2rem;
+  }
+  #user-result-panel {
+    left: 625px;
+  }
+  #user-result-panel .btn-sm {
+    font-size: 1rem;
   }
 }

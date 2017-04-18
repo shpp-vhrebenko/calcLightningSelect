@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">   
     <link rel="stylesheet" href="styles/css/main.css?<?php echo filemtime('styles/css/main.css');?>"> 
     <!-- build:js scripts/widget_head_vendor.js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>         
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <!-- endbuild --> 
         
   </head>
