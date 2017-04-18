@@ -153,10 +153,10 @@
               <!-- End Form calcLightning  -->              
             </div>
             <div class="col-xs-4 col-md-5" id="image-box">
-              <div class="row">
+              <div class="row image-lamp">
                 <img src="" class="img-responsive animated fadeInDownBig image-animate col-md-12" id="js_photo_lamp" alt=""> 
               </div>
-              <div class="row">
+              <div class="row fieldset-lamp" id="fieldset-lamp">
                 <fieldset class="col-md-12">
                 <legend>Область использования:</legend>
                 <p id="info_lamp"></p>

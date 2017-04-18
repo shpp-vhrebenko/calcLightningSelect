@@ -66,7 +66,7 @@
 	            $this->SetDrawColor(236,125,99);
 	    		$this->SetLineWidth(.3);         
 	            foreach ($typeLamp as $key => $value) {
-	                $this->Cell($w[0],6,$value["nameLamp"],1,0,'C');
+	                $this->Cell($w[0],6,$value["nameLamp"],1,0,'L');
 	                if(isset($value["key"]) && $value["key"] !== 'undefined') {
 	                	$this->Cell($w[1],6,$value["key"],1,0,'C');
 	                } else {

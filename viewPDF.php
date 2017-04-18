@@ -16,11 +16,13 @@ if(isset($_SESSION["calcLightningModuleCad5d"])) {
 
 
 
-	$pdf = new PDF();
+	$pdf = new PDF();	
 		// Column headings
   	$header = array('Наименование','Артикул', 'Количество','Мощность');  
   	$pdf->AddFont('DejaVuSans','','DejaVuSans.ttf',true);
   	$pdf->SetFont('DejaVuSans','',12);
+  	$title = 'Результаты расчета освещения';
+	$pdf->SetTitle($title,1);
   	
   	$pdf->AddPage();
  	$pdf->BasicTable($header,$data);

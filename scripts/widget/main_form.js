@@ -75,6 +75,7 @@ $('#nameLamp').change(function() {
         $('#js_photo_lamp').attr('src',value);
       } 
       if(key == "applyLamp") {
+        $('#fieldset-lamp').css('visibility','visible');
         $('#info_lamp').text(value);
       }
       if(key == "key") {

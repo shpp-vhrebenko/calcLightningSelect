@@ -121,6 +121,7 @@ function initSelectorNameLamp() {
                 $('#js_photo_lamp').attr('src', localDataLamp.photoLink);
             }
             if (localDataLamp.applyLamp) {
+                $('#fieldset-lamp').css('visibility','visible');
                 $('#info_lamp').text(localDataLamp.applyLamp);
             }
         },

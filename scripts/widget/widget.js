@@ -28,6 +28,7 @@ $(document).ready(function() {
   //
   //
   //============= INITIAL BOOTSTRAP-TABLЕS ===================
+  var initialTableHeight = getWindowHeight();
   var tableData = current_Room.getInstance().getTableData();  
   var $bTable = $('#bTable').bootstrapTable({
       contextMenu: '#example1-context-menu',
@@ -50,7 +51,7 @@ $(document).ready(function() {
       clickToSelect: true,
       singleSelect: false,
      /* checkboxHeader: true,*/      
-      height: 330,    
+      height: initialTableHeight,     
      /* pageSize: 5,
       pageList: [5,10,15],*/
       classes: "table table-condensed", 
@@ -338,7 +339,29 @@ $(document).ready(function() {
     //
     //
     //===============================================================    
-    typeLampFormValidation();    
+    typeLampFormValidation();   
+    $(window).resize(function() {
+        var height = getWindowHeight(); 
+        $bTable.bootstrapTable('resetView', {height: height});        
+    }); 
+
+    function getWindowHeight() {
+      var windowHeight = $(window).height();
+      var curIndex = windowHeight/100;
+      var curHeight = 0;
+      if(windowHeight < 640) {
+        curHeight = parseInt(curIndex * 44);        
+      } else if (windowHeight > 640 && windowHeight < 720){
+        curHeight = parseInt(curIndex * 50);        
+      } else if (windowHeight > 720 && windowHeight < 768){
+        curHeight = parseInt(curIndex * 52);        
+      } else if (windowHeight > 768 && windowHeight < 800){
+        curHeight = parseInt(curIndex * 50);        
+      } else {
+        curHeight = parseInt(curIndex * 54); 
+      } 
+      return curHeight;   
+    }
 });
 //======================== END DOCUMENT READY =============================
 //=========================================================================
