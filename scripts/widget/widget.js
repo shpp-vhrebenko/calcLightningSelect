@@ -347,18 +347,19 @@ $(document).ready(function() {
 
     function getWindowHeight() {
       var windowHeight = $(window).height();
+      console.log(windowHeight);
       var curIndex = windowHeight/100;
       var curHeight = 0;
-      if(windowHeight < 640) {
+      if(windowHeight <= 640) {
         curHeight = parseInt(curIndex * 44);        
       } else if (windowHeight > 640 && windowHeight < 720){
-        curHeight = parseInt(curIndex * 50);        
+        curHeight = parseInt(curIndex * 44);        
       } else if (windowHeight > 720 && windowHeight < 768){
         curHeight = parseInt(curIndex * 52);        
       } else if (windowHeight > 768 && windowHeight < 800){
         curHeight = parseInt(curIndex * 50);        
       } else {
-        curHeight = parseInt(curIndex * 54); 
+        curHeight = parseInt(curIndex * 52); 
       } 
       return curHeight;   
     }

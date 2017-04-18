@@ -11,6 +11,6 @@
   <script src="scripts/main.js"></script>   
 </head>
 <body>
-  <iframe name="fr1" id="iframeid" onload="load(this)" src="widget.php" scrolling="auto" frameborder="0" style="overflow: hidden; height: 99%; width: 99%; position: absolute;" height="99%" width="99%">  
+  <iframe name="fr1" id="iframeid" onload="load(this)" src="widget.php" scrolling="auto" frameborder="0" style="overflow: hidden; height: 97%; width: 99%; position: absolute;" height="99%" width="99%">  
 </body>
 </html>

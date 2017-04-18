@@ -22,6 +22,7 @@ $('#draw-plan').on('click', '.select_all', function() {
   
   if(!$currentTab.hasClass('selectAll')) {
     $currentTab.addClass("selectAll");
+    $('#alert-tooltip').fadeOut();
     $allRooms = $currentTab.find('polygon[id^=room]');
     var countActiveRoom = 0;   
     for (var i = 0; i < $allRooms.length; i++) {      
@@ -133,6 +134,7 @@ function onSelectRoom(element) {
     }     
   } else {    
     element.setAttribute("class", "activePolygon");
+    $('#alert-tooltip').fadeOut();
     element.setAttribute("fill", "rgb(11,191,242)");    
     current_Room.getInstance().addElementCurrentRooms(curRoom, curFloor, currentTypeRoom);     
     if ($('#calcLightning').valid()) {              
