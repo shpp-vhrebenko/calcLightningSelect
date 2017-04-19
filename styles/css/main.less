@@ -75,6 +75,10 @@ body {
 .btn.btn-default:active {
     outline: none;
 }
+
+.btn-space {
+    margin-right: 1rem;
+}
 //======FORM============
 input,
 select {
@@ -131,8 +135,10 @@ td {
 
 //========BASE_BOX_STYLE======
 .container-fluid {
-    padding-right: 15px;
-    padding-left: 15px;
+    padding: 5px;
+    /* padding-right: 10px;
+        padding-left: 10px;
+        padding-top: 10px; */    
     margin-right: auto;
     margin-left: auto;
     max-height: 100vh;    
@@ -263,9 +269,9 @@ td {
     text-align: center;
 }
 
-#draw-plan { 
+.draw-plan { 
     position: relative;   
-    height: 310px; 
+    height: 300px; 
     .box-style (@box-bg);    
     .draw-plan__header {
         .box-header(#337AB7);
@@ -283,7 +289,7 @@ td {
         bottom: 2px;
         padding: 2px;       
     }
-    #alert-tooltip {
+    .alert-tooltip {
         position: absolute;
         cursor: pointer;
         display: none;
@@ -304,13 +310,13 @@ td {
 
 #select-box {
    .box-style (@box-bg);
-   height: 310px; 
+   height: 300px; 
    .select-box__header {
         .box-header(#E6CB61); 
         margin-bottom: .5rem;                 
    } 
     .form-group {
-        margin-bottom: 4px;
+        margin-bottom: 6px;
     }  
     label {
         margin: 0px;
@@ -318,12 +324,12 @@ td {
         &.error {        
            display:none!important;
         }
-        font-size: 1.1rem;
+        font-size: 1.3rem;
         text-align: left;
     }  
 }
 
-#image-box {   
+.image-box {   
     position: relative; 
     img {
         width: 100%;
@@ -336,10 +342,10 @@ td {
         height: 50px;        
         legend {
             margin-bottom: .2rem;                      
-            font-size: 1rem; 
+            font-size: 1.2rem; 
             text-align: center;           
         }
-        #info_lamp {
+        .info_lamp {
             text-align: center;
             margin: 0px;
             padding-right: 1rem;
@@ -347,17 +353,13 @@ td {
             font-weight: bold;
             font-size: 1.2rem;
         }
-    }
-    
-    #js_photo_lamp {
-       
-    }
+    }    
     
     .image-animate {
         opacity: 0;
     }
 
-    #set_data {        
+    .set_data {        
         cursor: pointer;       
         font-size: 1.4rem;        
         &.success {            
@@ -373,9 +375,9 @@ td {
     }
 }
 
-#table-box {       
+.table-box {       
     .box-style (@box-bg);  
-    height: 64vh;  
+    /* height: 62.5vh; */  
     .table-box__header {
         .box-header(#EC7D63); 
     }    
@@ -396,145 +398,27 @@ td {
     }
 }
 
-#user-result-panel {
-    position: absolute;
-    z-index: 9999;
-    bottom: 0px;
-    left: 925px; 
-    .btn-sm {
-        padding: 3px 10px;  
-    }     
-    #put_data {
-        font-weight: bold;
-        margin-right: .5rem;       
-    }
-    #view_pdf {  
+.user-result-panel {
+    margin-right: 1rem;
+    margin-top: 5px;
+    margin-bottom: 5px;  
+    .view_pdf {  
         font-weight: bold;        
         color: #919191;
-        margin-right: .5rem;
-    }
-    #cancel {
+        margin-left: 73.2%;                        
+    } 
+    .put_data {
+        font-weight: bold;                           
+    }    
+    .cancel {
         font-weight: bold;
-        color: #919191;        
+        color: #919191; 
+        margin-right: 0px;       
     }
 
-}
+} 
 
 //======MEDIAQUARIES=========
-@media (max-height: 640px) { 
-    #draw-plan { 
-        height: 275px;              
-    }  
-    #select-box { 
-        height: 275px;        
-    }
-    #image-box {
-        img {
-            width: 100%;
-            height: 145px;
-        }
-    }
-    #table-box {
-      height: 51vh;      
-    } 
-    #user-result-panel {       
-        left: 800px; 
-        bottom: 5px;
-    }
-} 
-@media (min-height: 640px) and (max-height: 720px) {
-    #draw-plan { 
-        height: 275px;              
-    }  
-    #select-box { 
-        height: 275px;        
-    }
-    #image-box {
-        img {
-            width: 100%;
-            height: 145px;
-        }
-    }
-    #table-box {
-      height: 57vh;      
-    } 
-}
-
-@media (min-height: 720px) and (max-height: 768px) {
-    #draw-plan { 
-        height: 275px;              
-    }  
-    #select-box { 
-        height: 275px;        
-    }
-    #image-box {
-        img {
-            width: 100%;
-            height: 145px;
-        }
-    }
-    #table-box {
-      height: 61.5vh;      
-    } 
-}
-
-@media (min-height: 768px) {
-    #draw-plan {              
-        .draw-plan__header {
-            .box-header-bold;
-        }         
-    }  
-    #select-box {            
-       .select-box__header {
-            .box-header-bold;              
-       } 
-        .form-group {
-            margin-bottom: 5px;
-        }  
-        label {                       
-            font-size: 1.15rem;            
-        }  
-    }
-
-    #image-box {        
-        padding: 0 4rem 0 2rem;
-        fieldset {        
-            legend {
-                margin-bottom: .4rem;                      
-                font-size: 1.2rem;                           
-            }           
-        } 
-        #set_data {              
-            font-size: 1.6rem;           
-        }              
-    }
-    #table-box {             
-        .table-box__header {
-            .box-header-bold; 
-        }         
-    }
-    #user-result-panel {      
-        bottom: +4px;
-             
-    }
-}
-
-
-@media (min-height: 768px) and (max-height: 800px) { 
-    #table-box {  
-        height: 59.5vh;       
-    }    
-}
-
-@media (min-height: 800px) and (max-height: 864px) {    
-    #table-box {  
-        height: 61vh;       
-    }   
-}
-
-@media (max-width: 480px){
-    
-}
 
 @media (max-width: 768px) {   
     #select-box { 
@@ -549,10 +433,10 @@ td {
 }
 
 @media (min-width: 768px) and (max-width: 1023px){
-    #user-result-panel {        
-        left: 425px; 
-        bottom: 3px;
-    }
+  /*   #user-result-panel {        
+      left: 425px; 
+      bottom: 3px;
+  } */
 }
 
 @media (min-width: 1023px) and (max-width: 1200px){
@@ -561,11 +445,11 @@ td {
             font-size: 1.2rem;          
         }
     }
-    #user-result-panel {        
-        left: 625px;
-        bottom: 3px;
-        .btn-sm {
-            font-size: 1rem;              
-        }       
-    }
+   /*  #user-result-panel {        
+       left: 625px;
+       bottom: 3px;
+       .btn-sm {
+           font-size: 1rem;              
+       }       
+   } */
 }

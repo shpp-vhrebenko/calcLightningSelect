@@ -75,8 +75,8 @@ function viewResultInTable(calcLighting) {
 }
 
 /**
- * []
- * @param {[object]} objectLamp [object serialize form calc lamp]
+ * [add Lamps In Table Data After Calc]
+ * @param {[array]} objectLamp [array object lamps]
  */
 function addLampsInTableDataAfterCalc(arrayLamps) {
     console.log("addLampsInTableDataAfterCalc");   
@@ -200,6 +200,10 @@ function removeLampsFromTableData(arrayLamps) {
 //
 //=============== FUNCTIONS HANDLER EVENTS BOOTSTRAP-TABLES =========
 
+/**
+ * [show remove button for cell data table]
+ * @param  {[jquery object]} element [description] 
+ */
 function showRemoveButton(element) {  
   var $curElement = $(element); 
   var $parent = $curElement.parent();  
@@ -217,6 +221,10 @@ function showRemoveButton(element) {
   $button.css({'visibility':'visible','top': top ,'left': left}); 
 }
 
+/**
+ * [hide Remove Button]
+ * @param  {[jquery object]} element [description] 
+ */
 function hideRemoveButton(element) {    
   var $curElement = $(element); 
   var $parent = $curElement.parent();  
@@ -224,6 +232,9 @@ function hideRemoveButton(element) {
   $button.css('visibility','hidden');
 }
 
+/**
+ * [show Field Search in tool panel table data]
+ */
 function showFieldSearch() {
    var $toolbar = $('.fixed-table-toolbar');
    var $searchBox = $toolbar.find('div.search');

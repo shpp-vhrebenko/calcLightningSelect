@@ -346,20 +346,25 @@ $(document).ready(function() {
     }); 
 
     function getWindowHeight() {
-      var windowHeight = $(window).height();      
-      var curIndex = windowHeight/100;
-      var curHeight = 0;
-      if(windowHeight <= 640) {
-        curHeight = parseInt(curIndex * 44);        
+      var windowHeight = $(window).height(); 
+      var headerBlock = 300;
+      var buttonBlock = 40;
+      var otherBlock = 50;     
+      var curHeight = (windowHeight - (headerBlock + buttonBlock)) - otherBlock;
+     /* var curHeight = curIndex * 80;*/
+     /* if(windowHeight <= 630) {
+        curHeight = parseInt(curIndex * 35);        
+      } else if(windowHeight <= 640) {
+        curHeight = parseInt(curIndex * 42.5);        
       } else if (windowHeight > 640 && windowHeight < 720){
-        curHeight = parseInt(curIndex * 44);        
+        curHeight = parseInt(curIndex * 49);        
       } else if (windowHeight > 720 && windowHeight < 768){
         curHeight = parseInt(curIndex * 52);        
       } else if (windowHeight > 768 && windowHeight < 800){
-        curHeight = parseInt(curIndex * 50);        
+        curHeight = parseInt(curIndex * 49);        
       } else {
-        curHeight = parseInt(curIndex * 52); 
-      } 
+        curHeight = parseInt(curIndex * 51.5); 
+      } */
       return curHeight;   
     }
 });

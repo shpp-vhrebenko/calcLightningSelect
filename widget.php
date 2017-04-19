@@ -35,8 +35,8 @@
     </div>    
     <div class="container-fluid">      
       <div class="row">       
-        <div class="col-xs-12 col-md-5 headerBlock" id="draw-plan"> 
-          <div id="alert-tooltip">
+        <div class="col-xs-12 col-md-5 headerBlock draw-plan" id="draw-plan"> 
+          <div id="alert-tooltip" class="alert-tooltip">
             <p>Выберите комнату на чертеже, в которой нужно рассчитать освещение</p>
           </div>           
           <h3 class="draw-plan__header">Шаг 1. Выберите комнату на чертеже</h3>
@@ -45,7 +45,7 @@
           <div class="tab-content">
           </div>                                
         </div>
-        <div class="col-xs-12 col-md-7 headerBlock" id="select-box">          
+        <div class="col-xs-12 col-md-7 headerBlock select-box" id="select-box">          
           <h3 class="select-box__header">Шаг 2. Выберите светильник(и)</h3>
           <div class="row">
             <div class="col-xs-8 col-md-7 box-content">
@@ -57,40 +57,40 @@
                 method="post"
                 action=""> 
                 <!-- <div class="form-group">
-                  <label for="key" class="col-sm-4 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="Выбирете артикул светильника" placeholder="артикул светильника">Артикул</label>
-                  <div class="col-sm-8">                    
+                  <label for="key" class="col-sm-5 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="Выбирете артикул светильника" placeholder="артикул светильника">Артикул</label>
+                  <div class="col-sm-7">                    
                     <input type="text" class="input-sm" name="key" data-provide="typeahead" id="key"/>
                   </div>
                 </div> -->
                 <div class="form-group">
-                  <label for="search_user_lamp" class="col-sm-4 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="Выбирете наименование светильника">Поиск</label>
-                  <div class="col-sm-8">                    
+                  <label for="search_user_lamp" class="col-sm-5 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="Выбирете наименование светильника">Поиск</label>
+                  <div class="col-sm-7">                    
                     <input type="text" data-provide="typeahead" name="search_user_lamp"  class="form-control input-sm" id="search_user_lamp" placeholder="наименование светильника" /> 
                   </div>
                 </div>                
                 <div class="form-group">
-                  <label for="nameLamp" class="col-sm-4 control-label">Cветильник</label>
-                  <div class="col-sm-8">                    
+                  <label for="nameLamp" class="col-sm-5 control-label">Cветильник</label>
+                  <div class="col-sm-7">                    
                     <select name="nameLamp" id="nameLamp" class="room input-sm" required >
                       <option selected value="">Выберите тип светильника</option>
                     </select>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="heightRoom" class="col-sm-4 control-label">Высота помещения, м</label>
-                  <div class="col-sm-8">                    
+                  <label for="heightRoom" class="col-sm-5 control-label">Высота помещения, м</label>
+                  <div class="col-sm-7">                    
                     <input class="room input-sm" type="number" id="heightRoom" name="heightRoom" placeholder="2.5" min="0.0" step="0.1" required/>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="lampsWorkHeight" class="col-sm-4 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="Высота на которой необходимо обеспечить требуемое освещение">Рабочая поверхность, м</label>
-                  <div class="col-sm-8">                    
+                  <label for="lampsWorkHeight" class="col-sm-5 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="Высота на которой необходимо обеспечить требуемое освещение">Рабочая поверхность, м</label>
+                  <div class="col-sm-7">                    
                     <input  type="number" class="room input-sm" id="lampsWorkHeight" name="lampsWorkHeight" placeholder="0.8" min="0.0" step="0.1" required />
                   </div>
                 </div> 
                 <div class="form-group">
-                  <label for="reflectionCoef" class="col-sm-4 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="Коэффициент отражения поверхностей">Коэф. отражения</label>
-                  <div class="col-sm-8">                    
+                  <label for="reflectionCoef" class="col-sm-5 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="Коэффициент отражения поверхностей">Коэф. отражения</label>
+                  <div class="col-sm-7">                    
                     <select class="room input-sm" id="reflectionCoef" name="reflectionCoef" required>
                       <option value="" selected>Выберите значение коэффициента отражения</option>  
                       <option value="0,0,0">Пол-0%, стены-0%, потолок-0%</option>            
@@ -105,8 +105,8 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="safetyFactor" class="col-sm-4 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="Запас освещенности">Коэф. запаса</label>
-                  <div class="col-sm-8">                    
+                  <label for="safetyFactor" class="col-sm-5 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="Запас освещенности">Коэф. запаса</label>
+                  <div class="col-sm-7">                    
                     <select class="room input-sm" id="safetyFactor" name="safetyFactor"  required>
                       <option selected value="">Выберите значение коэффициента запаса</option>      
                       <option value="1.1">1.1</option>
@@ -117,8 +117,8 @@
                   </div>
                 </div>  
                 <div class="form-group">
-                  <label for="requiredIllumination" class="col-sm-4 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="по ГОСТ">Треб. освещ. лк</label>
-                  <div class="col-sm-8">                    
+                  <label for="requiredIllumination" class="col-sm-5 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="по ГОСТ">Треб. освещ. лк</label>
+                  <div class="col-sm-7">                    
                     <select class="room input-sm" id="requiredIllumination" name="requiredIllumination" required>
                       <option value="" selected>Выберите значение освещенности</option>
                       <option value="1">Значение пользователя</option>
@@ -144,26 +144,26 @@
                   </div>
                 </div> 
                 <div class="form-group">
-                  <label for="customRequiredIllumination" class="col-sm-4 control-label">Треб. освещ. лк</label>
-                  <div class="col-sm-8">                    
+                  <label for="customRequiredIllumination" class="col-sm-5 control-label">Треб. освещ. лк</label>
+                  <div class="col-sm-7">                    
                     <input class="room input-sm" type="number" id="customRequiredIllumination" name="customRequiredIllumination" min="0" step="1"/>
                   </div>
                 </div>                            
               </form>
               <!-- End Form calcLightning  -->              
             </div>
-            <div class="col-xs-4 col-md-5" id="image-box">
+            <div class="col-xs-4 col-md-5 image-box" id="image-box">
               <div class="row image-lamp">
                 <img src="" class="img-responsive animated fadeInDownBig image-animate col-md-12" id="js_photo_lamp" alt=""> 
               </div>
               <div class="row fieldset-lamp" id="fieldset-lamp">
                 <fieldset class="col-md-12">
                 <legend>Область использования:</legend>
-                <p id="info_lamp"></p>
+                <p class="info_lamp" id="info_lamp"></p>
               </fieldset> 
               </div>
               <div class="row">
-                <button type="button" class="btn btn-sm btn-warning col-xs-12 col-md-12" id="set_data">              
+                <button type="button" class="btn btn-sm btn-warning col-xs-12 col-md-12 set_data" id="set_data">              
                Шаг 3. Добавить светильник
               </button>               
               </div>                           
@@ -172,7 +172,7 @@
         </div>                     
       </div>      
       <div class="row relativeBox">
-        <div class="col-xs-12 col-md-12" id="table-box">          
+        <div class="col-xs-12 col-md-12 table-box" id="table-box">          
           <h3 class="table-box__header">Результаты расчета освещения</h3>
           <p id="error_message_request" class="error_message"></p> 
             <!--  Bootstrap-tables -->
@@ -188,20 +188,18 @@
           <!-- End Bootstrap table context menu --> 
 
           <!-- End Bootstrap-tables -->  
-          <!-- User Panel  --> 
-          <div class="col-md-3 col-sm-6 col-xs-6" id="user-result-panel">
-            <div class="row">
-              <button type="button" class="btn btn-sm btn-default col-sm-2 col-md-3 col-xs-3" id="view_pdf">
-              PDF
-              </button>             
-              <button type="button" class="btn btn-sm btn-primary col-sm-3 col-md-4 col-xs-3" id="put_data">
-                Сохранить
-              </button> 
-              <button type="button" class="btn btn-sm btn-default col-sm-3 col-md-4 col-xs-3" id="cancel">
-                Отмена
-              </button> 
-            </div>                       
-          </div> 
+          <!-- User Panel  -->           
+          <div class="row user-result-panel" id="user-result-panel">
+            <button type="button" class="btn btn-sm btn-space btn-default col-md-1 view_pdf" id="view_pdf">
+            PDF
+            </button>             
+            <button type="button" class="btn btn-sm btn-space btn-primary col-sm-1 put_data" id="put_data">
+              Сохранить
+            </button> 
+            <button type="button" class="btn btn-sm btn-space btn-default col-sm-1 cancel" id="cancel">
+              Отмена
+            </button> 
+          </div>          
           <!-- End User Panel  --> 
         </div>
       </div>
