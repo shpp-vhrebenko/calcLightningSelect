@@ -92,7 +92,7 @@ function draw_floor($numberFloor, $hourse) {
       if(isset($room->room_type) && $room->room_type !== 'undefined') {
         $room_type = $room->room_type;
       } else {
-        $room_type = "тип";
+        $room_type = " ";
       }
       $plg_room=new Room($room_type,$room_name,$a_c,$floors[$floor_number]->scaling,"but_room_{$floor_number}_{$i}",'rgb(255,204,153)','rgb(0,0,0)');
       //$plg_room=new Polygon('rgb(255,204,153)','rgb(0,0,0)');

@@ -137,12 +137,16 @@ function addLampToTableData(currentLamp, room, floor, edit) {
       title = title + "Помещение №" + room_number + ". ";
       /*roomTitle = roomTitle + "Наименование" + room_number + ". ";*/
       title = title + "Площадь: " + currentLamp.resultCalc.roomArea + " м2. ";
-      title = title + " Тип помещения: " + currentLamp.typeRoom;
+      if(currentLamp.typeRoom != " "){
+        title = title + " Тип помещения: " + currentLamp.typeRoom;
+      }      
     } else {
       title = title + "Помещение №" + room_number + ". ";
       /*roomTitle = roomTitle + "Наименование" + room_number + ". ";*/
       title = title + "Площадь: " + currentLamp.resultCalc.roomArea + " м2. ";
-      title = title + " Тип помещения: " + currentLamp.typeRoom;
+      if(currentLamp.typeRoom != " "){
+        title = title + " Тип помещения: " + currentLamp.typeRoom;
+      }  
     } 
   } else {
     title = currentLamp.roomTitle;

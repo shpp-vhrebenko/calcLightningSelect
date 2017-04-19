@@ -346,8 +346,7 @@ $(document).ready(function() {
     }); 
 
     function getWindowHeight() {
-      var windowHeight = $(window).height();
-      console.log(windowHeight);
+      var windowHeight = $(window).height();      
       var curIndex = windowHeight/100;
       var curHeight = 0;
       if(windowHeight <= 640) {
