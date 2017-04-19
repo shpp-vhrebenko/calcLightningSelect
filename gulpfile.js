@@ -12,6 +12,7 @@ var path = {
         html: 'src/*.html', //Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html
         main_js: 'scripts/main/*.js',//В стилях и скриптах нам понадобятся только main файлы
         widget_js: 'scripts/widget/*.js',
+        admin_js: 'scripts/admin/*.js',
         style: 'src/style/main.css',
         img: 'src/img/**/*.*', //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
         fonts: 'src/fonts/**/*.*',
@@ -26,6 +27,7 @@ var path = {
         js: 'scripts/**/*.js',
         main_js: 'scripts/main/*.js',
         widget_js: 'scripts/widget/*.js',
+        admin_js: 'scripts/admin/*.js',
         style: 'styles/**/*.css',
         style_less: 'styles/**/*.less',
         img: 'src/img/**/*.*',
@@ -60,6 +62,12 @@ gulp.task('build:widget_js', function() {
 gulp.task('build:main_js', function() {
   return gulp.src(path.src.main_js)
     .pipe($.concat('main.js'))
+    .pipe(gulp.dest(path.build.js));
+});
+
+gulp.task('build:admin_js', function() {
+  return gulp.src(path.src.admin_js)
+    .pipe($.concat('admin.js'))
     .pipe(gulp.dest(path.build.js));
 });
 
@@ -127,6 +135,9 @@ gulp.task('watch', function(){
     });
     $.watch([path.watch.widget_js], function(event, cb) {
         gulp.start('build:widget_js');        
+    });
+    $.watch([path.watch.admin_js], function(event, cb) {
+        gulp.start('build:admin_js');        
     });
     $.watch([path.watch.style], function(event, cb) {
         gulp.start('copy:style');

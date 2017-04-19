@@ -14,12 +14,12 @@
     // Upload mongo db from ftp server ==============================================
    		$con = new MongoClient();   		
 	    $arrayJsonData = uploadJsonFileFTP(IT_PRODUCT_FUATURES, JSON_RESOURCES);
-      uploadToMongodb($arrayJsonData, $con);
+      /*uploadToMongodb($arrayJsonData, $con);*/
       $timeNow =  strtotime("now");
 	    $time_init = array( 
 	        "timeInit" => $timeNow      
 	    );
-      $collection= $con-> test-> timeInit;    
+      /*$collection= $con-> test-> timeInit;    
    		$timeInit = $collection->findOne();
    		if(isset($timeInit["timeInit"])) {          
 		    $collection -> drop();
@@ -27,8 +27,8 @@
 		    $collection->insert($time_init);		       
 		  } else {
 		    $collection->insert($time_init);		          
-		  } 
-
+		  } */
+    return $timeNow;  
     //Upload mongo db colection from ftp after setup time ============================
    /* $timeNow =  strtotime("now");
     $time_init = array( 

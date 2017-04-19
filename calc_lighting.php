@@ -7,7 +7,7 @@
   require_once('functions/functions.php');
   require_once('functions/functions_select_typeLamp.php');  
   require_once('functions/get_select_typeLamp_mongoDB.php');
-
+  require_once('functions/upload_widget_data.php');
   
   header("Content-type: text/html; charset=utf-8;");
  

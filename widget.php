@@ -1,10 +1,10 @@
 <?php
   session_start();
        
-      if(isset($_POST["viewPDF"])) { 
-        $data = $_POST["local_data"];        
-        post_redirect($data);        
-     } 
+  if(isset($_POST["viewPDF"])) { 
+    $data = $_POST["local_data"];        
+    post_redirect($data);        
+  } 
   
 
   function post_redirect( $data) {
@@ -189,7 +189,7 @@
 
           <!-- End Bootstrap-tables -->  
           <!-- User Panel  -->           
-          <div class="row user-result-panel" id="user-result-panel">
+          <div class="row user-result-panel" id="user-result-panel">                    
             <button type="button" class="btn btn-sm btn-space btn-default col-md-1 view_pdf" id="view_pdf">
             PDF
             </button>             
@@ -202,13 +202,32 @@
           </div>          
           <!-- End User Panel  --> 
         </div>
-      </div>
+      </div>      
+    </div>
 
-      
+    <!-- Modal -->
+    <div class="modal fade" id="admin_panel" tabindex="-1" role="dialog" aria-labelledby="admin_panel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- build:js scripts/widget_vendor.js --> 
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>    
     <script src="bower_components/lodash/lodash.js"></script>    
     <script type="text/javascript" src="bower_components/bootstrap3-typeahead/bootstrap3-typeahead.js"></script>              
     <script src="bower_components/bootstrap-table/dist/bootstrap-table.js"></script>
