@@ -10907,10 +10907,30 @@ td {
   visibility: hidden;
   cursor: pointer;
 }
+.update_ml:hover {
+  background-color: #FF725E;
+}
+.alert-box {
+  background-color: #E7C576;
+  padding: 1rem;
+  margin-left: -15px;
+  margin-right: -15px;
+}
 .error_submit_admin {
   color: red;
   text-align: center;
-  height: 15px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.message_submit_admin {
+  color: green;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.message_last_update {
+  color: grey;
+  text-align: center;
   font-size: 1.5rem;
   font-weight: bold;
 }

@@ -4,11 +4,11 @@
    * [uploadJsonFile description]
    * @return [type] [description]
    */
-  function uploadJsonFileFTP($from, $to) {
-      $ftpObj = new FTPClient(); 
+  function uploadJsonFileFTP($ftpObj,$from, $to) {
+     /* $ftpObj = new FTPClient(); */
 
       // *** Connect ***  
-       $ftpObj -> connect(FTP_HOST, FTP_USER, FTP_PASS);
+       /*$ftpObj -> connect(FTP_HOST, FTP_USER, FTP_PASS);*/
       // *** Clear DIR for download file
           //clearFtpDirectori(JSON_RESOURCES_DIR);     
       // *** Download file ***

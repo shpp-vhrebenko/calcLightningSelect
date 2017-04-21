@@ -12,6 +12,9 @@ $data = 0;
 if(isset($_SESSION["calcLightningModuleCad5d"])) {
 	$data = $_SESSION["calcLightningModuleCad5d"];
 	unset($_SESSION["calcLightningModuleCad5d"]);
+} else {
+	echo "Dont have session data!!!";
+	exit();
 }
 
 

@@ -42,12 +42,16 @@
                   <label for="password" class="sr-only">Пароль</label>
                     <input type="password" class="form-control" name="password" id="password"
                       placeholder="Password" tabindex="2" required/>
-                </div> 
-                <p class="error_submit_admin" id="error_submit_admin"></p>               
-                <br/>
+                </div>                 
                 <div class="form-group ">       
                     <button type="button" id="submit_admin" tabindex="5" class="btn btn-lg btn-primary" disabled>Войти</button>
-                </div>
+                </div> 
+                <div class="alert-box">
+                  <p class="message_last_update" id="last_time_submit"></p>
+                  <p class="message_last_update" id="time_update"></p> 
+                  <p class="error_submit_admin" id="error_submit_admin"></p>                 
+                  <p class="message_submit_admin" id="result_submit_admin"></p>
+                </div>                
               </form>     
             </div>
           </div>

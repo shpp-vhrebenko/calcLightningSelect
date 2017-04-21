@@ -14,28 +14,25 @@
 
   date_default_timezone_set('UTC');
   //ini_set('max_input_vars', 3000); 
-  ini_set('max_execution_time', 300);
+  ini_set('max_execution_time', 600);
   ini_set('error_reporting', E_ALL);
   ini_set('display_errors', 1);
   ini_set('display_startup_errors', 1);  
  
   try {
      if ($_SERVER['REQUEST_METHOD'] === 'POST') {        
-        if(isset($_POST["calc_lighting"])) {         
-          /*foreach($_POST["currentRooms"] as $key => $value) {
-            $answer[$key] = $value;
-          }*/   
+        if(isset($_POST["calc_lighting"])) {           
           $resultArray["calcLighting"] = calcLightingArray($_POST["currentRooms"]);                    
           echo json_encode($resultArray); 
-
         } else if(isset($_POST["calc_countLamp"])) { 
-
           $resultArray["calcCountLamp"] = calcLighting($_POST["parameters"]); 
-          echo json_encode($resultArray);       
-
+          echo json_encode($resultArray); 
         } else if(isset($_POST["upload_widget_data"])) {
           $result["time"] = uploadWidgetData(); 
           echo json_encode($result); 
+        } else if(isset($_POST["get_time_last_update"])) {
+          $result["time"] = getLastTimeUpdateWidget(); 
+          echo json_encode($result);           
         } else {
           throw new Exception('Введенные данные некорректны', 1);           
         }
