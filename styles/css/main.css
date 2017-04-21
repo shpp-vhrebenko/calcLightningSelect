@@ -10603,6 +10603,9 @@ td {
   margin-top: 3px;
   margin-bottom: 0px;
 }
+.no-records-found {
+  visibility: hidden;
+}
 .alignLeft {
   text-align: left;
 }
@@ -10667,14 +10670,14 @@ td {
   border: 1px solid #E14E44;
   border-radius: 10px;
 }
-#select-box {
+.select-box {
   background-color: white;
   padding: 0 0 .1rem 0;
   background-clip: padding-box;
   border: 5px solid transparent;
   height: 300px;
 }
-#select-box .select-box__header {
+.select-box .select-box__header {
   background-color: #E6CB61;
   text-align: center;
   margin: 0 0 10px 0;
@@ -10686,16 +10689,23 @@ td {
   margin-bottom: 0px;
   margin-bottom: .5rem;
 }
-#select-box .form-group {
+.select-box .form-group {
   margin-bottom: 6px;
 }
-#select-box label {
+.select-box .search_lamp {
+  height: 25px;
+  padding: 0px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.select-box label {
   margin: 0px;
   padding: 0px;
   font-size: 1.3rem;
   text-align: left;
 }
-#select-box label.error {
+.select-box label.error {
   display: none!important;
 }
 .image-box {

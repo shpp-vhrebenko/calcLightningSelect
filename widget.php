@@ -65,14 +65,13 @@
                 <div class="form-group">
                   <label for="search_user_lamp" class="col-sm-5 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="Выбирете наименование светильника">Поиск</label>
                   <div class="col-sm-7">                    
-                    <input type="text" data-provide="typeahead" name="search_user_lamp"  class="form-control input-sm" id="search_user_lamp" placeholder="наименование светильника" /> 
+                    <input type="text" data-provide="typeahead" name="search_user_lamp"  class="form-control search_lamp" id="search_user_lamp" placeholder="наименование светильника" /> 
                   </div>
                 </div>                
                 <div class="form-group">
                   <label for="nameLamp" class="col-sm-5 control-label">Cветильник</label>
                   <div class="col-sm-7">                    
-                    <select name="nameLamp" id="nameLamp" class="room input-sm select-sm" required >
-                      <option selected value="">Выберите тип светильника</option>
+                    <select name="nameLamp" id="nameLamp" class="room input-sm select-sm" required >    
                     </select>
                   </div>
                 </div>
@@ -92,7 +91,7 @@
                   <label for="reflectionCoef" class="col-sm-5 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="Коэффициент отражения поверхностей">Коэф. отражения</label>
                   <div class="col-sm-7">                    
                     <select class="room input-sm select-sm" id="reflectionCoef" name="reflectionCoef" required>
-                      <option value="" selected>Выберите значение коэффициента отражения</option>  
+                      <!-- <option value="" selected>Выберите значение коэффициента отражения</option>   -->
                       <option value="0,0,0">Пол-0%, стены-0%, потолок-0%</option>            
                       <option value="30,30,10">Пол-30%, стены-30%, потолок-10%</option>
                       <option value="50,30,10">Пол-50%, стены-30%, потолок-10%</option>
@@ -108,7 +107,7 @@
                   <label for="safetyFactor" class="col-sm-5 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="Запас освещенности">Коэф. запаса</label>
                   <div class="col-sm-7">                    
                     <select class="room input-sm select-sm" id="safetyFactor" name="safetyFactor"  required>
-                      <option selected value="">Выберите значение коэффициента запаса</option>      
+                      <!-- <option selected value="">Выберите значение коэффициента запаса</option>    -->   
                       <option value="1.1">1.1</option>
                       <option value="1.4">1.4</option>
                       <option value="1.6">1.6</option>
@@ -120,14 +119,12 @@
                   <label for="requiredIllumination" class="col-sm-5 control-label" data-toggle="tooltip" data-placement="left" data-container="body" title="по ГОСТ">Треб. освещ. лк</label>
                   <div class="col-sm-7">                    
                     <select class="room input-sm select-sm" id="requiredIllumination" name="requiredIllumination" required>
-                      <option value="" selected>Выберите значение освещенности</option>
+                      <!-- <option value="" selected>Выберите значение освещенности</option> -->
                       <option value="1">Значение пользователя</option>
                       <option value="5">Чердаки</option>
                       <option value="100">Лестницы</option>
                       <option value="50">Коридоры</option>
-                      <option value="150">Вестибюли</option>
-                      <option value="50">Склады в зоне хранения товара</option>
-                      <option value="150">Вестибюли</option>
+                      <option value="150">Вестибюли</option>                                          
                       <option value="50">Склады в зоне хранения товара</option>
                       <option value="200">Склады в зоне приема товара</option>
                       <option value="200">Гаражи</option>
