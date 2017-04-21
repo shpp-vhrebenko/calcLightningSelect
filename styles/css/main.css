@@ -10497,7 +10497,7 @@ select.valid {
   line-height: 1.5;
   border-radius: 3px;
 }
-select.input-sm {
+select.select-sm {
   height: 25px;
   line-height: 25px;
 }
