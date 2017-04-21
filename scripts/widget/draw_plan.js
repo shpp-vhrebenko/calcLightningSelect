@@ -85,6 +85,26 @@ $('#draw-plan').on('click', '.select_all', function() {
   
 });
 
+$('#draw-plan').on('click', '.remove_all', function() { 
+  console.log("remove_all");
+  var floor = $(this).data('id'); 
+  $div = $('div#' + floor);
+  $tabContent = $('#draw-plan').find('.tab-content');
+  $currentTab = $tabContent.find($div);  
+ 
+  $currentTab.removeClass("selectAll");
+  $allRooms = $currentTab.find('polygon[id^=room]');    
+  $allRooms.attr("class","");
+  $allRooms.attr("fill","rgb(255,204,153)"); 
+  removeElementsFromCurRoom(floor, $allRooms.length); 
+  var currentRoom_2 = current_Room.getInstance().getCurrentRoom();    
+  var curRoomsLength_2 = current_Room.getInstance().getCurrenRoomLength();
+  if(curRoomsLength_2 === 0) {
+    /*$( "#set_data" ).prop( "disabled", 'disabled');*/
+    $('#set_data').removeClass('success');
+  }   
+});
+
 $('#draw-plan').on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {  
   var id = e.target.getAttribute("href"); 
   var $curDiv = $(id);  

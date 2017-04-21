@@ -201,15 +201,19 @@ function viewDraw(resultDraw) {
         $checkbox = $('<input>').attr({"type":"checkbox", "value":i, "class":"select_all col-md-2", "data-id": i,"name": "select_all_" + i});
         $checkboxLabel.append($checkbox).append($('<span>').addClass('checkboxTitle col-md-10').text("Все комнаты"));   
         $footerDraw.append($checkboxLabel);  */ 
-
-        $buttonAll = $('<button>').attr('data-id', i).addClass('btn btn-sm btn-default select_all col-md-3');        
+        $drawPanel = $('<div>').addClass('btn-group draw-panel');
+        $buttonAll = $('<button>').attr('data-id', i).addClass('btn btn-default btn-sm select_all col-md-5');        
         $buttonAll.append($('<span>').addClass('glyphicon glyphicon-th'));
-        $buttonAll.append('&nbsp;Все комнаты');               
+        $buttonAll.append('&nbsp;Все комнаты');  
+        $buttonRemoveAll = $('<button>').attr('data-id', i).addClass('btn btn-default btn-sm remove_all col-md-7');       
+        $buttonRemoveAll.append('Сбросить выделенное');
+        $drawPanel.append($buttonAll)
+                    .append($buttonRemoveAll);              
         $divRow = $('<div>').addClass('row');        
         $divCol_1 = $('<div>').addClass('col-md-12');
         $divCol_1.append(resultDraw[i]);
         $divRow.append($divCol_1)
-            .append($buttonAll);
+            .append($drawPanel);            
         $divTab.append($divRow);
 
         $('.tab-content').append($divTab);
