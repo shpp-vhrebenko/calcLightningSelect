@@ -10,7 +10,8 @@
     "jquery-ui": "^1.12.1",
     "bootstrap3-typeahead": "^4.0.2",
     "lodash": "^4.17.4",
-    "es5-shim": "^4.5.9"
+    "es5-shim": "^4.5.9",
+    "chosen": "^1.7.0"
   },
   "overrides": {},
   "devDependencies": {

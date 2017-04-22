@@ -11,10 +11,10 @@ class Room extends Polygon {
     function __construct($type,$name,$area_coords,$scaling,$button_id,$fill = 'rgb(234,234,234)', $border_color = "rgb(255,0,0)", $bord_width = 1, $tooltip = " onmousemove='ShowTooltips(this)' onmouseout='HideTooltips(this)' ") 
     {
       parent::__construct($fill, $border_color, $bord_width, $tooltip);
-      if($type && $type != "undefined"){
+      if($type != null && $type != "undefined"){
         $this->type=$type;
       } else {
-        $this->type="тип";
+        $this->type=" ";
       }      
       $this->name=$name;
       $this->area_coords=$area_coords;

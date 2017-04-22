@@ -345,15 +345,23 @@ $(document).ready(function() {
         $bTable.bootstrapTable('resetView', {height: height});        
     }); 
 
-    function getWindowHeight() {
-      var windowHeight = $(window).height(); 
-      var headerBlock = 300;
-      var buttonBlock = 40;
-      var otherBlock = 50;     
-      var curHeight = (windowHeight - (headerBlock + buttonBlock)) - otherBlock;     
-      return curHeight;   
-    }
+    
+    $('#nameLamp option').hover(function(e) {
+        console.log(e.target);
+    });
+     
 });
 //======================== END DOCUMENT READY =============================
 //=========================================================================
+$(document).on("hover",".active-option-select",function(){
+ console.log($(this).text());   
+});
 
+function getWindowHeight() {
+  var windowHeight = $(window).height(); 
+  var headerBlock = 300;
+  var buttonBlock = 40;
+  var otherBlock = 50;     
+  var curHeight = (windowHeight - (headerBlock + buttonBlock)) - otherBlock;     
+  return curHeight;   
+}  

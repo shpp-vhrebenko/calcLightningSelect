@@ -98,8 +98,8 @@ function initSelectorNameLamp() {
             var jsonResult = $.parseJSON(data);
             current_Room.getInstance().setLampSelect(jsonResult);
             $.each(jsonResult, function() {
-                $('#nameLamp').append(
-                    $('<option></option>').text(this.nameLamp)
+                var tooltipLink = "<img src='" + this.photo_lamp + " ' height='120' widht='220'>";
+                $option = $('<option></option>').text(this.nameLamp)
                     .val(this.nameLamp)
                     .attr('data-lumix', this.lumix)
                     .attr('data-power-lamp', this.powerLamp)
@@ -109,8 +109,12 @@ function initSelectorNameLamp() {
                     .attr('data-type-lamp', this.typeLamp)
                     .attr('data-apply-lamp', this.application_area)
                     .attr('data-key', this.key)
-                    .attr('data-price', this.price)
-                );
+                    .attr('data-price', this.price)                                      
+                    .attr('data-title', tooltipLink)
+                    .attr('onmousemove' ,'ShowTooltipOption(this)') 
+                    .attr('onmouseout', 'HideTooltipOption(this)');
+                $option.addClass('active-option-select');                                       
+                $('#nameLamp').append($option);
 
             });
             if (localDataLamp.nameLamp) {
@@ -123,7 +127,8 @@ function initSelectorNameLamp() {
             if (localDataLamp.applyLamp) {
                 $('#fieldset-lamp').css('visibility','visible');
                 $('#info_lamp').text(localDataLamp.applyLamp);
-            }
+            }           
+             
         },
         error: function(response, status, error) { // Данные не отправлены
             viewErrorResponse(response.reresponseText);
@@ -370,4 +375,20 @@ function getRoomPerimetr(arrayWalls) {
     return perimetr;
 }
 
+function ShowTooltipOption(element) {
+  var $curElement = $(element);
+  var title = $curElement.attr('data-photo-link'); 
+  var applyLamp = $curElement.attr('data-apply-lamp');  
+  $('#js_photo_lamp').attr('src', title);
+  $('#info_lamp').text(applyLamp);   
+}
+
+function HideTooltipOption(element) {   
+    if (localDataLamp.photoLink) {
+        $('#js_photo_lamp').attr('src', localDataLamp.photoLink);
+    }
+    if (localDataLamp.applyLamp) {        
+        $('#info_lamp').text(localDataLamp.applyLamp);
+    } 
+}
 //==============END FUNCTIONS MAIN WINDOW =====================================

@@ -71,7 +71,7 @@
                 <div class="form-group">
                   <label for="nameLamp" class="col-sm-5 control-label">Cветильник</label>
                   <div class="col-sm-7">                    
-                    <select name="nameLamp" id="nameLamp" class="room input-sm select-sm" required >    
+                    <select name="nameLamp" id="nameLamp" class="room input-sm select-sm nameLamp" size="5" required >    
                     </select>
                   </div>
                 </div>

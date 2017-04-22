@@ -18,7 +18,7 @@ window.addEventListener('message', function(event) {
     localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));*/
     sendResultForDrawPlan(JSON.stringify(data));           
   } else {
-    initSelectorNameLamp();
+    initSelectorNameLamp();   
   }
 }, false);
 

@@ -28,7 +28,11 @@ $('#draw-plan').on('click', '.select_all', function() {
     for (var i = 0; i < $allRooms.length; i++) {      
       var currentRoom = $allRooms[i];
       var currentId = currentRoom.getAttribute("id"); 
-      var currentTypeRoom = currentRoom.getAttribute("data-type-room");         
+      var currentTypeRoom = currentRoom.getAttribute("data-type-room");      
+      console.log(currentTypeRoom); 
+      if(currentTypeRoom === null) {
+        currentTypeRoom = undefined;
+      }        
       var curArray = currentId.split("_");    
       var curFloor = curArray[1];
       var curRoom = curArray[2];
@@ -142,7 +146,11 @@ function onSelectRoom(element) {
   var curArray = currentId.split("_");    
   var curFloor = curArray[1];
   var curRoom = curArray[2]; 
-  var currentTypeRoom = element.getAttribute("data-type-room");  
+  var currentTypeRoom = element.getAttribute("data-type-room");
+  if(currentTypeRoom === null) {
+    currentTypeRoom = undefined;
+  }
+  console.log(currentTypeRoom);  
   if(element.getAttribute("class") == "activePolygon" ) {
     element.removeAttribute("class");
     element.setAttribute("fill", "rgb(255,204,153)");   
