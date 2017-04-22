@@ -78,6 +78,10 @@
               $artikul = trim($document["artikul"]);           
               $arrayResult[$curentName]["key"] = $artikul;
             }
+            if(isset($document["cena"])) {            
+              $cena = trim($document["cena"]);           
+              $arrayResult[$curentName]["price"] = $cena;
+            }
             $arrayResult[$curentName]["producer"] = "Световые Технологии";
           }          
         }   

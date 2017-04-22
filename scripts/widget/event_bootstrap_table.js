@@ -123,7 +123,8 @@ function addLampsToTableData(typeLamp , floor, room) {
  * @param  {[string]} chengeName  [description]
  */
 function addLampToTableData(currentLamp, room, floor, edit) { 
-  console.log("addLampToTableData");  
+  console.log("addLampToTableData"); 
+  console.log(currentLamp); 
   var floor_number = parseInt(floor) + 1;
   var room_number = parseInt(room) + 1;
   var requiredIllumination = 0;  
@@ -169,7 +170,7 @@ function addLampToTableData(currentLamp, room, floor, edit) {
     allPowerLamps: (currentLamp.powerLamp * currentLamp.numberLamps),
     key: currentLamp.key,
     producer: currentLamp.producer,
-   /* usagecoefficient: currentLamp.usagecoefficient,*/
+    price: currentLamp.price,
     roomArea: currentLamp.resultCalc.roomArea,
     lampsCount: currentLamp.resultCalc.lampsCount, 
     lampsWatt: currentLamp.resultCalc.lampsWatt,   
