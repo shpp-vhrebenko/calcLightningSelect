@@ -67,8 +67,12 @@ function viewResultInTable(calcLighting) {
     for (var r = 0; r < rooms.length; r++) {
       var currentRoom = rooms[r];     
       if(currentRoom.typeLamp !== undefined) {        
-        var typeLamp = currentRoom.typeLamp;
-        addLampsToTableData(typeLamp, f, r, false);
+        var typeLamp = _.cloneDeep(currentRoom.typeLamp);
+        var typeRoom = undefined;
+        if(currentRoom.room_type !== undefined) {
+          typeRoom = currentRoom.room_type;
+        }
+        addLampsToTableData(typeLamp, f, r, typeRoom);
       }
     }   
   }      
@@ -108,10 +112,10 @@ function addLampInTableDataAfterEdit(objectLamp, nameLamp) {
  * @param {[string]} floor    [description]
  * @param {[string]} room     [description]
  */
-function addLampsToTableData(typeLamp , floor, room) {
+function addLampsToTableData(typeLamp , floor, room, typeRoom) {
   console.log("addLampsToTableData");   
   $.each(typeLamp, function(key, val) { 
-    addLampToTableData(val, room, floor, false);       
+    addLampToTableData(val, room, floor, false, typeRoom);       
   });
 }
 
@@ -122,9 +126,12 @@ function addLampsToTableData(typeLamp , floor, room) {
  * @param  {[integer]} floor       [description]
  * @param  {[string]} chengeName  [description]
  */
-function addLampToTableData(currentLamp, room, floor, edit) { 
+function addLampToTableData(currentLamp, room, floor, edit, typeRoom) { 
   console.log("addLampToTableData"); 
   console.log(currentLamp); 
+  if(typeRoom !== undefined) {
+    currentLamp.typeRoom = typeRoom;
+  }
   var floor_number = parseInt(floor) + 1;
   var room_number = parseInt(room) + 1;
   var requiredIllumination = 0;  

@@ -10927,9 +10927,6 @@ th {
 td {
   text-align: center;
 }
-.tooltip.top {
-  margin-top: 60px;
-}
 .tooltip.bottom {
   position: relative;
   z-index: 9999;

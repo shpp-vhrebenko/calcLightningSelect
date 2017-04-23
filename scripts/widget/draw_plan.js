@@ -187,7 +187,7 @@ function ShowTooltips(element) {
       trigger: 'manual',
       html: true,
       animation: false,
-      offset: '0 75%',
+   /*   offset: '0 75%',*/
       delay: { "show": 1000, "hide": 2000 },
       title:  function() {
           var currentId = $(this).attr('id');
