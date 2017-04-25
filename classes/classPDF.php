@@ -5,33 +5,9 @@
 
 	class PDF extends tFPDF
 {
-	// Load data
-	function LoadData()
-	{	
-		if (file_exists(JSON_RESULT_CALC)) { 
-	    $content = file_get_contents(JSON_RESULT_CALC);	      
-	    $array = json_decode($content, true); 
-      return $array["rooms"][0];       
-    } else {
-      throw new Exception('There is no file json_result_calc', 15);      
-    }
-  }
-	    
-	
-
-	// Simple table
-	function BasicTable($header, $data)
+	// view pdf list Lighting Devices In Rooms
+	function viewListInRooms($header, $data)
 	{
-		 /*// Header
-	    for ($i=0; $i < count($header); $i++) { 
-	        if($i != 0) {
-	            $this->Cell(80,7,$header[$i],1);
-	        } else {
-	            $this->Cell(40,7,$header[$i],1);
-	        }
-	    } 
-	      $this->Ln();*/
-      	// Color and font restoration
 		// Colors, line width and bold font
 	    $this->SetFillColor(236,125,99);
 	    $this->SetTextColor(255);
@@ -81,39 +57,67 @@
       }
 
       // Closing line
-      $this->Cell(array_sum($w),0,'','T');
-	   /* foreach($header as $col)
-	        $this->Cell(40,7,$col,1);
-	    $this->Ln();*/
-	    // Data     
-     /* foreach ($data as $key => $value) {
-        if($key != "nameLamp") {
-          $this->Cell(40,6,$key,1);          
-          $this->Cell(80,6,$value,1);
-        }        
-        $this->Ln();
-      }  */     
-	   /* foreach($data as $row)
-	    {
-	        foreach($row as $col)
-	            $this->Cell(40,6,$col,1);
-	        $this->Ln();
-	    }*/
-     /* $currentX = $this->GetX();
-      $currentY = $this->GetY();
-      $this->SetXY(($currentX), ($currentY));
-      $array = explode(";", $data["nameLamp"]);
-      foreach ($array as $value) {
-        $this->Cell(140,7,$value,1);
-        $this->Ln();
-      }*/
-      //$this->Cell(80,7,$data["nameLamp"]);
+      $this->Cell(array_sum($w),0,'','T');	  
 	}
 
-	// Better table
-	function ImprovedTable($header, $data)
+	// view pdf list Lighting Devices
+	function viewList($header, $data)
 	{
-	    // Column widths
+	   // Colors, line width and bold font
+	    $this->SetFillColor(236,125,99);
+	    $this->SetTextColor(255);
+	    $this->SetDrawColor(236,125,99);
+	    $this->SetLineWidth(.3);	    
+	    // Header
+		// Column widths
+	    $w = array(10, 30, 60, 80, 30, 30, 30);
+	    // Header
+	    for($i=0;$i<count($header);$i++) {      	
+	        $this->Cell($w[$i],7,$header[$i],1,0,'C',1);
+	    }
+	    $this->Ln();
+
+	
+      	for ($i=0; $i < count($data); $i++) { 
+	        $curLamp = $data[$i];
+	        $this->SetFillColor(255,255,255); 
+            $this->SetDrawColor(236,125,99);
+    		$this->SetLineWidth(.3);
+    		$this->SetTextColor(0);	
+    		$number = $i+1; 
+    		$this->Cell($w[0],15,$number,1,0,'R'); 
+    		if(isset($curLamp["key"]) && $curLamp["key"] !== 'undefined') {
+            	$this->Cell($w[1],15,$curLamp["key"],1,0,'R');
+            } else {
+            	$this->Cell($w[1],15,"---",1,0,'C');
+            }
+            if(isset($curLamp["producer"]) && $curLamp["producer"] !== 'undefined') {
+            	$this->MultiCell($w[2],15,$curLamp["producer"],1,0,'L');
+            } else {
+            	$this->MultiCell($w[2],15,"---",1,0,'C');
+            }            
+            $this->MultiCell($w[3],15,$curLamp["nameLamp"],1,0,'L'); 
+            $strRooms =$this->getStrRooms($curLamp, $w[5]);             
+            $this->MultiCell($w[5],15,$strRooms,1,0,'C'); 
+            $this->Cell($w[4],15,$curLamp["count"],1,0,'C');
+            if(isset($curLamp["photoLink"]) && $curLamp["photoLink"] !== 'undefined') { 
+            	$this->Cell($w[6],15," ",1,0,'C');
+            	$y = ($i * 15) + 15;          	
+            	$this->Image($curLamp["photoLink"],257,$y,15,15);
+            } else {
+            	$this->Cell($w[6],15,"---",1,0,'C');
+            }             
+                                        
+            $this->Ln();
+            	       
+        }
+      
+
+      // Closing line
+      $this->Cell(array_sum($w),0,'','T');
+
+
+	   /* // Column widths
 	    $w = array(40, 35, 40, 45);
 	    // Header
 	    for($i=0;$i<count($header);$i++)
@@ -129,7 +133,26 @@
 	        $this->Ln();
 	    }
 	    // Closing line
-	    $this->Cell(array_sum($w),0,'','T');
+	    $this->Cell(array_sum($w),0,'','T');*/
+	}
+
+	function getStrRooms($curLamp, $w) {
+		$arrayRooms = $curLamp["floorRoom"];
+		$resultStr = " ";
+		for ($f=0; $f < count($arrayRooms); $f++) { 
+			$curRooms = $arrayRooms[$f];
+			if(($f + 1) !== 1) {
+				$resultStr = $resultStr.$f."/";
+			}
+			for ($r=0; $r < count($curRooms); $r++) { 
+				$curRoom = $curRooms[$r];
+				if($curRoom === "lamp") {
+					$room = $r + 1;
+					$resultStr = $resultStr. $room .",";
+				}
+			}
+		}
+		return $resultStr;
 	}
 
 	// Colored table

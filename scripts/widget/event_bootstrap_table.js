@@ -181,6 +181,7 @@ function addLampToTableData(currentLamp, room, floor, edit, typeRoom) {
     producer: currentLamp.producer,
     price: currentLamp.price,
     roomArea: currentLamp.resultCalc.roomArea,
+    photoLink: currentLamp.photoLink,
     lampsCount: currentLamp.resultCalc.lampsCount, 
     lampsWatt: currentLamp.resultCalc.lampsWatt,   
     resultCalc: currentLamp.resultCalc   

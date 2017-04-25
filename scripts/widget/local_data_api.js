@@ -50,7 +50,7 @@ var current_Room = (function() {
     };
 
     var getTableData = function() {
-        return tableData;
+        return _.cloneDeep(tableData);
     };
 
     var getResultTypeLamp = function() {
@@ -352,5 +352,72 @@ function removeElementsFromCurRoom(floor, lengthRooms) {
     for (var i = 0; i < lengthRooms; i++) {
         current_Room.getInstance().removeElementCurrentRooms(i, floor);
     }
+}
+
+function getListLightingDevices() {
+    console.log("getListLightingDevices");
+    var tableData = current_Room.getInstance().getTableData(); 
+    var curData = [];
+    var resultList = [];
+    while (true) {
+        console.log(resultList);
+       if(tableData.length > 0) {
+            var curLamp = tableData[0];
+            var newItemList = {
+                nameLamp: curLamp.nameLamp,
+                key: curLamp.key,
+                producer: curLamp.producer,               
+                photoLink: curLamp.photoLink,
+                count: curLamp.resultCalc.lampsCount,
+                floorRoom: []
+            };
+
+            var param = curLamp.roomNumber.split('_');            
+            /*var str = param[0] + "." + param[1];
+            newItemList.floorRoom[str] = "lamp";*/
+            var floor = parseInt(param[0]) - 1;
+            var room =  parseInt(param[1]) - 1;
+            newItemList.floorRoom[floor] = [];
+            newItemList.floorRoom[floor][room] = "lamp";
+
+            if(tableData.length >= 2) {
+                console.log("2");
+                curData = tableData.slice(1);
+                tableData = [];               
+                for (var i = 0; i < curData.length; i++) {
+                    var curItemLamp = curData[i];
+                    if(curItemLamp.nameLamp == newItemList.nameLamp) {
+                        newItemList.count = newItemList.count + curItemLamp.resultCalc.lampsCount;
+                        var roomParam = curItemLamp.roomNumber.split('_');
+                        /*str = roomParam[0] + "." + roomParam[1];  
+                        newItemList.floorRoom[str] = "lamp";*/
+                        var f = parseInt(roomParam[0]) - 1;
+                        var r =  parseInt(roomParam[1]) - 1;
+                        if(newItemList.floorRoom[f] === undefined) {
+                            newItemList.floorRoom[f] = [];
+                            newItemList.floorRoom[f][r] = "lamp";
+                        } else {
+                            newItemList.floorRoom[f][r] = "lamp";
+                        }                       
+                          
+                    } else {
+                        tableData.push(curItemLamp);
+                    } 
+                }
+                resultList.push(newItemList);
+            } else {
+                resultList.push(newItemList);
+                tableData = [];
+            }  
+            console.log(tableData);
+            console.log(resultList);          
+       } else {
+            break;
+       }
+        
+    }  
+
+    console.log(resultList); 
+    return resultList; 
 }
 //=============== FUNCTION FOR WORK WITH LOCAL DATA API ===============

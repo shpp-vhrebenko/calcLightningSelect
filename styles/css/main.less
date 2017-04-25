@@ -3,13 +3,11 @@
 @import (less) "../../bower_components/bootstrp3-editable/bootstrap3-editable/css/bootstrap-editable.css";
 @import (less) "../../bower_components/bootstrap-table/dist/extensions/group-by-v2/bootstrap-table-group-by.css";
 @import (less) "../../bower_components/animate.css/animate.css";
-@import (less) "../../bower_components/chosen/chosen.css";
+@import (less) "../../bower_components/bootstrap-select/dist/css/bootstrap-select.css";
 @import url('https://fonts.googleapis.com/css?family=Russo+One&subset=cyrillic');
 @import "spiner";
 @import "base_variables";
 @import "mixins";
-
-
 
 
 //=======BASE_BODY_STYLE=============
@@ -91,10 +89,10 @@ select {
 input,
 select {
     &.error {
-        border: 1px solid red;
+        .border-style-error;      
     }
     &.valid {
-        border: 1px solid #0BBFF2;
+        .border-style-valid
     }
 }
 
@@ -172,6 +170,20 @@ td {
 }
 .white-tooltip.tooltip-arrow {     
     background-color:grey;
+}
+
+.bootstrap-select.btn-group .dropdown-menu {
+    width: 270px;
+}
+
+.dropup.col-md-1 {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-right: 1.5rem;
+}
+
+.dropdown-menu {
+    left: -60px;
 }
 //============= End reload bootstrap style =========//
 //=========== Reload bootstrap-table style =========//
@@ -352,7 +364,18 @@ td {
         border-radius: 3px;
     }
     select.nameLamp {
-        height: 45px;
+      width: 210px;
+      height: 32px;
+    } 
+    .btn-group.bootstrap-select.room.nameLamp.error {
+        .btn.dropdown-toggle.btn-default {
+            border-color: #E14E44;
+        }
+    }
+    .btn-group.bootstrap-select.room.nameLamp.valid {
+        .btn.dropdown-toggle.btn-default {
+            border-color: #0BBFF2;
+        }
     }
     label {
         margin: 0px;
@@ -362,7 +385,7 @@ td {
         }
         font-size: 1.3rem;
         text-align: left;
-    }  
+    }      
 }
 
 .image-box {   
@@ -438,11 +461,14 @@ td {
     margin-right: 1rem;
     margin-top: 5px;
     margin-bottom: 5px;    
-    .view_pdf {  
+    .view-pdf {  
         font-weight: bold;        
         color: #919191; 
-        margin-left: 73.2%;                              
-    } 
+        margin-left: 73.2%; 
+        .view-pdf__item {
+            cursor: pointer;
+        }                             
+    }     
     .put_data {
         font-weight: bold;                           
     }    

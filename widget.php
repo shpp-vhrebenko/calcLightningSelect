@@ -1,14 +1,21 @@
 <?php
   session_start();
        
-  if(isset($_POST["viewPDF"])) { 
-    $data = $_POST["local_data"];        
-    post_redirect($data);        
-  } 
+  if(isset($_POST["viewPDF"])) {
+    if(isset($_POST["viewListInRooms"])) {
+      $data = $_POST["local_data"];        
+      initialSessionParam($data, "viewListInRooms");  
+    } else if(isset($_POST["viewList"])) {
+      $data = $_POST["local_data"];        
+      initialSessionParam($data, "viewList"); 
+    }
+          
+  }
   
 
-  function post_redirect( $data) {
-      $_SESSION['calcLightningModuleCad5d'] = $data;      
+  function initialSessionParam($data, $type_view) {
+      $_SESSION['calcLightningModuleCad5d'] = $data; 
+      $_SESSION['calcLMCad5dTypeView'] = $type_view;     
   }
 ?>
 
@@ -71,7 +78,7 @@
                 <div class="form-group">
                   <label for="nameLamp" class="col-sm-5 control-label">Cветильник</label>
                   <div class="col-sm-7">                    
-                    <select name="nameLamp" id="nameLamp" class="room input-sm select-sm nameLamp" size="5" required >    
+                    <select name="nameLamp" id="nameLamp" class="room nameLamp" required >   
                     </select>
                   </div>
                 </div>
@@ -187,9 +194,14 @@
           <!-- End Bootstrap-tables -->  
           <!-- User Panel  -->           
           <div class="row user-result-panel" id="user-result-panel">                    
-            <button type="button" class="btn btn-sm btn-space btn-default col-md-1 view_pdf" id="view_pdf">
-            PDF
-            </button>             
+            <div class="dropup col-md-1 half-col-md view-pdf">
+              <button class="btn btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown">PDF
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><a type="button" class="view-pdf__item" id="view_pdf_listLightingDevicesInRooms">Ведомость осветительных приборов по помещениям</a></li>
+                <li><a type="button" class="view-pdf__item" id="view_pdf_listLightingDevices">Ведомость осветительных приборов</a></li>                
+              </ul>
+            </div>            
             <button type="button" class="btn btn-sm btn-space btn-primary col-sm-1 put_data" id="put_data">
               Сохранить
             </button> 
@@ -221,7 +233,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>    
 
     <!-- build:js scripts/widget_vendor.js --> 
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>    
@@ -232,7 +244,7 @@
     <script src="bower_components/bootstrp3-editable/bootstrap3-editable/js/bootstrap-editable.js"></script> 
     <script src="bower_components/bootstrap-table/dist/extensions/editable/bootstrap-table-editable.js"></script>
     <script src="bower_components/bootstrap-table/dist/extensions/group-by-v2/bootstrap-table-group-by.js"></script>
-    <!-- <script src="vendor/bootstrap-table-sortBy-v3.js"></script> -->
+    <script src="bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
     <script src="bower_components/bootstrap-table/dist/locale/bootstrap-table-ru-RU.js"></script>
     <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/jquery-validation/dist/jquery.validate.js"></script>     

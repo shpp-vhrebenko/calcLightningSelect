@@ -93,7 +93,11 @@ $('#nameLamp').change(function() {
       }
       localDataLamp[key]  = value;      
     });   
-    localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));
+    localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));    
+    var nameLampSelectButton = $('.btn-group.bootstrap-select.room.nameLamp');
+    console.log(nameLampSelectButton);
+    nameLampSelectButton.removeClass('error');
+    nameLampSelectButton.addClass('valid');
   }        
 });
 

@@ -11,7 +11,8 @@
     "bootstrap3-typeahead": "^4.0.2",
     "lodash": "^4.17.4",
     "es5-shim": "^4.5.9",
-    "chosen": "^1.7.0"
+    "chosen": "^1.7.0",
+    "bootstrap-select": "^1.12.2"
   },
   "overrides": {},
   "devDependencies": {

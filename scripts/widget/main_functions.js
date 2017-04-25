@@ -98,7 +98,7 @@ function initSelectorNameLamp() {
             var jsonResult = $.parseJSON(data);
             current_Room.getInstance().setLampSelect(jsonResult);
             $.each(jsonResult, function() {
-                var tooltipLink = "<img src='" + this.photo_lamp + " ' height='120' widht='220'>";
+               /* var tooltipLink = "<img src='" + this.photo_lamp + " ' height='120' widht='220'>";*/
                 $option = $('<option></option>').text(this.nameLamp)
                     .val(this.nameLamp)
                     .attr('data-lumix', this.lumix)
@@ -110,9 +110,12 @@ function initSelectorNameLamp() {
                     .attr('data-apply-lamp', this.application_area)
                     .attr('data-key', this.key)
                     .attr('data-price', this.price)                                      
-                    .attr('data-title', tooltipLink)
-                    .attr('onmousemove' ,'ShowTooltipOption(this)') 
-                    .attr('onmouseout', 'HideTooltipOption(this)');
+                    /*.attr('data-title', tooltipLink)*/
+                    .attr('data-content',"<span" + 
+                        " data-apply-lamp='" + this.application_area + "'" +
+                        " data-photo-link='" + this.photo_lamp + "'" +
+                        " onmousemove='ShowTooltipOption(this)' " +
+                        " onmouseout='HideTooltipOption(this)'>" + this.nameLamp + "</span>");                    
                 $option.addClass('active-option-select');                                       
                 $('#nameLamp').append($option);
 
@@ -127,7 +130,12 @@ function initSelectorNameLamp() {
             if (localDataLamp.applyLamp) {
                 $('#fieldset-lamp').css('visibility','visible');
                 $('#info_lamp').text(localDataLamp.applyLamp);
-            }           
+            }    
+            $('#nameLamp').selectpicker({              
+              size: 10,              
+              width: 210
+            });
+       
              
         },
         error: function(response, status, error) { // Данные не отправлены
@@ -375,20 +383,22 @@ function getRoomPerimetr(arrayWalls) {
     return perimetr;
 }
 
-function ShowTooltipOption(element) {
-  var $curElement = $(element);
-  var title = $curElement.attr('data-photo-link'); 
-  var applyLamp = $curElement.attr('data-apply-lamp');  
-  $('#js_photo_lamp').attr('src', title);
-  $('#info_lamp').text(applyLamp);   
+function ShowTooltipOption(element) {    
+    var $curElement = $(element);
+    var title = $curElement.attr('data-photo-link');    
+    var applyLamp = $curElement.attr('data-apply-lamp');    
+    $('#js_photo_lamp').attr('src', title);
+    $('#info_lamp').text(applyLamp);   
 }
 
-function HideTooltipOption(element) {   
+function HideTooltipOption(element) {     
     if (localDataLamp.photoLink) {
         $('#js_photo_lamp').attr('src', localDataLamp.photoLink);
+    } else {
+        $('#js_photo_lamp').attr('src', "");
     }
     if (localDataLamp.applyLamp) {        
         $('#info_lamp').text(localDataLamp.applyLamp);
-    } 
+    }
 }
 //==============END FUNCTIONS MAIN WINDOW =====================================

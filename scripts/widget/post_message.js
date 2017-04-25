@@ -35,34 +35,45 @@ $('#put_data').on('click', function(event) {
 /**
  * [get json data from parent window] 
  */
-$('#view_pdf').on('click', function(event) {
+$('#view_pdf_listLightingDevicesInRooms').on('click', function(event) {
   event.preventDefault();  
-
- /* var win = window.open("viewPDF.php", "PDF", "width=600,height=600");    
-       setTimeout(function(){
-                    win.postMessage({message: {cmd: 'put_data', data: 300}},"*");
-                  },1000);
-  win.focus();  */
   var local_data = current_Room.getInstance().getResultTypeLamp();
-  var json_object = local_data;
-  var parentURL = window.location.hash.slice(1);   
+  var json_object = local_data;    
   $.ajax({
     url: 'widget.php',
     type: 'POST',    
-    data: {viewPDF: true, local_data: json_object},
+    data: {viewPDF: true, viewListInRooms: true , local_data: json_object},
   })
   .done(function() {
-    console.log("success");
-    /*window.top.location.href = "viewPDF.php";*/ 
-    parent.window.postMessage({message: {cmd: 'viewPDF'}}, parentURL);
+    console.log("success");    
+    window.open('viewPDF.php', 'Ведомость осветительных приборов');    
   })
   .fail(function() {
     console.log("error");
   })
   .always(function() {
     console.log("complete");
-  });
-  
+  });  
+});
+
+$('#view_pdf_listLightingDevices').on('click', function(event) {
+  event.preventDefault();  
+  var listDevices = getListLightingDevices();    
+  $.ajax({
+    url: 'widget.php',
+    type: 'POST',    
+    data: {viewPDF: true, viewList: true,  local_data: listDevices},
+  })
+  .done(function() {
+    console.log("success");    
+    window.open('viewPDF.php', 'Ведомость осветительных приборов');    
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
+  });  
 });
 
 /**
