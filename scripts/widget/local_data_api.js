@@ -56,7 +56,7 @@ var current_Room = (function() {
     var getResultTypeLamp = function() {
         var currentData = clearTypeLamp(_.cloneDeep(instanceTypeLamp));        
         _.times(tableData.length, function(i) {
-            var currentLamp = tableData[i];
+            var currentLamp = filterItem(tableData[i]);
             var roomNumber = currentLamp.roomNumber;
             var roomParam = roomNumber.split("_");    
             var floor = parseInt(roomParam[0]) - 1;
@@ -81,6 +81,32 @@ var current_Room = (function() {
         });        
         return currentData;
     };
+
+    function filterItem(item) {                
+        var resultItem = _.pick(item, ['nameLamp',
+                                        'roomNumber',
+                                        'requiredIllumination',
+                                        'reflectionCoef',
+                                        'safetyFactor',
+                                        'powerLamp',
+                                        'heightRoom',
+                                        'lampsWorkHeight',
+                                        'customRequiredIllumination',
+                                        'lumix',
+                                        'typeLamp',
+                                        'typeRoom',
+                                        'numberLamps',
+                                        'allPowerLamps',
+                                        'key',
+                                        'producer',
+                                        'price',
+                                        'roomArea',
+                                        'photoLink',
+                                        'lampsCount',
+                                        'lampsWatt',
+                                        'resultCalc']);
+        return resultItem;
+    }
 
     function clearTypeLamp(inputObject) {
          _.times(inputObject.floors.length, function(f) {
