@@ -71,9 +71,11 @@
 		// Column widths
 	    $w = array(10, 30, 60, 80, 50, 20, 30);
 	    // Header
+	    $this->SetFontSize(15);
 	    $this->Cell(array_sum($w),10,'Ведомость осветительных приборов',0,0,'C');	
 	    $this->Ln();
 	    // Colors, line width and bold font
+	    $this->SetFontSize(10);
 	    $this->SetFillColor(236,125,99);
 	    $this->SetTextColor(255);
 	    $this->SetDrawColor(236,125,99);
@@ -107,7 +109,7 @@
         	$y=$this->GetY();                       
             $this->MultiCell($w[4],7.5,$curLamp["paramStr"],'T'); 
             $this->SetXY($x+$w[4],$y);           
-            $this->Cell($w[5],15,$curLamp["count"],1,0,'C');
+            $this->Cell($w[5],15,$curLamp["count"],1,0,'R');
             if(isset($curLamp["photoLink"]) && $curLamp["photoLink"] !== 'undefined') { 
             	$this->Cell($w[6],15," ",1,0,'C');
             	$y = ($i * 15) + 25;          	

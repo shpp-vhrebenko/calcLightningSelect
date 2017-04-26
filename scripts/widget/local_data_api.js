@@ -428,14 +428,23 @@ function parsingRoomParam(params) {
     var resultStr = "";
     $.each( boxParam, function( key, value ) {        
         var param = key.split("_");
-        var floor = param[1];        
-        resultStr = resultStr + floor + "/";        
+        var floor = param[1]; 
+        if(floor != 1) {
+           resultStr = resultStr + "Этаж " + floor + ". Помещения:";  
+        } else {
+           resultStr = resultStr + "Помещения:"; 
+        }        
+               
         var dopStr = "";
         for (var i = 0; i < value.length; i++) {
             if(i != (value.length - 1)) {
-                dopStr = dopStr + value[i] + ",";
+                if(i == 1 && floor != 1) {
+                    dopStr = dopStr + value[i] + "," + "\n";
+                } else {
+                    dopStr = dopStr + value[i] + ",";
+                }                
             } else {
-                dopStr = dopStr + value[i] + ";";
+                dopStr = dopStr + value[i] + ".";
             }            
         } 
         resultStr = resultStr + dopStr;
