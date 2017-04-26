@@ -372,13 +372,12 @@ function getListLightingDevices() {
                 floorRoom: []
             };
 
-            var param = curLamp.roomNumber.split('_');            
-            /*var str = param[0] + "." + param[1];
-            newItemList.floorRoom[str] = "lamp";*/
+            /*var param = curLamp.roomNumber.split('_');            
             var floor = parseInt(param[0]) - 1;
             var room =  parseInt(param[1]) - 1;
             newItemList.floorRoom[floor] = [];
-            newItemList.floorRoom[floor][room] = "lamp";
+            newItemList.floorRoom[floor][room] = "lamp";*/
+            newItemList.floorRoom.push(curLamp.roomNumber);
 
             if(tableData.length >= 2) {
                 console.log("2");
@@ -388,18 +387,7 @@ function getListLightingDevices() {
                     var curItemLamp = curData[i];
                     if(curItemLamp.nameLamp == newItemList.nameLamp) {
                         newItemList.count = newItemList.count + curItemLamp.resultCalc.lampsCount;
-                        var roomParam = curItemLamp.roomNumber.split('_');
-                        /*str = roomParam[0] + "." + roomParam[1];  
-                        newItemList.floorRoom[str] = "lamp";*/
-                        var f = parseInt(roomParam[0]) - 1;
-                        var r =  parseInt(roomParam[1]) - 1;
-                        if(newItemList.floorRoom[f] === undefined) {
-                            newItemList.floorRoom[f] = [];
-                            newItemList.floorRoom[f][r] = "lamp";
-                        } else {
-                            newItemList.floorRoom[f][r] = "lamp";
-                        }                       
-                          
+                        newItemList.floorRoom.push(curItemLamp.roomNumber);                         
                     } else {
                         tableData.push(curItemLamp);
                     } 
@@ -415,9 +403,44 @@ function getListLightingDevices() {
             break;
        }
         
-    }  
-
+    } 
+    _.times(resultList.length, function(iter) {
+        resultList[iter].paramStr = parsingRoomParam(resultList[iter].floorRoom);
+    });     
     console.log(resultList); 
     return resultList; 
 }
+
+function parsingRoomParam(params) {
+    var boxParam = {};
+    _.times(params.length, function(iter) {
+        var cur = params[iter];
+        var param = cur.split("_");
+        var floor = param[0];
+        var room = param[1];
+        if(boxParam["floor_" + floor] === undefined) {
+            boxParam["floor_" + floor] = [];
+            boxParam["floor_" + floor].push(room); 
+        } else {
+            boxParam["floor_" + floor].push(room);
+        }
+    });     
+    var resultStr = "";
+    $.each( boxParam, function( key, value ) {        
+        var param = key.split("_");
+        var floor = param[1];        
+        resultStr = resultStr + floor + "/";        
+        var dopStr = "";
+        for (var i = 0; i < value.length; i++) {
+            if(i != (value.length - 1)) {
+                dopStr = dopStr + value[i] + ",";
+            } else {
+                dopStr = dopStr + value[i] + ";";
+            }            
+        } 
+        resultStr = resultStr + dopStr;
+    });
+    return resultStr;
+}
+
 //=============== FUNCTION FOR WORK WITH LOCAL DATA API ===============

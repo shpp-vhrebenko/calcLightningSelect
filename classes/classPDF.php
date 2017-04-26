@@ -8,15 +8,18 @@
 	// view pdf list Lighting Devices In Rooms
 	function viewListInRooms($header, $data)
 	{
-		// Colors, line width and bold font
-	    $this->SetFillColor(236,125,99);
-	    $this->SetTextColor(255);
-	    $this->SetDrawColor(236,125,99);
-	    $this->SetLineWidth(.3);	    
+			    
 	    // Header
 		// Column widths
 	    $w = array(80, 40, 30, 40);
 	    // Header
+	    $this->Cell(array_sum($w),10,'Ведомость осветительных приборов по помещениям',0,0,'C');	
+	    $this->Ln();
+	    // Colors, line width and bold font
+	    $this->SetFillColor(236,125,99);
+	    $this->SetTextColor(255);
+	    $this->SetDrawColor(236,125,99);
+	    $this->SetLineWidth(.3);
 	    for($i=0;$i<count($header);$i++) {      	
 	        $this->Cell($w[$i],7,$header[$i],1,0,'C',1);
 	    }
@@ -63,15 +66,18 @@
 	// view pdf list Lighting Devices
 	function viewList($header, $data)
 	{
-	   // Colors, line width and bold font
+	   	    
+	    // Header
+		// Column widths
+	    $w = array(10, 30, 60, 80, 50, 20, 30);
+	    // Header
+	    $this->Cell(array_sum($w),10,'Ведомость осветительных приборов',0,0,'C');	
+	    $this->Ln();
+	    // Colors, line width and bold font
 	    $this->SetFillColor(236,125,99);
 	    $this->SetTextColor(255);
 	    $this->SetDrawColor(236,125,99);
-	    $this->SetLineWidth(.3);	    
-	    // Header
-		// Column widths
-	    $w = array(10, 30, 60, 80, 30, 30, 30);
-	    // Header
+	    $this->SetLineWidth(.3);
 	    for($i=0;$i<count($header);$i++) {      	
 	        $this->Cell($w[$i],7,$header[$i],1,0,'C',1);
 	    }
@@ -92,18 +98,20 @@
             	$this->Cell($w[1],15,"---",1,0,'C');
             }
             if(isset($curLamp["producer"]) && $curLamp["producer"] !== 'undefined') {
-            	$this->MultiCell($w[2],15,$curLamp["producer"],1,0,'L');
+            	$this->Cell($w[2],15,$curLamp["producer"],1,0,'L');
             } else {
-            	$this->MultiCell($w[2],15,"---",1,0,'C');
+            	$this->Cell($w[2],15,"---",1,0,'C');
             }            
-            $this->MultiCell($w[3],15,$curLamp["nameLamp"],1,0,'L'); 
-            $strRooms =$this->getStrRooms($curLamp, $w[5]);             
-            $this->MultiCell($w[5],15,$strRooms,1,0,'C'); 
-            $this->Cell($w[4],15,$curLamp["count"],1,0,'C');
+            $this->Cell($w[3],15,$curLamp["nameLamp"],1,0,'L'); 
+            $x=$this->GetX();
+        	$y=$this->GetY();                       
+            $this->MultiCell($w[4],7.5,$curLamp["paramStr"],'T'); 
+            $this->SetXY($x+$w[4],$y);           
+            $this->Cell($w[5],15,$curLamp["count"],1,0,'C');
             if(isset($curLamp["photoLink"]) && $curLamp["photoLink"] !== 'undefined') { 
             	$this->Cell($w[6],15," ",1,0,'C');
-            	$y = ($i * 15) + 15;          	
-            	$this->Image($curLamp["photoLink"],257,$y,15,15);
+            	$y = ($i * 15) + 25;          	
+            	$this->Image($curLamp["photoLink"],267,$y,15,15);
             } else {
             	$this->Cell($w[6],15,"---",1,0,'C');
             }             

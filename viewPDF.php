@@ -25,7 +25,7 @@ switch ($type_view) {
 		$pdf = new PDF();			
 	  	$header = array('Наименование','Артикул', 'Количество','Мощность');  
 	  	$pdf->AddFont('DejaVuSans','','DejaVuSans.ttf',true);
-	  	$pdf->SetFont('DejaVuSans','',12);
+	  	$pdf->SetFont('DejaVuSans','',10);
 	  	$title = 'Ведомость осветительных приборов по помещениям';
 		$pdf->SetTitle($title,1);
 	  	
