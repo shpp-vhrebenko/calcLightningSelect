@@ -10866,6 +10866,13 @@ td {
 .dropdown-menu {
   left: -60px;
 }
+.bootstrap-select > .dropdown-toggle {
+  height: 25px;
+  padding: 2px 25px 5px 10px;
+}
+.table > tbody > tr.info > td {
+  background-color: #ECEDEE;
+}
 .search {
   z-index: 9999;
   position: absolute;
@@ -11035,7 +11042,7 @@ td {
 }
 .select-box select.nameLamp {
   width: 210px;
-  height: 32px;
+  height: 25px;
 }
 .select-box .btn-group.bootstrap-select.room.nameLamp.error .btn.dropdown-toggle.btn-default {
   border-color: #E14E44;

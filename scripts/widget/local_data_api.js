@@ -359,8 +359,7 @@ function getListLightingDevices() {
     var tableData = current_Room.getInstance().getTableData(); 
     var curData = [];
     var resultList = [];
-    while (true) {
-        console.log(resultList);
+    while (true) {        
        if(tableData.length > 0) {
             var curLamp = tableData[0];
             var newItemList = {
@@ -379,8 +378,7 @@ function getListLightingDevices() {
             newItemList.floorRoom[floor][room] = "lamp";*/
             newItemList.floorRoom.push(curLamp.roomNumber);
 
-            if(tableData.length >= 2) {
-                console.log("2");
+            if(tableData.length >= 2) {                
                 curData = tableData.slice(1);
                 tableData = [];               
                 for (var i = 0; i < curData.length; i++) {
@@ -396,9 +394,7 @@ function getListLightingDevices() {
             } else {
                 resultList.push(newItemList);
                 tableData = [];
-            }  
-            console.log(tableData);
-            console.log(resultList);          
+            }                      
        } else {
             break;
        }
@@ -406,8 +402,7 @@ function getListLightingDevices() {
     } 
     _.times(resultList.length, function(iter) {
         resultList[iter].paramStr = parsingRoomParam(resultList[iter].floorRoom);
-    });     
-    console.log(resultList); 
+    });        
     return resultList; 
 }
 
