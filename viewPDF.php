@@ -44,9 +44,8 @@ switch ($type_view) {
 		$pdf->SetTitle($title,1);
 		$w = array(10, 30, 60, 80, 50, 20, 30);
 		$header = array('№','Артикул', 'Производ.','Наименование','Этаж/комната', 'Кол-во', 'Фото');
-		$pdf->viewHeader($w,$header);	  	
+		$pdf->viewHeader($w,$header);		
 		
-		//Table with 20 rows and 4 columns
 		$pdf->SetWidths(array(10, 30, 60, 80, 50, 20, 30));
 		srand(microtime()*1000000);
 		$pdf->SetFillColor(255,255,255); 
@@ -73,18 +72,7 @@ switch ($type_view) {
 		    $pdf->Row(array($number,intval($curLamp["key"]),$curLamp["producer"],$curLamp["nameLamp"],$curLamp["paramStr"],intval($curLamp["count"]),$curLamp["photoLink"]));
 		}	
 			
-		$pdf->Output();
-		/*$pdf = new PDF('L','mm','A4');		
-	  	$header = array('№','Артикул', 'Производ.','Наименование','Этаж/комната', 'Кол-во', 'Фото');  
-	  	$pdf->AddFont('DejaVuSans','','DejaVuSans.ttf',true);
-	  	$pdf->SetFont('DejaVuSans','',12);
-	  	$title = 'Ведомость осветительных приборов';
-		$pdf->SetTitle($title,1);
-	  	
-	  	$pdf->AddPage();
-	 	$pdf->viewList($header,$data); 
-
-		$pdf->Output();*/
+		$pdf->Output();		
 		break;
 	default:
 		# code...
