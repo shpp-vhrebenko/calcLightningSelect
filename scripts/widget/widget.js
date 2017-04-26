@@ -344,18 +344,10 @@ $(document).ready(function() {
         var height = getWindowHeight(); 
         $bTable.bootstrapTable('resetView', {height: height});        
     }); 
-
-    
-    $('#nameLamp option').hover(function(e) {
-        console.log(e.target);
-    });
      
 });
 //======================== END DOCUMENT READY =============================
 //=========================================================================
-$(document).on("hover",".active-option-select",function(){
- console.log($(this).text());   
-});
 
 function getWindowHeight() {
   var windowHeight = $(window).height(); 

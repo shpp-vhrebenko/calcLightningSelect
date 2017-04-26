@@ -437,12 +437,8 @@ function parsingRoomParam(params) {
                
         var dopStr = "";
         for (var i = 0; i < value.length; i++) {
-            if(i != (value.length - 1)) {
-                if(i == 1 && boxParam.length > 1) {
-                    dopStr = dopStr + value[i] + "," + "\n";
-                } else {
-                    dopStr = dopStr + value[i] + ",";
-                }                
+            if(i != (value.length - 1)) {                
+                dopStr = dopStr + value[i] + ",";                              
             } else {
                 dopStr = dopStr + value[i] + ".\n";
             }            

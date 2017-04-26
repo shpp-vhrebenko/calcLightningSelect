@@ -58,21 +58,20 @@ $('#view_pdf_listLightingDevicesInRooms').on('click', function(event) {
 
 $('#view_pdf_listLightingDevices').on('click', function(event) {
   event.preventDefault();  
-  var listDevices = getListLightingDevices();    
+  var listDevices = getListLightingDevices();   
+  console.log(listDevices); 
   $.ajax({
     url: 'widget.php',
     type: 'POST',    
     data: {viewPDF: true, viewList: true,  local_data: listDevices},
   })
-  .done(function() {
-    console.log("success");    
+  .done(function() {       
     window.open('viewPDF.php', 'Ведомость осветительных приборов');    
   })
   .fail(function() {
     console.log("error");
   })
-  .always(function() {
-    console.log("complete");
+  .always(function() {   
   });  
 });
 

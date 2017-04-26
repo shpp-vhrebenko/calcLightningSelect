@@ -132,8 +132,7 @@ function initSelectorNameLamp() {
                 $('#info_lamp').text(localDataLamp.applyLamp);
             }    
             $('#nameLamp').selectpicker({              
-              size: 10,              
-              width: 210
+              size: 10             
             });
        
              
