@@ -11,8 +11,10 @@ window.addEventListener('message', function(event) {
     console.group("LOAD DATA"); 
     console.log(typeof(data));
     console.log(data);   
-    console.groupEnd();   
-    current_Room.getInstance().setTypeLamp(data);    
+    console.groupEnd(); 
+    var parentURL = window.location.hash.slice(1);   
+    current_Room.getInstance().setInstanceParentUrl(parentURL);
+    current_Room.getInstance().setTypeLamp(data);      
     viewResultInTable(data);
     /*localDataLamp.jsonDrawing = json_object;
     localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));*/
@@ -27,7 +29,9 @@ window.addEventListener('message', function(event) {
  */
 $('#put_data').on('click', function(event) {
   event.preventDefault();
-  var parentURL = window.location.hash.slice(1); 
+  /*var parentURL = window.location.hash.slice(1);*/ 
+  var parentURL = current_Room.getInstance().getInstanceParentUrl();
+  console.log(parentURL);
   var local_data = current_Room.getInstance().getResultTypeLamp();   
   parent.window.postMessage({message: {cmd: 'return_data', data: local_data }}, parentURL);
 });
@@ -81,7 +85,8 @@ $('#view_pdf_listLightingDevices').on('click', function(event) {
 $('#cancel').on('click', function(event) {
   event.preventDefault();
   console.log(window.location);
-  var parentURL = window.location.hash.slice(1);
+  /*var parentURL = window.location.hash.slice(1);*/
+  var parentURL = current_Room.getInstance().getInstanceParentUrl();
   console.log(parentURL);
   parent.window.postMessage({message: {cmd: 'cancel'}}, parentURL);
 });

@@ -6,10 +6,20 @@ var current_Room = (function() {
         curLamp = [], // array current lamps in table ( current active lamp in table)
         typeLamp = {}, // object json drawing (we take it from post message)
         instanceTypeLamp = {},
+        instanceParentUrl = "",
         //lampSelect = {}, // object has value for options name lamp select in form edit modal_window
         lampAutocomplit = [], // array for initial lamp autocomplit
         instanceCount = 0;
         //lampAutocomplitKey = []; // array for initial lamp autocomplit for key  
+
+    var setInstanceParentUrl = function(str) {
+        console.log(str);
+        instanceParentUrl = str;
+    };
+
+    var getInstanceParentUrl = function() {
+        return instanceParentUrl;
+    };
 
     var setLampSelect = function(inputObject) {
         $.each(inputObject, function(key, value) {
@@ -277,7 +287,10 @@ var current_Room = (function() {
             getLampAutocomplit: getLampAutocomplit,
             getLampAutocomplitKey: getLampAutocomplitKey,
 
-            setLampSelect: setLampSelect
+            setLampSelect: setLampSelect,
+
+            setInstanceParentUrl: setInstanceParentUrl,
+            getInstanceParentUrl: getInstanceParentUrl
         };
     };
 

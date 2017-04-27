@@ -66,10 +66,10 @@ function viewResultInTable(calcLighting) {
     var rooms = currentFloor.rooms;    
     for (var r = 0; r < rooms.length; r++) {
       var currentRoom = rooms[r];     
-      if(currentRoom.typeLamp !== undefined) {        
+      if(currentRoom.typeLamp !== undefined ) {        
         var typeLamp = _.cloneDeep(currentRoom.typeLamp);
         var typeRoom = undefined;
-        if(currentRoom.room_type !== undefined) {
+        if(currentRoom.room_type !== undefined && currentRoom.room_type !== "undefined") {
           console.log(currentRoom.room_type);
           typeRoom = currentRoom.room_type;
         }
@@ -130,13 +130,15 @@ function addLampsToTableData(typeLamp , floor, room, typeRoom) {
 function addLampToTableData(currentLamp, room, floor, edit, typeRoom) { 
   console.log("addLampToTableData"); 
   console.log(currentLamp); 
-  if(typeRoom !== undefined) {
+  if(typeRoom !== undefined && typeRoom !== "undefined") {
     currentLamp.typeRoom = typeRoom;
-  }
+  } else {
+    currentLamp.typeRoom = undefined;
+  }  
   var floor_number = parseInt(floor) + 1;
   var room_number = parseInt(room) + 1;
   var requiredIllumination = 0;  
-  if(customRequiredIllumination !== undefined) {
+  if(customRequiredIllumination !== undefined && customRequiredIllumination !== "undefined") {
     requiredIllumination = currentLamp.customRequiredIllumination;
   } 
   var title = "";  
@@ -144,14 +146,14 @@ function addLampToTableData(currentLamp, room, floor, edit, typeRoom) {
     title = title + "Этаж №" + floor_number + ". ";
     title = title + "Помещение №" + room_number + ". ";    
     title = title + "Площадь: " + currentLamp.resultCalc.roomArea + " м2. ";
-    if(currentLamp.typeRoom !== undefined){
+    if(currentLamp.typeRoom !== undefined && currentLamp.typeRoom !== "undefined"){
       console.log(currentLamp.typeRoom);
       title = title + " Тип помещения: " + currentLamp.typeRoom;
     }      
   } else {
     title = title + "Помещение №" + room_number + ". ";    
     title = title + "Площадь: " + currentLamp.resultCalc.roomArea + " м2. ";
-    if(currentLamp.typeRoom !== undefined){
+    if(currentLamp.typeRoom !== undefined && currentLamp.typeRoom !== "undefined"){
       console.log(currentLamp.typeRoom);
       title = title + " Тип помещения: " + currentLamp.typeRoom;
     }  
