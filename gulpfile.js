@@ -28,6 +28,8 @@ var path = {
         main_js: 'scripts/main/*.js',
         widget_js: 'scripts/widget/*.js',
         admin_js: 'scripts/admin/*.js',
+        localization_js: 'scripts/localization/*.js',
+        locales_json: 'scripts/localization/locales/**/*.json',
         style: 'styles/**/*.css',
         style_less: 'styles/**/*.less',
         img: 'src/img/**/*.*',
@@ -48,6 +50,7 @@ var config = {
 
 /* jshint ignore:start */
 const gulp = require('gulp');
+var gulpIgnore = require('gulp-ignore');
 const gulpLoadPlugins = require('gulp-load-plugins');
 const runSequence = require('run-sequence')
 const $ = gulpLoadPlugins();
@@ -73,8 +76,8 @@ gulp.task('build:admin_js', function() {
 
 gulp.task('build:php', () => {
   return gulp.src('*.php')
-    .pipe($.useref({searchPath: ['.']}))    
-    .pipe($.if('*.js', $.uglify()))
+    .pipe($.useref({searchPath: ['.']}))     
+    .pipe($.if(['*.js','!bower_components/i18next/**','!bower_components/jquery-i18next/**'], $.uglify()))
    /* .pipe($.rev())    
     .pipe($.revReplace())*/
     /*.pipe($.if('*.css', $.cssnano({safe: true, autoprefixer: false})))
@@ -114,6 +117,16 @@ gulp.task('copy:classes_php', () => {
     .pipe(gulp.dest('dist/classes/'));
 });
 
+gulp.task('copy:localization_js', () => {
+  return gulp.src('scripts/localization/*.js')
+    .pipe(gulp.dest('dist/scripts/localization/'));
+});
+
+gulp.task('copy:locales_json', () => {
+  return gulp.src('scripts/localization/locales/**/*')
+    .pipe(gulp.dest('dist/scripts/localization/locales'));
+});
+
 gulp.task('watch', function(){
     $.watch([path.watch.php], function(event, cb) {
         gulp.start('build:php');        
@@ -139,6 +152,12 @@ gulp.task('watch', function(){
     $.watch([path.watch.admin_js], function(event, cb) {
         gulp.start('build:admin_js');        
     });
+    $.watch([path.watch.localization_js], function(event, cb) {
+        gulp.start('copy:localization_js');        
+    });  
+    $.watch([path.watch.locales_json], function(event, cb) {
+        gulp.start('copy:locales_json');        
+    });   
     $.watch([path.watch.style], function(event, cb) {
         gulp.start('copy:style');
     });    

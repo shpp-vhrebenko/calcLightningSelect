@@ -80,7 +80,9 @@ $('#view_pdf_listLightingDevices').on('click', function(event) {
  */
 $('#cancel').on('click', function(event) {
   event.preventDefault();
+  console.log(window.location);
   var parentURL = window.location.hash.slice(1);
+  console.log(parentURL);
   parent.window.postMessage({message: {cmd: 'cancel'}}, parentURL);
 });
 

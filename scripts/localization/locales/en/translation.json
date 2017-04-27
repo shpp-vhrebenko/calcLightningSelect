@@ -1,0 +1,72 @@
+{
+	"header": {
+	"draw": "Step 1. Select Rooms",
+	"select_lamp": "Step 2. Select Fixtures",
+	"add_lamp": "Step 3. Add fixtures",
+	"table_lamp": "Calculations"
+	},
+	"selectRCoef": {
+		"opt_1":"Floor-0%, Walls-0%, Ceiling-0%",         
+        "opt_2":"Floor-30%, Walls-30%, Ceiling-10%",
+        "opt_3":"Floor-50%, Walls-30%, Ceiling-10%",
+        "opt_4":"Floor-50%, Walls-50%, Ceiling-10%",
+        "opt_5":"Floor-70%, Walls-50%, Ceiling-20%",
+        "opt_6":"Floor-80%, Walls-30%, Ceiling-10%",
+        "opt_7":"Floor-80%, Walls-50%, Ceiling-30%",
+        "opt_8":"Floor-80%, Walls-80%, Ceiling-30%"
+	},
+	"selectRILum" : {
+		"opt_1":"Custom Value",
+        "opt_2":"Attic Floor",
+        "opt_3":"Stairs",
+        "opt_4":"Hallways",
+        "opt_5":"Lobby",                                          
+        "opt_6":"Warehouses (storage area)",
+        "opt_7":"Warehouses (delivery area)",
+        "opt_8":"Garages",
+        "opt_9":"Hairdressers",
+        "opt_10":"Combined halls and buffets",
+        "opt_11":"Trade halls of shops",
+        "opt_12":"Conference halls and meeting rooms",
+        "opt_13":"Design and engineering offices",
+        "opt_14":"Reading rooms",
+        "opt_15":"Teaching audience and Classes",                      
+        "opt_16":"Office",
+        "opt_17":"Work Cabinet"
+	},
+	"form" : {
+		"label_1":"Search",
+		"label_2":"Fixtures",
+		"label_3":"Room Height",
+		"label_4":"Work Surface",
+		"label_5":"Reflection Coefficient",
+		"label_6":"Stock Coefficient",
+		"label_7":"Required lighting",
+		"label_8":"Required lighting"
+	},
+	"button" : {
+		"all_rooms":"All Rooms",
+		"all_clear":"Reset selection",
+		"save":"Save",
+		"cancel":"Cancel",
+		"pdf":"PDF",
+	},
+	"table_header" : {
+		"key": "Product Code",
+		"name": "Name",
+		"count": "Number of fixtures",
+		"reIlum": "Required lighting",
+		"refCoef": "Reflection Coefficient",
+		"safFactor": "Stock Coefficient ",
+		"power": "Luminaire Power, W",
+		"powerTotal": "General Power, W",
+		"total": "Total:"
+	},
+	"label" : {
+		"legend": "Field of Application"
+	},
+	"doc" : {
+		"doc_1": "List of lighting devices in the rooms",
+		"doc_2": "List of lighting devices"
+	}
+}

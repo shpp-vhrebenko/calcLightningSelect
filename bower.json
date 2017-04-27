@@ -12,7 +12,10 @@
     "lodash": "^4.17.4",
     "es5-shim": "^4.5.9",
     "chosen": "^1.7.0",
-    "bootstrap-select": "^1.12.2"
+    "bootstrap-select": "^1.12.2",
+    "i18next": "^8.0.0",
+    "jquery-i18next": "^1.2.0",
+    "i18next-xhr-backend": "^1.4.1"
   },
   "overrides": {},
   "devDependencies": {

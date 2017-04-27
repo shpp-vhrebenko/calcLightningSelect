@@ -76,7 +76,7 @@ $(document).ready(function() {
       },
       {
           field: 'key',
-          title: 'Артикул', 
+          title: '<span>Артикул</span>',           
           align: 'center',          
           class: "col-md-1 half-col-md forTooltip",
           footerFormatter: totalTextFormatter         
@@ -268,7 +268,7 @@ $(document).ready(function() {
   }
 
   function totalTextFormatter(data) {
-    return 'ИТОГИ:';
+    return '<span>ИТОГИ:</span>';
   }
 
         //======== END FUNCTIONS BOOTSTRAP-TABLES =========//
