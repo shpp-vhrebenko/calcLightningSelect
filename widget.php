@@ -93,7 +93,8 @@
                 <div class="form-group">
                   <label for="nameLamp" class="col-sm-5 control-label" data-i18n="form.label_2">Cветильник</label>
                   <div class="col-sm-7">                    
-                    <select name="nameLamp" id="nameLamp" class="room nameLamp" required >   
+                    <select name="nameLamp" id="nameLamp" class="room nameLamp" required > 
+                      <option value="" selected disabled>Выберите светильник</option>  
                     </select>
                   </div>
                 </div>

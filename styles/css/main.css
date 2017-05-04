@@ -10877,6 +10877,9 @@ td {
 .table > tbody > tr.info > td {
   background-color: #ECEDEE;
 }
+.totalValue {
+  font-size: 2rem;
+}
 .search {
   z-index: 9999;
   position: absolute;
@@ -10942,6 +10945,12 @@ td {
 }
 .no-records-found {
   visibility: hidden;
+}
+.bootstrap-table .table > tbody > tr td {
+  font-size: 1.4rem;
+}
+.bootstrap-table .table > tbody > tr.groupBy td {
+  font-size: 1.60rem;
 }
 .alignLeft {
   text-align: left;

@@ -203,14 +203,18 @@ $(document).ready(function() {
           table.$el.trigger($.Event('uncheck.bs.table'), row);
   });   
 
-  $('#bTable').on('post-body.bs.table', function () {
+  $bTable.on('post-body.bs.table', function () {
       $('.forTooltip').attr("data-tooltip","true");
       $('[data-tooltip="true"]').tooltip({
           container: 'body'
       });
-  });   
-
-  $bTable.on('editable-save.bs.table', function (e, field, row, old, $el) {              
+  }).on('load-success.bs.table', function (e, data) {  
+    console.log("========Data load success!!!=======");      
+    /*console.log($(this).bootstrapTable('getData'));  */  
+  }).on('load-error.bs.table', function (e, data) {  
+    console.log("========Data load error!!!=======");      
+    /*console.log($(this).bootstrapTable('getData'));  */  
+  }).on('editable-save.bs.table', function (e, field, row, old, $el) {              
     if(field != "lampsCount") {
       console.log("chengeResultCalc");
       if(field === "requiredIllumination") {
@@ -237,7 +241,17 @@ $(document).ready(function() {
       current_Room.getInstance().chengeElementInTableData(row); 
     }
     
-  }); 
+  }).on('all.bs.table', function (e, name, args) {       
+        if(name == "pre-body.bs.table") {
+          console.group("PREBODYBSTABLE");          
+          console.log('data:', args);   
+          console.groupEnd(); 
+        } else if (name == "post-body.bs.table") {
+          console.group("POSTBODYBSTABLE");          
+          console.log('data:', args);    
+          console.groupEnd(); 
+        }
+    }); 
           //========== END EVENT BOOTSTRAP-TABLES ===========//
           //
           //========== FUNCTIONS BOOTSTRAP-TABLES ===========//
@@ -268,7 +282,7 @@ $(document).ready(function() {
   }
 
   function totalTextFormatter(data) {
-    return '<span>ИТОГИ:</span>';
+    return '<span class="totalValue">ИТОГИ:</span>';
   }
 
         //======== END FUNCTIONS BOOTSTRAP-TABLES =========//
