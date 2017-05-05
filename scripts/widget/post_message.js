@@ -3,7 +3,7 @@
 /**
  * [ listener event 'message' from parent window (apply postMessage)] 
  */
-window.addEventListener('message', function(event) {
+/*window.addEventListener('message', function(event) {
   var a = event.data.message;
   window.location.hash = event.origin;
   if (a.cmd == 'put_data') {
@@ -15,14 +15,14 @@ window.addEventListener('message', function(event) {
     var parentURL = window.location.hash.slice(1);   
     current_Room.getInstance().setInstanceParentUrl(parentURL);
     current_Room.getInstance().setTypeLamp(data);      
-    viewResultInTable(data);
+    viewResultInTable(data);*/
     /*localDataLamp.jsonDrawing = json_object;
     localStorage.setItem('typeLamp', JSON.stringify(localDataLamp));*/
-    sendResultForDrawPlan(JSON.stringify(data));           
+/*    sendResultForDrawPlan(JSON.stringify(data));           
   } else {
     initSelectorNameLamp();   
   }
-}, false);
+}, false);*/
 
 /**
  * [get json data from parent window] 
