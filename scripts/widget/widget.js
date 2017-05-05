@@ -193,6 +193,11 @@ $(document).ready(function() {
             footerFormatter: totalFormatter           
         }]
     });
+    var inputData = current_Room.getInstance().getTypeLamp(); 
+    console.log(inputData);
+    if(inputData.length !== 0) {
+      viewResultInTable(inputData);
+    }    
             //========== EVENTS BOOTSTRAP-TABLES ===========//
     $('#bTable').on('click', '.js_remove_button', function (e){
         var table = $('#bTable').data('bootstrap.table'),
@@ -366,9 +371,6 @@ $(document).ready(function() {
           var height = getWindowHeight(); 
           $bTable.bootstrapTable('resetView', {height: height});        
       });     
-});
-$(document).ready(function() {
-     
 });
 //======================== END DOCUMENT READY =============================
 //=========================================================================
