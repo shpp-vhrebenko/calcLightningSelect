@@ -193,7 +193,8 @@ function viewDraw(resultDraw) {
         if (i === 0) {
             $li.addClass("active");
         }
-        $li.append($("<a>").attr({ "data-toggle": "tab", "href": "#" + i }).text("Этаж №" + (i + 1)));
+        $li.append($("<a>").attr({ "data-toggle": "tab", "href": "#" + i })
+                            .html("<span data-i18n='tab_header.floor'>Этаж №</span>" + (i + 1)));
         $('#tabs_plan').append($li);
         $divTab = $('<div>').attr('id', i);
         if (i === 0) {

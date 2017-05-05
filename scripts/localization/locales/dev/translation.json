@@ -52,12 +52,13 @@
 		"pdf":"PDF"
 	},
 	"table_header" : {
-		"key": "Product Code",
+		"key": "Article",
 		"name": "Name",
 		"count": "Number of fixtures",
+		"producer": "Producer",
 		"reIlum": "Required lighting",
-		"refCoef": "Reflection Coefficient",
-		"safFactor": "Stock Coefficient ",
+		"refCoef": "Reflection Coeff.",
+		"safFactor": "Stock Coeff.",
 		"power": "Luminaire Power, W",
 		"powerTotal": "General Power, W",
 		"total": "Total:"
@@ -68,5 +69,23 @@
 	"doc" : {
 		"doc_1": "List of lighting devices in the rooms",
 		"doc_2": "List of lighting devices"
+	},
+	"tab_header" : {
+		"floor": "Floor №"
+	},
+	"group_header" : {
+		"room": "Room №",
+		"floor": "Floor №",
+		"typeRoom": "Type room: "
+	},
+	"typeRoom": {
+		"kitchen": "kitchen",
+		"restroom": "restroom",
+		"bath": "bath",
+		"toilet": "toilet",
+		"hallway": "hallway",
+		"tech_room": "tech_room",
+		"warehouse": "warehouse",
+		"server_room": "server_room"
 	}
 }	

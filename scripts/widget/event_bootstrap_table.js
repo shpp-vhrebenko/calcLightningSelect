@@ -130,7 +130,37 @@ function addLampsToTableData(typeLamp , floor, room, typeRoom) {
 function addLampToTableData(currentLamp, room, floor, edit, typeRoom) { 
   console.log("addLampToTableData"); 
   console.log(currentLamp); 
+  var textTypeRoom = "";
   if(typeRoom !== undefined && typeRoom !== "undefined") {
+    switch (typeRoom) {
+      case "kitchen":
+        textTypeRoom = "<span data-i18n='typeRoom.kitchen'>Кухня</span>";
+      break;
+      case "restroom":
+        textTypeRoom = "<span data-i18n='typeRoom.restroom'>Санузел</span>";
+      break;
+      case "bath":
+        textTypeRoom = "<span data-i18n='typeRoom.bath'>Ванная</span>";
+      break;
+      case "toilet":
+        textTypeRoom = "<span data-i18n='typeRoom.toilet'>Туалет</span>";
+      break;
+      case "hallway":
+        textTypeRoom = "<span data-i18n='typeRoom.hallway'>Коридор</span>";
+      break;
+      case "tech_room":
+        textTypeRoom = "<span data-i18n='typeRoom.tech_room'>Тех. помещение</span>";
+      break;
+      case "warehouse":
+        textTypeRoom = "<span data-i18n='typeRoom.warehouse'>Склад</span>";
+      break;
+      case "server_room":
+        textTypeRoom = "<span data-i18n='typeRoom.server_room'>Серверная</span>";
+      break;
+      default:
+        textTypeRoom = "<span data-i18n='typeRoom.server_room'>Серверная</span>";
+        break;
+    }
     currentLamp.typeRoom = typeRoom;
   } else {
     currentLamp.typeRoom = undefined;
@@ -143,21 +173,21 @@ function addLampToTableData(currentLamp, room, floor, edit, typeRoom) {
   } 
   var title = "";  
   if(floor_number != 1) {
-    title = title + "Этаж №" + floor_number + ". ";
-    title = title + "Помещение №" + room_number + ". ";    
+    title = title + "<span data-i18n='group_header.floor'>Этаж №</span>" + floor_number + ". ";
+    title = title + "<span data-i18n='group_header.room'>Помещение №</span>" + room_number + ". ";    
    /* title = title + "Площадь: " + currentLamp.resultCalc.roomArea + " м2. ";*/
    title = title + "-" + "  " + currentLamp.resultCalc.roomArea + "  " + " м2. ";
     if(currentLamp.typeRoom !== undefined && currentLamp.typeRoom !== "undefined"){
       console.log(currentLamp.typeRoom);
-      title = title + " Тип помещения: " + currentLamp.typeRoom;
+      title = title + "<span data-i18n='group_header.typeRoom'> Тип помещения: </span>" + textTypeRoom;
     }      
   } else {
-    title = title + "Помещение №" + room_number + ". ";    
+    title = title + "<span data-i18n='group_header.room'>Помещение №</span>" + room_number + ". ";    
     /*title = title + "Площадь: " + currentLamp.resultCalc.roomArea + " м2. ";*/
     title = title + "-" + "  " + currentLamp.resultCalc.roomArea + "  " + " м2. ";
     if(currentLamp.typeRoom !== undefined && currentLamp.typeRoom !== "undefined"){
       console.log(currentLamp.typeRoom);
-      title = title + " Тип помещения: " + currentLamp.typeRoom;
+      title = title + "<span data-i18n='group_header.typeRoom'>Тип помещения: </span>" + textTypeRoom;
     }  
   } 
  

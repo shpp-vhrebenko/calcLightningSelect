@@ -76,15 +76,15 @@ $(document).ready(function() {
         },
         {
             field: 'key',
-            title: '<span>Артикул</span>',           
+            title: '<span data-i18n="table_header.key">Артикул</span>',           
             align: 'center',          
-            class: "col-md-1 half-col-md forTooltip",
+            class: "col-md-1",            
             footerFormatter: totalTextFormatter         
         },
         {
             field: 'nameLamp',
              /*jshint multistr: true */
-            title: "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Наименование" + 
+            title: "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span data-i18n='table_header.name'>Наименование</span>" + 
                     "&nbsp;&nbsp;&nbsp;&nbsp;<span onclick='showFieldSearch()' id='show-search'><i class='glyphicon glyphicon-search'></i></span>",
             sortable: true,        
             class: "col-md-3 ",
@@ -92,7 +92,7 @@ $(document).ready(function() {
         },
         {
             field: 'producer',
-            title: 'Производитель',
+            title: '<span data-i18n="table_header.producer">Производитель</span>',
             container: 'body',         
             class: "col-md-1",
             align: 'center'            
@@ -125,9 +125,9 @@ $(document).ready(function() {
             }          
         }*/ {
             field: 'lampsCount',
-            title: 'Количество </br>светильников',
+            title: '<span data-i18n="table_header.count">Количество </br>светильников</span>',
             container: 'body',         
-            class: "col-md-1",
+            class: "half-col-md",
             editable: {
               type: 'number',
               min: 1,
@@ -138,7 +138,7 @@ $(document).ready(function() {
 
         }, {
             field: 'requiredIllumination',
-            title: 'Требуемое </br>освещение лк',                    
+            title: '<span data-i18n="table_header.reIlum">Требуемое </br>освещение лк</span>',                    
             class: "col-md-1",
             editable: {
               type: 'number',
@@ -148,7 +148,7 @@ $(document).ready(function() {
             }           
         }, {
             field: 'reflectionCoef',
-            title: 'Коэф.</br>отражения',                   
+            title: '<span data-i18n="table_header.refCoef">Коэф.</br>отражения</span>',                   
             class: "col-md-1",
             editable: {
               type: 'select',
@@ -167,7 +167,7 @@ $(document).ready(function() {
             }                    
         }, {
             field: 'safetyFactor',
-            title: 'Коэф.</br>запаса',         
+            title: '<span data-i18n="table_header.safFactor">Коэф.</br>запаса</span>',         
             class: "col-md-1",
             editable: {
               type: 'select',
@@ -182,13 +182,13 @@ $(document).ready(function() {
             }            
         }, {
             field: 'allPowerLamps',
-            title: 'Мощность</br>1 шт., Вт',
+            title: '<span data-i18n="table_header.power">Мощность</br>1 шт., Вт</span>',
             titleTooltip: "Мощность 1 светильника",         
             class: "col-md-1 forTooltip"           
         }, {
             field: 'lampsWatt', 
             class: "col-md-1 forTooltip",
-            title: 'Общая</br>мощность, Вт',
+            title: '<span data-i18n="table_header.powerTotal">Общая</br>мощность, Вт</span>',
             titleTooltip: "Мощность всех светильников",
             footerFormatter: totalFormatter           
         }]
@@ -290,7 +290,7 @@ $(document).ready(function() {
     }
 
     function totalTextFormatter(data) {
-      return '<span class="totalValue">ИТОГИ:</span>';
+      return '<span class="totalValue" data-i18n="table_header.total">ИТОГИ:</span>';
     }
 
           //======== END FUNCTIONS BOOTSTRAP-TABLES =========//
