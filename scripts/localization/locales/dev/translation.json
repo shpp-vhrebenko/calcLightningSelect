@@ -47,7 +47,7 @@
 	"button" : {
 		"all_rooms":"All Rooms",
 		"all_clear":"Reset selection",
-		"save":"Save",
+		"save":"Step 4. Arrange fixtures on the drawing",
 		"cancel":"Cancel",
 		"pdf":"PDF"
 	},

@@ -11,7 +11,7 @@
 			    
 	    // Header
 		// Column widths
-	    $w = array(80, 40, 30, 40);
+	    $w = array(70, 50, 30, 25, 25);
 	    // Header
 	    $this->Cell(array_sum($w),10,'Ведомость осветительных приборов по помещениям',0,0,'C');	
 	    $this->Ln();
@@ -39,20 +39,29 @@
 	            $this->SetDrawColor(236,125,99);
 	    		$this->SetLineWidth(.3);
 	   			$this->SetTextColor(0);	                                 
-	            $this->Cell(array_sum($w),6,'Этаж №'.$curFloor.' Комната № '.$curRoom ,1,0,'L', 1); 
+	            $this->Cell(array_sum($w),6,'Этаж '.$curFloor.' Комната № '.$curRoom ,1,0,'L', 1); 
 	            $this->Ln(); 
 	            $this->SetFillColor(255,255,255); 
 	            $this->SetDrawColor(236,125,99);
 	    		$this->SetLineWidth(.3);         
 	            foreach ($typeLamp as $key => $value) {
-	                $this->Cell($w[0],6,$value["nameLamp"],1,0,'L');
-	                if(isset($value["key"]) && $value["key"] !== 'undefined') {
-	                	$this->Cell($w[1],6,$value["key"],1,0,'C');
+	            	$x = $this->GetX();
+					$y = $this->GetY();
+					$this->Rect($x,$y,$w[0],12);
+	                $this->MultiCell($w[0],6,$value["nameLamp"],0,'L');	
+	                $this->SetXY($x + $w[0], $y);               
+	                if(isset($value["producer"]) && $value["producer"] !== 'undefined') {
+	                	$this->Cell($w[1],12,$value["producer"],1,0,'L');
 	                } else {
-	                	$this->Cell($w[1],6,"---",1,0,'C');
+	                	$this->Cell($w[1],12,"---",1,0,'L');
+	                }  
+	                if(isset($value["key"]) && $value["key"] !== 'undefined') {
+	                	$this->Cell($w[2],12,$value["key"],1,0,'R');
+	                } else {
+	                	$this->Cell($w[2],12,"---",1,0,'R');
 	                }                
-	                $this->Cell($w[2],6,number_format(intval($value["lampsCount"])),1,0,'C');
-	                $this->Cell($w[3],6,number_format(intval($value["lampsWatt"])),1,0,'C');                 
+	                $this->Cell($w[3],12,number_format(intval($value["lampsCount"])),1,0,'R');
+	                $this->Cell($w[4],12,number_format(intval($value["lampsWatt"])),1,0,'R');                 
 	                $this->Ln();
 	            }
 	        }

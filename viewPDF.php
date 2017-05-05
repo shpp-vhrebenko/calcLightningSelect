@@ -24,9 +24,10 @@ if(isset($_SESSION["calcLightningModuleCad5d"]) && isset($_SESSION['calcLMCad5dT
 switch ($type_view) {
 	case 'viewListInRooms':
 		$pdf = new PDF();			
-	  	$header = array('Наименование','Артикул', 'Количество','Мощность');  
+	  	$header = array('Наименование', 'Производитель', 'Артикул', 'Количество','Мощность');  
 	  	$pdf->AddFont('DejaVuSans','','DejaVuSans.ttf',true);
 	  	$pdf->SetFont('DejaVuSans','',10);
+	  	$pdf->SetMargins(5,0.5);
 	  	$title = 'Ведомость осветительных приборов по помещениям';
 		$pdf->SetTitle($title,1);
 	  	

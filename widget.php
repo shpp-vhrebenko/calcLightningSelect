@@ -218,8 +218,8 @@
                 <li><a type="button" class="view-pdf__item" id="view_pdf_listLightingDevices" data-i18n="doc.doc_2">Ведомость осветительных приборов</a></li>                
               </ul>
             </div>            
-            <button type="button" class="btn btn-sm btn-space btn-primary col-sm-1 put_data" id="put_data" data-i18n="button.save">
-              Сохранить
+            <button type="button" class="btn btn-sm btn-space btn-primary col-sm-3 put_data" id="put_data" data-i18n="button.save">
+              Расставить светильники на чертеже
             </button> 
             <button type="button" class="btn btn-sm btn-space btn-default col-sm-1 cancel" id="cancel" data-i18n="button.cancel">
               Отмена
