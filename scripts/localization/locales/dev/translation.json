@@ -45,7 +45,7 @@
 		"label_8":"Required lighting"
 	},
 	"button" : {
-		"all_rooms":"All Rooms",
+		"all_rooms":"All Rooms ",
 		"all_clear":"Reset selection",
 		"save":"Step 4. Arrange fixtures on the drawing",
 		"cancel":"Cancel",

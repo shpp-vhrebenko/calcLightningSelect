@@ -217,9 +217,9 @@ function viewDraw(resultDraw) {
         $drawPanel = $('<div>').addClass('btn-group draw-panel');
         $buttonAll = $('<button>').attr('data-id', i).addClass('btn btn-default btn-sm select_all col-md-5');        
         $buttonAll.append($('<span>').addClass('glyphicon glyphicon-th'));
-        $buttonAll.append('&nbsp;Все комнаты');  
+        $buttonAll.append('&nbsp;<span data-i18n="button.all_rooms">Все комнаты</span>');  
         $buttonRemoveAll = $('<button>').attr('data-id', i).addClass('btn btn-default btn-sm remove_all col-md-7');       
-        $buttonRemoveAll.append('Сбросить выделенное');
+        $buttonRemoveAll.append('<span data-i18n="button.all_clear">Сбросить выделенное</span>');
         $drawPanel.append($buttonAll)
                     .append($buttonRemoveAll);              
         $divRow = $('<div>').addClass('row');        
