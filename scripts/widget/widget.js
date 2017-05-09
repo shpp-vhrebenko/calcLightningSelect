@@ -206,13 +206,8 @@ $(document).ready(function() {
             $element = $div.parent(),
             $tr = $element.parent(),
             row = table.data[$tr.data('index')];
-            /*cellIndex = $element[0].cellIndex,
-            $headerCell = table.$header.find('th:eq(' + cellIndex + ')'),
-            field = $headerCell.data('field'),
-            value = row[field];  */
             console.log(row);
             current_Room.getInstance().removeElementFromTableData(row);
-           /* current_Room.getInstance().removeCurrentLamp(row);*/
             table.$el.trigger($.Event('uncheck.bs.table'), row);
     });   
 
@@ -342,20 +337,6 @@ $(document).ready(function() {
         var $nameLamp = $('#nameLamp');
         $nameLamp.val(current.id).valid().trigger('change');
       });
-
-      /*var $inputKey = $("#key");
-      var selectLampKey = current_Room.getInstance().getLampAutocomplitKey();  
-      $inputKey.typeahead({
-        source: selectLampKey,
-        autoSelect: true
-      });
-      $inputKey.change(function() {  
-        console.log("changeTypeHead"); 
-        var current = $inputKey.typeahead("getActive");              
-        $('#nameLamp').val(current.id);        
-        $('#nameLamp').valid();
-        $('#nameLamp').trigger('change');      
-      });*/
       //============= END AUTOCOMPLIT BOOTSTRAP-TYPEAHEAD =============   
       //
       //
