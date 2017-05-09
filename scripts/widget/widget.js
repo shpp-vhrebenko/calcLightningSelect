@@ -205,11 +205,11 @@ $(document).ready(function() {
             $div = $current.parent(),
             $element = $div.parent(),
             $tr = $element.parent(),
-            row = table.data[$tr.data('index')],
-            cellIndex = $element[0].cellIndex,
+            row = table.data[$tr.data('index')];
+            /*cellIndex = $element[0].cellIndex,
             $headerCell = table.$header.find('th:eq(' + cellIndex + ')'),
             field = $headerCell.data('field'),
-            value = row[field];              
+            value = row[field];  */
             console.log(row);
             current_Room.getInstance().removeElementFromTableData(row);
            /* current_Room.getInstance().removeCurrentLamp(row);*/
@@ -338,11 +338,9 @@ $(document).ready(function() {
         autoSelect: true
       });
       $input.change(function() {   
-        var current = $input.typeahead("getActive");      
-        var selectTypeLamp = $input.val();
-        $('#nameLamp').val(current.id);        
-        $('#nameLamp').valid();
-        $('#nameLamp').trigger('change');      
+        var current = $input.typeahead("getActive");
+        var $nameLamp = $('#nameLamp');
+        $nameLamp.val(current.id).valid().trigger('change');
       });
 
       /*var $inputKey = $("#key");
@@ -376,10 +374,10 @@ $(document).ready(function() {
 //=========================================================================
 
 function getWindowHeight() {
-  var windowHeight = $(window).height(); 
+  var windowHeight = $(window).height();
   var headerBlock = 300;
   var buttonBlock = 40;
-  var otherBlock = 50;     
-  var curHeight = (windowHeight - (headerBlock + buttonBlock)) - otherBlock;     
-  return curHeight;   
+  var otherBlock = 50;
+  var curHeight = (windowHeight - (headerBlock + buttonBlock)) - otherBlock;
+  return curHeight;
 }  
