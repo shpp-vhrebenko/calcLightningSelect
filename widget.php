@@ -224,7 +224,6 @@ function initialSessionParam($data, $type_view)
                                        name="customRequiredIllumination" min="0" step="1"/>
                             </div>
                         </div>
-                        div
                     </form>
                     <!-- End Form calcLightning  -->
                 </div>
