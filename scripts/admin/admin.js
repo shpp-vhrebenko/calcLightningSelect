@@ -82,40 +82,22 @@ function getLastUpdateTime() {
 
 function viewResultUpdate(data) {
   var result = $.parseJSON(data);
-  var time = (parseInt(result.time) * 1000); 
+  var time = result.time; 
   console.log("viewResultUpdate");
   console.log(time);  
-  var dt = new Date(time);
-  var month = dt.getMonth()+1;
-  if(month < 10){
-    month = "0" + month;
-  }
-  var day = dt.getDate();
-  if(day < 10){
-    day = "0" + day;
-  }
-  var year = dt.getFullYear();     
+  var currentData = timeConverter(time); 
   $('#result_submit_admin').html('Обновление данных прошло успешно.<br/> Дата обновления:' + 
-    day + '-' + month + '-' + year);
+    currentData);
   endResponse(); 
 }
 
 function viewLastUpdateTime(data) {
   var result = $.parseJSON(data);
-  var time = (parseInt(result.time) * 1000); 
+  var time = result.time; 
   console.log("viewLastUpdateTime");
   console.log(time);  
-  var dt = new Date(time);
-  var month = dt.getMonth()+1;
-  if(month < 10){
-    month = "0" + month;
-  }
-  var day = dt.getDate();
-  if(day < 10){
-    day = "0" + day;
-  }
-  var year = dt.getFullYear(); 
-  $('#last_time_submit').text('Дата последнего обновления:' + day + '-' + month + '-' + year);  
+  var currentData = timeConverter(time);
+  $('#last_time_submit').text('Дата последнего обновления:' + currentData);  
 }
 
 function viewErrorResponse(response, status, error) {
@@ -193,4 +175,17 @@ function hideLoadingWraper() {
  */
 function showLoadingWraper() {  
   $(".js_loading_wraper").fadeOut("slow");
+}
+
+function timeConverter(UNIX_timestamp){
+  var a = new Date(parseInt(UNIX_timestamp * 1000));
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var year = a.getFullYear();
+  var month = months[a.getMonth()];
+  var date = a.getDate();
+  var hour = a.getHours();
+  var min = a.getMinutes();
+  var sec = a.getSeconds();
+  var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+  return time;
 }
