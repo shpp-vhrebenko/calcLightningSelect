@@ -14,7 +14,12 @@
     // Upload mongo db from ftp server ==============================================
    		$con = new MongoClient();   		
 	    $arrayJsonData = uploadJsonFileFTP($ftpObj,IT_PRODUCT_FUATURES, JSON_RESOURCES);
-      /*uploadToMongodb($arrayJsonData, $con);*/
+      if(isset($arrayJsonData) && (count($arrayJsonData) != 0)) {
+        uploadToMongodb($arrayJsonData, $con);
+      } else {
+        throw new Exception('Проблема с Ftp соединением', 1);
+      }
+     
       $timeNow =  strtotime("now");
 	    $time_init = array( 
 	        "timeInit" => $timeNow      
@@ -27,8 +32,7 @@
 		    $collection->insert($time_init);		       
 		  } else {
 		    $collection->insert($time_init);		          
-		  } 
-    return $timeNow;  
+		  }  
     //Upload mongo db colection from ftp after setup time ============================
    /* $timeNow =  strtotime("now");
     $time_init = array( 

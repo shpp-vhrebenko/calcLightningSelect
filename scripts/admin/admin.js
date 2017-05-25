@@ -59,7 +59,7 @@ $('#update_ml').on('click', function(event) {
   startResponse();  
   var sendData = { upload_widget_data: true};  
   sendAjaxForm(sendData,
-    "calc_lighting.php",    
+    "auto_update_ml.php",    
     hideLoadingWraper,
     showLoadingWraper,
     viewResultUpdate,
@@ -71,7 +71,7 @@ $('#update_ml').on('click', function(event) {
 function getLastUpdateTime() {  
   var sendData = { get_time_last_update: true};
   sendAjaxForm(sendData,
-    "calc_lighting.php",    
+    "auto_update_ml.php",    
     hideLoadingWraper,
     showLoadingWraper,
     viewLastUpdateTime,
