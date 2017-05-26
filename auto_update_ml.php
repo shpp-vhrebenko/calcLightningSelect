@@ -13,7 +13,7 @@ require_once('functions/add_loggi.php');
 header("Content-type: text/html; charset=utf-8;");
 
 
-date_default_timezone_set('UTC');
+date_default_timezone_set('europe/kiev');
 ini_set('max_execution_time', 600);
 set_error_handler("customError");
 
@@ -31,19 +31,21 @@ try {
 				$str = "Time start - ";
 				$str.= $time;
 				addLogg("UPLOAD WIDGET DATA", "SUCCESS", $str);
+				sendMail("База Световые технологии обновлена успешно!"."[".$str."]");
 				echo json_encode($result);
 		}	
 	} catch (Exception $e) {
 		$resultArray["error"]["message"] = $e->getMessage();
-    $resultArray["error"]["code"] = $e->getCode();
-    $resultArray["error"]["file"] = $e->getFile();
-    $resultArray["error"]["line"] = $e->getLine();
+	    $resultArray["error"]["code"] = $e->getCode();
+	    $resultArray["error"]["file"] = $e->getFile();
+	    $resultArray["error"]["line"] = $e->getLine();
 		$result = "";
 		$result .= $e->getMessage()."||";
 		$result .= $e->getCode()."||";
 		$result .= $e->getFile()."||";
 		$result .= $e->getLine()."||";
 		addLogg("UPLOAD WIDGET DATA", "ERROR", $result);
+		sendMail("База Световые Технологии НЕ обновлена!");
 		echo  json_encode($resultArray);
 }
 
@@ -52,6 +54,30 @@ function customError($errno, $errstr, $errline, $errcontext) {
 	addLogg("UPLOAD WIDGET DATA", "ERROR", $result);
 	$resultArray["error"]["message"] = $result;
 	echo  json_encode($resultArray);
+}
+
+function sendMail($message) {
+	$to = "rmelnik7777@gmail.com, info@cad5d.com, vhrebenko@gmail.com";
+	$subject = $message; 
+
+	$today = time();
+	$dateLogg = date("Y-m-d H:i:s",$today); 
+
+	$msg = ' 
+	<html> 
+	    <head> 
+	        <title>Update Lighting Module</title> 
+	    </head> 
+	    <body> 
+	        <p>'.$message."[".$dateLogg."]".'</p> 
+	    </body> 
+	</html>'; 
+
+	// Always set content-type when sending HTML email
+	$headers = "MIME-Version: 1.0" . "\r\n";
+	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+	mail($to, $subject, $msg, $headers); 
 }
 
 ?>

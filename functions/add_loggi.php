@@ -1,6 +1,6 @@
 <?php 
 define('LOG_DATA', 'loggi/loggi.txt');
-date_default_timezone_set('UTC');
+date_default_timezone_set('europe/kiev');
 
 function addLogg($proces,$status, $message="message"){
   $today = time() + 3600;
